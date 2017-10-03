@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "electron": "^1.6.11",
+    "lodash.pick": "^4.4.0",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
@@ -26,7 +27,9 @@
     "redux": "^3.7.2",
     "redux-persist": "^4.8.2",
     "redux-thunk": "^2.2.0",
-    "reselect": "^3.0.1"
+    "request": "^2.83.0",
+    "reselect": "^3.0.1",
+    "xml2js": "^0.4.19"
   },
   "scripts": {
     "start": "react-scripts start",
