@@ -24,24 +24,5 @@
 .kanban-board {
   flex: 1;
   overflow: hidden;
-}
-
-.kanban-column {
-  width: 25%;
-  display: flex;
-  max-height: 100%;
-  flex-direction: column;
-}
-
-.kanban-column + .kanban-column {
-  border-left: 1px solid black;
-}
-
-.kanban-column-title,
-.kanban-column-items {
-  padding: 0 22px;
-}
-
-.kanban-column-items {
-  overflow-y: auto;
+  padding: 10px 5px;
 }

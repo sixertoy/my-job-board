@@ -1,0 +1,29 @@
+.kanbanitem-container {
+  /* padding: 22px 0; */
+  padding: 10px;
+  color: #333333;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 5px;
+  background-color: #FAFAFA;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.kanbanitem-container a {
+  color: #333333;
+  text-decoration: none;
+}
+
+.kanbanitem-container + .kanbanitem-container {
+  margin-top: 5px;
+}
+
+.kanbanitem-date {
+  margin: 0;
+  text-align: right;
+}
+
+.kanbanitem-title {
+  margin-top: 7px;
+  font-size: 1.2em;
+}

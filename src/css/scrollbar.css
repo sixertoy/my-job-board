@@ -1,18 +1,14 @@
-.fancy-scrollbar {
-  margin-right: 3px;
-}
-
 .fancy-scrollbar::-webkit-scrollbar {
   width: 9px;
   height: 9px;
 }
 
 .fancy-scrollbar::-webkit-scrollbar-track-piece {
-  background: rgba(0, 0, 0, 0.05);
+  background: #D6DADC;
 }
 
 .fancy-scrollbar::-webkit-scrollbar-thumb {
-  background: #D6DADC;
+  background: #C4C9CC;
 }
 
 .fancy-scrollbar::-webkit-scrollbar-thumb,
