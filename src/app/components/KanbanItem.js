@@ -7,7 +7,10 @@ import './kanbanitem.css';
 import { humandate } from './../utils/humandate';
 
 const KanbanItem = ({ title, date, short }) => (
-  <div className="kanbanitem-container">
+  <div className="kanbanitem-container relative">
+    <button className="kanbanitem-button"
+      onClick={() => {}}><span><i className="" /></span>
+    </button>
     <p className="kanbanitem-date">
       <span>{humandate(new Date(date))}</span></p>
     <h2 className="kanbanitem-title">
