@@ -1,0 +1,17 @@
+.feed-item-container {
+  padding: 22px 0;
+  text-align: left;
+}
+
+.feed-item-container + .feed-item-container {
+  border-top: 1px solid black;
+}
+
+.feed-item-date {
+  margin: 0;
+}
+
+.feed-item-title {
+  margin-top: 3px;
+  font-size: 1.2em;
+}

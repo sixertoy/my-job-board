@@ -12,7 +12,7 @@ export const feeds = (state = [
   // au lieu d'un tableau faire un object
   // les cles seront le nom de la source d'ou proviennent les feeds
   'http://remixjobs.com/rss',
-  'http://www.indeed.fr/rss?q=javascript&l=Montpellier'
+  'http://www.indeed.fr/rss?q=%28javascript%29&l=Montpellier'
 ], action) => {
   switch (action.type) {
   default:

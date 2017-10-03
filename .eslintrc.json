@@ -24,12 +24,16 @@
         "**/*.spec.js"
       ]
     }],
+    "react/jsx-filename-extension": [2, {
+      "extensions": [".js", ".jsx"]
+    }],
+    "react/jsx-max-props-per-line": [2, {
+      "maximum": 3,
+      "when": "multiline"
+    }],
     "react/jsx-closing-bracket-location": [2, {
       "nonEmpty": "after-props",
       "selfClosing": "after-props"
-    }],
-    "react/jsx-filename-extension": [2, {
-      "extensions": [".js", ".jsx"]
     }],
     "react/jsx-first-prop-new-line": [2, "never"],
     "react/forbid-prop-types": [1, {

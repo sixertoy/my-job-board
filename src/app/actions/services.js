@@ -1,7 +1,7 @@
 /* eslint
   no-console: 0 */
-import pick from 'lodash.pick';
 import { parseString } from 'xml2js';
+import * as sortby from 'lodash.sortby';
 
 const loadingStart = () => ({
   type: 'onloadingstart'
@@ -45,7 +45,12 @@ const makePromise = url => fetch(`${corsbridge}${url}`, fetchoptions)
 const parseResults = bodies =>
   bodies.reduce((acc, body) =>
     acc.concat(body.rss.channel[0].item), [])
-    .map(obj => pick(obj, ['title', 'pubDate', 'link', 'description']));
+    .map(obj => ({
+      link: obj.link[0],
+      title: obj.title[0],
+      description: obj.description[0],
+      date: Date.parse(obj.pubDate[0])
+    }));
 
 export const loadNewJobs = () => (dispatch, getstate) => {
   const { feeds } = getstate();
@@ -53,9 +58,9 @@ export const loadNewJobs = () => (dispatch, getstate) => {
   Promise.all(feeds.map(makePromise))
     .then(parseResults)
     .then((items) => {
-      console.log('items', items);
+      const feedsitems = sortby(items, 'date').reverse();
       dispatch(loadingComplete());
-      dispatch(applicationIsReady(items));
+      dispatch(applicationIsReady(feedsitems));
     })
     .catch(err => console.log(err));
 };

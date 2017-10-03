@@ -1,5 +1,5 @@
 {
-  "name": "src",
+  "name": "my-job-board",
   "version": "0.1.0",
   "private": true,
   "main": "./main.js",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "electron": "^1.6.11",
-    "lodash.pick": "^4.4.0",
+    "lodash.sortby": "^4.7.0",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
