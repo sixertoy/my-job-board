@@ -1,18 +1,19 @@
-# My Awesome App
+# MY JOB BOARD
 
-**Start development**
+> A Kanban application made with Electron to help in job search
+
+![Screenshot](./screenshot.png)
+
+## Installation
+
+```bash
+git clone https://github.com/sixertoy/my-job-board.git
+cd my-job-board
+yarn run install
+```
+
+## Development
+
 ```bash
 yarn run start:dev
 ```
-
-
-Accessing Electron from the React App
-https://medium.freecodecamp.org/building-an-electron-application-with-create-react-app-97945861647c
-
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
-
-DevTools
-https://github.com/chentsulin/electron-react-boilerplate#devtools
-
-Electron Awesome List
-https://github.com/sindresorhus/awesome-electron#tools
