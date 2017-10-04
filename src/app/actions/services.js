@@ -4,54 +4,34 @@ import { parseString } from 'xml2js';
 import * as sortby from 'lodash.sortby';
 
 // application
-import { cutwords } from './../utils/cutwords';
-import { striptags } from './../utils/striptags';
-import { trimstring } from './../utils/trimstring';
-
-const loadingStart = () => ({
-  type: 'onloadingstart'
-});
-
-const loadingComplete = () => ({
-  type: 'onloadingcomplete'
-});
-
-const applicationIsLoaded = (feedsitems, lastupdate) => ({
-  type: 'onapplicationisloaded',
-  feedsitems,
-  lastupdate
-});
+import { shorten } from './../utils/shorten';
+import { XML_HEADER } from './../../constants';
+import {
+  feedsLoaded,
+  loadingStart,
+  loadingComplete } from './_actions';
 
 // sucess -> 200, 201
 // error -> 404, 403, 400
-export const onServiceResponse = (resp) => {
+const onServiceResponse = (resp) => {
   if (resp.status !== 200 && resp.status !== 201) throw new Error(resp.statusText);
   return resp.text();
 };
 
-export const onServiceError = (dispatch, err) => {
-  console.log('onServiceError', err);
+const onServiceError = (dispatch, err) => {
+  throw new Error(err);
 };
 
-const XMLHeader = new Headers({
-  'Access-Control-Allow-Origin': '*',
-  'Content-Type': 'application/rss+xml'
-});
-
 const corsbridge = 'https://cors-anywhere.herokuapp.com/';
-const fetchoptions = { method: 'GET', headers: XMLHeader };
-const makePromise = url => fetch(`${corsbridge}${url}`, fetchoptions)
+const makeParseFeedsPromise = url => fetch(`${corsbridge}${url}`, {
+  method: 'GET',
+  headers: XML_HEADER
+})
   .then(onServiceResponse)
   .then(body => new Promise(resolve =>
     parseString(body, (err, xml) =>
       resolve((err || !xml.rss) ? false : xml))))
   .catch(onServiceError);
-
-const shortendescription = (description) => {
-  let str = trimstring(description);
-  str = striptags(str);
-  return cutwords(str);
-};
 
 const parseResults = bodies => bodies
   .filter(val => val)
@@ -63,21 +43,20 @@ const parseResults = bodies => bodies
     title: title[0],
     description: description[0],
     date: Date.parse(pubDate[0]),
-    short: shortendescription(description[0])
+    short: shorten(description[0])
   }));
 
-export const loadNewJobs = () => (dispatch, getstate) => {
+export const loadJobsFeeds = () => (dispatch, getstate) => {
   const { feeds } = getstate();
   dispatch(loadingStart());
-  Promise.all(feeds.map(makePromise))
+  Promise.all(feeds.map(makeParseFeedsPromise))
     .then(parseResults)
     .then((items) => {
       const feedsitems = sortby(items, 'date').reverse();
       dispatch(loadingComplete());
-      dispatch(applicationIsLoaded(
-        feedsitems,
-        Date.now()
-      ));
+      dispatch(feedsLoaded(feedsitems));
     })
     .catch(err => console.log(err));
 };
+
+export default loadJobsFeeds;

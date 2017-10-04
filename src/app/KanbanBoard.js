@@ -7,7 +7,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 // application
 import './kanbanboard.css';
 import logo from './../assets/logo.svg';
-import { loadNewJobs } from './actions';
+import { loadJobsFeeds } from './actions';
 import { UPDATE_INTERVAL_MS } from './../constants';
 import KanbanColumn from './components/KanbanColumn';
 
@@ -85,7 +85,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadfeeds: () => dispatch(loadNewJobs())
+  loadfeeds: () => dispatch(loadJobsFeeds())
 });
 
 const KanbanBoardContext = DragDropContext(HTML5Backend)(KanbanBoardView);

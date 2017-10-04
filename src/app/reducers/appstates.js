@@ -1,9 +1,10 @@
 // import find from 'lodash.find';
 import { REHYDRATE } from 'redux-persist/constants';
 
+// date de la derniers mise a jour des flux
 export const lastupdate = (state = false, action) => {
   switch (action.type) {
-  case 'onapplicationisloaded':
+  case 'onfeedsloaded':
     return action.lastupdate;
   case REHYDRATE:
     return action.payload.lastupdate || false;
@@ -24,7 +25,7 @@ export const isready = (state = false, action) => {
 
 export const isloaded = (state = false, action) => {
   switch (action.type) {
-  case 'onapplicationisloaded':
+  case 'onfeedsloaded':
     return true;
   default:
     return state;
