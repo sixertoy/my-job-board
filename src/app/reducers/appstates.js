@@ -1,8 +1,30 @@
-import find from 'lodash.find';
+// import find from 'lodash.find';
+import { REHYDRATE } from 'redux-persist/constants';
+
+export const lastupdate = (state = false, action) => {
+  switch (action.type) {
+  case 'onapplicationisloaded':
+    return action.lastupdate;
+  case REHYDRATE:
+    return action.payload.lastupdate || false;
+  default:
+    return state;
+  }
+};
+
+// quand le store est chargé
+export const isready = (state = false, action) => {
+  switch (action.type) {
+  case REHYDRATE: // applicationisready
+    return true;
+  default:
+    return state;
+  }
+};
 
 export const isloaded = (state = false, action) => {
   switch (action.type) {
-  case 'applicationloaded':
+  case 'onapplicationisloaded':
     return true;
   default:
     return state;
@@ -28,7 +50,9 @@ export const feedsitems = (state = [], action) => {
     // find(state, { id: action.from });
     return state.reverse();
   case 'onapplicationready':
-    return action.items;
+    return action.feedsitems;
+  case REHYDRATE:
+    return action.payload.feedsitems || [];
   default:
     return state;
   }

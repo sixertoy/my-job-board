@@ -3,11 +3,16 @@ import { routerReducer } from 'react-router-redux';
 
 import {
   feeds,
+  isready,
   isloaded,
-  feedsitems } from './appstates';
+  feedsitems,
+  lastupdate } from './appstates';
 
 // saved in persitent store
-export const whitelist = [];
+export const whitelist = [
+  'lastupdate',
+  'feedsitems'
+];
 
 // do not saved in persitent store
 export const blacklist = [];
@@ -15,7 +20,9 @@ export const blacklist = [];
 export const reducers = combineReducers({
   // services
   feeds,
+  isready,
   isloaded,
+  lastupdate,
   feedsitems,
   // !!! always last
   routing: routerReducer

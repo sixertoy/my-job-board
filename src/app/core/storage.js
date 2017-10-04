@@ -4,11 +4,20 @@
   no-underscore-dangle: 0 */
 import thunk from 'redux-thunk';
 import { routerMiddleware } from 'react-router-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
-import { persistStore, purgeStoredState, autoRehydrate } from 'redux-persist';
+import {
+  compose,
+  createStore,
+  applyMiddleware } from 'redux';
+import {
+  persistStore,
+  autoRehydrate,
+  purgeStoredState } from 'redux-persist';
 
 // application
-import { whitelist, blacklist, reducers } from './../reducers';
+import {
+  whitelist,
+  blacklist,
+  reducers } from './../reducers';
 
 const debugStored = () => {};
 

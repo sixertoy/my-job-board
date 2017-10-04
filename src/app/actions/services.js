@@ -16,9 +16,10 @@ const loadingComplete = () => ({
   type: 'onloadingcomplete'
 });
 
-const applicationIsReady = items => ({
-  type: 'onapplicationready',
-  items
+const applicationIsLoaded = (feedsitems, lastupdate) => ({
+  type: 'onapplicationisloaded',
+  feedsitems,
+  lastupdate
 });
 
 // sucess -> 200, 201
@@ -28,12 +29,9 @@ export const onServiceResponse = (resp) => {
   return resp.text();
 };
 
-/*
 export const onServiceError = (dispatch, err) => {
-  dispatch(loadingComplete());
-  console.log(err);
+  console.log('onServiceError', err);
 };
-*/
 
 const XMLHeader = new Headers({
   'Access-Control-Allow-Origin': '*',
@@ -45,7 +43,9 @@ const fetchoptions = { method: 'GET', headers: XMLHeader };
 const makePromise = url => fetch(`${corsbridge}${url}`, fetchoptions)
   .then(onServiceResponse)
   .then(body => new Promise(resolve =>
-    parseString(body, (err, xml) => resolve(xml))));
+    parseString(body, (err, xml) =>
+      resolve((err || !xml.rss) ? false : xml))))
+  .catch(onServiceError);
 
 const shortendescription = (description) => {
   let str = trimstring(description);
@@ -53,17 +53,18 @@ const shortendescription = (description) => {
   return cutwords(str);
 };
 
-const parseResults = bodies =>
-  bodies.reduce((acc, body) =>
+const parseResults = bodies => bodies
+  .filter(val => val)
+  .reduce((acc, body) =>
     acc.concat(body.rss.channel[0].item), [])
-    .map(({ title, link, description, pubDate }, index) => ({
-      id: index,
-      link: link[0],
-      title: title[0],
-      description: description[0],
-      date: Date.parse(pubDate[0]),
-      short: shortendescription(description[0])
-    }));
+  .map(({ title, link, description, pubDate }, index) => ({
+    id: index,
+    link: link[0],
+    title: title[0],
+    description: description[0],
+    date: Date.parse(pubDate[0]),
+    short: shortendescription(description[0])
+  }));
 
 export const loadNewJobs = () => (dispatch, getstate) => {
   const { feeds } = getstate();
@@ -73,7 +74,10 @@ export const loadNewJobs = () => (dispatch, getstate) => {
     .then((items) => {
       const feedsitems = sortby(items, 'date').reverse();
       dispatch(loadingComplete());
-      dispatch(applicationIsReady(feedsitems));
+      dispatch(applicationIsLoaded(
+        feedsitems,
+        Date.now()
+      ));
     })
     .catch(err => console.log(err));
 };
