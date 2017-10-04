@@ -3,13 +3,15 @@
 import { parseString } from 'xml2js';
 import * as sortby from 'lodash.sortby';
 
+
 // application
 import { shorten } from './../utils/shorten';
-import { XML_HEADER } from './../../constants';
 import {
   feedsLoaded,
   loadingStart,
   loadingComplete } from './_actions';
+
+const request = require('request-promise-native');
 
 // sucess -> 200, 201
 // error -> 404, 403, 400
@@ -22,11 +24,7 @@ const onServiceError = (dispatch, err) => {
   throw new Error(err);
 };
 
-const corsbridge = 'https://cors-anywhere.herokuapp.com/';
-const makeParseFeedsPromise = url => fetch(`${corsbridge}${url}`, {
-  method: 'GET',
-  headers: XML_HEADER
-})
+const makeParseFeedsPromise = url => request(`${url}`)
   .then(onServiceResponse)
   .then(body => new Promise(resolve =>
     parseString(body, (err, xml) =>
