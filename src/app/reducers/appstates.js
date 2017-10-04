@@ -1,3 +1,5 @@
+import find from 'lodash.find';
+
 export const isloaded = (state = false, action) => {
   switch (action.type) {
   case 'applicationloaded':
@@ -22,6 +24,9 @@ export const feeds = (state = [
 
 export const feedsitems = (state = [], action) => {
   switch (action.type) {
+  case 'onMoveCard':
+    // find(state, { id: action.from });
+    return state.reverse();
   case 'onapplicationready':
     return action.items;
   default:

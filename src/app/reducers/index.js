@@ -13,6 +13,7 @@ export const whitelist = [];
 export const blacklist = [];
 
 export const reducers = combineReducers({
+  // services
   feeds,
   isloaded,
   feedsitems,

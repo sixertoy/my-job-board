@@ -56,7 +56,8 @@ const shortendescription = (description) => {
 const parseResults = bodies =>
   bodies.reduce((acc, body) =>
     acc.concat(body.rss.channel[0].item), [])
-    .map(({ title, link, description, pubDate }) => ({
+    .map(({ title, link, description, pubDate }, index) => ({
+      id: index,
       link: link[0],
       title: title[0],
       description: description[0],

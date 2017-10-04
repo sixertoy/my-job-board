@@ -6,7 +6,7 @@ import { Router, Route, browserHistory } from 'react-router';
 
 // application
 import './index.css';
-import KanbanScreen from './app/KanbanScreen';
+import KanbanBoard from './app/KanbanBoard';
 import { configure } from './app/core/storage';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -17,7 +17,7 @@ const Root = () => (
   <Provider store={store}>
     <div id="main-container">
       <Router history={history}>
-        <Route path={'/'} component={KanbanScreen} />
+        <Route path={'/'} component={KanbanBoard} />
       </Router>
     </div>
   </Provider>
