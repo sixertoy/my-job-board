@@ -12,10 +12,10 @@ class CardsContainer extends Component {
       items,
       isOver,
       connectDropTarget } = this.props;
-    console.log('isOver', isOver);
+    // console.log('isOver', isOver);
     return connectDropTarget(
       <div className="cardscontainer fancy-scrollbar"
-        style={{ height: 'auto', background: '#ACE', opacity: (isOver ? 0.45 : 1) }}>
+        style={{ height: 'auto', opacity: (isOver ? 0.45 : 1) }}>
         {!items || !items.length
           ? false
           : items.map((obj, index) =>

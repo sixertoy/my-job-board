@@ -10,6 +10,7 @@ import logo from './../assets/logo.svg';
 import { loadJobsFeeds } from './actions';
 import { UPDATE_INTERVAL_MS } from './../constants';
 import KanbanColumn from './components/KanbanColumn';
+import DraggableCard from './components/DraggableCard';
 
 class KanbanBoardView extends Component {
 
@@ -39,7 +40,6 @@ class KanbanBoardView extends Component {
     const now = Date.now();
     const isoutdated = ((lastupdate + UPDATE_INTERVAL_MS) < now);
     if (!isready || !isoutdated || isloaded) return;
-    console.log('isoutdated', isoutdated);
     loadfeeds();
   }
 
@@ -51,6 +51,8 @@ class KanbanBoardView extends Component {
           <img src={logo} className="screen-logo" alt="logo" />
           <h2>React/Electron</h2>
         </div>
+        <DraggableCard title={'toto'}
+          description={'toto'} date={'toto'} short={'toto'} />
         <div className="kanbanboard flex-columns">
           <KanbanColumn key="feeds"
             title="Feeds" items={feedsitems} />

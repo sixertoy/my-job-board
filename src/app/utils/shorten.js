@@ -3,7 +3,7 @@ import { cutwords } from './cutwords';
 import { striptags } from './striptags';
 import { trimstring } from './trimstring';
 
-export const shorten = input =>
-  cutwords(striptags(trimstring(input)));
+export const shorten = (input, length = 100) =>
+  cutwords(striptags(trimstring(input)), length);
 
 export default shorten;

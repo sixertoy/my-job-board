@@ -23,6 +23,8 @@
 
 .kanbanboard {
   flex: 1;
+  margin: 0 5px;
+  padding: 10px 0;
   overflow: hidden;
-  padding: 10px 5px;
+  overflow-x: auto;
 }

@@ -1,0 +1,15 @@
+.draggablecard-container {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  position: fixed;
+  pointer-events: none;
+}
+
+.draggablecard {
+  width: 270px;
+  min-width: 270px;
+  max-width: 270px;
+}

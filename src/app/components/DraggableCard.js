@@ -1,56 +1,33 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-// import ItemTypes from './ItemTypes';
-// import BoxDragPreview from './BoxDragPreview';
-// import snapToGrid from './snapToGrid';
 import { DragLayer } from 'react-dnd';
+import React, { Component } from 'react';
 
-const layerStyles = {
-  position: 'fixed',
-  pointerEvents: 'none',
-  zIndex: 100,
-  left: 0,
-  top: 0,
-  width: '100%',
-  height: '100%'
-};
+// application
+import './draggablecard.css';
+import KanbanCard from './KanbanCard';
 
-function getItemStyles (props) {
-  const { currentOffset } = props;
-  if (!currentOffset) {
-    return {
-      display: 'none'
-    };
-  }
-
+function getDraggableCardStyles (currentOffset) {
+  if (!currentOffset) return ({ display: 'none' });
   const { x, y } = currentOffset;
-  const transform = `translate(${x}px, ${y}px)`;
   return {
-    transform: transform,
-    WebkitTransform: transform
+    transform: `translate(${x}px, ${y}px)`
   };
 }
 
-class DraggableCard {
-  renderItem(type, item) {
-    switch (type) {
-    case ItemTypes.BOX:
-      return (
-        <BoxDragPreview title={item.title} />
-      );
-    }
-  }
+// eslint-disable-next-line react/prefer-stateless-function
+class DraggableCard extends Component {
 
-  render() {
-    const { item, itemType, isDragging } = this.props;
-    if (!isDragging) {
-      return null;
-    }
-
+  render () {
+    const {
+      item,
+      isDragging,
+      currentOffset } = this.props;
+    if (!isDragging) return null;
     return (
-      <div style={layerStyles}>
-        <div style={getItemStyles(this.props)}>
-          {this.renderItem(itemType, item)}
+      <div className="draggablecard-container">
+        <div className="draggablecard"
+          style={getDraggableCardStyles(currentOffset)}>
+          <KanbanCard {...Object.assign({}, item, { id: 'placeholder' })} />
         </div>
       </div>
     );
@@ -58,20 +35,18 @@ class DraggableCard {
 }
 
 DraggableCard.propTypes = {
-  item: PropTypes.object,
-  itemType: PropTypes.string,
+  item: PropTypes.object.isRequired,
+  isDragging: PropTypes.bool.isRequired,
   currentOffset: PropTypes.shape({
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired
-  }),
-  isDragging: PropTypes.bool.isRequired
+  }).isRequired
 };
 
 const collect = monitor => ({
-  item: monitor.getItem(),
-  itemType: monitor.getItemType(),
+  item: monitor.getItem() || {},
   isDragging: monitor.isDragging(),
-  currentOffset: monitor.getSourceClientOffset()
+  currentOffset: monitor.getSourceClientOffset() || { x: 0, y: 0 }
 });
 
 export default DragLayer(collect)(DraggableCard);

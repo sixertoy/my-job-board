@@ -1,4 +1,4 @@
-export const cutwords = (input, signes = 100) => (input.length <= signes ? input
-  : `${input.substr(0, signes)}...`);
+export const cutwords = (input, limit = 100) =>
+  (input.length <= limit ? input : `${input.substr(0, limit)}...`);
 
 export default cutwords;

@@ -4,12 +4,22 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { DragSource, DropTarget } from 'react-dnd';
+import { getEmptyImage } from 'react-dnd-html5-backend';
 
 import './kanbancard.css';
 import { moveCard } from './../actions';
+import { shorten } from './../utils/shorten';
 import { humandate } from './../utils/humandate';
 
 class KanbanCardView extends Component {
+
+  componentDidMount () {
+    if (this.props.connectDragPreview) {
+      const opts = { captureDraggingState: true };
+      this.props.connectDragPreview(getEmptyImage(), opts);
+    }
+  }
+
   render () {
     const {
       date,
@@ -18,8 +28,9 @@ class KanbanCardView extends Component {
       isDragging,
       connectDropTarget,
       connectDragSource } = this.props;
-    return connectDragSource(connectDropTarget(
-      <div className="kanbancard-container relative"
+    return connectDragSource(connectDropTarget(isDragging
+      ? <div className="kanbancard-placeholder" />
+      : <div className="kanbancard relative"
         style={{ opacity: (isDragging ? 0.45 : 1) }}>
         <button className="kanbancard-button"
           onClick={() => {}}><span><i className="" /></span>
@@ -27,7 +38,7 @@ class KanbanCardView extends Component {
         <p className="kanbancard-date">
           <span>{humandate(new Date(date))}</span></p>
         <h2 className="kanbancard-title">
-          <span>{title}</span></h2>
+          <span>{shorten(title, 60)}</span></h2>
         <div dangerouslySetInnerHTML={{ __html: short }} />
       </div>
     ));
@@ -40,7 +51,8 @@ KanbanCardView.propTypes = {
   short: PropTypes.string.isRequired,
   isDragging: PropTypes.bool.isRequired,
   connectDropTarget: PropTypes.func.isRequired,
-  connectDragSource: PropTypes.func.isRequired
+  connectDragSource: PropTypes.func.isRequired,
+  connectDragPreview: PropTypes.func.isRequired
 };
 
 const KanbanCardDrop = DropTarget('kanbancard',
@@ -59,16 +71,21 @@ const KanbanCardDrop = DropTarget('kanbancard',
 
 const KanbanCardDrag = DragSource('kanbancard',
   ({
-    beginDrag: props => ({ id: props.id }),
-    isDragging: (props, monitor) => {
-      const rez = (props.id === monitor.getItem().id);
-      console.log('rez', rez);
-      return rez;
-    }
+    beginDrag: props => ({
+      // utilisé par monitor.getItem()
+      id: props.id,
+      date: props.date,
+      short: props.short,
+      title: shorten(props.title, 60),
+      connectDragPreview: props.connectDragPreview
+    }),
+    isDragging: (props, monitor) =>
+      (props.id === monitor.getItem().id)
   }),
   (dndconnect, monitor) => ({
     isDragging: monitor.isDragging(),
-    connectDragSource: dndconnect.dragSource()
+    connectDragSource: dndconnect.dragSource(),
+    connectDragPreview: dndconnect.dragPreview()
   })
 )(KanbanCardDrop);
 
