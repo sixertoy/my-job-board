@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 // application
 import './draggablecard.css';
-import KanbanCard from './KanbanCard';
+import Card from './kanbanboard/Card';
 
 function getDraggableCardStyles (currentOffset) {
   if (!currentOffset) return ({ display: 'none' });
@@ -27,7 +27,7 @@ class DraggableCard extends Component {
       <div className="draggablecard-container">
         <div className="draggablecard"
           style={getDraggableCardStyles(currentOffset)}>
-          <KanbanCard {...Object.assign({}, item, { id: 'placeholder' })} />
+          <Card {...Object.assign({}, item, { id: 'placeholder' })} />
         </div>
       </div>
     );

@@ -9,7 +9,7 @@ import './kanbanboard.css';
 import logo from './../assets/logo.svg';
 import { loadJobsFeeds } from './actions';
 import { UPDATE_INTERVAL_MS } from './../constants';
-// import DraggableCard from './components/DraggableCard';
+import DraggableCard from './components/DraggableCard';
 import BoardColumn from './components/kanbanboard/Column';
 
 class KanbanBoardView extends Component {
@@ -51,8 +51,8 @@ class KanbanBoardView extends Component {
           <img src={logo} className="screen-logo" alt="logo" />
           <h2>React/Electron</h2>
         </div>
-        {/* <DraggableCard title={'toto'}
-          description={'toto'} date={'toto'} short={'toto'} /> */}
+        <DraggableCard title={'toto'}
+          description={'toto'} date={'toto'} short={'toto'} />
         <div className="kanban-board flex-columns">
           <BoardColumn key="feeds"
             title="Feeds" items={feedsitems} />
