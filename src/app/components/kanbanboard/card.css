@@ -1,5 +1,5 @@
-.kanbancard,
-.kanbancard-placeholder {
+.kanban-card,
+.kanban-card-placeholder {
   width: 100%;
   cursor: grab;
   height: 107px;
@@ -7,18 +7,18 @@
   border-bottom: 1px solid #CCCCCC;
 }
 
-.kanbancard-placeholder {
+.kanban-card-placeholder {
   background-color: #AACCEE;
 }
 
-.kanbancard {
+.kanban-card {
   padding: 10px;
   color: #333333;
   text-align: left;
   background-color: #FAFAFA;
 }
 
-.kanbancard-button {
+.kanban-card-button {
   top: 4px;
   border: 0;
   right: 4px;
@@ -29,24 +29,24 @@
   position: absolute;
 }
 
-.kanbancard-date {
+.kanban-card-date {
   margin: 0;
   text-align: right;
   margin-right: 25px;
 }
 
-.kanbancard-title {
+.kanban-card-title {
   margin-top: 7px;
   font-size: 1.2em;
 }
 
-.kanbancard-title span {
+.kanban-card-title span {
   max-height: 30px;
   overflow: hidden;
 }
 
-.kanbancard + .kanbancard,
-.kanbancard-placeholder + .kanbancard,
-.kanbancard + .kanbancard-placeholder {
+.kanban-card + .kanban-card,
+.kanban-card-placeholder + .kanban-card,
+.kanban-card + .kanban-card-placeholder {
   margin-top: 5px;
 }

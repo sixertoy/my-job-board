@@ -9,8 +9,8 @@ import './kanbanboard.css';
 import logo from './../assets/logo.svg';
 import { loadJobsFeeds } from './actions';
 import { UPDATE_INTERVAL_MS } from './../constants';
-import KanbanColumn from './components/KanbanColumn';
-import DraggableCard from './components/DraggableCard';
+// import DraggableCard from './components/DraggableCard';
+import BoardColumn from './components/kanbanboard/Column';
 
 class KanbanBoardView extends Component {
 
@@ -51,16 +51,16 @@ class KanbanBoardView extends Component {
           <img src={logo} className="screen-logo" alt="logo" />
           <h2>React/Electron</h2>
         </div>
-        <DraggableCard title={'toto'}
-          description={'toto'} date={'toto'} short={'toto'} />
-        <div className="kanbanboard flex-columns">
-          <KanbanColumn key="feeds"
+        {/* <DraggableCard title={'toto'}
+          description={'toto'} date={'toto'} short={'toto'} /> */}
+        <div className="kanban-board flex-columns">
+          <BoardColumn key="feeds"
             title="Feeds" items={feedsitems} />
-          <KanbanColumn key="todo"
+          <BoardColumn key="todo"
             title="Todo" items={[]} />
-          <KanbanColumn key="in-progress"
+          <BoardColumn key="in-progress"
             title="In Progress" items={[]} />
-          <KanbanColumn key="done"
+          <BoardColumn key="done"
             title="Done" items={[]} />
         </div>
       </div>
@@ -90,10 +90,9 @@ const mapDispatchToProps = dispatch => ({
   loadfeeds: () => dispatch(loadJobsFeeds())
 });
 
-const KanbanBoardContext = DragDropContext(HTML5Backend)(KanbanBoardView);
-const KanbanBoard = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(KanbanBoardContext);
-
-export default KanbanBoard;
+)(
+  DragDropContext(HTML5Backend)(KanbanBoardView)
+);

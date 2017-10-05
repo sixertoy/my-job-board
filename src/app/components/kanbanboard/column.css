@@ -1,4 +1,4 @@
-.kanban-column {
+.board-column {
   width: 25%;
   display: flex;
   margin: 0 5px;
@@ -10,10 +10,10 @@
   background-color: #E2E4E6;
 }
 
-.kanban-column-header {
+.board-column-header {
   text-transform: uppercase;
 }
 
-.kanban-column-footer {
+.board-column-footer {
   min-height: 20px;
 }

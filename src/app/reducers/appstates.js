@@ -47,10 +47,10 @@ export const feeds = (state = [
 
 export const feedsitems = (state = [], action) => {
   switch (action.type) {
-  case 'onMoveCard':
-    // find(state, { id: action.from });
-    return state.reverse();
-  case 'onapplicationready':
+  // case 'onMoveCard':
+  // find(state, { id: action.from });
+  // return state;
+  case 'onfeedsloaded':
     return action.feedsitems;
   case REHYDRATE:
     return action.payload.feedsitems || [];

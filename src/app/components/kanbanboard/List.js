@@ -3,10 +3,10 @@ import { DropTarget } from 'react-dnd';
 import React, { Component } from 'react';
 
 // application
-import './cardscontainer.css';
-import KanbanCard from './KanbanCard';
+import './list.css';
+import Card from './Card';
 
-class CardsContainer extends Component {
+class List extends Component {
   render () {
     const {
       items,
@@ -14,19 +14,19 @@ class CardsContainer extends Component {
       connectDropTarget } = this.props;
     // console.log('isOver', isOver);
     return connectDropTarget(
-      <div className="cardscontainer fancy-scrollbar"
+      <div className="kanban-list fancy-scrollbar"
         style={{ height: 'auto', opacity: (isOver ? 0.45 : 1) }}>
         {!items || !items.length
           ? false
           : items.map((obj, index) =>
             // eslint-disable-next-line react/no-array-index-key
-            <KanbanCard {...obj} key={`kanban-column-item-${index}`} />)}
+            <Card {...obj} key={`kanban-column-item-${index}`} />)}
       </div>
     );
   }
 }
 
-CardsContainer.propTypes = {
+List.propTypes = {
   items: PropTypes.array.isRequired,
   isOver: PropTypes.bool.isRequired,
   connectDropTarget: PropTypes.func.isRequired
@@ -43,4 +43,4 @@ export default DropTarget(
   'cardscontainer',
   droptargetTarget,
   droptargetCollect
-)(CardsContainer);
+)(List);

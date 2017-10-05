@@ -1,7 +1,2 @@
-// update chaque heure (secondes, (minutes, heure), millisecondes)
+// update chaque n heures (secondes, (minutes, heure), millisecondes)
 export const UPDATE_INTERVAL_MS = (60 * (60 * 1) * 1000);
-
-export const XML_HEADER = new Headers({
-  'Access-Control-Allow-Origin': '*',
-  'Content-Type': 'application/rss+xml'
-});
