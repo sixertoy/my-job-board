@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { DragSource } from 'react-dnd';
-import { getEmptyImage } from 'react-dnd-html5-backend';
+// import { getEmptyImage } from 'react-dnd-html5-backend';
 
 import './card.css';
 import { moveCard } from './../../actions';
@@ -13,6 +13,7 @@ import { humandate } from './../../utils/humandate';
 
 class CardView extends Component {
 
+  /*
   componentDidMount () {
     if (this.props.connectDragPreview) {
       // remove HTML5 image lors du drag d'un item
@@ -20,6 +21,7 @@ class CardView extends Component {
       this.props.connectDragPreview(getEmptyImage(), opts);
     }
   }
+  */
 
   render () {
     const {
@@ -50,8 +52,8 @@ CardView.propTypes = {
   title: PropTypes.string.isRequired,
   short: PropTypes.string.isRequired,
   isDragging: PropTypes.bool.isRequired,
-  connectDragSource: PropTypes.func.isRequired,
-  connectDragPreview: PropTypes.func.isRequired
+  connectDragSource: PropTypes.func.isRequired
+  // connectDragPreview: PropTypes.func.isRequired
 };
 
 /* ----------------------------------------
@@ -75,8 +77,8 @@ const dispatchDropTargetContext = ({
     id: props.id,
     date: props.date,
     short: props.short,
-    title: shorten(props.title, 60),
-    connectDragPreview: props.connectDragPreview
+    title: shorten(props.title, 60)
+    // connectDragPreview: props.connectDragPreview
   })
 });
 
