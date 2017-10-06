@@ -12,7 +12,14 @@ class BoardColumn extends Component {
       title,
       items,
       isOver,
+      canDrop,
+      itemType,
+      isOverCurrent,
       connectDropTarget } = this.props;
+    console.log('isOver', isOver);
+    console.log('canDrop', canDrop);
+    console.log('itemType', itemType);
+    console.log('isOverCurrent', isOverCurrent);
     return connectDropTarget(
       <div className="board-column">
         <h2 className="board-column-header">
@@ -36,18 +43,32 @@ BoardColumn.propTypes = {
   items: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
   isOver: PropTypes.bool.isRequired,
+  canDrop: PropTypes.bool.isRequired,
+  itemType: PropTypes.string.isRequired,
+  isOverCurrent: PropTypes.bool.isRequired,
   connectDropTarget: PropTypes.func.isRequired
 };
 
-const droptargetTarget = ({});
-
-const droptargetCollect = (connect, monitor) => ({
-  isOver: monitor.isOver(),
-  connectDropTarget: connect.dropTarget()
+const dropTargetContext = ({
+  drop: (props, monitor, component) => {
+    console.log('drop drop drop drop');
+  },
+  canDrop: (props, monitor) => {
+    console.log('canDrop canDrop canDrop canDrop');
+  },
+  hover: (props, monitor, component) => {
+    console.log('hover hover hover hover');
+  }
 });
 
 export default DropTarget(
   'board-column',
-  droptargetTarget,
-  droptargetCollect
+  dropTargetContext,
+  (connect, monitor) => ({
+    isOver: monitor.isOver(),
+    canDrop: monitor.canDrop(),
+    itemType: monitor.getItemType() || '',
+    connectDropTarget: connect.dropTarget(),
+    isOverCurrent: monitor.isOver({ shallow: true })
+  })
 )(BoardColumn);

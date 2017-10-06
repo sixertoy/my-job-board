@@ -35,13 +35,13 @@ export const isloaded = (state = false, action) => {
   }
 };
 
-export const feeds = (state = [
+export const feeds = (state = {
   // FIXME ->
   // au lieu d'un tableau faire un object
   // les cles seront le nom de la source d'ou proviennent les feeds
-  'http://remixjobs.com/rss',
-  'http://www.indeed.fr/rss?q=%28javascript%29&l=Montpellier'
-], action) => {
+  remixjobs: 'http://remixjobs.com/rss',
+  indeed: 'http://www.indeed.fr/rss?q=%28javascript%29&l=Montpellier'
+}, action) => {
   switch (action.type) {
   default:
     return state;

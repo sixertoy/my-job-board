@@ -13,15 +13,13 @@ import { humandate } from './../../utils/humandate';
 
 class CardView extends Component {
 
-  /*
-  componentDidMount () {
-    if (this.props.connectDragPreview) {
-      // remove HTML5 image lors du drag d'un item
-      const opts = { captureDraggingState: true };
-      this.props.connectDragPreview(getEmptyImage(), opts);
-    }
-  }
-  */
+  // componentDidMount () {
+  //   if (this.props.connectDragPreview) {
+  //     // remove HTML5 image lors du drag d'un item
+  //     const opts = { captureDraggingState: true };
+  //     this.props.connectDragPreview(getEmptyImage(), opts);
+  //   }
+  // }
 
   render () {
     const {
@@ -52,7 +50,7 @@ CardView.propTypes = {
   title: PropTypes.string.isRequired,
   short: PropTypes.string.isRequired,
   isDragging: PropTypes.bool.isRequired,
-  connectDragSource: PropTypes.func.isRequired
+  connectDragSource: PropTypes.func.isRequired,
   // connectDragPreview: PropTypes.func.isRequired
 };
 
@@ -61,14 +59,9 @@ CardView.propTypes = {
   Decorateur DragSource
 
 ---------------------------------------- */
-const mapPropsToDragComponent = (dndconnect, monitor) => ({
-  isDragging: monitor.isDragging(),
-  connectDragSource: dndconnect.dragSource(),
-  connectDragPreview: dndconnect.dragPreview()
-});
 
 // describes how the drag source reacts to the drag and drop events
-const dispatchDropTargetContext = ({
+const dragTargetContext = ({
   isDragging: (props, monitor) =>
     // check si cet element et l'element en court de drag
     (props.id === monitor.getItem().id),
@@ -77,15 +70,19 @@ const dispatchDropTargetContext = ({
     id: props.id,
     date: props.date,
     short: props.short,
-    title: shorten(props.title, 60)
+    title: shorten(props.title, 60),
     // connectDragPreview: props.connectDragPreview
   })
 });
 
 const KanbanCardDrag = DragSource(
-  'kanban-card',
-  dispatchDropTargetContext,
-  mapPropsToDragComponent
+  'board-card',
+  dragTargetContext,
+  (conn, monitor) => ({
+    isDragging: monitor.isDragging(),
+    connectDragSource: conn.dragSource(),
+    // connectDragPreview: conn.dragPreview()
+  })
 )(CardView);
 
 /* ----------------------------------------

@@ -1,3 +1,4 @@
+import uuid from 'uuid/v1';
 import { parseString } from 'xml2js';
 import { shorten } from './../utils/shorten';
 
@@ -8,9 +9,9 @@ const XML_HEADER = new Headers({
   // Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
 });
 
-const parseresults = xml => xml.rss.channel[0].item
-  .map(({ title, link, description, pubDate }, index) => ({
-    id: index,
+const parseresults = (key, xml) => xml.rss.channel[0].item
+  .map(({ title, link, description, pubDate }) => ({
+    id: uuid(),
     link: link[0],
     title: title[0],
     description: description[0],
@@ -26,7 +27,7 @@ const corsproxy = 'https://cors-anywhere.herokuapp.com/';
 export default ({
   // sucess -> 200, 201
   // error -> 404, 403, 400
-  getFromURL: url => fetch(`${corsproxy}${url}`, {
+  getFromURL: (key, url) => fetch(`${corsproxy}${url}`, {
     method: 'GET',
     header: XML_HEADER
   })
@@ -36,7 +37,7 @@ export default ({
       return new Promise(resolve => parseString(body, (err, xml) =>
         ((err || !xml.rss)
           ? resolve(false)
-          : resolve(parseresults(xml)))));
+          : resolve(parseresults(key, xml)))));
     })
     .catch(err => console.log('err', err))
 });
