@@ -6,8 +6,7 @@ export const loadingComplete = () => ({
   type: 'onloadingcomplete'
 });
 
-export const feedsLoaded = (feedsitems, lastupdate = Date.now()) => ({
+export const feedsLoaded = feedsitems => ({
   type: 'onfeedsloaded',
-  feedsitems,
-  lastupdate
+  feedsitems
 });

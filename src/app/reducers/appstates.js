@@ -1,13 +1,16 @@
 // import find from 'lodash.find';
+import orderby from 'lodash.orderby';
 import { REHYDRATE } from 'redux-persist/constants';
+import { UPDATE_INTERVAL_MS } from './../../constants';
 
 // date de la derniers mise a jour des flux
-export const lastupdate = (state = false, action) => {
+export const nextupdate = (state = false, action) => {
   switch (action.type) {
   case 'onfeedsloaded':
-    return action.lastupdate;
+    return (Date.now() + UPDATE_INTERVAL_MS);
   case REHYDRATE:
-    return action.payload.lastupdate || false;
+    // FIXME -> cannot unvalidate expires
+    return action.payload.nextupdate || false;
   default:
     return state;
   }
@@ -51,7 +54,7 @@ export const feedsitems = (state = [], action) => {
   // find(state, { id: action.from });
   // return state;
   case 'onfeedsloaded':
-    return action.feedsitems;
+    return orderby(action.feedsitems, ['date'], 'desc');
   case REHYDRATE:
     return action.payload.feedsitems || [];
   default:

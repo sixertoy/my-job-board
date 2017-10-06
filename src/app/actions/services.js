@@ -1,6 +1,6 @@
 /* eslint
   no-console: 0 */
-import * as orderby from 'lodash.orderby';
+import orderby from 'lodash.orderby';
 
 // application
 import RSSReader from './RSSReader';
@@ -10,6 +10,7 @@ import {
   loadingComplete } from './_actions';
 
 export const loadJobsFeeds = () => (dispatch, getstate) => {
+  console.log('loadJobsFeeds', loadJobsFeeds);
   const { feeds } = getstate();
   dispatch(loadingStart());
   const promises = feeds.map(RSSReader.getFromURL);
@@ -19,7 +20,8 @@ export const loadJobsFeeds = () => (dispatch, getstate) => {
         if (!arr) return acc;
         return acc.concat(arr);
       }, []);
-      feedsitems = orderby(feedsitems, ['date'], 'asc');
+      feedsitems = orderby(feedsitems, ['date'], 'desc');
+      console.log('feedsitems', feedsitems);
       dispatch(loadingComplete());
       dispatch(feedsLoaded(feedsitems));
     });

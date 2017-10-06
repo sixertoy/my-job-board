@@ -8,7 +8,6 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import './kanbanboard.css';
 import logo from './../assets/logo.svg';
 import { loadJobsFeeds } from './actions';
-import { UPDATE_INTERVAL_MS } from './../constants';
 // import DraggableCard from './components/DraggableCard';
 import BoardColumn from './components/kanbanboard/Column';
 
@@ -20,6 +19,8 @@ class KanbanBoardView extends Component {
   }
 
   componentDidMount () {
+    const { isready } = this.state;
+    if (!isready) return;
     this._updateApplicationFeeds();
   }
 
@@ -32,14 +33,17 @@ class KanbanBoardView extends Component {
   }
 
   _updateApplicationFeeds () {
-    const { isready } = this.state;
     const {
       isloaded,
       loadfeeds,
-      lastupdate } = this.props;
+      nextupdate } = this.props;
     const now = Date.now();
-    const isoutdated = ((lastupdate + UPDATE_INTERVAL_MS) < now);
-    if (!isready || !isoutdated || isloaded) return;
+    const isoutdated = (nextupdate < now);
+    if (!isoutdated) {
+      // FIXME -> move to a debugger
+      console.log(`> Next datas update: ${new Date(nextupdate).toLocaleString()}`);
+    }
+    if (!isoutdated || isloaded) return;
     loadfeeds();
   }
 
@@ -72,7 +76,7 @@ KanbanBoardView.propTypes = {
   isloaded: PropTypes.bool.isRequired,
   loadfeeds: PropTypes.func.isRequired,
   feedsitems: PropTypes.array.isRequired,
-  lastupdate: PropTypes.oneOfType([
+  nextupdate: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.number
   ]).isRequired
@@ -81,8 +85,8 @@ KanbanBoardView.propTypes = {
 const mapStateToProps = state => ({
   isready: state.isready,
   isloaded: state.isloaded,
-  lastupdate: state.lastupdate,
-  feedsitems: state.feedsitems
+  feedsitems: state.feedsitems,
+  nextupdate: state.nextupdate
 });
 
 const mapDispatchToProps = dispatch => ({

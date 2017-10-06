@@ -6,11 +6,11 @@ import {
   isready,
   isloaded,
   feedsitems,
-  lastupdate } from './appstates';
+  nextupdate } from './appstates';
 
 // saved in persitent store
 export const whitelist = [
-  'lastupdate',
+  'nextupdate',
   'feedsitems'
 ];
 
@@ -22,7 +22,7 @@ export const reducers = combineReducers({
   feeds,
   isready,
   isloaded,
-  lastupdate,
+  nextupdate,
   feedsitems,
   // !!! always last
   routing: routerReducer
