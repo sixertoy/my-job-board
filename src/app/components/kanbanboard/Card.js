@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { DragSource } from 'react-dnd';
-// import { getEmptyImage } from 'react-dnd-html5-backend';
+import { getEmptyImage } from 'react-dnd-html5-backend';
 
 import './card.css';
 import { moveCard } from './../../actions';
@@ -13,13 +13,13 @@ import { humandate } from './../../utils/humandate';
 
 class CardView extends Component {
 
-  // componentDidMount () {
-  //   if (this.props.connectDragPreview) {
-  //     // remove HTML5 image lors du drag d'un item
-  //     const opts = { captureDraggingState: true };
-  //     this.props.connectDragPreview(getEmptyImage(), opts);
-  //   }
-  // }
+  componentDidMount () {
+    if (this.props.connectDragPreview) {
+      // remove HTML5 image lors du drag d'un item
+      const opts = { captureDraggingState: true };
+      this.props.connectDragPreview(getEmptyImage(), opts);
+    }
+  }
 
   render () {
     const {
@@ -51,7 +51,7 @@ CardView.propTypes = {
   short: PropTypes.string.isRequired,
   isDragging: PropTypes.bool.isRequired,
   connectDragSource: PropTypes.func.isRequired,
-  // connectDragPreview: PropTypes.func.isRequired
+  connectDragPreview: PropTypes.func.isRequired
 };
 
 /* ----------------------------------------
@@ -71,7 +71,7 @@ const dragTargetContext = ({
     date: props.date,
     short: props.short,
     title: shorten(props.title, 60),
-    // connectDragPreview: props.connectDragPreview
+    connectDragPreview: props.connectDragPreview
   })
 });
 
@@ -81,7 +81,7 @@ const KanbanCardDrag = DragSource(
   (conn, monitor) => ({
     isDragging: monitor.isDragging(),
     connectDragSource: conn.dragSource(),
-    // connectDragPreview: conn.dragPreview()
+    connectDragPreview: conn.dragPreview()
   })
 )(CardView);
 

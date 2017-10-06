@@ -1,10 +1,13 @@
+/* eslint
+  react/no-danger: 0 */
 import PropTypes from 'prop-types';
 import { DragLayer } from 'react-dnd';
 import React, { Component } from 'react';
 
 // application
 import './draggablecard.css';
-import Card from './kanbanboard/Card';
+import { shorten } from './../utils/shorten';
+import { humandate } from './../utils/humandate';
 
 function getDraggableCardStyles (currentOffset) {
   if (!currentOffset) return ({ display: 'none' });
@@ -27,7 +30,14 @@ class DraggableCard extends Component {
       <div className="draggablecard-container">
         <div className="draggablecard"
           style={getDraggableCardStyles(currentOffset)}>
-          <Card {...Object.assign({}, item, { id: 'placeholder' })} />
+          <div className="kanban-card relative"
+            style={{ transform: 'rotate(7deg)' }}>
+            <p className="kanban-card-date">
+              <span>{humandate(new Date(item.date))}</span></p>
+            <h2 className="kanban-card-title">
+              <span>{shorten(item.title, 60)}</span></h2>
+            <div dangerouslySetInnerHTML={{ __html: item.short }} />
+          </div>
         </div>
       </div>
     );

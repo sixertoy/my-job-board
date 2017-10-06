@@ -8,7 +8,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import './kanbanboard.css';
 import logo from './../assets/logo.svg';
 import { loadJobsFeeds } from './actions';
-// import DraggableCard from './components/DraggableCard';
+import DraggableCard from './components/DraggableCard';
 import BoardColumn from './components/kanbanboard/Column';
 
 class KanbanBoardView extends Component {
@@ -56,7 +56,7 @@ class KanbanBoardView extends Component {
           <h2>React/Electron</h2>
         </div>
         <div className="kanban-board flex-columns">
-          {/* <DraggableCard /> */}
+          <DraggableCard />
           <BoardColumn key="feeds"
             title="Feeds" items={feedsitems} />
           <BoardColumn key="todo"
