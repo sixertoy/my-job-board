@@ -8,6 +8,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import './kanbanboard.css';
 import logo from './../assets/logo.svg';
 import { loadJobsFeeds } from './actions';
+import ProgressBar from './components/ui/ProgressBar';
 import DraggableCard from './components/DraggableCard';
 import BoardColumn from './components/kanbanboard/Column';
 
@@ -34,7 +35,6 @@ class KanbanBoardView extends Component {
 
   _updateApplicationFeeds () {
     const {
-      isloaded,
       loadfeeds,
       nextupdate } = this.props;
     const now = Date.now();
@@ -43,14 +43,15 @@ class KanbanBoardView extends Component {
       // FIXME -> move to a debugger
       console.log(`> Next datas update: ${new Date(nextupdate).toLocaleString()}`);
     }
-    if (!isoutdated || isloaded) return;
+    if (!isoutdated) return;
     loadfeeds();
   }
 
   render () {
-    const { feedsitems } = this.props;
+    const { feedsitems, isloading } = this.props;
     return (
       <div className="screen flex-rows">
+        <ProgressBar loading={isloading} />
         <div className="screen-header">
           <img src={logo} className="screen-logo" alt="logo" />
           <h2>React/Electron</h2>
@@ -73,7 +74,7 @@ class KanbanBoardView extends Component {
 
 KanbanBoardView.propTypes = {
   isready: PropTypes.bool.isRequired,
-  isloaded: PropTypes.bool.isRequired,
+  isloading: PropTypes.bool.isRequired,
   loadfeeds: PropTypes.func.isRequired,
   feedsitems: PropTypes.array.isRequired,
   nextupdate: PropTypes.oneOfType([
@@ -84,7 +85,7 @@ KanbanBoardView.propTypes = {
 
 const mapStateToProps = state => ({
   isready: state.isready,
-  isloaded: state.isloaded,
+  isloading: state.isloading,
   feedsitems: state.feedsitems,
   nextupdate: state.nextupdate
 });

@@ -26,10 +26,12 @@ export const isready = (state = false, action) => {
   }
 };
 
-export const isloaded = (state = false, action) => {
+export const isloading = (state = false, action) => {
   switch (action.type) {
-  case 'onfeedsloaded':
+  case 'onloadingstart':
     return true;
+  case 'onloadingcomplete':
+    return false;
   default:
     return state;
   }
@@ -54,7 +56,11 @@ export const feedsitems = (state = [], action) => {
   // find(state, { id: action.from });
   // return state;
   case 'onfeedsloaded':
-    return orderby(action.feedsitems, ['date'], 'desc');
+    // FIXME ->
+    // si il y a des nouveaux feeds les ajouter aux feeds existants
+    return !action.feedsitems || !action.feedsitems.length
+      ? state
+      : orderby(action.feedsitems, ['date'], 'desc');
   case REHYDRATE:
     return action.payload.feedsitems || [];
   default:

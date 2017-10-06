@@ -21,7 +21,6 @@ export const loadJobsFeeds = () => (dispatch, getstate) => {
         return acc.concat(arr);
       }, []);
       feedsitems = orderby(feedsitems, ['date'], 'desc');
-      console.log('feedsitems', feedsitems);
       dispatch(loadingComplete());
       dispatch(feedsLoaded(feedsitems));
     });

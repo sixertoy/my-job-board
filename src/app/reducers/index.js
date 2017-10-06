@@ -4,7 +4,7 @@ import { routerReducer } from 'react-router-redux';
 import {
   feeds,
   isready,
-  isloaded,
+  isloading,
   feedsitems,
   nextupdate } from './appstates';
 
@@ -21,7 +21,7 @@ export const reducers = combineReducers({
   // services
   feeds,
   isready,
-  isloaded,
+  isloading,
   nextupdate,
   feedsitems,
   // !!! always last
