@@ -14,6 +14,12 @@
   text-transform: uppercase;
 }
 
+.board-column-list {
+  overflow-y: auto;
+  padding: 0 8px 0 0;
+  border-radius: 5px;
+}
+
 .board-column-footer {
   min-height: 20px;
 }
