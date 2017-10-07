@@ -8,9 +8,7 @@ import { Router, Route, hashHistory } from 'react-router';
 import './index.css';
 import KanbanBoard from './app/KanbanBoard';
 import { configure } from './app/core/storage';
-import {
-  // register,
-  unregister } from './registerServiceWorker';
+import registerServiceWorker from './registerServiceWorker';
 
 // application
 const store = configure(hashHistory);
@@ -29,4 +27,4 @@ ReactDOM.render(
   <Root />,
   document.getElementById('root')
 );
-unregister();
+registerServiceWorker();
