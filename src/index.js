@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, hashHistory } from 'react-router';
 
 // application
 import './index.css';
@@ -13,8 +13,8 @@ import {
   unregister } from './registerServiceWorker';
 
 // application
-const store = configure(browserHistory);
-const history = syncHistoryWithStore(browserHistory, store);
+const store = configure(hashHistory);
+const history = syncHistoryWithStore(hashHistory, store);
 const Root = () => (
   <Provider store={store}>
     <div id="main-container">
