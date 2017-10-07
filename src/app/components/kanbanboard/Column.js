@@ -1,3 +1,4 @@
+import find from 'lodash.find';
 import PropTypes from 'prop-types';
 import { DropTarget } from 'react-dnd';
 import React, { Component } from 'react';
@@ -16,12 +17,9 @@ class BoardColumn extends Component {
       // itemType,
       // isOverCurrent,
       connectDropTarget } = this.props;
-    // console.log('isOver', isOver);
     // console.log('canDrop', canDrop);
-    // console.log('itemType', itemType);
-    // console.log('isOverCurrent', isOverCurrent);
     return connectDropTarget(
-      <div className="board-column">
+      <div className={`board-column ${!isOver ? '' : 'hovered'}`}>
         <h2 className="board-column-header">
           <span>{title}</span>
         </h2>
@@ -41,23 +39,24 @@ class BoardColumn extends Component {
 
 BoardColumn.propTypes = {
   items: PropTypes.array.isRequired,
+  isOver: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
-  // isOver: PropTypes.bool.isRequired,
   // canDrop: PropTypes.bool.isRequired,
-  // itemType: PropTypes.string.isRequired,
-  // isOverCurrent: PropTypes.bool.isRequired,
   connectDropTarget: PropTypes.func.isRequired
 };
 
 const dropTargetContext = ({
   drop: (props, monitor, component) => {
-    // console.log('drop drop drop drop');
+    console.log('drop', monitor.getItem());
+    return { dropped: true };
   },
   canDrop: (props, monitor) => {
-    // console.log('canDrop canDrop canDrop canDrop');
+    const id = monitor.getItem().id;
+    const exists = find(props.items, { id });
+    return !exists
   },
-  hover: (props, monitor, component) => {
-    // console.log('hover hover hover hover');
+  hover: (props, monitor) => {
+    // console.log('hover', monitor.getItem());
   }
 });
 
@@ -67,8 +66,8 @@ export default DropTarget(
   (connect, monitor) => ({
     isOver: monitor.isOver(),
     canDrop: monitor.canDrop(),
-    itemType: monitor.getItemType() || '',
-    connectDropTarget: connect.dropTarget(),
-    isOverCurrent: monitor.isOver({ shallow: true })
+    connectDropTarget: connect.dropTarget()
+    // if drop target is nested in main view component
+    // isOverCurrent: monitor.isOver({ shallow: true })
   })
 )(BoardColumn);

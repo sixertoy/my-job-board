@@ -10,11 +10,11 @@ import { shorten } from './../utils/shorten';
 import { humandate } from './../utils/humandate';
 
 function getDraggableCardStyles (currentOffset) {
-  if (!currentOffset) return ({ display: 'none' });
   const { x, y } = currentOffset;
-  return {
-    transform: `translate(${x}px, ${y}px)`
-  };
+  if (!currentOffset || (x <= 0 && y <= 0)) {
+    return ({ display: 'none', visibility: 'hidden' });
+  }
+  return { transform: `translate(${x}px, ${y}px)` };
 }
 
 // eslint-disable-next-line react/prefer-stateless-function

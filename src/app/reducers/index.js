@@ -1,15 +1,19 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
+import { draggingcarid } from './card';
 import {
-  feeds,
   isready,
   isloading,
-  feedsitems,
   nextupdate } from './appstates';
+import {
+  feeds,
+  todositems,
+  feedsitems } from './feeds';
 
 // saved in persitent store
 export const whitelist = [
+  'todositems',
   'nextupdate',
   'feedsitems'
 ];
@@ -18,12 +22,16 @@ export const whitelist = [
 export const blacklist = [];
 
 export const reducers = combineReducers({
-  // services
+  // car
+  draggingcarid,
+  // feeds
   feeds,
+  feedsitems,
+  todositems,
+  // services
   isready,
   isloading,
   nextupdate,
-  feedsitems,
   // !!! always last
   routing: routerReducer
 });

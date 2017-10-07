@@ -48,7 +48,10 @@ class KanbanBoardView extends Component {
   }
 
   render () {
-    const { feedsitems, isloading } = this.props;
+    const {
+      isloading,
+      feedsitems,
+      draggingcarid } = this.props;
     return (
       <div className="screen flex-rows">
         <ProgressBar loading={isloading} />
@@ -57,7 +60,8 @@ class KanbanBoardView extends Component {
           <h2>React/Electron</h2>
         </div>
         <div className="kanban-board flex-columns">
-          <DraggableCard />
+          {!draggingcarid ? false
+            : <DraggableCard />}
           <BoardColumn key="feeds"
             title="Feeds" items={feedsitems} />
           <BoardColumn key="todo"
@@ -77,6 +81,10 @@ KanbanBoardView.propTypes = {
   isloading: PropTypes.bool.isRequired,
   loadfeeds: PropTypes.func.isRequired,
   feedsitems: PropTypes.array.isRequired,
+  draggingcarid: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string
+  ]).isRequired,
   nextupdate: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.number
@@ -87,7 +95,8 @@ const mapStateToProps = state => ({
   isready: state.isready,
   isloading: state.isloading,
   feedsitems: state.feedsitems,
-  nextupdate: state.nextupdate
+  nextupdate: state.nextupdate,
+  draggingcarid: state.draggingcarid
 });
 
 const mapDispatchToProps = dispatch => ({

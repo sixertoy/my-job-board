@@ -7,9 +7,12 @@ import { DragSource } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 
 import './card.css';
-import { moveCard } from './../../actions';
 import { shorten } from './../../utils/shorten';
 import { humandate } from './../../utils/humandate';
+import {
+  moveCard,
+  endDragging,
+  startDragging } from './../../actions';
 
 class CardView extends Component {
 
@@ -65,14 +68,25 @@ const dragTargetContext = ({
   isDragging: (props, monitor) =>
     // check si cet element et l'element en court de drag
     (props.id === monitor.getItem().id),
-  beginDrag: props => ({
-    // utilisé par monitor.getItem()
-    id: props.id,
-    date: props.date,
-    short: props.short,
-    title: shorten(props.title, 60),
-    connectDragPreview: props.connectDragPreview
-  })
+  endDrag: (props, monitor) => {
+    props.enddragging();
+    const diddrop = monitor.didDrop();
+    if (!diddrop) return;
+    // const diddrop = monitor.getDropResult();
+    // FIXME ->
+    // dispatch actions
+  },
+  beginDrag: (props) => {
+    const { id } = props;
+    props.startdragging(id);
+    return ({
+      // utilisé par monitor.getItem()
+      id,
+      date: props.date,
+      short: props.short,
+      title: shorten(props.title, 60)
+    });
+  }
 });
 
 const KanbanCardDrag = DragSource(
@@ -92,6 +106,8 @@ const KanbanCardDrag = DragSource(
 ---------------------------------------- */
 const mapStateToProps = () => ({});
 const mapDispatchToProps = dispatch => ({
+  enddragging: () => dispatch(endDragging()),
+  startdragging: id => dispatch(startDragging(id)),
   movecard: (from, to) => dispatch(moveCard(from, to))
 });
 

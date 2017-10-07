@@ -10,6 +10,10 @@
   background-color: #E2E4E6;
 }
 
+.board-column.hovered {
+  background-color: #C0CCD8;
+}
+
 .board-column-header {
   text-transform: uppercase;
 }
