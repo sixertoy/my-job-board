@@ -10,9 +10,10 @@ import './card.css';
 import { shorten } from './../../utils/shorten';
 import { humandate } from './../../utils/humandate';
 import {
-  moveCard,
+  addCardTo,
   endDragging,
-  startDragging } from './../../actions';
+  startDragging,
+  removeCardFrom } from './../../actions';
 
 class CardView extends Component {
 
@@ -26,14 +27,14 @@ class CardView extends Component {
 
   render () {
     const {
-      date,
-      title,
-      short,
+      item,
+      source,
       isDragging,
       connectDragSource } = this.props;
+    const { date, title, short } = item;
     return connectDragSource(isDragging
       ? <div className="kanban-card-placeholder" />
-      : <div className="kanban-card relative"
+      : <div className={`kanban-card relative ${source}`}
         style={{ opacity: (isDragging ? 0.45 : 1) }}>
         <button className="kanban-card-button"
           onClick={() => {}}><span><i className="" /></span>
@@ -49,9 +50,8 @@ class CardView extends Component {
 }
 
 CardView.propTypes = {
-  date: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  short: PropTypes.string.isRequired,
+  item: PropTypes.object.isRequired,
+  source: PropTypes.string.isRequired,
   isDragging: PropTypes.bool.isRequired,
   connectDragSource: PropTypes.func.isRequired,
   connectDragPreview: PropTypes.func.isRequired
@@ -67,24 +67,25 @@ CardView.propTypes = {
 const dragTargetContext = ({
   isDragging: (props, monitor) =>
     // check si cet element et l'element en court de drag
-    (props.id === monitor.getItem().id),
+    (props.item.id === monitor.getItem().id),
   endDrag: (props, monitor) => {
     props.enddragging();
-    const diddrop = monitor.didDrop();
-    if (!diddrop) return;
-    // const diddrop = monitor.getDropResult();
+    if (!monitor.didDrop()) return;
+    const item = Object.assign({}, props.item);
+    const { target } = monitor.getDropResult();
     // FIXME ->
-    // dispatch actions
+    props.addcardto(target, item);
+    props.removecardfrom(props.source, item.id);
   },
   beginDrag: (props) => {
-    const { id } = props;
+    const { id } = props.item;
     props.startdragging(id);
     return ({
       // utilisé par monitor.getItem()
       id,
-      date: props.date,
-      short: props.short,
-      title: shorten(props.title, 60)
+      date: props.item.date,
+      short: props.item.short,
+      title: shorten(props.item.title, 60)
     });
   }
 });
@@ -108,7 +109,8 @@ const mapStateToProps = () => ({});
 const mapDispatchToProps = dispatch => ({
   enddragging: () => dispatch(endDragging()),
   startdragging: id => dispatch(startDragging(id)),
-  movecard: (from, to) => dispatch(moveCard(from, to))
+  addcardto: (target, cardobj) => dispatch(addCardTo(target, cardobj)),
+  removecardfrom: (source, id) => dispatch(removeCardFrom(source, id))
 });
 
 export default connect(

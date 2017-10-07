@@ -50,8 +50,11 @@ class KanbanBoardView extends Component {
   render () {
     const {
       isloading,
+      doneitems,
+      todositems,
       feedsitems,
-      draggingcarid } = this.props;
+      draggingcarid,
+      inprogressitems } = this.props;
     return (
       <div className="screen flex-rows">
         <ProgressBar loading={isloading} />
@@ -62,14 +65,14 @@ class KanbanBoardView extends Component {
         <div className="kanban-board flex-columns">
           {!draggingcarid ? false
             : <DraggableCard />}
-          <BoardColumn key="feeds"
+          <BoardColumn key="feeds" type="feeds"
             title="Feeds" items={feedsitems} />
-          <BoardColumn key="todo"
-            title="Todo" items={[]} />
-          <BoardColumn key="in-progress"
-            title="In Progress" items={[]} />
-          <BoardColumn key="done"
-            title="Done" items={[]} />
+          <BoardColumn key="todo" type="todo"
+            title="Todo" items={todositems} />
+          <BoardColumn key="inprogress" type="inprogress"
+            title="In Progress" items={inprogressitems} />
+          <BoardColumn key="done" type="done"
+            title="Done" items={doneitems} />
         </div>
       </div>
     );
@@ -80,7 +83,10 @@ KanbanBoardView.propTypes = {
   isready: PropTypes.bool.isRequired,
   isloading: PropTypes.bool.isRequired,
   loadfeeds: PropTypes.func.isRequired,
+  doneitems: PropTypes.array.isRequired,
+  todositems: PropTypes.array.isRequired,
   feedsitems: PropTypes.array.isRequired,
+  inprogressitems: PropTypes.array.isRequired,
   draggingcarid: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.string
@@ -94,9 +100,12 @@ KanbanBoardView.propTypes = {
 const mapStateToProps = state => ({
   isready: state.isready,
   isloading: state.isloading,
+  doneitems: state.doneitems,
+  todositems: state.todositems,
   feedsitems: state.feedsitems,
   nextupdate: state.nextupdate,
-  draggingcarid: state.draggingcarid
+  draggingcarid: state.draggingcarid,
+  inprogressitems: state.inprogressitems
 });
 
 const mapDispatchToProps = dispatch => ({

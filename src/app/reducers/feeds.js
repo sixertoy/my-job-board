@@ -16,9 +16,10 @@ export const feeds = (state = {
 
 export const feedsitems = (state = [], action) => {
   switch (action.type) {
-  // case 'onMoveCard':
-  // find(state, { id: action.from });
-  // return state;
+  case 'onremovecardfrom':
+    if (action.source !== 'feeds') return state;
+    return state
+      .filter(({ id }) => (action.id !== id));
   case 'onfeedsloaded':
     // FIXME ->
     // si il y a des nouveaux feeds les ajouter aux feeds existants
@@ -34,13 +35,47 @@ export const feedsitems = (state = [], action) => {
 
 export const todositems = (state = [], action) => {
   switch (action.type) {
-  // case 'onMoveCard':
-  // find(state, { id: action.from });
-  // return state;
-  case 'onmovecard':
-    return [];
+  case 'onremovecardfrom':
+    if (action.source !== 'todo') return state;
+    return state
+      .filter(({ id }) => (action.id !== id));
+  case 'onaddcardto':
+    if (action.target !== 'todo') return state;
+    return [action.obj].concat(state);
   case REHYDRATE:
     return action.payload.todositems || [];
+  default:
+    return state;
+  }
+};
+
+export const inprogressitems = (state = [], action) => {
+  switch (action.type) {
+  case 'onremovecardfrom':
+    if (action.source !== 'inprogress') return state;
+    return state
+      .filter(({ id }) => (action.id !== id));
+  case 'onaddcardto':
+    if (action.target !== 'inprogress') return state;
+    return [action.obj].concat(state);
+  case REHYDRATE:
+    return action.payload.inprogressitems || [];
+  default:
+    return state;
+  }
+};
+
+export const doneitems = (state = [], action) => {
+  switch (action.type) {
+  case 'onremovecardfrom':
+    if (action.source !== 'done') return state;
+    return state
+      .filter(({ id }) => (action.id !== id));
+  case 'onaddcardto':
+    if (action.target !== 'done') return state;
+    return [action.obj].concat(state);
+  case REHYDRATE:
+    return action.payload.doneitems || [];
   default:
     return state;
   }

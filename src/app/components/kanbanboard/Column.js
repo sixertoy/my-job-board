@@ -10,6 +10,7 @@ import Card from './Card';
 class BoardColumn extends Component {
   render () {
     const {
+      type,
       title,
       items,
       isOver,
@@ -19,7 +20,7 @@ class BoardColumn extends Component {
       connectDropTarget } = this.props;
     // console.log('canDrop', canDrop);
     return connectDropTarget(
-      <div className={`board-column ${!isOver ? '' : 'hovered'}`}>
+      <div className={`board-column ${type} ${!isOver ? '' : 'hovered'}`}>
         <h2 className="board-column-header">
           <span>{title}</span>
         </h2>
@@ -28,8 +29,9 @@ class BoardColumn extends Component {
           {!items || !items.length
             ? false
             : items.map((obj, index) =>
-              // eslint-disable-next-line react/no-array-index-key
-              <Card {...obj} key={`kanban-column-item-${index}`} />)}
+              (<Card item={obj} source={type}
+                // eslint-disable-next-line react/no-array-index-key
+                key={`kanban-column-item-${index}`} />))}
         </div>
         <div className="board-column-footer" />
       </div>
@@ -38,6 +40,7 @@ class BoardColumn extends Component {
 }
 
 BoardColumn.propTypes = {
+  type: PropTypes.string.isRequired,
   items: PropTypes.array.isRequired,
   isOver: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
@@ -46,18 +49,15 @@ BoardColumn.propTypes = {
 };
 
 const dropTargetContext = ({
-  drop: (props, monitor, component) => {
-    console.log('drop', monitor.getItem());
-    return { dropped: true };
-  },
+  drop: props => ({ target: props.type }),
   canDrop: (props, monitor) => {
     const id = monitor.getItem().id;
     const exists = find(props.items, { id });
-    return !exists
-  },
-  hover: (props, monitor) => {
-    // console.log('hover', monitor.getItem());
+    return !exists;
   }
+  // hover: (props, monitor) => {
+  //   // console.log('hover', monitor.getItem());
+  // }
 });
 
 export default DropTarget(

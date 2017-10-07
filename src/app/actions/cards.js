@@ -1,7 +1,13 @@
-export const moveCard = (from, to) => ({
-  type: 'onMoveCard',
-  from,
-  to
+export const addCardTo = (target, obj) => ({
+  type: 'onaddcardto',
+  target,
+  obj
+});
+
+export const removeCardFrom = (source, id) => ({
+  type: 'onremovecardfrom',
+  source,
+  id
 });
 
 export const endDragging = () => ({

@@ -8,14 +8,18 @@ import {
   nextupdate } from './appstates';
 import {
   feeds,
+  doneitems,
   todositems,
-  feedsitems } from './feeds';
+  feedsitems,
+  inprogressitems } from './feeds';
 
 // saved in persitent store
 export const whitelist = [
+  'doneitems',
   'todositems',
   'nextupdate',
-  'feedsitems'
+  'feedsitems',
+  'inprogressitems'
 ];
 
 // do not saved in persitent store
@@ -26,8 +30,10 @@ export const reducers = combineReducers({
   draggingcarid,
   // feeds
   feeds,
+  doneitems,
   feedsitems,
   todositems,
+  inprogressitems,
   // services
   isready,
   isloading,
