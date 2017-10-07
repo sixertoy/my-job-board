@@ -1,5 +1,8 @@
 # MY JOB BOARD
 
+**demo**
+http://sixertoy.github.io/my-job-board
+
 > A Kanban application made with Electron to help in job search
 
 ![Screenshot](./screenshot.png)

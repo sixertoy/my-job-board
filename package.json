@@ -3,7 +3,7 @@
   "version": "0.1.2",
   "private": true,
   "main": "./main.js",
-  "homepage": "./",
+  "homepage": "https://sixertoy.github.io/my-job-board/",
   "devDependencies": {
     "babel-preset-env": "^1.6.0",
     "eslint": "^4.3.0",
@@ -38,6 +38,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "electron": "electron .",
