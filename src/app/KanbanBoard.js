@@ -6,11 +6,11 @@ import HTML5Backend from 'react-dnd-html5-backend';
 
 // application
 import './kanbanboard.css';
-import logo from './../assets/logo.svg';
 import { loadJobsFeeds } from './actions';
 import ProgressBar from './components/ui/ProgressBar';
 import DraggableCard from './components/DraggableCard';
 import BoardColumn from './components/kanbanboard/Column';
+import ApplicationHeader from './components/ApplicationHeader';
 
 class KanbanBoardView extends Component {
 
@@ -58,13 +58,9 @@ class KanbanBoardView extends Component {
     return (
       <div className="screen flex-rows">
         <ProgressBar loading={isloading} />
-        <div className="screen-header">
-          <img src={logo} className="screen-logo" alt="logo" />
-          <h2>React/Electron</h2>
-        </div>
+        <ApplicationHeader />
         <div className="kanban-board flex-columns">
-          {!draggingcarid ? false
-            : <DraggableCard />}
+          {!draggingcarid ? false : <DraggableCard />}
           <BoardColumn key="feeds" type="feeds"
             title="Feeds" items={feedsitems} />
           <BoardColumn key="todo" type="todo"
