@@ -6,6 +6,8 @@ import { Router, Route, hashHistory } from 'react-router';
 
 // application
 import './index.css';
+import './fontello/css/fontello-embedded.css';
+
 import KanbanBoard from './app/KanbanBoard';
 import { configure } from './app/core/storage';
 import registerServiceWorker from './registerServiceWorker';

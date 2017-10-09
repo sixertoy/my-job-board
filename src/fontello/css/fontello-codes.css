@@ -1,0 +1,15 @@
+
+.myjobboard-mail:before { content: '\e800'; } /* '' */
+.myjobboard-check:before { content: '\e801'; } /* '' */
+.myjobboard-cancel:before { content: '\e802'; } /* '' */
+.myjobboard-chat:before { content: '\e803'; } /* '' */
+.myjobboard-calendar:before { content: '\e804'; } /* '' */
+.myjobboard-resize-full:before { content: '\e805'; } /* '' */
+.myjobboard-trash:before { content: '\e806'; } /* '' */
+.myjobboard-user-add:before { content: '\e807'; } /* '' */
+.myjobboard-resize-small:before { content: '\e808'; } /* '' */
+.myjobboard-thumbs-up:before { content: '\e809'; } /* '' */
+.myjobboard-thumbs-down:before { content: '\e80a'; } /* '' */
+.myjobboard-tag:before { content: '\e80b'; } /* '' */
+.myjobboard-comment:before { content: '\e80c'; } /* '' */
+.myjobboard-search:before { content: '\e80d'; } /* '' */
