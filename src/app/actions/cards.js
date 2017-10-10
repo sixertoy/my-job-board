@@ -4,12 +4,6 @@ export const addCardTo = (target, item) => ({
   item
 });
 
-export const removeCardFrom = (source, { id }) => ({
-  type: 'onremovecardfrom',
-  source,
-  id
-});
-
 export const endDragging = () => ({
   type: 'onenddragging'
 });

@@ -15,6 +15,7 @@ const parseresults = (key, xml, ctime) => xml.rss.channel[0].item
     ctime,
     link: link[0],
     title: title[0],
+    status: 'feeds',
     description: description[0],
     date: Date.parse(pubDate[0]),
     short: shorten(description[0]),

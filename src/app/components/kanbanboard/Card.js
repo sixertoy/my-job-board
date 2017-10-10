@@ -12,9 +12,8 @@ import { shorten } from './../../utils/shorten';
 import {
   addCardTo,
   endDragging,
-  openOverlayCard,
   startDragging,
-  removeCardFrom } from './../../actions';
+  openOverlayCard } from './../../actions';
 
 class CardView extends Component {
 
@@ -72,7 +71,6 @@ const dragTargetContext = ({
     const { target } = monitor.getDropResult();
     // FIXME ->
     props.addcardto(target);
-    props.removecardfrom();
   },
   beginDrag: (props) => {
     props.startdragging();
@@ -104,12 +102,11 @@ const KanbanCardDrag = DragSource(
 const mapStateToProps = state => ({
   lastupdate: state.lastupdate
 });
-const mapDispatchToProps = (dispatch, { item, source }) => ({
+const mapDispatchToProps = (dispatch, { item }) => ({
   enddragging: () => dispatch(endDragging()),
   showfullcard: () => dispatch(openOverlayCard(item)),
   startdragging: () => dispatch(startDragging(item.id)),
-  addcardto: target => dispatch(addCardTo(target, item)),
-  removecardfrom: () => dispatch(removeCardFrom(source, item))
+  addcardto: target => dispatch(addCardTo(target, item))
 });
 
 export default connect(

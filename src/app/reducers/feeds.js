@@ -1,14 +1,13 @@
 import orderby from 'lodash.orderby';
 import { REHYDRATE } from 'redux-persist/constants';
 
-const removeCardFromSource = (state, type, { source, id }) => {
-  if (source !== type) return state;
-  return state.filter(obj => (obj.id !== id));
-};
-
-const addCardToTarget = (state, type, { target, item }) => {
-  if (target !== type) return state;
-  return [item].concat(state);
+const movetostatus = (state, { target, item }) => {
+  const parsed = state.reduce((acc, obj) => {
+    const object = Object.assign({}, obj);
+    if (obj.id === item.id) object.status = target;
+    return [object].concat(acc);
+  }, []);
+  return orderby(parsed, ['date'], 'desc');
 };
 
 export const feeds = (state = {
@@ -26,61 +25,20 @@ export const feeds = (state = {
 
 export const feedsitems = (state = [], action) => {
   switch (action.type) {
-  case 'onremovecardfrom':
-    return removeCardFromSource(state, 'feeds', action);
   case 'onaddcardto':
-    return addCardToTarget(state, 'feeds', action);
-  case 'onjoboffersloaded':
+    return movetostatus(state, action);
+  case 'onoffersloaded':
     // FIXME ->
     // si il y a des nouveaux feeds les ajouter aux feeds existants
-    return !action.joboffers || !action.joboffers.length
+    return !action.items || !action.items.length
       ? state
-      : orderby(action.joboffers.reduce((acc, obj) => {
+      : orderby(action.items.reduce((acc, obj) => {
         const exists = acc.filter(({ id }) => id === obj.id).length;
         if (exists) return acc;
         return [obj].concat(acc);
       }, state), ['date'], 'desc');
   case REHYDRATE:
     return action.payload.feedsitems || [];
-  default:
-    return state;
-  }
-};
-
-export const todositems = (state = [], action) => {
-  switch (action.type) {
-  case 'onremovecardfrom':
-    return removeCardFromSource(state, 'todo', action);
-  case 'onaddcardto':
-    return addCardToTarget(state, 'todo', action);
-  case REHYDRATE:
-    return action.payload.todositems || [];
-  default:
-    return state;
-  }
-};
-
-export const inprogressitems = (state = [], action) => {
-  switch (action.type) {
-  case 'onremovecardfrom':
-    return removeCardFromSource(state, 'inprogress', action);
-  case 'onaddcardto':
-    return addCardToTarget(state, 'inprogress', action);
-  case REHYDRATE:
-    return action.payload.inprogressitems || [];
-  default:
-    return state;
-  }
-};
-
-export const doneitems = (state = [], action) => {
-  switch (action.type) {
-  case 'onremovecardfrom':
-    return removeCardFromSource(state, 'done', action);
-  case 'onaddcardto':
-    return addCardToTarget(state, 'done', action);
-  case REHYDRATE:
-    return action.payload.doneitems || [];
   default:
     return state;
   }

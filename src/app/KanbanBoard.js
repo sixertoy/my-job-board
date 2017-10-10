@@ -51,13 +51,10 @@ class KanbanBoardView extends Component {
   render () {
     const {
       isloading,
-      doneitems,
-      todositems,
       feedsitems,
       lastupdate,
       selectedcard,
-      draggingcardid,
-      inprogressitems } = this.props;
+      draggingcardid } = this.props;
     return (
       <div className="screen flex-rows">
         <ProgressBar loading={isloading} />
@@ -66,13 +63,16 @@ class KanbanBoardView extends Component {
         <div className="kanban-board flex-columns">
           {!draggingcardid ? false : <DraggableCard lastupdate={lastupdate} />}
           <BoardColumn showcount key="feeds" type="feeds"
-            title="Feeds" items={feedsitems} />
+            title="Feeds"
+            items={feedsitems.filter(obj => obj.status === 'feeds')} />
           <BoardColumn key="todo" type="todo"
-            title="Todo" items={todositems} />
+            title="Todo"
+            items={feedsitems.filter(obj => obj.status === 'todo')} />
           <BoardColumn key="inprogress" type="inprogress"
-            title="In Progress" items={inprogressitems} />
+            title="In Progress"
+            items={feedsitems.filter(obj => obj.status === 'inprogress')} />
           <BoardColumn key="done" type="done"
-            title="Done" items={doneitems} />
+            title="Done" items={feedsitems.filter(obj => obj.status === 'done')} />
         </div>
       </div>
     );
@@ -83,11 +83,8 @@ KanbanBoardView.propTypes = {
   isready: PropTypes.bool.isRequired,
   isloading: PropTypes.bool.isRequired,
   loadfeeds: PropTypes.func.isRequired,
-  doneitems: PropTypes.array.isRequired,
-  todositems: PropTypes.array.isRequired,
   feedsitems: PropTypes.array.isRequired,
   lastupdate: PropTypes.number.isRequired,
-  inprogressitems: PropTypes.array.isRequired,
   selectedcard: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.object

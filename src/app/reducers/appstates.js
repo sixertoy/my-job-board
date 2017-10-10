@@ -5,7 +5,7 @@ import { UPDATE_INTERVAL_MS } from './../../constants';
 // date de la derniere mise a jour des flux
 export const lastupdate = (state = 0, action) => {
   switch (action.type) {
-  case 'onjoboffersloaded':
+  case 'onoffersloaded':
     return action.now;
   case REHYDRATE:
     return action.payload.lastupdate || state;
@@ -17,7 +17,7 @@ export const lastupdate = (state = 0, action) => {
 // date de la prochaine mise a jour des flux
 export const nextupdate = (state = false, action) => {
   switch (action.type) {
-  case 'onjoboffersloaded':
+  case 'onoffersloaded':
     return (action.now + UPDATE_INTERVAL_MS);
   case REHYDRATE:
     // FIXME -> cannot unvalidate expires

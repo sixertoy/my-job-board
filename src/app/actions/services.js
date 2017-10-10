@@ -3,10 +3,10 @@
 import orderby from 'lodash.orderby';
 
 // application
-import JobOffers from './../core/JobOffers';
+import Offers from './../core/Offers';
 import {
   loadingStart,
-  jobOffersLoaded,
+  offersLoaded,
   loadingComplete } from './_actions';
 
 export const loadProviderFeeds = () => (dispatch, getstate) => {
@@ -16,7 +16,7 @@ export const loadProviderFeeds = () => (dispatch, getstate) => {
   const promises = Object.keys(feeds)
     .map((key) => {
       const url = feeds[key];
-      return JobOffers.load(url, key, now);
+      return Offers.load(url, key, now);
     });
   Promise.all(promises)
     .then((datas) => {
@@ -26,7 +26,7 @@ export const loadProviderFeeds = () => (dispatch, getstate) => {
       }, []);
       joboffers = orderby(joboffers, ['date'], 'desc');
       dispatch(loadingComplete());
-      dispatch(jobOffersLoaded(joboffers, now));
+      dispatch(offersLoaded(joboffers, now));
     });
 };
 
