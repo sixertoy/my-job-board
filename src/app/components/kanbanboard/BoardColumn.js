@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 
 // application
 import './boardcolumn.css';
-import Card from './Card';
+import BoardCard from './BoardCard';
 
 const styles = {
   count: {
@@ -17,7 +17,7 @@ const styles = {
 // FIXME ->
 // pourquoi un obj est egal a null
 const renderBoardCard = (obj, type) => obj && (
-  <Card item={obj} source={type}
+  <BoardCard item={obj} source={type}
     // eslint-disable-next-line react/no-array-index-key
     key={`kanban-column-item-${obj.id}`} />
 );

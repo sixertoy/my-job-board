@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import { DragSource } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 
-import './card.css';
+import './boardcard.css';
 import AbstractCard from './../ui/AbstractCard';
 import { shorten } from './../../utils/shorten';
 import {
