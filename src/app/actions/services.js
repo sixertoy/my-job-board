@@ -3,7 +3,7 @@
 import orderby from 'lodash.orderby';
 
 // application
-import RSSReader from './../core/RSSReader';
+import JobOffers from './../core/JobOffers';
 import {
   loadingStart,
   jobOffersLoaded,
@@ -14,7 +14,10 @@ export const loadProviderFeeds = () => (dispatch, getstate) => {
   const now = Date.now();
   const { feeds } = getstate(); // feeds URLs
   const promises = Object.keys(feeds)
-    .map(key => RSSReader.getFromURL(key, feeds[key], now));
+    .map((key) => {
+      const url = feeds[key];
+      return JobOffers.load(url, key, now);
+    });
   Promise.all(promises)
     .then((datas) => {
       let joboffers = datas.reduce((acc, arr) => {

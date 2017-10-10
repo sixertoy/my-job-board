@@ -29,7 +29,7 @@ const corsproxy = 'https://cors-anywhere.herokuapp.com/';
 export default ({
   // sucess -> 200, 201
   // error -> 404, 403, 400
-  getFromURL: (key, url, ctime) => fetch(`${corsproxy}${url}`, {
+  load: (url, key, ctime) => fetch(`${corsproxy}${url}`, {
     method: 'GET',
     header: XML_HEADER
   })
