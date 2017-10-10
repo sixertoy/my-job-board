@@ -2,7 +2,19 @@
 import { REHYDRATE } from 'redux-persist/constants';
 import { UPDATE_INTERVAL_MS } from './../../constants';
 
-// date de la derniers mise a jour des flux
+// date de la derniere mise a jour des flux
+export const lastupdate = (state = 0, action) => {
+  switch (action.type) {
+  case 'onjoboffersloaded':
+    return action.now;
+  case REHYDRATE:
+    return action.payload.lastupdate || state;
+  default:
+    return state;
+  }
+};
+
+// date de la prochaine mise a jour des flux
 export const nextupdate = (state = false, action) => {
   switch (action.type) {
   case 'onjoboffersloaded':

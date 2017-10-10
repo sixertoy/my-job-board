@@ -10,7 +10,7 @@ import { loadProviderFeeds } from './actions';
 import OverlayCard from './components/OverlayCard';
 import ProgressBar from './components/ui/ProgressBar';
 import DraggableCard from './components/DraggableCard';
-import BoardColumn from './components/kanbanboard/Column';
+import BoardColumn from './components/kanbanboard/BoardColumn';
 import ApplicationHeader from './components/ApplicationHeader';
 
 class KanbanBoardView extends Component {
@@ -54,6 +54,7 @@ class KanbanBoardView extends Component {
       doneitems,
       todositems,
       feedsitems,
+      lastupdate,
       selectedcard,
       draggingcardid,
       inprogressitems } = this.props;
@@ -63,7 +64,7 @@ class KanbanBoardView extends Component {
         <ApplicationHeader />
         <OverlayCard item={selectedcard} />
         <div className="kanban-board flex-columns">
-          {!draggingcardid ? false : <DraggableCard />}
+          {!draggingcardid ? false : <DraggableCard lastupdate={lastupdate} />}
           <BoardColumn showcount key="feeds" type="feeds"
             title="Feeds" items={feedsitems} />
           <BoardColumn key="todo" type="todo"
@@ -85,6 +86,7 @@ KanbanBoardView.propTypes = {
   doneitems: PropTypes.array.isRequired,
   todositems: PropTypes.array.isRequired,
   feedsitems: PropTypes.array.isRequired,
+  lastupdate: PropTypes.number.isRequired,
   inprogressitems: PropTypes.array.isRequired,
   selectedcard: PropTypes.oneOfType([
     PropTypes.bool,
@@ -106,6 +108,7 @@ const mapStateToProps = state => ({
   doneitems: state.doneitems,
   todositems: state.todositems,
   feedsitems: state.feedsitems,
+  lastupdate: state.lastupdate,
   nextupdate: state.nextupdate,
   selectedcard: state.selectedcard,
   draggingcardid: state.draggingcardid,

@@ -9,6 +9,7 @@ import { closeOverlayCard } from './../actions';
 
 const OverlayCard = ({
   item,
+  lastupdate,
   closoverlay
 }) => (!item ? false
   : <div id="overlaycard" className={`${item ? '' : 'hidden'}`}>
@@ -18,7 +19,7 @@ const OverlayCard = ({
       onClick={closoverlay}>
       <i className="myjobboard-cancel" /></button>
     <div className="cardcontainer relative">
-      <AbstractCard item={item} />
+      <AbstractCard item={item} lastupdate={lastupdate} />
       <a target="blank" href={item.link}>
         <span>{'Aller vers le site de l\'annonce'}</span>
       </a>
@@ -28,6 +29,7 @@ const OverlayCard = ({
 
 OverlayCard.propTypes = {
   closoverlay: PropTypes.func.isRequired,
+  lastupdate: PropTypes.number.isRequired,
   item: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.object
@@ -35,7 +37,9 @@ OverlayCard.propTypes = {
 };
 
 export default connect(
-  () => ({}),
+  state => ({
+    lastupdate: state.lastupdate
+  }),
   dispatch => ({
     closoverlay: () => dispatch(closeOverlayCard())
   })

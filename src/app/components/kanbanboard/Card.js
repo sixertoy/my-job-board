@@ -30,6 +30,7 @@ class CardView extends Component {
     const {
       item,
       source,
+      lastupdate,
       isDragging,
       showfullcard,
       connectDragSource } = this.props;
@@ -37,7 +38,8 @@ class CardView extends Component {
       ? <div className="kanban-card-placeholder" />
       : (<div className={`kanban-card relative ${source}`}
         role={'button'} tabIndex="0" onClick={showfullcard}>
-        <AbstractCard minify item={item} isdragging={isDragging} />
+        <AbstractCard minify item={item}
+          isdragging={isDragging} lastupdate={lastupdate} />
       </div>)
     );
   }
@@ -47,6 +49,7 @@ CardView.propTypes = {
   item: PropTypes.object.isRequired,
   source: PropTypes.string.isRequired,
   isDragging: PropTypes.bool.isRequired,
+  lastupdate: PropTypes.number.isRequired,
   showfullcard: PropTypes.func.isRequired,
   connectDragSource: PropTypes.func.isRequired,
   connectDragPreview: PropTypes.func.isRequired
@@ -98,7 +101,9 @@ const KanbanCardDrag = DragSource(
   Decorateur Redux
 
 ---------------------------------------- */
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  lastupdate: state.lastupdate
+});
 const mapDispatchToProps = (dispatch, { item, source }) => ({
   enddragging: () => dispatch(endDragging()),
   showfullcard: () => dispatch(openOverlayCard(item)),

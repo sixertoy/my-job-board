@@ -24,6 +24,7 @@ class DraggableCard extends Component {
     const {
       item,
       isDragging,
+      lastupdate,
       currentOffset } = this.props;
     if (!isDragging) return null;
     return (
@@ -31,7 +32,8 @@ class DraggableCard extends Component {
         <div className="draggablecard"
           style={getDraggableCardStyles(currentOffset)}>
           <div className={'kanban-card relative'}>
-            <AbstractCard item={item} isDragging minify />
+            <AbstractCard isDragging minify
+              item={item} lastupdate={lastupdate} />
           </div>
         </div>
       </div>
@@ -42,6 +44,7 @@ class DraggableCard extends Component {
 DraggableCard.propTypes = {
   item: PropTypes.object.isRequired,
   isDragging: PropTypes.bool.isRequired,
+  lastupdate: PropTypes.number.isRequired,
   currentOffset: PropTypes.shape({
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired

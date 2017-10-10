@@ -7,6 +7,7 @@ import {
 import {
   isready,
   isloading,
+  lastupdate,
   nextupdate } from './appstates';
 import {
   feeds,
@@ -41,6 +42,7 @@ export const reducers = combineReducers({
   isready,
   isloading,
   nextupdate,
+  lastupdate,
   // !!! always last
   routing: routerReducer
 });

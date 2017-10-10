@@ -35,7 +35,11 @@ export const feedsitems = (state = [], action) => {
     // si il y a des nouveaux feeds les ajouter aux feeds existants
     return !action.joboffers || !action.joboffers.length
       ? state
-      : orderby(action.joboffers, ['date'], 'desc');
+      : orderby(action.joboffers.reduce((acc, obj) => {
+        const exists = acc.filter(({ id }) => id === obj.id).length;
+        if (exists) return acc;
+        return [obj].concat(acc);
+      }, state), ['date'], 'desc');
   case REHYDRATE:
     return action.payload.feedsitems || [];
   default:

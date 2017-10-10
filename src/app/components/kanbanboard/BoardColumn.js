@@ -4,7 +4,7 @@ import { DropTarget } from 'react-dnd';
 import React, { Component } from 'react';
 
 // application
-import './column.css';
+import './boardcolumn.css';
 import Card from './Card';
 
 const styles = {
