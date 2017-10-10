@@ -13,3 +13,7 @@
   min-width: 270px;
   max-width: 270px;
 }
+
+.draggablecard {
+  transform: rotate(7deg);
+}

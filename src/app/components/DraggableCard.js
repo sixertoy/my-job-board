@@ -11,7 +11,8 @@ import { humandate } from './../utils/humandate';
 
 function getDraggableCardStyles (currentOffset) {
   const { x, y } = currentOffset;
-  if (!currentOffset || (x <= 0 && y <= 0)) {
+  const isabsolutezero = (x <= 0 && y <= 0);
+  if (!currentOffset || isabsolutezero) {
     return ({ display: 'none', visibility: 'hidden' });
   }
   return { transform: `translate(${x}px, ${y}px)` };
@@ -30,8 +31,7 @@ class DraggableCard extends Component {
       <div className="draggablecard-container">
         <div className="draggablecard"
           style={getDraggableCardStyles(currentOffset)}>
-          <div className="kanban-card relative"
-            style={{ transform: 'rotate(7deg)' }}>
+          <div className="kanban-card relative">
             <p className="kanban-card-date">
               <span>{humandate(new Date(item.date))}</span></p>
             <h2 className="kanban-card-title">

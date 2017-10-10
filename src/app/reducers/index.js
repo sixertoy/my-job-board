@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import { draggingcarid } from './card';
+import {
+  selectedcard,
+  draggingcardid } from './card';
 import {
   isready,
   isloading,
@@ -27,7 +29,8 @@ export const blacklist = [];
 
 export const reducers = combineReducers({
   // car
-  draggingcarid,
+  selectedcard,
+  draggingcardid,
   // feeds
   feeds,
   doneitems,

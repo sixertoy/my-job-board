@@ -5,8 +5,8 @@ import { UPDATE_INTERVAL_MS } from './../../constants';
 // date de la derniers mise a jour des flux
 export const nextupdate = (state = false, action) => {
   switch (action.type) {
-  case 'onfeedsloaded':
-    return (Date.now() + UPDATE_INTERVAL_MS);
+  case 'onjoboffersloaded':
+    return (action.now + UPDATE_INTERVAL_MS);
   case REHYDRATE:
     // FIXME -> cannot unvalidate expires
     return action.payload.nextupdate || false;

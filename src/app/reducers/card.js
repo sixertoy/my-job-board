@@ -1,3 +1,14 @@
+export const selectedcard = (state = false, action) => {
+  switch (action.type) {
+  case 'onopenoverlaycard':
+    return action.item;
+  case 'oncloseoverlaycard':
+    return false;
+  default:
+    return state;
+  }
+};
+
 export const isdragging = (state = false, action) => {
   switch (action.type) {
   case 'onenddragging':
@@ -9,7 +20,7 @@ export const isdragging = (state = false, action) => {
   }
 };
 
-export const draggingcarid = (state = false, action) => {
+export const draggingcardid = (state = false, action) => {
   switch (action.type) {
   case 'onenddragging':
     return false;

@@ -7,11 +7,13 @@ import { DragSource } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 
 import './card.css';
+import AbstractCard from './../ui/AbstractCard';
 import { shorten } from './../../utils/shorten';
 import { humandate } from './../../utils/humandate';
 import {
   addCardTo,
   endDragging,
+  openOverlayCard,
   startDragging,
   removeCardFrom } from './../../actions';
 
@@ -30,21 +32,19 @@ class CardView extends Component {
       item,
       source,
       isDragging,
+      showfullcard,
       connectDragSource } = this.props;
     const { date, title, short } = item;
     return connectDragSource(isDragging
       ? <div className="kanban-card-placeholder" />
-      : <div className={`kanban-card relative ${source}`}
-        style={{ opacity: (isDragging ? 0.45 : 1) }}>
-        <button className="kanban-card-button"
-          onClick={() => {}}><span><i className="" /></span>
-        </button>
-        <p className="kanban-card-date">
-          <span>{humandate(new Date(date))}</span></p>
-        <h2 className="kanban-card-title">
-          <span>{shorten(title, 60)}</span></h2>
-        <div dangerouslySetInnerHTML={{ __html: short }} />
-      </div>
+      : (
+        <div className={`kanban-card relative ${source}`}
+          style={{ opacity: (isDragging ? 0.45 : 1) }}
+          role={'button'} tabIndex="0" onClick={showfullcard}>
+          <AbstractCard date={humandate(new Date(date))}
+            title={shorten(title, 60)} content={short} />
+        </div>
+      )
     );
   }
 }
@@ -53,6 +53,7 @@ CardView.propTypes = {
   item: PropTypes.object.isRequired,
   source: PropTypes.string.isRequired,
   isDragging: PropTypes.bool.isRequired,
+  showfullcard: PropTypes.func.isRequired,
   connectDragSource: PropTypes.func.isRequired,
   connectDragPreview: PropTypes.func.isRequired
 };
@@ -71,18 +72,16 @@ const dragTargetContext = ({
   endDrag: (props, monitor) => {
     props.enddragging();
     if (!monitor.didDrop()) return;
-    const item = Object.assign({}, props.item);
     const { target } = monitor.getDropResult();
     // FIXME ->
-    props.addcardto(target, item);
-    props.removecardfrom(props.source, item.id);
+    props.addcardto(target);
+    props.removecardfrom();
   },
   beginDrag: (props) => {
-    const { id } = props.item;
-    props.startdragging(id);
+    props.startdragging();
     return ({
       // utilisé par monitor.getItem()
-      id,
+      id: props.item.id,
       date: props.item.date,
       short: props.item.short,
       title: shorten(props.item.title, 60)
@@ -106,11 +105,12 @@ const KanbanCardDrag = DragSource(
 
 ---------------------------------------- */
 const mapStateToProps = () => ({});
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, { item, source }) => ({
   enddragging: () => dispatch(endDragging()),
-  startdragging: id => dispatch(startDragging(id)),
-  addcardto: (target, cardobj) => dispatch(addCardTo(target, cardobj)),
-  removecardfrom: (source, id) => dispatch(removeCardFrom(source, id))
+  showfullcard: () => dispatch(openOverlayCard(item)),
+  startdragging: () => dispatch(startDragging(item.id)),
+  addcardto: target => dispatch(addCardTo(target, item)),
+  removecardfrom: () => dispatch(removeCardFrom(source, item))
 });
 
 export default connect(

@@ -6,7 +6,8 @@ export const loadingComplete = () => ({
   type: 'onloadingcomplete'
 });
 
-export const feedsLoaded = feedsitems => ({
-  type: 'onfeedsloaded',
-  feedsitems
+export const jobOffersLoaded = (joboffers, now) => ({
+  type: 'onjoboffersloaded',
+  joboffers,
+  now
 });

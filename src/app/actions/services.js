@@ -3,27 +3,28 @@
 import orderby from 'lodash.orderby';
 
 // application
-import RSSReader from './RSSReader';
+import RSSReader from './../core/RSSReader';
 import {
-  feedsLoaded,
   loadingStart,
+  jobOffersLoaded,
   loadingComplete } from './_actions';
 
-export const loadJobsFeeds = () => (dispatch, getstate) => {
-  const { feeds } = getstate();
+export const loadProviderFeeds = () => (dispatch, getstate) => {
   dispatch(loadingStart());
-  const promises = Object.keys(feeds).map(key =>
-    RSSReader.getFromURL(key, feeds[key]));
+  const now = Date.now();
+  const { feeds } = getstate(); // feeds URLs
+  const promises = Object.keys(feeds)
+    .map(key => RSSReader.getFromURL(key, feeds[key], now));
   Promise.all(promises)
     .then((datas) => {
-      let feedsitems = datas.reduce((acc, arr) => {
+      let joboffers = datas.reduce((acc, arr) => {
         if (!arr) return acc;
         return acc.concat(arr);
       }, []);
-      feedsitems = orderby(feedsitems, ['date'], 'desc');
+      joboffers = orderby(joboffers, ['date'], 'desc');
       dispatch(loadingComplete());
-      dispatch(feedsLoaded(feedsitems));
+      dispatch(jobOffersLoaded(joboffers, now));
     });
 };
 
-export default loadJobsFeeds;
+export default loadProviderFeeds;

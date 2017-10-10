@@ -1,10 +1,10 @@
-export const addCardTo = (target, obj) => ({
+export const addCardTo = (target, item) => ({
   type: 'onaddcardto',
   target,
-  obj
+  item
 });
 
-export const removeCardFrom = (source, id) => ({
+export const removeCardFrom = (source, { id }) => ({
   type: 'onremovecardfrom',
   source,
   id

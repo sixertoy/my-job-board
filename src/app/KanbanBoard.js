@@ -6,7 +6,8 @@ import HTML5Backend from 'react-dnd-html5-backend';
 
 // application
 import './kanbanboard.css';
-import { loadJobsFeeds } from './actions';
+import { loadProviderFeeds } from './actions';
+import OverlayCard from './components/OverlayCard';
 import ProgressBar from './components/ui/ProgressBar';
 import DraggableCard from './components/DraggableCard';
 import BoardColumn from './components/kanbanboard/Column';
@@ -53,15 +54,17 @@ class KanbanBoardView extends Component {
       doneitems,
       todositems,
       feedsitems,
-      draggingcarid,
+      selectedcard,
+      draggingcardid,
       inprogressitems } = this.props;
     return (
       <div className="screen flex-rows">
         <ProgressBar loading={isloading} />
         <ApplicationHeader />
+        <OverlayCard item={selectedcard} />
         <div className="kanban-board flex-columns">
-          {!draggingcarid ? false : <DraggableCard />}
-          <BoardColumn key="feeds" type="feeds"
+          {!draggingcardid ? false : <DraggableCard />}
+          <BoardColumn showcount key="feeds" type="feeds"
             title="Feeds" items={feedsitems} />
           <BoardColumn key="todo" type="todo"
             title="Todo" items={todositems} />
@@ -83,7 +86,11 @@ KanbanBoardView.propTypes = {
   todositems: PropTypes.array.isRequired,
   feedsitems: PropTypes.array.isRequired,
   inprogressitems: PropTypes.array.isRequired,
-  draggingcarid: PropTypes.oneOfType([
+  selectedcard: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.object
+  ]).isRequired,
+  draggingcardid: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.string
   ]).isRequired,
@@ -100,12 +107,13 @@ const mapStateToProps = state => ({
   todositems: state.todositems,
   feedsitems: state.feedsitems,
   nextupdate: state.nextupdate,
-  draggingcarid: state.draggingcarid,
+  selectedcard: state.selectedcard,
+  draggingcardid: state.draggingcardid,
   inprogressitems: state.inprogressitems
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadfeeds: () => dispatch(loadJobsFeeds())
+  loadfeeds: () => dispatch(loadProviderFeeds())
 });
 
 export default connect(

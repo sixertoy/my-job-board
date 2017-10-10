@@ -7,31 +7,42 @@ import React, { Component } from 'react';
 import './column.css';
 import Card from './Card';
 
+const styles = {
+  count: {
+    fontSize: '0.7em',
+    fontWeight: 'lighter'
+  }
+};
+
+// FIXME ->
+// pourquoi un obj est egal a null
+const renderBoardCard = (obj, type) => obj && (
+  <Card item={obj} source={type}
+    // eslint-disable-next-line react/no-array-index-key
+    key={`kanban-column-item-${obj.id}`} />
+);
+
 class BoardColumn extends Component {
+
   render () {
     const {
       type,
       title,
       items,
       isOver,
-      // canDrop,
-      // itemType,
-      // isOverCurrent,
+      showcount,
       connectDropTarget } = this.props;
-    // console.log('canDrop', canDrop);
     return connectDropTarget(
       <div className={`board-column ${type} ${!isOver ? '' : 'hovered'}`}>
         <h2 className="board-column-header">
           <span>{title}</span>
+          {!showcount ? false
+            : <small style={styles.count}>{` (${items.length})`}</small>}
         </h2>
         <div className="board-column-list fancy-scrollbar"
           style={{ height: 'auto', opacity: (isOver ? 0.45 : 1) }}>
-          {!items || !items.length
-            ? false
-            : items.map((obj, index) =>
-              (<Card item={obj} source={type}
-                // eslint-disable-next-line react/no-array-index-key
-                key={`kanban-column-item-${index}`} />))}
+          {!items || !items.length ? false
+            : items.map(obj => renderBoardCard(obj, type))}
         </div>
         <div className="board-column-footer" />
       </div>
@@ -39,12 +50,16 @@ class BoardColumn extends Component {
   }
 }
 
+BoardColumn.defaultProps = {
+  showcount: false
+};
+
 BoardColumn.propTypes = {
+  showcount: PropTypes.bool,
   type: PropTypes.string.isRequired,
   items: PropTypes.array.isRequired,
   isOver: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
-  // canDrop: PropTypes.bool.isRequired,
   connectDropTarget: PropTypes.func.isRequired
 };
 
@@ -55,9 +70,6 @@ const dropTargetContext = ({
     const exists = find(props.items, { id });
     return !exists;
   }
-  // hover: (props, monitor) => {
-  //   // console.log('hover', monitor.getItem());
-  // }
 });
 
 export default DropTarget(
@@ -67,7 +79,5 @@ export default DropTarget(
     isOver: monitor.isOver(),
     canDrop: monitor.canDrop(),
     connectDropTarget: connect.dropTarget()
-    // if drop target is nested in main view component
-    // isOverCurrent: monitor.isOver({ shallow: true })
   })
 )(BoardColumn);
