@@ -89,6 +89,12 @@
       "css": "search",
       "code": 59405,
       "src": "entypo"
+    },
+    {
+      "uid": "25b34dea4784f72c710454f32ff8fa2b",
+      "css": "star",
+      "code": 59406,
+      "src": "entypo"
     }
   ]
 }

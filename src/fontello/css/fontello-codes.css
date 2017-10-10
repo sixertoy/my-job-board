@@ -13,3 +13,4 @@
 .myjobboard-tag:before { content: '\e80b'; } /* '' */
 .myjobboard-comment:before { content: '\e80c'; } /* '' */
 .myjobboard-search:before { content: '\e80d'; } /* '' */
+.myjobboard-star:before { content: '\e80e'; } /* '' */
