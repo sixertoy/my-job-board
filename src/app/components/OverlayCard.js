@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import './overlaycard.css';
 import AbstractCard from './ui/AbstractCard';
 import { closeOverlayCard } from './../actions';
-import { humandate } from './../utils/humandate';
 
 const OverlayCard = ({
   item,
@@ -19,8 +18,7 @@ const OverlayCard = ({
       onClick={closoverlay}>
       <i className="myjobboard-cancel" /></button>
     <div className="cardcontainer relative">
-      <AbstractCard date={humandate(new Date(item.date))}
-        content={item.description} title={item.title} />
+      <AbstractCard item={item} />
       <a target="blank" href={item.link}>
         <span>{'Aller vers le site de l\'annonce'}</span>
       </a>

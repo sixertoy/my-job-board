@@ -9,7 +9,6 @@ import { getEmptyImage } from 'react-dnd-html5-backend';
 import './card.css';
 import AbstractCard from './../ui/AbstractCard';
 import { shorten } from './../../utils/shorten';
-import { humandate } from './../../utils/humandate';
 import {
   addCardTo,
   endDragging,
@@ -34,17 +33,12 @@ class CardView extends Component {
       isDragging,
       showfullcard,
       connectDragSource } = this.props;
-    const { date, title, short } = item;
     return connectDragSource(isDragging
       ? <div className="kanban-card-placeholder" />
-      : (
-        <div className={`kanban-card relative ${source}`}
-          style={{ opacity: (isDragging ? 0.45 : 1) }}
-          role={'button'} tabIndex="0" onClick={showfullcard}>
-          <AbstractCard date={humandate(new Date(date))}
-            title={shorten(title, 60)} content={short} />
-        </div>
-      )
+      : (<div className={`kanban-card relative ${source}`}
+        role={'button'} tabIndex="0" onClick={showfullcard}>
+        <AbstractCard minify item={item} isdragging={isDragging} />
+      </div>)
     );
   }
 }
