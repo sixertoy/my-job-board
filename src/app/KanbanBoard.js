@@ -6,6 +6,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 
 // application
 import './kanbanboard.css';
+import { CARD_STATUS } from './../constants';
 import { loadProviderFeeds } from './actions';
 import OverlayCard from './components/OverlayCard';
 import ProgressBar from './components/ui/ProgressBar';
@@ -62,17 +63,18 @@ class KanbanBoardView extends Component {
         <OverlayCard item={selectedcard} />
         <div className="kanban-board flex-columns">
           {!draggingcardid ? false : <DraggableCard lastupdate={lastupdate} />}
-          <BoardColumn showcount key="feeds" type="feeds"
-            title="Feeds"
-            items={feedsitems.filter(obj => obj.status === 'feeds')} />
-          <BoardColumn key="todo" type="todo"
-            title="Todo"
-            items={feedsitems.filter(obj => obj.status === 'todo')} />
-          <BoardColumn key="inprogress" type="inprogress"
-            title="In Progress"
-            items={feedsitems.filter(obj => obj.status === 'inprogress')} />
-          <BoardColumn key="done" type="done"
-            title="Done" items={feedsitems.filter(obj => obj.status === 'done')} />
+          <BoardColumn showcount title="Feeds"
+            type={CARD_STATUS.DEFAULT}
+            items={feedsitems.filter(obj => obj.status === CARD_STATUS.DEFAULT)} />
+          <BoardColumn title="Todo"
+            type={CARD_STATUS.TODO}
+            items={feedsitems.filter(obj => obj.status === CARD_STATUS.TODO)} />
+          <BoardColumn title="In Progress"
+            type={CARD_STATUS.IN_PROGRESS}
+            items={feedsitems.filter(obj => obj.status === CARD_STATUS.IN_PROGRESS)} />
+          <BoardColumn title="Done"
+            type={CARD_STATUS.DONE}
+            items={feedsitems.filter(obj => obj.status === CARD_STATUS.DONE)} />
         </div>
       </div>
     );

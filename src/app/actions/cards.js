@@ -1,6 +1,6 @@
-export const addCardTo = (target, item) => ({
+export const addCardTo = (status, item) => ({
   type: 'onaddcardto',
-  target,
+  status,
   item
 });
 

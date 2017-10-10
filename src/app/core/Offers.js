@@ -1,6 +1,7 @@
 import uuidv5 from 'uuid/v5';
 import { parseString } from 'xml2js';
 import { shorten } from './../utils/shorten';
+import { CARD_STATUS } from './../../constants';
 
 const XML_HEADER = new Headers({
   // Origin: '*',
@@ -15,7 +16,7 @@ const parseresults = (key, xml, ctime) => xml.rss.channel[0].item
     ctime,
     link: link[0],
     title: title[0],
-    status: 'feeds',
+    status: CARD_STATUS.DEFAULT,
     description: description[0],
     date: Date.parse(pubDate[0]),
     short: shorten(description[0]),

@@ -1,10 +1,10 @@
 import orderby from 'lodash.orderby';
 import { REHYDRATE } from 'redux-persist/constants';
 
-const movetostatus = (state, { target, item }) => {
+const movetostatus = (state, { status, item }) => {
   const parsed = state.reduce((acc, obj) => {
     const object = Object.assign({}, obj);
-    if (obj.id === item.id) object.status = target;
+    if (obj.id === item.id) object.status = status;
     return [object].concat(acc);
   }, []);
   return orderby(parsed, ['date'], 'desc');
