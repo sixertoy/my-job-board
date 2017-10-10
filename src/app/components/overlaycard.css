@@ -1,0 +1,55 @@
+#overlaycard {
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
+#overlaycard.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+.overlayback {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+#overlaycard .cardcontainer {
+  width: 33%;
+  padding: 12px;
+  text-align: left;
+  overflow: hidden;
+  margin: 22px auto;
+  border-radius: 4px;
+  background-color: white;
+  height: calc(100% - 44px);
+}
+
+#overlaycard .cardcontainer img {
+  display: none;
+  visibility: hidden;
+}
+
+button.overlaycard-close {
+  top: 10px;
+  right: 10px;
+  position: absolute;
+  border: 0;
+  width: 40px;
+  color: white;
+  height: 40px;
+  display: block;
+  cursor: pointer;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 50%;
+  background: transparent;
+}
