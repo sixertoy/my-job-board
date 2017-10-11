@@ -12,16 +12,21 @@ const XML_HEADER = new Headers({
 });
 
 const parseresults = (key, xml, ctime) => xml.rss.channel[0].item
-  .map(({ title, link, description, pubDate }) => ({
-    ctime,
-    link: link[0],
-    title: title[0],
-    status: CARD_STATUS.DEFAULT,
-    description: description[0],
-    date: Date.parse(pubDate[0]),
-    short: shorten(description[0]),
-    id: uuidv5(link[0], uuidv5.URL)
-  }));
+  .map(({ title, link, description, pubDate, guid }) => {
+    const uuid = (typeof guid[0] === 'string')
+      ? uuidv5(guid[0], uuidv5.URL) // remixjobs
+      : guid[0]._; // indeed
+    return ({
+      ctime,
+      id: uuid,
+      link: link[0],
+      title: title[0],
+      status: CARD_STATUS.DEFAULT,
+      description: description[0],
+      date: Date.parse(pubDate[0]),
+      short: shorten(description[0])
+    });
+  });
 
 const resolveFeedRequest = resp => ((resp.status !== 200 && resp.status !== 201)
   ? Promise.resolve(false)
