@@ -15,13 +15,13 @@ export const lastupdate = (state = 0, action) => {
 };
 
 // date de la prochaine mise a jour des flux
-export const nextupdate = (state = false, action) => {
+export const nextupdate = (state = 0, action) => {
   switch (action.type) {
   case 'onoffersloaded':
     return (action.now + UPDATE_INTERVAL_MS);
   case REHYDRATE:
     // FIXME -> cannot unvalidate expires
-    return action.payload.nextupdate || false;
+    return action.payload.nextupdate || 0;
   default:
     return state;
   }

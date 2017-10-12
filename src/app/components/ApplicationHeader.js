@@ -1,13 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import './applicationheader.css';
-import applogo from './../../assets/logo.svg';
 
-const Header = () => (
+const Header = ({ nextupdate }) => (
   <div className="screen-header">
-    <img src={applogo} className="screen-logo" alt="logo" />
-    <h2>React/Electron</h2>
+    <h2>My Job Board</h2>
+    <p>
+      <b>Next Update</b>
+      <span style={{ marginLeft: '5px' }}>{!nextupdate ? ''
+        : new Date(nextupdate).toLocaleString()}</span>
+    </p>
   </div>
 );
 
-export default Header;
+Header.propTypes = {
+  nextupdate: PropTypes.number.isRequired
+};
+
+export default connect(
+  state => ({
+    nextupdate: state.nextupdate
+  })
+)(Header);

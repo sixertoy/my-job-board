@@ -6,7 +6,7 @@
 .loader,
 .loader::before {
   height: 4px;
-  background-color: #DDDDDD;
+  background-color: #2980B9;
 }
 
 .loader {
@@ -22,7 +22,7 @@
   width: 200px;
   display: block;
   position: absolute;
-  background-color: #2980B9;
+  background-color: #DDDDDD;
   animation: loading 2s linear infinite;
 }
 

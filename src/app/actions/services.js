@@ -41,9 +41,6 @@ export const loadProviderFeeds = () => (dispatch, getstate) => {
   const promises = Object.keys(feeds)
     .map((key) => {
       const url = feeds[key];
-      if (key === 'poleemploi') {
-        return loadAPIFeeds(url, key, now);
-      }
       return Offers.load(url, key, now);
     });
   Promise.all(promises)
