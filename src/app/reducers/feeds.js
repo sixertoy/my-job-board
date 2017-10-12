@@ -15,7 +15,8 @@ export const feeds = (state = {
   // au lieu d'un tableau faire un object
   // les cles seront le nom de la source d'ou proviennent les feeds
   remixjobs: 'http://remixjobs.com/rss',
-  indeed: 'http://www.indeed.fr/rss?q=%28javascript%29&l=Montpellier'
+  indeed: 'http://www.indeed.fr/rss?q=%28javascript%29&l=Montpellier',
+  poleemploi: 'https://api.emploi-store.fr/partenaire/offresdemploi/v1/rechercheroffres'
 }, action) => {
   switch (action.type) {
   default:
