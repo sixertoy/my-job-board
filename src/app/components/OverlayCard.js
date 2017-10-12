@@ -4,12 +4,11 @@ import { connect } from 'react-redux';
 
 // application
 import './overlaycard.css';
-import AbstractCard from './ui/AbstractCard';
+import AbstractCard from './AbstractCard';
 import { closeOverlayCard } from './../actions';
 
 const OverlayCard = ({
   item,
-  lastupdate,
   closoverlay
 }) => (
   <div id="overlaycard" className={`${item ? '' : 'hidden'}`}>
@@ -19,7 +18,7 @@ const OverlayCard = ({
       onClick={closoverlay}>
       <i className="myjobboard-cancel" /></button>
     <div className="cardcontainer relative">
-      <AbstractCard item={item} lastupdate={lastupdate} />
+      <AbstractCard item={item} />
       <a target="blank" href={item.link}>
         <span>{'Aller vers le site de l\'annonce'}</span>
       </a>
@@ -29,7 +28,6 @@ const OverlayCard = ({
 
 OverlayCard.propTypes = {
   closoverlay: PropTypes.func.isRequired,
-  lastupdate: PropTypes.number.isRequired,
   item: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.object
@@ -38,8 +36,7 @@ OverlayCard.propTypes = {
 
 export default connect(
   state => ({
-    item: state.openedcard,
-    lastupdate: state.lastupdate
+    item: state.openedcard
   }),
   dispatch => ({
     closoverlay: () => dispatch(closeOverlayCard())

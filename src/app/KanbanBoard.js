@@ -9,7 +9,7 @@ import './kanbanboard.css';
 import { CARD_STATUS } from './../constants';
 import { loadProviderFeeds } from './actions';
 import OverlayCard from './components/OverlayCard';
-import ProgressBar from './components/ui/ProgressBar';
+import ProgressBar from './components/ProgressBar';
 import DraggableCard from './components/DraggableCard';
 import BoardColumn from './components/kanbanboard/BoardColumn';
 import ApplicationHeader from './components/ApplicationHeader';

@@ -7,7 +7,7 @@ import { DragSource } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 
 import './boardcard.css';
-import AbstractCard from './../ui/AbstractCard';
+import AbstractCard from './../AbstractCard';
 import {
   addCardTo,
   endDragging,
@@ -28,16 +28,14 @@ class CardView extends Component {
     const {
       item,
       source,
-      lastupdate,
-      isDragging,
+      isdragging,
       showfullcard,
       connectDragSource } = this.props;
-    return connectDragSource(isDragging
+    return connectDragSource(isdragging
       ? (<div className="kanban-card-placeholder" />)
       : (<div className={`kanban-card relative ${source}`}
         role={'button'} tabIndex="0" onClick={showfullcard}>
-        <AbstractCard minify item={item}
-          isdragging={isDragging} lastupdate={lastupdate} />
+        <AbstractCard minify item={item} />
       </div>)
     );
   }
@@ -46,8 +44,7 @@ class CardView extends Component {
 CardView.propTypes = {
   item: PropTypes.object.isRequired,
   source: PropTypes.string.isRequired,
-  isDragging: PropTypes.bool.isRequired,
-  lastupdate: PropTypes.number.isRequired,
+  isdragging: PropTypes.bool.isRequired,
   showfullcard: PropTypes.func.isRequired,
   connectDragSource: PropTypes.func.isRequired,
   connectDragPreview: PropTypes.func.isRequired
@@ -85,7 +82,7 @@ const KanbanCardDrag = DragSource(
   'board-card',
   dragTargetContext,
   (conn, monitor) => ({
-    isDragging: monitor.isDragging(),
+    isdragging: monitor.isDragging(),
     connectDragSource: conn.dragSource(),
     connectDragPreview: conn.dragPreview()
   })
@@ -96,9 +93,7 @@ const KanbanCardDrag = DragSource(
   Decorateur Redux
 
 ---------------------------------------- */
-const mapStateToProps = state => ({
-  lastupdate: state.lastupdate
-});
+const mapStateToProps = () => ({});
 const mapDispatchToProps = (dispatch, { item }) => ({
   enddragging: () => dispatch(endDragging()),
   showfullcard: () => dispatch(openOverlayCard(item)),

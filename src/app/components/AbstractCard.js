@@ -9,11 +9,9 @@ import './abstractcard.css';
 const AbstractCard = ({
   item,
   minify,
-  noStatus,
-  isdragging
+  nostatus
 }) => (
-  <div className="abstract-card flex-columns relative"
-    style={{ opacity: (isdragging ? 0.45 : 1) }}>
+  <div className="abstract-card flex-columns relative">
     <div className="abstract-card-left-column">
       <p className="abstract-card-date">
         <span>{item.humandate}</span></p>
@@ -25,7 +23,7 @@ const AbstractCard = ({
         __html: !minify ? item.description
           : item.shorten.description }} />
     </div>
-    {noStatus ? false
+    {nostatus ? false
       : <div className="abstract-card-right-column">
         <button className={`abstract-card-button ${item.isactive ? 'active' : ''}`}
           onClick={() => {}}>
@@ -37,15 +35,12 @@ const AbstractCard = ({
 
 AbstractCard.defaultProps = ({
   minify: false,
-  lastupdate: 0,
-  noStatus: false,
-  isdragging: false
+  nostatus: false
 });
 
 AbstractCard.propTypes = ({
   minify: PropTypes.bool,
-  noStatus: PropTypes.bool,
-  isdragging: PropTypes.bool,
+  nostatus: PropTypes.bool,
   item: PropTypes.object.isRequired
 });
 

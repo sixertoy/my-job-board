@@ -6,12 +6,12 @@ import React, { Component } from 'react';
 
 // application
 import './draggablecard.css';
-import AbstractCard from './ui/AbstractCard';
+import AbstractCard from './AbstractCard';
 
-function getDraggableCardStyles (currentOffset) {
-  const { x, y } = currentOffset;
+function getDraggableCardStyles (currentoffset) {
+  const { x, y } = currentoffset;
   const isabsolutezero = (x <= 0 && y <= 0);
-  if (!currentOffset || isabsolutezero) {
+  if (!currentoffset || isabsolutezero) {
     return ({ display: 'none', visibility: 'hidden' });
   }
   return { transform: `translate(${x}px, ${y}px)` };
@@ -23,13 +23,13 @@ class DraggableCard extends Component {
   render () {
     const {
       item,
-      currentOffset } = this.props;
+      currentoffset } = this.props;
     return (
       <div className="draggablecard-container">
         <div className="draggablecard"
-          style={getDraggableCardStyles(currentOffset)}>
+          style={getDraggableCardStyles(currentoffset)}>
           <div className={'kanban-card relative'}>
-            <AbstractCard isDragging noStatus minify item={item} />
+            <AbstractCard nostatus minify item={item} />
           </div>
         </div>
       </div>
@@ -39,7 +39,7 @@ class DraggableCard extends Component {
 
 DraggableCard.propTypes = {
   item: PropTypes.object.isRequired,
-  currentOffset: PropTypes.shape({
+  currentoffset: PropTypes.shape({
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired
   }).isRequired
@@ -47,7 +47,7 @@ DraggableCard.propTypes = {
 
 const collect = monitor => ({
   item: monitor.getItem() || {},
-  currentOffset: monitor.getSourceClientOffset() || { x: 0, y: 0 }
+  currentoffset: monitor.getSourceClientOffset() || { x: 0, y: 0 }
 });
 
 export default DragLayer(
