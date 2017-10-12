@@ -14,8 +14,11 @@ import DraggableCard from './components/DraggableCard';
 import BoardColumn from './components/kanbanboard/BoardColumn';
 import ApplicationHeader from './components/ApplicationHeader';
 import {
-  getJobOffers,
-  getNextUpdate } from './selectors';
+  getDoneItems,
+  getTodoItems,
+  getNextUpdate,
+  getFeedsItems,
+  getInProgressItems } from './selectors';
 
 // check si la date actuelle est superieure a la prochaine mise a jour prevue
 const dataHasExpired = (nextupdate) => {
@@ -53,6 +56,7 @@ class KanbanBoardView extends Component {
     const date = getNextUpdate(nextupdate);
     // FIXME
     // -> move to a debugger
+    // eslint-disable-next-line no-console
     console.log(`> Next datas update: ${new Date(date).toLocaleString()}`);
     if (!dataHasExpired(date)) return;
     loadfeeds();
@@ -61,9 +65,12 @@ class KanbanBoardView extends Component {
   render () {
     const {
       isloading,
-      joboffers,
       openedcard,
-      draggingcard } = this.props;
+      todooffers,
+      doneoffers,
+      feedsoffers,
+      draggingcard,
+      inprogressoffers } = this.props;
     return (
       <div className="screen flex-rows">
         <ProgressBar loading={isloading} />
@@ -72,17 +79,13 @@ class KanbanBoardView extends Component {
         <div className="kanban-board flex-columns">
           {draggingcard && <DraggableCard />}
           <BoardColumn showcount title="Feeds"
-            type={CARD_STATUS.DEFAULT}
-            items={joboffers.filter(obj => obj.status === CARD_STATUS.DEFAULT)} />
+            type={CARD_STATUS.DEFAULT} items={feedsoffers} />
           <BoardColumn title="Todo"
-            type={CARD_STATUS.TODO}
-            items={joboffers.filter(obj => obj.status === CARD_STATUS.TODO)} />
+            type={CARD_STATUS.TODO} items={todooffers} />
           <BoardColumn title="In Progress"
-            type={CARD_STATUS.IN_PROGRESS}
-            items={joboffers.filter(obj => obj.status === CARD_STATUS.IN_PROGRESS)} />
+            type={CARD_STATUS.IN_PROGRESS} items={inprogressoffers} />
           <BoardColumn title="Done"
-            type={CARD_STATUS.DONE}
-            items={joboffers.filter(obj => obj.status === CARD_STATUS.DONE)} />
+            type={CARD_STATUS.DONE} items={doneoffers} />
         </div>
       </div>
     );
@@ -93,7 +96,10 @@ KanbanBoardView.propTypes = {
   isready: PropTypes.bool.isRequired,
   isloading: PropTypes.bool.isRequired,
   loadfeeds: PropTypes.func.isRequired,
-  joboffers: PropTypes.array.isRequired,
+  doneoffers: PropTypes.array.isRequired,
+  todooffers: PropTypes.array.isRequired,
+  feedsoffers: PropTypes.array.isRequired,
+  inprogressoffers: PropTypes.array.isRequired,
   nextupdate: PropTypes.number.isRequired,
   openedcard: PropTypes.oneOfType([
     PropTypes.bool,
@@ -109,9 +115,13 @@ const mapStateToProps = state => ({
   isready: state.isready,
   isloading: state.isloading,
   openedcard: state.openedcard,
-  joboffers: getJobOffers(state),
   nextupdate: getNextUpdate(state),
-  draggingcard: state.draggingcard
+  draggingcard: state.draggingcard,
+  // offers
+  doneoffers: getDoneItems(state),
+  todooffers: getTodoItems(state),
+  feedsoffers: getFeedsItems(state),
+  inprogressoffers: getInProgressItems(state)
 });
 
 const mapDispatchToProps = dispatch => ({
