@@ -11,8 +11,8 @@ const OverlayCard = ({
   item,
   lastupdate,
   closoverlay
-}) => (!item ? false
-  : <div id="overlaycard" className={`${item ? '' : 'hidden'}`}>
+}) => (
+  <div id="overlaycard" className={`${item ? '' : 'hidden'}`}>
     <div className="overlayback" role="button" tabIndex="0"
       onClick={closoverlay} />
     <button className="overlaycard-close"
@@ -38,6 +38,7 @@ OverlayCard.propTypes = {
 
 export default connect(
   state => ({
+    item: state.openedcard,
     lastupdate: state.lastupdate
   }),
   dispatch => ({

@@ -8,7 +8,6 @@ import { getEmptyImage } from 'react-dnd-html5-backend';
 
 import './boardcard.css';
 import AbstractCard from './../ui/AbstractCard';
-import { shorten } from './../../utils/shorten';
 import {
   addCardTo,
   endDragging,
@@ -34,7 +33,7 @@ class CardView extends Component {
       showfullcard,
       connectDragSource } = this.props;
     return connectDragSource(isDragging
-      ? <div className="kanban-card-placeholder" />
+      ? (<div className="kanban-card-placeholder" />)
       : (<div className={`kanban-card relative ${source}`}
         role={'button'} tabIndex="0" onClick={showfullcard}>
         <AbstractCard minify item={item}
@@ -74,12 +73,10 @@ const dragTargetContext = ({
   },
   beginDrag: (props) => {
     props.startdragging();
+    // object retourné pour utilisé avec monitor.getItem()
     return ({
-      // utilisé par monitor.getItem()
       id: props.item.id,
-      date: props.item.date,
-      short: props.item.short,
-      title: shorten(props.item.title, 60)
+      shorten: Object.assign({}, props.item.shorten)
     });
   }
 });

@@ -1,7 +1,10 @@
 import uuidv5 from 'uuid/v5';
 import { parseString } from 'xml2js';
-import { shorten } from './../utils/shorten';
+
+// application
 import { CARD_STATUS } from './../../constants';
+// utils
+import { cleanstr } from './../utils/cleanstr';
 
 const XML_HEADER = new Headers({
   // Origin: '*',
@@ -20,11 +23,10 @@ const parseresults = (key, xml, ctime) => xml.rss.channel[0].item
       ctime,
       id: uuid,
       link: link[0],
-      title: title[0],
+      title: cleanstr(title[0]),
       status: CARD_STATUS.DEFAULT,
-      description: description[0],
       date: Date.parse(pubDate[0]),
-      short: shorten(description[0])
+      description: cleanstr(description[0])
     });
   });
 

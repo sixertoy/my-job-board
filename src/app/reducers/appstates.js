@@ -1,6 +1,5 @@
 // import find from 'lodash.find';
 import { REHYDRATE } from 'redux-persist/constants';
-import { UPDATE_INTERVAL_MS } from './../../constants';
 
 // date de la derniere mise a jour des flux
 export const lastupdate = (state = 0, action) => {
@@ -14,20 +13,7 @@ export const lastupdate = (state = 0, action) => {
   }
 };
 
-// date de la prochaine mise a jour des flux
-export const nextupdate = (state = 0, action) => {
-  switch (action.type) {
-  case 'onoffersloaded':
-    return (action.now + UPDATE_INTERVAL_MS);
-  case REHYDRATE:
-    // FIXME -> cannot unvalidate expires
-    return action.payload.nextupdate || 0;
-  default:
-    return state;
-  }
-};
-
-// quand le store est chargé
+// quand les données persistantes du browser sont chargées
 export const isready = (state = false, action) => {
   switch (action.type) {
   case REHYDRATE: // applicationisready
@@ -37,6 +23,7 @@ export const isready = (state = false, action) => {
   }
 };
 
+// quand une mise à jour des feeds est chargé
 export const isloading = (state = false, action) => {
   switch (action.type) {
   case 'onloadingstart':

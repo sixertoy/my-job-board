@@ -15,8 +15,8 @@ export const feeds = (state = {
   // au lieu d'un tableau faire un object
   // les cles seront le nom de la source d'ou proviennent les feeds
   remixjobs: 'http://remixjobs.com/rss',
-  indeed: 'http://www.indeed.fr/rss?q=%28javascript%29&l=Montpellier',
-  poleemploi: 'https://api.emploi-store.fr/partenaire/offresdemploi/v1/rechercheroffres'
+  indeed: 'http://www.indeed.fr/rss?q=%28javascript%29&l=Montpellier'
+  // poleemploi: 'https://api.emploi-store.fr/partenaire/offresdemploi/v1/rechercheroffres'
 }, action) => {
   switch (action.type) {
   default:
@@ -24,7 +24,7 @@ export const feeds = (state = {
   }
 };
 
-export const feedsitems = (state = [], action) => {
+export const joboffers = (state = [], action) => {
   switch (action.type) {
   case 'onaddcardto':
     return movetostatus(state, action);
@@ -39,7 +39,7 @@ export const feedsitems = (state = [], action) => {
         return [obj].concat(acc);
       }, state), ['date'], 'desc');
   case REHYDRATE:
-    return action.payload.feedsitems || [];
+    return action.payload.joboffers || [];
   default:
     return state;
   }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import './applicationheader.css';
+import { getNextUpdate } from './../selectors';
 
 const Header = ({ nextupdate }) => (
   <div className="screen-header">
@@ -21,6 +22,6 @@ Header.propTypes = {
 
 export default connect(
   state => ({
-    nextupdate: state.nextupdate
+    nextupdate: getNextUpdate(state)
   })
 )(Header);

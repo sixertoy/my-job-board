@@ -23,17 +23,13 @@ class DraggableCard extends Component {
   render () {
     const {
       item,
-      isDragging,
-      lastupdate,
       currentOffset } = this.props;
-    if (!isDragging) return null;
     return (
       <div className="draggablecard-container">
         <div className="draggablecard"
           style={getDraggableCardStyles(currentOffset)}>
           <div className={'kanban-card relative'}>
-            <AbstractCard isDragging minify
-              item={item} lastupdate={lastupdate} />
+            <AbstractCard isDragging noStatus minify item={item} />
           </div>
         </div>
       </div>
@@ -43,8 +39,6 @@ class DraggableCard extends Component {
 
 DraggableCard.propTypes = {
   item: PropTypes.object.isRequired,
-  isDragging: PropTypes.bool.isRequired,
-  lastupdate: PropTypes.number.isRequired,
   currentOffset: PropTypes.shape({
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired
@@ -53,8 +47,9 @@ DraggableCard.propTypes = {
 
 const collect = monitor => ({
   item: monitor.getItem() || {},
-  isDragging: monitor.isDragging(),
   currentOffset: monitor.getSourceClientOffset() || { x: 0, y: 0 }
 });
 
-export default DragLayer(collect)(DraggableCard);
+export default DragLayer(
+  collect
+)(DraggableCard);

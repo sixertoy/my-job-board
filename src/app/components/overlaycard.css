@@ -38,6 +38,10 @@
   visibility: hidden;
 }
 
+#overlaycard .abstract-card.relative {
+  height: auto;
+}
+
 button.overlaycard-close {
   top: 10px;
   right: 10px;
