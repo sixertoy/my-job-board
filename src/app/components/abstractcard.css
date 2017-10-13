@@ -1,18 +1,29 @@
-.abstract-card-button {
+.abstract-card-badge {
   border: 0;
   padding: 0;
-  width: 22px;
-  height: 22px;
+  width: 14px;
+  height: 14px;
   display: block;
   cursor: pointer;
-  line-height: 22px;
+  font-size: 14px;
+  line-height: 14px;
   text-align: center;
   border-radius: 50%;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.05);
+}
+
+.abstract-card-badge:hover,
+.abstract-card-badge.active {
+  color: #AACCEE;
+}
+
+.abstract-card-badge + .abstract-card-badge {
+  margin-top: 4px;
 }
 
 .abstract-card-date {
   margin: 0;
-  text-align: right;
   margin-right: 25px;
 }
 
@@ -23,8 +34,4 @@
 
 .abstract-card-left-column {
   padding-right: 12px;
-}
-
-.abstract-card-right-column button.active {
-  color: #FB0FB0;
 }

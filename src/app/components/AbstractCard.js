@@ -25,10 +25,22 @@ const AbstractCard = ({
     </div>
     {nostatus ? false
       : <div className="abstract-card-right-column">
-        <button className={`abstract-card-button ${item.isactive ? 'active' : ''}`}
+        {!item.isactive ? false
+          : <button className="abstract-card-badge active"
+            onClick={() => {}}>
+            <span><i className="myjobboard-star" /></span></button>}
+        <button className={`abstract-card-badge ${item.isactive ? 'active' : ''}`}
           onClick={() => {}}>
-          <span><i className="myjobboard-star" /></span>
-        </button>
+          <span><i className="myjobboard-calendar" /></span></button>
+        <button className={`abstract-card-badge ${item.isactive ? 'active' : ''}`}
+          onClick={() => {}}>
+          <span><i className="myjobboard-mail" /></span></button>
+        <button className={`abstract-card-badge ${item.isactive ? 'active' : ''}`}
+          onClick={() => {}}>
+          <span><i className="myjobboard-comment" /></span></button>
+        <button className={`abstract-card-badge ${item.isactive ? 'active' : ''}`}
+          onClick={() => {}}>
+          <span><i className="myjobboard-user-add" /></span></button>
       </div>}
   </div>
 );

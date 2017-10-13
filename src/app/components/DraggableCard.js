@@ -24,6 +24,7 @@ class DraggableCard extends Component {
     const {
       item,
       currentoffset } = this.props;
+    if (!item) return false;
     return (
       <div className="draggablecard-container">
         <div className="draggablecard"
@@ -37,8 +38,12 @@ class DraggableCard extends Component {
   }
 }
 
+DraggableCard.defaultProps = {
+  item: null
+};
+
 DraggableCard.propTypes = {
-  item: PropTypes.object.isRequired,
+  item: PropTypes.object,
   currentoffset: PropTypes.shape({
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired
@@ -46,7 +51,7 @@ DraggableCard.propTypes = {
 };
 
 const collect = monitor => ({
-  item: monitor.getItem() || {},
+  item: monitor.getItem(),
   currentoffset: monitor.getSourceClientOffset() || { x: 0, y: 0 }
 });
 

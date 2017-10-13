@@ -28,10 +28,10 @@ class CardView extends Component {
     const {
       item,
       source,
-      isdragging,
+      isDragging,
       showfullcard,
       connectDragSource } = this.props;
-    return connectDragSource(isdragging
+    return connectDragSource(isDragging
       ? (<div className="kanban-card-placeholder" />)
       : (<div className={`kanban-card relative ${source}`}
         role={'button'} tabIndex="0" onClick={showfullcard}>
@@ -44,7 +44,7 @@ class CardView extends Component {
 CardView.propTypes = {
   item: PropTypes.object.isRequired,
   source: PropTypes.string.isRequired,
-  isdragging: PropTypes.bool.isRequired,
+  isDragging: PropTypes.bool.isRequired,
   showfullcard: PropTypes.func.isRequired,
   connectDragSource: PropTypes.func.isRequired,
   connectDragPreview: PropTypes.func.isRequired
@@ -71,10 +71,7 @@ const dragTargetContext = ({
   beginDrag: (props) => {
     props.startdragging();
     // object retourné pour utilisé avec monitor.getItem()
-    return ({
-      id: props.item.id,
-      shorten: Object.assign({}, props.item.shorten)
-    });
+    return Object.assign({}, props.item);
   }
 });
 
@@ -82,7 +79,7 @@ const KanbanCardDrag = DragSource(
   'board-card',
   dragTargetContext,
   (conn, monitor) => ({
-    isdragging: monitor.isDragging(),
+    isDragging: monitor.isDragging(),
     connectDragSource: conn.dragSource(),
     connectDragPreview: conn.dragPreview()
   })

@@ -2,7 +2,8 @@
 .kanban-card-placeholder {
   width: 100%;
   cursor: grab;
-  height: 107px;
+  height: auto;
+  min-height: 110px;
   border-radius: 5px;
   border-bottom: 1px solid #CCCCCC;
 }
