@@ -14,7 +14,7 @@ const resolveAPIRequest = resp => ((resp.status !== 200 && resp.status !== 201)
   : resp.text());
 
 // const loadtoken =
-
+/*
 export const loadAPIFeeds = (url, key, now) => {
   const request = {
     params: { sort: 1, per_page: 100 },
@@ -33,6 +33,7 @@ export const loadAPIFeeds = (url, key, now) => {
       console.log('body', body);
     });
 };
+*/
 
 export const loadProviderFeeds = () => (dispatch, getstate) => {
   dispatch(loadingStart());

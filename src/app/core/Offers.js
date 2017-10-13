@@ -21,7 +21,9 @@ const parseresults = (key, xml, ctime) => xml.rss.channel[0].item
       : guid[0]._; // indeed
     return ({
       ctime,
+      mtime: ctime,
       id: uuid,
+      source: key,
       link: link[0],
       title: cleanstr(title[0]),
       status: CARD_STATUS.DEFAULT,
