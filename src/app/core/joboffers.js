@@ -6,14 +6,6 @@ import { CARD_STATUS } from './../../constants';
 // utils
 import { cleanstr } from './../utils/cleanstr';
 
-const XML_HEADER = new Headers({
-  // Origin: '*',
-  // 'Content-Type': 'application/rss+xml; charset=utf-8',
-  // 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6)
-  //    AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
-  // Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
-});
-
 const parseresults = (key, xml, ctime) => xml.rss.channel[0].item
   .map(({ title, link, description, pubDate, guid }) => {
     const uuid = (typeof guid[0] === 'string')
@@ -42,7 +34,7 @@ export default ({
   // error -> 404, 403, 400
   load: (url, key, ctime) => fetch(`${corsproxy}${url}`, {
     method: 'GET',
-    header: XML_HEADER
+    header: new Headers({})
   })
     .then(resolveFeedRequest)
     .then((body) => {

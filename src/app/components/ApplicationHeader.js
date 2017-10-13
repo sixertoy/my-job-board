@@ -13,6 +13,14 @@ const Header = ({ nextupdate }) => (
       <span style={{ marginLeft: '5px' }}>{!nextupdate ? ''
         : new Date(nextupdate).toLocaleString()}</span>
     </p>
+    {/*
+    <div className="flex-columns">
+      <label htmlFor="filter-term-input">
+        <span>Filter</span>
+        <input id="filter-term-input" type="text" />
+      </label>
+    </div>
+    */}
   </div>
 );
 

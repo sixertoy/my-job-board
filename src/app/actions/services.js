@@ -3,18 +3,17 @@
 import orderby from 'lodash.orderby';
 
 // application
-import Offers from './../core/Offers';
+import JobOffers from './../core/joboffers';
 import {
   loadingStart,
   offersLoaded,
   loadingComplete } from './_actions';
 
+/*
 const resolveAPIRequest = resp => ((resp.status !== 200 && resp.status !== 201)
   ? Promise.resolve(false)
   : resp.text());
 
-// const loadtoken =
-/*
 export const loadAPIFeeds = (url, key, now) => {
   const request = {
     params: { sort: 1, per_page: 100 },
@@ -41,8 +40,8 @@ export const loadProviderFeeds = () => (dispatch, getstate) => {
   const { feeds } = getstate(); // feeds URLs
   const promises = Object.keys(feeds)
     .map((key) => {
-      const url = feeds[key];
-      return Offers.load(url, key, now);
+      const { url } = feeds[key];
+      return JobOffers.load(url, key, now);
     });
   Promise.all(promises)
     .then((datas) => {

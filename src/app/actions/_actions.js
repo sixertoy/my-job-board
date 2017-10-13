@@ -6,8 +6,8 @@ export const loadingComplete = () => ({
   type: 'onloadingcomplete'
 });
 
-export const offersLoaded = (items, now) => ({
+export const offersLoaded = (joboffers, now) => ({
   type: 'onoffersloaded',
-  items,
+  joboffers,
   now
 });
