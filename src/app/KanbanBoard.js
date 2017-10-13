@@ -35,30 +35,28 @@ class KanbanBoardView extends Component {
 
   constructor (props) {
     super(props);
-    // isready est change
-    // quand l'app a fini de charge les donnees persistantes du browser
+    // isready change quand charge les donnees persistantes
     this.state = { isready: false };
   }
 
   componentWillReceiveProps (nextprops) {
     const { isready } = this.state;
     if (!isready && nextprops.isready) {
-      // si les données persistantes ont ete chargees
       this.setState({ isready: true },
-        () => this._updateApplicationFeeds());
+        // si les données persistantes du browser localstorage ont ete chargees
+        () => {
+          this._updateApplicationFeeds();
+        });
     }
   }
 
   _updateApplicationFeeds () {
-    const {
-      loadfeeds,
-      nextupdate } = this.props;
-    const date = getNextUpdate(nextupdate);
-    // FIXME
-    // -> move to a debugger
+    const { loadfeeds, nextupdate } = this.props;
+    const hasexpired = dataHasExpired(nextupdate);
+    // FIXME -> move console.log to a debugger
     // eslint-disable-next-line no-console
-    console.log(`> Next datas update: ${new Date(date).toLocaleString()}`);
-    if (!dataHasExpired(date)) return;
+    console.log(`> Next datas update: ${new Date(nextupdate).toLocaleString()}`);
+    if (!hasexpired) return;
     loadfeeds();
   }
 
