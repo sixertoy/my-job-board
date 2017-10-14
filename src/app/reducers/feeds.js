@@ -1,4 +1,4 @@
-import find from 'lodash.find';
+import uniqby from 'lodash.uniqby';
 import orderby from 'lodash.orderby';
 import { REHYDRATE } from 'redux-persist/constants';
 
@@ -22,8 +22,11 @@ export const feeds = (state = {
   }
 };
 
-const movetostatus = (state, { status, item }) => {
-  const parsed = state.reduce((acc, obj) => {
+const uniq = items =>
+  uniqby(uniqby(items, 'link'), 'id');
+
+const movetostatus = (state, { status, item }) =>
+  state.reduce((acc, obj) => {
     const object = Object.assign({}, obj);
     if (obj.id === item.id) {
       object.status = status;
@@ -31,28 +34,24 @@ const movetostatus = (state, { status, item }) => {
     }
     return [object].concat(acc);
   }, []);
-  return orderby(parsed, ['mtime'], 'desc');
-};
-
-const removeduplicates = (stored, loaded) =>
-  loaded.filter(({ date, title }) => !find(stored, { date, title }));
 
 export const joboffers = (state = [], action) => {
+  const orderers = ['date', 'mtime'];
   switch (action.type) {
   case 'onaddcardto':
-    return movetostatus(state, action);
+    return orderby(uniq(
+      movetostatus(state, action)), orderers, 'desc');
   case 'onoffersloaded':
     // FIXME ->
     // si il y a des nouveaux feeds les ajouter aux feeds existants
     return !action.joboffers || !action.joboffers.length
-      ? state
-      : orderby(
-        removeduplicates(state, action.joboffers).concat(state),
-        ['date'],
-        'desc'
-      );
+      ? orderby(uniq(
+        state), orderers, 'desc')
+      : orderby(uniq(
+        action.joboffers.concat(state)), orderers, 'desc');
   case REHYDRATE:
-    return action.payload.joboffers || [];
+    return orderby(uniq(
+      (action.payload.joboffers || [])), orderers, 'desc');
   default:
     return state;
   }

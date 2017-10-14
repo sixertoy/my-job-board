@@ -2,14 +2,17 @@
   react/no-danger: 0 */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 // application
 import './abstractcard.css';
+import { moveToTrash } from './../actions';
 
 const AbstractCard = ({
   item,
   minify,
-  nostatus
+  nostatus,
+  movetotrash
 }) => (
   <div className="abstract-card flex-columns relative">
     <div className="abstract-card-left-column">
@@ -41,6 +44,9 @@ const AbstractCard = ({
         <button className={`abstract-card-badge ${item.isactive ? 'active' : ''}`}
           onClick={() => {}}>
           <span><i className="myjobboard-user-add" /></span></button>
+        <button className={'abstract-card-badge'}
+          onClick={evt => movetotrash(evt)}>
+          <span><i className="myjobboard-trash" /></span></button>
       </div>}
   </div>
 );
@@ -53,7 +59,17 @@ AbstractCard.defaultProps = ({
 AbstractCard.propTypes = ({
   minify: PropTypes.bool,
   nostatus: PropTypes.bool,
-  item: PropTypes.object.isRequired
+  item: PropTypes.object.isRequired,
+  movetotrash: PropTypes.func.isRequired
 });
 
-export default AbstractCard;
+export default connect(
+  () => ({}),
+  (dispatch, props) => ({
+    movetotrash: (evt) => {
+      evt.preventDefault();
+      evt.stopPropagation();
+      return dispatch(moveToTrash(props.item));
+    }
+  })
+)(AbstractCard);
