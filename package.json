@@ -1,6 +1,6 @@
 {
   "name": "my-job-board",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "private": true,
   "main": "./main.js",
   "homepage": "https://sixertoy.github.io/my-job-board/",
