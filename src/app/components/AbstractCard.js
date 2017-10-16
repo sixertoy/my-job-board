@@ -6,13 +6,16 @@ import { connect } from 'react-redux';
 
 // application
 import './abstractcard.css';
-import { moveToTrash } from './../actions';
+import {
+  moveToTrash,
+  offerFieldChange } from './../actions';
 
 const AbstractCard = ({
   item,
   minify,
   nostatus,
-  movetotrash
+  movetotrash,
+  offerfieldchange
 }) => (
   <div className={`abstract-card flex-columns relative ${item.isactive ? 'active' : ''}`}>
     <div className="abstract-card-left-column">
@@ -29,8 +32,12 @@ const AbstractCard = ({
     {nostatus ? false
       : <div className="abstract-card-right-column">
         {/* flag mail envoye */}
-        <button className={'abstract-card-badge'}
-          onClick={() => {}}>
+        <button className={`abstract-card-badge ${item.emailsent ? 'active' : ''}`}
+          onClick={(evt) => {
+            evt.preventDefault();
+            evt.stopPropagation();
+            return offerfieldchange(!item.emailsent, item.id);
+          }}>
           <span><i className="myjobboard-mail" /></span>
         </button>
         <span className="splitter" />
@@ -63,7 +70,8 @@ AbstractCard.propTypes = ({
   minify: PropTypes.bool,
   nostatus: PropTypes.bool,
   item: PropTypes.object.isRequired,
-  movetotrash: PropTypes.func.isRequired
+  movetotrash: PropTypes.func.isRequired,
+  offerfieldchange: PropTypes.func.isRequired
 });
 
 export default connect(
@@ -73,6 +81,8 @@ export default connect(
       evt.preventDefault();
       evt.stopPropagation();
       return dispatch(moveToTrash(props.item));
-    }
+    },
+    offerfieldchange: (inputvalue, id) =>
+      dispatch(offerFieldChange(inputvalue, id, 'emailsent'))
   })
 )(AbstractCard);

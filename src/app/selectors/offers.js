@@ -1,8 +1,29 @@
 import { createSelector } from 'reselect';
 
+
 // application
-import { getJobOffers } from './appstates';
+import { shorten } from './../utils/shorten';
 import { CARD_STATUS } from './../../constants';
+import { humandate } from './../utils/humandate';
+
+const getjoboffers = state => state.joboffers;
+const getlastupdate = state => state.lastupdate;
+
+export const getJobOffers = createSelector(
+  [getjoboffers, getlastupdate],
+  (offers, lastupdate) => offers.map(offer => Object.assign({}, offer, {
+    event: offer.event || false,
+    comment: offer.comment || '',
+    contact: offer.contact || '',
+    emailsent: offer.emailsent || false,
+    isactive: (offer.ctime >= lastupdate),
+    humandate: humandate(new Date(offer.date)),
+    shorten: {
+      title: shorten(offer.title, 60),
+      description: shorten(offer.description, 100)
+    }
+  }))
+);
 
 export const getDoneItems = createSelector(
   [getJobOffers],
