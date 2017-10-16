@@ -11,3 +11,8 @@ export const offersLoaded = (joboffers, now) => ({
   joboffers,
   now
 });
+
+export const filterFeeds = inputvalue => ({
+  type: 'onfilterfeeds',
+  inputvalue
+});

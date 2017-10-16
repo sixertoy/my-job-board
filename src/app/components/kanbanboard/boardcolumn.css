@@ -27,3 +27,24 @@
 .board-column-footer {
   min-height: 20px;
 }
+
+#searchinput {
+  display: block;
+  margin-right: 4px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  background-color: white;
+}
+
+#searchinput input {
+  border: 0;
+  padding: 10px;
+  width: calc(100% - 25px);
+  background-color: transparent;
+}
+
+#searchinput i {
+  width: 20px;
+  color: #CCCCCC;
+  margin-right: 5px;
+}

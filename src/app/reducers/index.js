@@ -5,6 +5,7 @@ import {
   openedcard,
   draggingcard } from './card';
 import {
+  search,
   isready,
   isloading,
   lastupdate } from './appstates';
@@ -29,6 +30,7 @@ export const reducers = combineReducers({
   feeds,
   joboffers,
   // services
+  search,
   isready,
   isloading,
   lastupdate,

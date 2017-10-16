@@ -7,12 +7,14 @@ import HTML5Backend from 'react-dnd-html5-backend';
 // application
 import './kanbanboard.css';
 import { CARD_STATUS } from './../constants';
-import { loadProviderFeeds } from './actions';
 import OverlayCard from './components/OverlayCard';
 import ProgressBar from './components/ProgressBar';
 import DraggableCard from './components/DraggableCard';
 import BoardColumn from './components/kanbanboard/BoardColumn';
 import ApplicationHeader from './components/ApplicationHeader';
+import {
+  filterFeeds,
+  loadProviderFeeds } from './actions';
 import {
   getDoneItems,
   getTodoItems,
@@ -24,6 +26,18 @@ import {
 const dataHasExpired = (nextupdate) => {
   const now = Date.now();
   return (now > nextupdate);
+};
+
+const filteroffers = (offers, inputvalue) => {
+  const strvalue = inputvalue.trim();
+  if (!strvalue || (strvalue === '')) return offers;
+  const terms = strvalue.split(' ')
+    .map(term => term.toLowerCase());
+  return offers
+    .filter(item => terms.filter(term =>
+      item.title.toLowerCase().indexOf(term) !== -1).length)
+    .filter(item => terms.filter(term =>
+      item.description.toLowerCase().indexOf(term) !== -1).length);
 };
 
 /**
@@ -62,12 +76,14 @@ class KanbanBoardView extends Component {
 
   render () {
     const {
+      search,
       isloading,
       openedcard,
       todooffers,
       doneoffers,
       feedsoffers,
       draggingcard,
+      searchchange,
       inprogressoffers } = this.props;
     return (
       <div className="screen flex-rows">
@@ -77,13 +93,18 @@ class KanbanBoardView extends Component {
         <div className="kanban-board flex-columns">
           {draggingcard && <DraggableCard />}
           <BoardColumn showcount title="Feeds"
-            type={CARD_STATUS.DEFAULT} items={feedsoffers} />
+            type={CARD_STATUS.DEFAULT}
+            search={search} canfilter={searchchange}
+            items={filteroffers(feedsoffers, search)} />
           <BoardColumn title="Todo"
-            type={CARD_STATUS.TODO} items={todooffers} />
+            type={CARD_STATUS.TODO}
+            items={todooffers} />
           <BoardColumn title="In Progress"
-            type={CARD_STATUS.IN_PROGRESS} items={inprogressoffers} />
+            type={CARD_STATUS.IN_PROGRESS}
+            items={inprogressoffers} />
           <BoardColumn title="Done"
-            type={CARD_STATUS.DONE} items={doneoffers} />
+            type={CARD_STATUS.DONE}
+            items={doneoffers} />
         </div>
       </div>
     );
@@ -92,10 +113,12 @@ class KanbanBoardView extends Component {
 
 KanbanBoardView.propTypes = {
   isready: PropTypes.bool.isRequired,
+  search: PropTypes.string.isRequired,
   isloading: PropTypes.bool.isRequired,
   loadfeeds: PropTypes.func.isRequired,
   doneoffers: PropTypes.array.isRequired,
   todooffers: PropTypes.array.isRequired,
+  searchchange: PropTypes.func.isRequired,
   feedsoffers: PropTypes.array.isRequired,
   inprogressoffers: PropTypes.array.isRequired,
   nextupdate: PropTypes.number.isRequired,
@@ -110,6 +133,7 @@ KanbanBoardView.propTypes = {
 };
 
 const mapStateToProps = state => ({
+  search: state.search,
   isready: state.isready,
   isloading: state.isloading,
   openedcard: state.openedcard,
@@ -123,7 +147,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadfeeds: () => dispatch(loadProviderFeeds())
+  loadfeeds: () => dispatch(loadProviderFeeds()),
+  searchchange: inputvalue => dispatch(filterFeeds(inputvalue))
 });
 
 export default connect(

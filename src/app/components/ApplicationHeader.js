@@ -6,21 +6,13 @@ import './applicationheader.css';
 import { getNextUpdate } from './../selectors';
 
 const Header = ({ nextupdate }) => (
-  <div className="screen-header">
+  <div id="screen-header">
     <h2>My Job Board</h2>
     <p>
       <b>Next Update</b>
       <span style={{ marginLeft: '5px' }}>{!nextupdate ? ''
         : new Date(nextupdate).toLocaleString()}</span>
     </p>
-    {/*
-    <div className="flex-columns">
-      <label htmlFor="filter-term-input">
-        <span>Filter</span>
-        <input id="filter-term-input" type="text" />
-      </label>
-    </div>
-    */}
   </div>
 );
 

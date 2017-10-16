@@ -34,3 +34,12 @@ export const isloading = (state = false, action) => {
     return state;
   }
 };
+
+export const search = (state = '', action) => {
+  switch (action.type) {
+  case 'onfilterfeeds':
+    return action.inputvalue;
+  default:
+    return state;
+  }
+};

@@ -30,7 +30,9 @@ class BoardColumn extends Component {
       title,
       items,
       isOver,
+      search,
       showcount,
+      canfilter,
       connectDropTarget } = this.props;
     return connectDropTarget(
       <div className={`board-column ${type} ${!isOver ? '' : 'hovered'}`}>
@@ -39,6 +41,13 @@ class BoardColumn extends Component {
           {!showcount ? false
             : <small style={styles.count}>{` (${items.length})`}</small>}
         </h2>
+        {!canfilter ? false
+          : <div id="searchinput" className="flex-columns">
+            <i className="myjobboard-search" />
+            <input type="text" placeholder="Filter" value={search}
+              onChange={({ target }) => ((search === target.value) ? false
+                : canfilter(target.value))} />
+          </div>}
         <div className="board-column-list fancy-scrollbar"
           style={{ height: 'auto', opacity: (isOver ? 0.45 : 1) }}>
           {!items || !items.length ? false
@@ -51,16 +60,23 @@ class BoardColumn extends Component {
 }
 
 BoardColumn.defaultProps = {
-  showcount: false
+  search: '',
+  showcount: false,
+  canfilter: false
 };
 
 BoardColumn.propTypes = {
+  search: PropTypes.string,
   showcount: PropTypes.bool,
   type: PropTypes.string.isRequired,
   items: PropTypes.array.isRequired,
   isOver: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
-  connectDropTarget: PropTypes.func.isRequired
+  connectDropTarget: PropTypes.func.isRequired,
+  canfilter: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.func
+  ])
 };
 
 const dropTargetContext = ({
