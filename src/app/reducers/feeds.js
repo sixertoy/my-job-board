@@ -13,6 +13,10 @@ export const feeds = (state = {
   indeed: {
     isstatic: true,
     url: 'http://www.indeed.fr/rss?q=%28javascript%29&l=Montpellier'
+  },
+  jobijoba: {
+    isstatic: true,
+    url: 'https://www.jobijoba.com/fr/rss?what=react'
   }
   // poleemploi: 'https://api.emploi-store.fr/partenaire/offresdemploi/v1/rechercheroffres'
 }, action) => {

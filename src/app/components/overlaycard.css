@@ -42,6 +42,20 @@
   height: auto;
 }
 
+#overlaycard .overlaycard-header .itemsource {
+  color: white;
+  padding: 3px 12px;
+  background-color: #AACCEE;
+}
+
+#overlaycard .overlaycard-footer .visitlink {
+  color: white;
+  padding: 12px;
+  display: block;
+  text-align: center;
+  background-color: #AACCEE;
+}
+
 button.overlaycard-close {
   top: 10px;
   right: 10px;

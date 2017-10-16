@@ -28,20 +28,19 @@ const AbstractCard = ({
     </div>
     {nostatus ? false
       : <div className="abstract-card-right-column">
-        {!item.isactive ? false
-          : <button className="abstract-card-badge active"
-            onClick={() => {}}>
-            <span><i className="myjobboard-star" /></span></button>}
-        <button className={`abstract-card-badge ${item.isactive ? 'active' : ''}`}
+        <span className={`abstract-card-badge ${item.isactive ? 'active' : ''}`}>
+          <span><i className="myjobboard-star" /></span>
+        </span>
+        <button className={'abstract-card-badge'}
           onClick={() => {}}>
           <span><i className="myjobboard-calendar" /></span></button>
-        <button className={`abstract-card-badge ${item.isactive ? 'active' : ''}`}
+        <button className={'abstract-card-badge'}
           onClick={() => {}}>
           <span><i className="myjobboard-mail" /></span></button>
-        <button className={`abstract-card-badge ${item.isactive ? 'active' : ''}`}
+        <button className={'abstract-card-badge'}
           onClick={() => {}}>
           <span><i className="myjobboard-comment" /></span></button>
-        <button className={`abstract-card-badge ${item.isactive ? 'active' : ''}`}
+        <button className={'abstract-card-badge'}
           onClick={() => {}}>
           <span><i className="myjobboard-user-add" /></span></button>
         <button className={'abstract-card-badge'}

@@ -18,10 +18,19 @@ const OverlayCard = ({
       onClick={closoverlay}>
       <i className="myjobboard-cancel" /></button>
     <div className="cardcontainer relative">
+      <div className="overlaycard-header">
+        <p>
+          <span className="itemsource">{item.source}</span>
+        </p>
+      </div>
       <AbstractCard item={item} />
-      <a target="blank" href={item.link}>
-        <span>{'Aller vers le site de l\'annonce'}</span>
-      </a>
+      <div className="overlaycard-footer">
+        <p>
+          <a className="visitlink" target="blank" href={item.link}>
+            <span>{'Voir l\'annonce'}</span>
+          </a>
+        </p>
+      </div>
     </div>
   </div>
 );
