@@ -16,3 +16,10 @@ export const filterFeeds = inputvalue => ({
   type: 'onfilterfeeds',
   inputvalue
 });
+
+export const offerFieldChange = (inputvalue, offerid, fieldname) => ({
+  type: 'onofferfieldchange',
+  inputvalue,
+  fieldname,
+  offerid
+});

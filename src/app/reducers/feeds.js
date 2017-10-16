@@ -29,6 +29,12 @@ export const feeds = (state = {
 const uniq = items =>
   uniqby(uniqby(items, 'link'), 'id');
 
+const updateofferfield = (state, { inputvalue, offerid, fieldname }) =>
+  state.map(obj => ((obj.id !== offerid) ? obj
+    : Object.assign({}, obj, {
+      [fieldname]: (typeof inputvalue === 'string') ? inputvalue.trim() : inputvalue
+    })));
+
 const movetostatus = (state, { status, item }) =>
   state.reduce((acc, obj) => {
     const object = Object.assign({}, obj);
@@ -40,23 +46,26 @@ const movetostatus = (state, { status, item }) =>
   }, []);
 
 export const joboffers = (state = [], action) => {
-  const orderers = ['date', 'mtime'];
+  let results = [];
   switch (action.type) {
+  case 'onofferfieldchange':
+    results = updateofferfield(state, action);
+    break;
   case 'onaddcardto':
-    return orderby(uniq(
-      movetostatus(state, action)), orderers, 'desc');
+    results = movetostatus(state, action);
+    break;
   case 'onoffersloaded':
     // FIXME ->
     // si il y a des nouveaux feeds les ajouter aux feeds existants
-    return !action.joboffers || !action.joboffers.length
-      ? orderby(uniq(
-        state), orderers, 'desc')
-      : orderby(uniq(
-        action.joboffers.concat(state)), orderers, 'desc');
+    results = !action.joboffers || !action.joboffers.length ? [].concat(state)
+      : action.joboffers.concat(state);
+    break;
   case REHYDRATE:
-    return orderby(uniq(
-      (action.payload.joboffers || [])), orderers, 'desc');
+    results = [].concat(action.payload.joboffers || []);
+    break;
   default:
-    return state;
+    results = [].concat(state);
+    break;
   }
+  return orderby(uniq(results), ['date', 'mtime'], 'desc');
 };

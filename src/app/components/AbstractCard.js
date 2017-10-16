@@ -14,7 +14,7 @@ const AbstractCard = ({
   nostatus,
   movetotrash
 }) => (
-  <div className="abstract-card flex-columns relative">
+  <div className={`abstract-card flex-columns relative ${item.isactive ? 'active' : ''}`}>
     <div className="abstract-card-left-column">
       <p className="abstract-card-date">
         <span>{item.humandate}</span></p>
@@ -28,24 +28,28 @@ const AbstractCard = ({
     </div>
     {nostatus ? false
       : <div className="abstract-card-right-column">
-        <span className={`abstract-card-badge ${item.isactive ? 'active' : ''}`}>
-          <span><i className="myjobboard-star" /></span>
+        {/* flag mail envoye */}
+        <button className={'abstract-card-badge'}
+          onClick={() => {}}>
+          <span><i className="myjobboard-mail" /></span>
+        </button>
+        <span className="splitter" />
+        {/* flag calendar */}
+        <span className={`abstract-card-badge ${item.contact.trim() ? 'active' : ''}`}>
+          <span><i className="myjobboard-user" /></span>
         </span>
-        <button className={'abstract-card-badge'}
-          onClick={() => {}}>
-          <span><i className="myjobboard-calendar" /></span></button>
-        <button className={'abstract-card-badge'}
-          onClick={() => {}}>
-          <span><i className="myjobboard-mail" /></span></button>
-        <button className={'abstract-card-badge'}
-          onClick={() => {}}>
-          <span><i className="myjobboard-comment" /></span></button>
-        <button className={'abstract-card-badge'}
-          onClick={() => {}}>
-          <span><i className="myjobboard-user-add" /></span></button>
+        <span className={`abstract-card-badge ${item.event ? 'active' : ''}`}>
+          <span><i className="myjobboard-calendar" /></span>
+        </span>
+        <span className={`abstract-card-badge ${item.comment.trim() ? 'active' : ''}`}>
+          <span><i className="myjobboard-comment" /></span>
+        </span>
+        <span className="splitter" />
+        {/* flag commentaire */}
         <button className={'abstract-card-badge'}
           onClick={evt => movetotrash(evt)}>
-          <span><i className="myjobboard-trash" /></span></button>
+          <span><i className="myjobboard-box" /></span>
+        </button>
       </div>}
   </div>
 );

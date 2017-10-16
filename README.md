@@ -7,6 +7,12 @@ http://sixertoy.github.io/my-job-board
 
 ![Screenshot](./screenshot.png)
 
+## Requirements
+
+```bash
+npm install gh-pages --global
+```
+
 ## Installation
 
 ```bash

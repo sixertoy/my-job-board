@@ -43,3 +43,14 @@ export const search = (state = '', action) => {
     return state;
   }
 };
+
+export const comment = (state = '', action) => {
+  switch (action.type) {
+  case 'oncloseoverlaycard':
+    return '';
+  case 'oncommentchange':
+    return action.inputvalue;
+  default:
+    return state;
+  }
+};

@@ -1,8 +1,18 @@
+.splitter {
+  border: 0;
+  width: 100%;
+  height: 1px;
+  margin: 5px 0;
+  display: block;
+  background: #EDEDED;
+}
+
 .abstract-card-badge {
   border: 0;
   padding: 0;
   width: 14px;
   height: 14px;
+  color: #EDEDED;
   display: block;
   cursor: pointer;
   font-size: 14px;
@@ -10,7 +20,6 @@
   text-align: center;
   border-radius: 50%;
   background: transparent;
-  color: rgba(0, 0, 0, 0.05);
 }
 
 .abstract-card-badge:hover,
@@ -33,5 +42,11 @@
 }
 
 .abstract-card-left-column {
+  flex: 1;
   padding-right: 12px;
+}
+
+.abstract-card-right-column {
+  flex: 0;
+  min-width: 20px;
 }

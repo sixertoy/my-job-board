@@ -11,6 +11,9 @@ const getlastupdate = state => state.lastupdate;
 export const getJobOffers = createSelector(
   [getjoboffers, getlastupdate],
   (offers, lastupdate) => offers.map(offer => Object.assign({}, offer, {
+    event: offer.event || false,
+    comment: offer.comment || '',
+    contact: offer.contact || '',
     isactive: (offer.ctime >= lastupdate),
     humandate: humandate(new Date(offer.date)),
     shorten: {
