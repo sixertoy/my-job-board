@@ -6,7 +6,7 @@
   "homepage": "https://sixertoy.github.io/my-job-board/",
   "devDependencies": {
     "babel-preset-env": "^1.6.0",
-    "eslint": "^4.3.0",
+    "eslint": "^4.18.2",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
