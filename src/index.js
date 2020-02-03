@@ -1,32 +1,31 @@
+// import './index.css';
+// import './fontello/css/fontello-embedded.css';
+
+import { createBrowserHistory } from 'history';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { syncHistoryWithStore } from 'react-router-redux';
-import { Router, Route, hashHistory } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
 
-// application
-import './index.css';
-import './fontello/css/fontello-embedded.css';
+import getInitialState from './redux/initial-state';
+import { configure } from './redux/store';
+// import KanbanBoard from './app/KanbanBoard';
 
-import KanbanBoard from './app/KanbanBoard';
-import { configure } from './app/core/storage';
-import registerServiceWorker from './registerServiceWorker';
+const history = createBrowserHistory();
+const initialState = getInitialState(history);
+const { persistor, store } = configure(history, initialState);
 
-// application
-const store = configure(hashHistory);
-const history = syncHistoryWithStore(hashHistory, store);
 const Root = () => (
   <Provider store={store}>
-    <div id="main-container">
-      <Router history={history}>
-        <Route path={'/'} component={KanbanBoard} />
-      </Router>
-    </div>
+    <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter>
+        <div id="main-container">
+          {/* <Route path={'/'} component={KanbanBoard} /> */}
+        </div>
+      </BrowserRouter>
+    </PersistGate>
   </Provider>
 );
 
-ReactDOM.render(
-  <Root />,
-  document.getElementById('root')
-);
-registerServiceWorker();
+ReactDOM.render(<Root />, document.getElementById('root'));

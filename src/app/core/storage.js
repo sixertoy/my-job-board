@@ -2,29 +2,20 @@
 /* eslint
   no-console: 0,
   no-underscore-dangle: 0 */
-import thunk from 'redux-thunk';
 import { routerMiddleware } from 'react-router-redux';
-import {
-  compose,
-  createStore,
-  applyMiddleware } from 'redux';
-import {
-  persistStore,
-  autoRehydrate,
-  purgeStoredState } from 'redux-persist';
+import { applyMiddleware, compose, createStore } from 'redux';
+import { autoRehydrate, persistStore, purgeStoredState } from 'redux-persist';
+import thunk from 'redux-thunk';
 
 // application
-import {
-  whitelist,
-  blacklist,
-  reducers } from './../reducers';
+import { blacklist, reducers, whitelist } from '../reducers';
 
 const debugStored = () => {};
 
 const opts = {
-  whitelist,
   blacklist,
-  keyPrefix: 'LocalStorageKey::'
+  keyPrefix: 'LocalStorageKey::',
+  whitelist,
 };
 
 export const clearPersistentStorage = () =>
@@ -37,9 +28,10 @@ export const clearPersistentStorage = () =>
  * Il est important d'encapsuler la creation des stores
  * dans une function pour les tests unitaires
  */
-export const configure = (history) => {
+export const configure = history => {
   const middleware = routerMiddleware(history);
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   // charge les states existants dans le localStorage
   const store = createStore(
     reducers,

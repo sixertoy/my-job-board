@@ -1,0 +1,6 @@
+{
+  "hooks": {
+    "pre-commit": "lint-staged",
+    "prepare-commit-msg": "./.scripts/hooks/prepare-commit-msg"
+  }
+}
