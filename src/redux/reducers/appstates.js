@@ -23,7 +23,7 @@ export const isready = (state = false, action) => {
 };
 
 // quand une mise à jour des feeds est chargé
-export const isloading = (state = false, action) => {
+export const loading = (state = false, action) => {
   switch (action.type) {
     case 'onloadingstart':
       return true;

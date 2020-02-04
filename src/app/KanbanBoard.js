@@ -1,43 +1,49 @@
+// application
+import './kanbanboard.css';
+
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+import { connect } from 'react-redux';
 
-// application
-import './kanbanboard.css';
-import { CARD_STATUS } from './../constants';
-import OverlayCard from './components/OverlayCard';
-import ProgressBar from './components/ProgressBar';
+import { CARD_STATUS } from '../constants';
+import { filterFeeds, loadProviderFeeds } from './actions';
+import ApplicationHeader from './components/ApplicationHeader';
 import DraggableCard from './components/DraggableCard';
 import BoardColumn from './components/kanbanboard/BoardColumn';
-import ApplicationHeader from './components/ApplicationHeader';
-import {
-  filterFeeds,
-  loadProviderFeeds } from './actions';
+import OverlayCard from './components/OverlayCard';
+import ProgressBar from './components/ProgressBar';
 import {
   getDoneItems,
-  getTodoItems,
-  getNextUpdate,
   getFeedsItems,
-  getInProgressItems } from './selectors';
+  getInProgressItems,
+  getNextUpdate,
+  getTodoItems,
+} from './selectors';
 
 // check si la date actuelle est superieure a la prochaine mise a jour prevue
-const dataHasExpired = (nextupdate) => {
+const dataHasExpired = nextupdate => {
   const now = Date.now();
-  return (now > nextupdate);
+  return now > nextupdate;
 };
 
 const filteroffers = (offers, inputvalue) => {
   const strvalue = inputvalue.trim();
-  if (!strvalue || (strvalue === '')) return offers;
-  const terms = strvalue.split(' ')
-    .map(term => term.toLowerCase());
+  if (!strvalue || strvalue === '') return offers;
+  const terms = strvalue.split(' ').map(term => term.toLowerCase());
   return offers
-    .filter(item => terms.filter(term =>
-      item.title.toLowerCase().indexOf(term) !== -1).length)
-    .filter(item => terms.filter(term =>
-      item.description.toLowerCase().indexOf(term) !== -1).length);
+    .filter(
+      item =>
+        terms.filter(term => item.title.toLowerCase().indexOf(term) !== -1)
+          .length
+    )
+    .filter(
+      item =>
+        terms.filter(
+          term => item.description.toLowerCase().indexOf(term) !== -1
+        ).length
+    );
 };
 
 /**
@@ -46,45 +52,49 @@ const filteroffers = (offers, inputvalue) => {
  *
  */
 class KanbanBoardView extends Component {
-
-  constructor (props) {
+  constructor(props) {
     super(props);
     // isready change quand charge les donnees persistantes
     this.state = { isready: false };
   }
 
-  componentWillReceiveProps (nextprops) {
+  componentWillReceiveProps(nextprops) {
     const { isready } = this.state;
     if (!isready && nextprops.isready) {
-      this.setState({ isready: true },
+      this.setState(
+        { isready: true },
         // si les données persistantes du browser localstorage ont ete chargees
         () => {
           this._updateApplicationFeeds();
-        });
+        }
+      );
     }
   }
 
-  _updateApplicationFeeds () {
+  _updateApplicationFeeds() {
     const { loadfeeds, nextupdate } = this.props;
     const hasexpired = dataHasExpired(nextupdate);
     // FIXME -> move console.log to a debugger
     // eslint-disable-next-line no-console
-    console.log(`> Next datas update: ${new Date(nextupdate).toLocaleString()}`);
+    console.log(
+      `> Next datas update: ${new Date(nextupdate).toLocaleString()}`
+    );
     if (!hasexpired) return;
     loadfeeds();
   }
 
-  render () {
+  render() {
     const {
-      search,
+      doneoffers,
+      draggingcard,
+      feedsoffers,
+      inprogressoffers,
       isloading,
       openedcard,
-      todooffers,
-      doneoffers,
-      feedsoffers,
-      draggingcard,
+      search,
       searchchange,
-      inprogressoffers } = this.props;
+      todooffers,
+    } = this.props;
     return (
       <div className="screen flex-rows">
         <ProgressBar loading={isloading} />
@@ -92,19 +102,29 @@ class KanbanBoardView extends Component {
         {openedcard && <OverlayCard />}
         <div className="kanban-board flex-columns">
           {draggingcard && <DraggableCard />}
-          <BoardColumn showcount title="Feeds"
+          <BoardColumn
+            showcount
+            canfilter={searchchange}
+            items={filteroffers(feedsoffers, search)}
+            search={search}
+            title="Feeds"
             type={CARD_STATUS.DEFAULT}
-            search={search} canfilter={searchchange}
-            items={filteroffers(feedsoffers, search)} />
-          <BoardColumn title="Todo"
+          />
+          <BoardColumn
+            items={todooffers}
+            title="Todo"
             type={CARD_STATUS.TODO}
-            items={todooffers} />
-          <BoardColumn title="In Progress"
+          />
+          <BoardColumn
+            items={inprogressoffers}
+            title="In Progress"
             type={CARD_STATUS.IN_PROGRESS}
-            items={inprogressoffers} />
-          <BoardColumn title="Done"
+          />
+          <BoardColumn
+            items={doneoffers}
+            title="Done"
             type={CARD_STATUS.DONE}
-            items={doneoffers} />
+          />
         </div>
       </div>
     );
@@ -112,48 +132,42 @@ class KanbanBoardView extends Component {
 }
 
 KanbanBoardView.propTypes = {
-  isready: PropTypes.bool.isRequired,
-  search: PropTypes.string.isRequired,
-  isloading: PropTypes.bool.isRequired,
-  loadfeeds: PropTypes.func.isRequired,
   doneoffers: PropTypes.array.isRequired,
-  todooffers: PropTypes.array.isRequired,
-  searchchange: PropTypes.func.isRequired,
+  draggingcard: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
+    .isRequired,
   feedsoffers: PropTypes.array.isRequired,
   inprogressoffers: PropTypes.array.isRequired,
+  isloading: PropTypes.bool.isRequired,
+  isready: PropTypes.bool.isRequired,
+  loadfeeds: PropTypes.func.isRequired,
   nextupdate: PropTypes.number.isRequired,
-  openedcard: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.object
-  ]).isRequired,
-  draggingcard: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.string
-  ]).isRequired
+  openedcard: PropTypes.oneOfType([PropTypes.bool, PropTypes.object])
+    .isRequired,
+  search: PropTypes.string.isRequired,
+  searchchange: PropTypes.func.isRequired,
+  todooffers: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({
-  search: state.search,
-  isready: state.isready,
-  isloading: state.isloading,
-  openedcard: state.openedcard,
-  nextupdate: getNextUpdate(state),
-  draggingcard: state.draggingcard,
-  // offers
   doneoffers: getDoneItems(state),
-  todooffers: getTodoItems(state),
+  draggingcard: state.draggingcard,
   feedsoffers: getFeedsItems(state),
-  inprogressoffers: getInProgressItems(state)
+  inprogressoffers: getInProgressItems(state),
+  isloading: state.isloading,
+  isready: state.isready,
+  // offers
+  nextupdate: getNextUpdate(state),
+  openedcard: state.openedcard,
+  search: state.search,
+  todooffers: getTodoItems(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   loadfeeds: () => dispatch(loadProviderFeeds()),
-  searchchange: inputvalue => dispatch(filterFeeds(inputvalue))
+  searchchange: inputvalue => dispatch(filterFeeds(inputvalue)),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(
-  DragDropContext(HTML5Backend)(KanbanBoardView)
-);
+)(DragDropContext(HTML5Backend)(KanbanBoardView));

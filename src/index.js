@@ -1,16 +1,18 @@
-// import './index.css';
 // import './fontello/css/fontello-embedded.css';
+import './index.scss';
 
 import { createBrowserHistory } from 'history';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { ThemeProvider } from 'react-jss';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 
+import MainLayoutComponent from './components/main-layout';
 import getInitialState from './redux/initial-state';
 import { configure } from './redux/store';
-// import KanbanBoard from './app/KanbanBoard';
+import theme from './theme';
 
 const history = createBrowserHistory();
 const initialState = getInitialState(history);
@@ -19,11 +21,11 @@ const { persistor, store } = configure(history, initialState);
 const Root = () => (
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <BrowserRouter>
-        <div id="main-container">
-          {/* <Route path={'/'} component={KanbanBoard} /> */}
-        </div>
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <MainLayoutComponent />
+        </BrowserRouter>
+      </ThemeProvider>
     </PersistGate>
   </Provider>
 );

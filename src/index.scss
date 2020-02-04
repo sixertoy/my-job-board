@@ -1,0 +1,17 @@
+@import './scss/_variables.scss';
+@import '~@iziges/napper-styles/styles.scss';
+@import './scss/_animations.scss';
+
+* {
+  outline: none;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 11px;
+  font-family: sans-serif;
+}
+
+#root {
+  @extend .is-full-layout;
+}
