@@ -15,3 +15,11 @@ body {
 #root {
   @extend .is-full-layout;
 }
+
+.no-no-flex-shrink {
+  flex: 1 0 !important;
+}
+
+.no-no-flex-grow {
+  flex: 0 1 !important;
+}

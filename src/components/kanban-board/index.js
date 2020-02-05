@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 
 import KanbanBoardComponent from './kanban-board-component';
 
-const mapStateToProps = null;
+const mapStateToProps = () => ({});
 
-const mapDispatchToProps = null;
+const mapDispatchToProps = () => ({});
 
 export default connect(
   mapStateToProps,

@@ -1,25 +1,16 @@
-export const loadingStart = () => ({
-  type: 'onloadingstart'
-});
-
-export const loadingComplete = () => ({
-  type: 'onloadingcomplete'
-});
-
 export const offersLoaded = (joboffers, now) => ({
-  type: 'onoffersloaded',
   joboffers,
-  now
+  now,
 });
 
 export const filterFeeds = inputvalue => ({
+  inputvalue,
   type: 'onfilterfeeds',
-  inputvalue
 });
 
 export const offerFieldChange = (inputvalue, offerid, fieldname) => ({
-  type: 'onofferfieldchange',
-  inputvalue,
   fieldname,
-  offerid
+  inputvalue,
+  offerid,
+  type: 'onofferfieldchange',
 });

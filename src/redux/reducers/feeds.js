@@ -2,24 +2,7 @@ import orderby from 'lodash.orderby';
 import uniqby from 'lodash.uniqby';
 // import { REHYDRATE } from 'redux-persist/constants';
 
-export const feeds = (
-  state = {
-    indeed: {
-      isstatic: true,
-      url: 'http://www.indeed.fr/rss?q=%28javascript%29&l=Montpellier',
-    },
-    jobijoba: {
-      isstatic: true,
-      url: 'https://www.jobijoba.com/fr/rss?what=react',
-    },
-    remixjobs: {
-      isstatic: true,
-      url: 'http://remixjobs.com/rss',
-    },
-    // poleemploi: 'https://api.emploi-store.fr/partenaire/offresdemploi/v1/rechercheroffres'
-  },
-  action
-) => {
+export const feeds = (state = {}, action) => {
   switch (action.type) {
     default:
       return state;

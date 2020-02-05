@@ -5,6 +5,7 @@ import React from 'react';
 
 const styles = theme => ({
   container: {
+    backgroundColor: theme.colors.dark,
     composes: ['is-relative'],
     height: 4,
   },

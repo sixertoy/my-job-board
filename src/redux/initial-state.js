@@ -1,11 +1,28 @@
 import queryString from 'query-string';
 
+const feeds = {
+  indeed: {
+    isstatic: true,
+    url: 'http://www.indeed.fr/rss?q=%28javascript%29&l=Montpellier',
+  },
+  jobijoba: {
+    isstatic: true,
+    url: 'https://www.jobijoba.com/fr/rss?what=react',
+  },
+  remixjobs: {
+    isstatic: true,
+    url: 'http://remixjobs.com/rss',
+  },
+  // poleemploi: 'https://api.emploi-store.fr/partenaire/offresdemploi/v1/rechercheroffres'
+};
+
 const INITIAL_VALUES = {
   comment: '',
   draggingcard: false,
-  isloading: true,
+  feeds,
   isready: true,
   lastupdate: 0,
+  loading: true,
   openedcard: false,
   search: '',
 };
