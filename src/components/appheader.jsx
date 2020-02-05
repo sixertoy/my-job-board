@@ -14,17 +14,19 @@ const styles = theme => ({
   },
 });
 
-const AppHeaderComponent = ({ classes }) => (
-  <div className={classes.container} id="screen-header">
-    <h2>My Job Board</h2>
-    <p>
-      <b>Next Update</b>
-      <span style={{ marginLeft: '5px' }}>
-        {/* {!nextupdate ? '' : new Date(nextupdate).toLocaleString()} */}
-      </span>
-    </p>
-  </div>
-);
+const AppHeaderComponent = React.memo(({ classes }) => {
+  return (
+    <div className={classes.container} id="screen-header">
+      <h2>My Job Board</h2>
+      <p>
+        <b>Next Update</b>
+        <span style={{ marginLeft: '5px' }}>
+          {/* {!nextupdate ? '' : new Date(nextupdate).toLocaleString()} */}
+        </span>
+      </p>
+    </div>
+  );
+});
 
 AppHeaderComponent.propTypes = {
   classes: PropTypes.shape().isRequired,

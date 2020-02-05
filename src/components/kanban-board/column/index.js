@@ -2,7 +2,10 @@ import { connect } from 'react-redux';
 
 import KanbanBoardColumnComponent from './component';
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => {
+  const offers = state.joboffers;
+  return { offers };
+};
 
 const mapDispatchToProps = () => ({});
 

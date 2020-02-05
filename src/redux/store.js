@@ -19,6 +19,7 @@ function debugStored() {}
 
 function bindMiddleware(middleware = []) {
   const appliedMiddlewares = applyMiddleware(...middleware);
+  // NOTE utiliser napper-core/Logger
   // if (isDevelopment()) {
   const composeEnhancers = composeWithDevTools({});
   return composeEnhancers(appliedMiddlewares);

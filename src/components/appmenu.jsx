@@ -21,25 +21,25 @@ const styles = theme => ({
   },
 });
 
-const AppMenuComponent = ({ classes }) => (
-  <div className={classes.container}>
-    <nav className={classes.top}>
-      <a className={classes.item} href="http://localhost:3000/">
-        <IoIosListBox />
-      </a>
-      <a className={classes.item} href="http://localhost:3000/">
-        <IoMdCalendar />
-      </a>
-    </nav>
-    <nav className={classes.bottom}>
-      <a className={classes.item} href="http://localhost:3000/">
-        <IoIosOptions />
-      </a>
-    </nav>
-  </div>
-);
-
-AppMenuComponent.defaultProps = {};
+const AppMenuComponent = React.memo(({ classes }) => {
+  return (
+    <div className={classes.container}>
+      <nav className={classes.top}>
+        <a className={classes.item} href="http://localhost:3000/">
+          <IoIosListBox />
+        </a>
+        <a className={classes.item} href="http://localhost:3000/">
+          <IoMdCalendar />
+        </a>
+      </nav>
+      <nav className={classes.bottom}>
+        <a className={classes.item} href="http://localhost:3000/">
+          <IoIosOptions />
+        </a>
+      </nav>
+    </div>
+  );
+});
 
 AppMenuComponent.propTypes = {
   classes: PropTypes.shape().isRequired,

@@ -1,17 +1,21 @@
 import queryString from 'query-string';
 
 const feeds = {
+  codeur: {
+    isstatic: true,
+    url: 'https://www.codeur.com/projects/c/developpement/sc/react.rss',
+  },
   indeed: {
     isstatic: true,
     url: 'http://www.indeed.fr/rss?q=%28javascript%29&l=Montpellier',
   },
+  // remixjobs: {
+  //   isstatic: true,
+  //   url: 'http://remixjobs.com/rss',
+  // },
   jobijoba: {
     isstatic: true,
     url: 'https://www.jobijoba.com/fr/rss?what=react',
-  },
-  remixjobs: {
-    isstatic: true,
-    url: 'http://remixjobs.com/rss',
   },
   // poleemploi: 'https://api.emploi-store.fr/partenaire/offresdemploi/v1/rechercheroffres'
 };
