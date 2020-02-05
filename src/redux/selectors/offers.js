@@ -1,50 +1,48 @@
 import { createSelector } from 'reselect';
 
-
+import { CARD_STATUS } from '../../constants';
+import { humandate } from '../utils/humandate';
 // application
-import { shorten } from './../utils/shorten';
-import { CARD_STATUS } from './../../constants';
-import { humandate } from './../utils/humandate';
+import { shorten } from '../utils/shorten';
 
-const getjoboffers = state => state.joboffers;
+const getOffers = state => state.offers;
 const getlastupdate = state => state.lastupdate;
 
 export const getJobOffers = createSelector(
-  [getjoboffers, getlastupdate],
-  (offers, lastupdate) => offers.map(offer => Object.assign({}, offer, {
-    event: offer.event || false,
-    comment: offer.comment || '',
-    contact: offer.contact || '',
-    emailsent: offer.emailsent || false,
-    isactive: (offer.ctime >= lastupdate),
-    humandate: humandate(new Date(offer.date)),
-    shorten: {
-      title: shorten(offer.title, 60),
-      description: shorten(offer.description, 100)
-    }
-  }))
+  [getOffers, getlastupdate],
+  (offers, lastupdate) =>
+    offers.map(offer => ({
+      ...offer,
+      comment: offer.comment || '',
+      contact: offer.contact || '',
+      emailsent: offer.emailsent || false,
+      event: offer.event || false,
+      humandate: humandate(new Date(offer.date)),
+      isactive: offer.ctime >= lastupdate,
+      shorten: {
+        description: shorten(offer.description, 100),
+        title: shorten(offer.title, 60),
+      },
+    }))
 );
 
 export const getDoneItems = createSelector(
   [getJobOffers],
-  offers => offers.filter(offer =>
-    (offer.status === CARD_STATUS.DONE)) || []
+  offers => offers.filter(offer => offer.status === CARD_STATUS.DONE) || []
 );
 
 export const getTodoItems = createSelector(
   [getJobOffers],
-  offers => offers.filter(offer =>
-    (offer.status === CARD_STATUS.TODO)) || []
+  offers => offers.filter(offer => offer.status === CARD_STATUS.TODO) || []
 );
 
 export const getFeedsItems = createSelector(
   [getJobOffers],
-  offers => offers.filter(offer =>
-    (offer.status === CARD_STATUS.DEFAULT)) || []
+  offers => offers.filter(offer => offer.status === CARD_STATUS.DEFAULT) || []
 );
 
 export const getInProgressItems = createSelector(
   [getJobOffers],
-  offers => offers.filter(offer =>
-    (offer.status === CARD_STATUS.IN_PROGRESS)) || []
+  offers =>
+    offers.filter(offer => offer.status === CARD_STATUS.IN_PROGRESS) || []
 );

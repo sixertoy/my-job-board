@@ -32,7 +32,7 @@ const movetostatus = (state, { item, status }) =>
     return [object].concat(acc);
   }, []);
 
-export const joboffers = (state = [], action) => {
+export const offers = (state = [], action) => {
   let results = [];
   switch (action.type) {
     case 'onofferfieldchange':
@@ -45,12 +45,12 @@ export const joboffers = (state = [], action) => {
       // FIXME ->
       // si il y a des nouveaux feeds les ajouter aux feeds existants
       results =
-        !action.joboffers || !action.joboffers.length
+        !action.offers || !action.offers.length
           ? [].concat(state)
-          : action.joboffers.concat(state);
+          : action.offers.concat(state);
       break;
     // case REHYDRATE:
-    // results = [].concat(action.payload.joboffers || []);
+    // results = [].concat(action.payload.offers || []);
     // break;
     default:
       results = [].concat(state);

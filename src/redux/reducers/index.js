@@ -7,7 +7,7 @@ import * as feeds from './feeds';
 // do not saved in persitent store
 export const blacklist = [];
 // saved into persitent store
-export const whitelist = ['lastupdate', 'joboffers'];
+export const whitelist = ['lastupdate', 'offers'];
 
 export const createRootReducer = () =>
   combineReducers({

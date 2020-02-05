@@ -1,6 +1,6 @@
-export const offersLoaded = (joboffers, now) => ({
-  joboffers,
+export const offersLoaded = (offers, now) => ({
   now,
+  offers,
 });
 
 export const filterFeeds = inputvalue => ({

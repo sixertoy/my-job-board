@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import KanbanBoardColumnComponent from './component';
 
 const mapStateToProps = state => {
-  const offers = state.joboffers;
+  const { offers } = state;
   return { offers };
 };
 

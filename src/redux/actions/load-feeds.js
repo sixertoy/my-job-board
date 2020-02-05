@@ -22,8 +22,8 @@ function mergeLoadedFeeds(datas) {
     if (!arr) return acc;
     return acc.concat(arr);
   }, []);
-  const joboffers = orderby(reduced, ['date'], 'desc');
-  return joboffers;
+  const offers = orderby(reduced, ['date'], 'desc');
+  return offers;
 }
 
 const loadFeeds = () => (dispatch, getstate) => {
@@ -34,8 +34,8 @@ const loadFeeds = () => (dispatch, getstate) => {
   const promises = array.map(buildFeedLoaderPromise(now));
   return Promise.all(promises)
     .then(mergeLoadedFeeds)
-    .then(joboffers => {
-      dispatch({ joboffers, now, type: 'onoffersloaded' });
+    .then(offers => {
+      dispatch({ now, offers, type: 'onoffersloaded' });
     })
     .catch(err => {
       console.log(err);
