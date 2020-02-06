@@ -1,7 +1,9 @@
+import { EVENT_TYPES } from '../../constants';
+
 export const loadingStart = () => ({
-  type: 'onloadingstart',
+  type: EVENT_TYPES.LOADING_START,
 });
 
 export const loadingComplete = () => ({
-  type: 'onloadingcomplete',
+  type: EVENT_TYPES.LOADING_COMPLETE,
 });

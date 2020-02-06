@@ -1,9 +1,9 @@
-// import { REHYDRATE } from 'redux-persist/constants';
+import { EVENT_TYPES } from '../../constants';
 
 // date de la derniere mise a jour des flux
 export const lastupdate = (state = 0, action) => {
   switch (action.type) {
-    case 'onoffersloaded':
+    case EVENT_TYPES.OFFERS_LOADED:
       return action.now;
     // case REHYDRATE:
     // return action.payload.lastupdate || state;
@@ -25,9 +25,9 @@ export const isready = (state = false, action) => {
 // quand une mise à jour des feeds est chargé
 export const loading = (state = false, action) => {
   switch (action.type) {
-    case 'onloadingstart':
+    case EVENT_TYPES.LOADING_START:
       return true;
-    case 'onloadingcomplete':
+    case EVENT_TYPES.LOADING_COMPLETE:
       return false;
     default:
       return state;

@@ -1,5 +1,7 @@
 import orderby from 'lodash.orderby';
 import uniqby from 'lodash.uniqby';
+
+import { EVENT_TYPES } from '../../constants';
 // import { REHYDRATE } from 'redux-persist/constants';
 
 export const feeds = (state = {}, action) => {
@@ -41,7 +43,7 @@ export const offers = (state = [], action) => {
     case 'onaddcardto':
       results = movetostatus(state, action);
       break;
-    case 'onoffersloaded':
+    case EVENT_TYPES.OFFERS_LOADED:
       // FIXME ->
       // si il y a des nouveaux feeds les ajouter aux feeds existants
       results =

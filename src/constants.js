@@ -6,5 +6,11 @@ export const CARD_STATUS = {
   TRASHED: 'trashed',
 };
 
+export const EVENT_TYPES = {
+  LOADING_COMPLETE: 'onloadingcomplete',
+  LOADING_START: 'onloadingstart',
+  OFFERS_LOADED: 'onoffersloaded',
+};
+
 // update chaque n heures (secondes, (minutes, heure), millisecondes)
 export const UPDATE_INTERVAL_MS = 60 * (60 * 128) * 1000;
