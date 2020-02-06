@@ -1,18 +1,19 @@
 import queryString from 'query-string';
+import storage from 'redux-persist/lib/storage';
 
 const feeds = {
   codeur: {
     isstatic: true,
-    url: 'https://www.codeur.com/projects/c/developpement/sc/react.rss',
+    url: 'https://www.codeur.com/projects/c/developpement/sc/javascript.rss',
   },
-  indeed: {
-    isstatic: true,
-    url: 'http://www.indeed.fr/rss?q=%28javascript%29&l=Montpellier',
-  },
-  jobijoba: {
-    isstatic: true,
-    url: 'https://www.jobijoba.com/fr/rss?what=react',
-  },
+  // indeed: {
+  //   isstatic: true,
+  //   url: 'http://www.indeed.fr/rss?q=%28javascript%29&l=Montpellier',
+  // },
+  // jobijoba: {
+  //   isstatic: true,
+  //   url: 'https://www.jobijoba.com/fr/rss?what=react',
+  // },
   // remixjobs: {
   //   isstatic: true,
   //   url: 'http://remixjobs.com/rss',
@@ -21,21 +22,25 @@ const feeds = {
 };
 
 const INITIAL_VALUES = {
-  comment: '',
   draggingcard: false,
   feeds,
-  isready: true,
-  lastupdate: 0,
+  lastFeedUpdate: Date.now(),
   loading: true,
+  offers: [],
   openedcard: false,
   search: '',
 };
 
-const getInitialState = history => {
+export const reduxPersistConfig = {
+  blacklist: [],
+  key: 'LocalStorageKey::',
+  storage,
+  whitelist: ['lastFeedUpdate', 'offers'],
+};
+
+export const getInitialState = history => {
   const { search } = history.location;
   const urlparams = queryString.parse(search);
   const initialState = { ...INITIAL_VALUES, ...urlparams };
   return initialState;
 };
-
-export default getInitialState;

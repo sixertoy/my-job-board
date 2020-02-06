@@ -5,11 +5,11 @@ import { createSelector } from 'reselect';
 
 const getOffers = state => state.offers;
 const getColumnType = (state, type) => type;
-const getlastupdate = state => state.lastupdate;
+const getLastFeedUpdate = state => state.lastFeedUpdate;
 
 const selectOffersByType = createSelector(
-  [getOffers, getlastupdate, getColumnType],
-  (offers, lastupdate, type) => {
+  [getOffers, getLastFeedUpdate, getColumnType],
+  (offers, lastFeedUpdate, type) => {
     return offers
       .filter(({ status }) => status === type)
       .map(offer => ({
@@ -19,7 +19,7 @@ const selectOffersByType = createSelector(
         emailsent: offer.emailsent || false,
         event: offer.event || false,
         // humandate: humandate(new Date(offer.date)),
-        isactive: offer.ctime >= lastupdate,
+        isactive: offer.ctime >= lastFeedUpdate,
         // shorten: {
         //   description: shorten(offer.description, 100),
         //   title: shorten(offer.title, 60),

@@ -1,22 +1,22 @@
-import { CARD_STATUS } from './../../constants';
+import { CARD_STATUS } from '../../constants';
 
 export const addCardTo = (status, item) => ({
-  type: 'onaddcardto',
+  item,
   status,
-  item
+  type: 'onaddcardto',
 });
 
 export const moveToTrash = item => ({
+  item,
   status: CARD_STATUS.TRASHED,
   type: 'onaddcardto',
-  item
 });
 
 export const endDragging = () => ({
-  type: 'onenddragging'
+  type: 'onenddragging',
 });
 
 export const startDragging = id => ({
+  id,
   type: 'onstartdragging',
-  id
 });

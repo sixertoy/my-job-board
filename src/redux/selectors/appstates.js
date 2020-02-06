@@ -3,11 +3,11 @@ import { createSelector } from 'reselect';
 // application
 import { UPDATE_INTERVAL_MS } from '../../constants';
 
-const getlastupdate = state => state.lastupdate;
+const getLastFeedUpdate = state => state.lastFeedUpdate;
 
 export const getNextUpdate = createSelector(
-  [getlastupdate],
-  lastupdate => (lastupdate && lastupdate + UPDATE_INTERVAL_MS) || 0
+  [getLastFeedUpdate],
+  lastFeedUpdate => (lastFeedUpdate && lastFeedUpdate + UPDATE_INTERVAL_MS) || 0
 );
 
 export default getNextUpdate;

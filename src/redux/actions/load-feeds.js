@@ -28,9 +28,9 @@ function mergeLoadedFeeds(datas) {
 }
 
 const loadFeeds = () => (dispatch, getstate) => {
-  dispatch(loadingStart());
   const now = Date.now();
   const { feeds } = getstate();
+  dispatch(loadingStart());
   const array = feedsToArray(feeds);
   const promises = array.map(buildFeedLoaderPromise(now));
   return Promise.all(promises)

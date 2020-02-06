@@ -10,7 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import MainLayoutComponent from './components/main-layout';
-import getInitialState from './redux/initial-state';
+import { getInitialState } from './redux/initial-state';
 import { configure } from './redux/store';
 import theme from './theme';
 

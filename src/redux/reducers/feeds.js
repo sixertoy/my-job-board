@@ -43,6 +43,9 @@ export const offers = (state = [], action) => {
     case 'onaddcardto':
       results = movetostatus(state, action);
       break;
+    case EVENT_TYPES.PERSIST_REHYDRATE:
+      results = [...((action.payload && action.payload.offers) || [])];
+      break;
     case EVENT_TYPES.OFFERS_LOADED:
       // FIXME ->
       // si il y a des nouveaux feeds les ajouter aux feeds existants
@@ -51,11 +54,8 @@ export const offers = (state = [], action) => {
           ? [].concat(state)
           : action.offers.concat(state);
       break;
-    // case REHYDRATE:
-    // results = [].concat(action.payload.offers || []);
-    // break;
     default:
-      results = [].concat(state);
+      results = [...(state || [])];
       break;
   }
   return orderby(uniq(results), ['date', 'mtime'], 'desc');

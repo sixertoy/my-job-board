@@ -1,6 +1,6 @@
 import { withStyles } from '@iziges/napper-core-react';
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import AppHeaderComponent from '../appheader';
@@ -24,17 +24,22 @@ const styles = theme => ({
   },
 });
 
-const MainLayoutComponent = ({ classes, loadFeeds, loading }) => {
+const MainLayoutComponent = ({ classes, loadFeeds, loading, nextUpdateAt }) => {
+  console.log('render MainLayoutComponent');
+  const [isReady, setIsReady] = useState(false);
   useEffect(() => {
+    if (isReady) return;
+    console.log('loadFeeds');
+    setIsReady(true);
     loadFeeds();
-  }, [loadFeeds]);
+  }, [isReady, loadFeeds]);
   return (
     <div className={classes.container}>
       <div className={classes.layout}>
         <AppMenuComponent />
         <div className={classes.wrapper}>
           <ProgressBar loading={loading} />
-          <AppHeaderComponent />
+          <AppHeaderComponent nextUpdate={nextUpdateAt} />
           {/* {openedcard && <OverlayCard />} */}
           <div className={classes.views}>
             <Switch>
@@ -54,6 +59,7 @@ MainLayoutComponent.propTypes = {
   classes: PropTypes.shape().isRequired,
   loadFeeds: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
+  nextUpdateAt: PropTypes.number.isRequired,
 };
 
 export default withStyles(styles)(MainLayoutComponent);

@@ -10,7 +10,8 @@ export const EVENT_TYPES = {
   LOADING_COMPLETE: 'onloadingcomplete',
   LOADING_START: 'onloadingstart',
   OFFERS_LOADED: 'onoffersloaded',
+  PERSIST_REHYDRATE: 'persist/REHYDRATE',
 };
 
-// update chaque n heures (secondes, (minutes, heure), millisecondes)
-export const UPDATE_INTERVAL_MS = 60 * (60 * 128) * 1000;
+// NOTE update chaque n heures (secondes * minutes * heure) * millisecondes
+export const UPDATE_INTERVAL_MS = 60 * 60 * 1 * 1000;

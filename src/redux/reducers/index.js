@@ -4,14 +4,11 @@ import * as appstates from './appstates';
 import * as card from './card';
 import * as feeds from './feeds';
 
-// do not saved in persitent store
-export const blacklist = [];
-// saved into persitent store
-export const whitelist = ['lastupdate', 'offers'];
-
-export const createRootReducer = () =>
-  combineReducers({
+function createRootReducer() {
+  return combineReducers({
     ...appstates,
     ...card,
     ...feeds,
   });
+}
+export default createRootReducer;

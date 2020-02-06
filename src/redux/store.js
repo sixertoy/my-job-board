@@ -3,17 +3,10 @@ import { applyMiddleware, createStore } from 'redux';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistReducer, persistStore, purgeStoredState } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 import ReduxThunk from 'redux-thunk';
 
-import { blacklist, createRootReducer, whitelist } from './reducers';
-
-const persistConfig = {
-  blacklist,
-  key: 'LocalStorageKey::',
-  storage,
-  whitelist,
-};
+import { reduxPersistConfig } from './initial-state';
+import createRootReducer from './reducers';
 
 function debugStored() {}
 
@@ -29,14 +22,14 @@ function bindMiddleware(middleware = []) {
 
 export const clearPersistentStorage = () =>
   // https://git.io/v9hbh
-  purgeStoredState({}, persistConfig.whitelist)
+  purgeStoredState({}, reduxPersistConfig.whitelist)
     .then(() => console.log('purged of whitelist success'))
     .catch(() => console.log('purge of someReducer failed'));
 
 export const configure = (history, initialState = {}) => {
   // const middleware = routerMiddleware(history);
   const rootReducer = createRootReducer(history);
-  const persistedReducer = persistReducer(persistConfig, rootReducer);
+  const persistedReducer = persistReducer(reduxPersistConfig, rootReducer);
   const store = createStore(
     persistedReducer,
     initialState,
