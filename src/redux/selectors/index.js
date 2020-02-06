@@ -1,2 +1,2 @@
 export * from './appstates';
-export * from './offers';
+export { default as selectOffersByType } from './select-offers-by-type';

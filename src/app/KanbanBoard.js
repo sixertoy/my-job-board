@@ -108,7 +108,7 @@ class KanbanBoardView extends Component {
             items={filteroffers(feedsoffers, search)}
             search={search}
             title="Feeds"
-            type={CARD_STATUS.DEFAULT}
+            type={CARD_STATUS.FEEDS}
           />
           <BoardColumn
             items={todooffers}

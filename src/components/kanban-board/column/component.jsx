@@ -2,29 +2,33 @@ import { withStyles } from '@iziges/napper-core-react';
 // import find from 'lodash.find';
 import PropTypes from 'prop-types';
 import React from 'react';
+
 // import { DropTarget } from 'react-dnd';
+//
+import KanbanBoardCardComponent from '../card';
 
 const styles = theme => ({
-  container: () => {
-    const backgroundColor = `${theme.colors.white}11`;
-    return {
-      backgroundColor,
-      borderRadius: 5,
-      composes: ['m5', 'p12'],
-      maxHeight: '100%',
-      width: '25%',
-    };
+  container: {
+    composes: ['m5', 'p12'],
+    maxHeight: '100%',
+    width: '25%',
   },
   count: {
-    composes: ['is-light'],
-    fontSize: '0.7em',
+    composes: ['fs9', 'is-light'],
   },
-  title: () => {
+  header: () => {
     const color = `${theme.colors.white}66`;
-    return {
-      color,
-      composes: ['is-block', 'is-uppercase', 'fs20', 'is-bold', 'text-center'],
-    };
+    return { color, composes: ['flex-columns', 'text-center'] };
+  },
+  list: {
+    borderRight: `1px dotted ${theme.colors.white}`,
+    composes: ['pr7', 'is-scrollbox-y'],
+  },
+  title: {
+    composes: ['is-block', 'is-uppercase', 'fs20', 'is-bold'],
+  },
+  wrapper: {
+    composes: ['is-scrollbox-wrapper', 'is-full-height'],
   },
 });
 
@@ -43,21 +47,21 @@ const styles = theme => ({
 const KanbanBoardColumnComponent = ({
   canfilter,
   classes,
+  offers,
   search,
   // connectDropTarget,
   // items,
-  showcount,
   title,
 }) => {
-  const count = 0; // items.length;
+  const count = offers.length || 0;
   // return connectDropTarget(
   return (
     <div className={classes.container}>
-      <h2 className="board-column-header">
+      <h2 className={classes.header}>
         <span className={classes.title}>{title}</span>
-        {showcount && <small style={classes.count}>{` (${count})`}</small>}
+        <small className={classes.count}>{`(${count})`}</small>
       </h2>
-      {canfilter && (
+      {/* {canfilter && (
         <div className="flex-columns" id="searchinput">
           <i className="myjobboard-search" />
           <input
@@ -69,7 +73,14 @@ const KanbanBoardColumnComponent = ({
             }
           />
         </div>
-      )}
+      )} */}
+      <div className={classes.wrapper}>
+        <div className={classes.list}>
+          {offers.map(item => (
+            <KanbanBoardCardComponent key={item.id} offer={item} />
+          ))}
+        </div>
+      </div>
       {/* <div
         className="board-column-list fancy-scrollbar"
         style={{ height: 'auto', opacity: isOver ? 0.45 : 1 }}>
@@ -85,7 +96,6 @@ const KanbanBoardColumnComponent = ({
 KanbanBoardColumnComponent.defaultProps = {
   canfilter: false,
   search: '',
-  showcount: false,
 };
 
 KanbanBoardColumnComponent.propTypes = {
@@ -93,9 +103,9 @@ KanbanBoardColumnComponent.propTypes = {
   classes: PropTypes.shape().isRequired,
   // connectDropTarget: PropTypes.func.isRequired,
   // isOver: PropTypes.bool.isRequired,
-  // items: PropTypes.array.isRequired,
+  // NOTE créer un type pour les offres
+  offers: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   search: PropTypes.string,
-  showcount: PropTypes.bool,
   title: PropTypes.string.isRequired,
   // type: PropTypes.string.isRequired,
 };

@@ -11,13 +11,13 @@ import ProgressBar from '../progress-bar';
 const styles = theme => ({
   container: {
     backgroundColor: theme.colors.dark,
-    composes: ['is-full-layout'],
+    composes: ['is-full-layout', 'no-overflow'],
   },
   layout: {
     composes: ['is-full-height', 'flex-columns'],
   },
   views: {
-    composes: ['flex-columns'],
+    composes: ['flex-columns', 'no-overflow'],
   },
   wrapper: {
     composes: ['is-full-height', 'flex-rows'],

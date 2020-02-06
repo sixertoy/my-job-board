@@ -1,6 +1,6 @@
 export const CARD_STATUS = {
-  DEFAULT: 'feeds',
   DONE: 'done',
+  FEEDS: 'feeds',
   IN_PROGRESS: 'inprogress',
   TODO: 'todo',
   TRASHED: 'trashed',
