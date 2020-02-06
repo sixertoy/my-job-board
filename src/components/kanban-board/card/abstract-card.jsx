@@ -9,7 +9,8 @@ const styles = theme => ({
       backgroundColor,
       borderRadius: 5,
       color: theme.colors.white,
-      composes: ['p7'],
+      composes: ['p7', 'fs14'],
+      lineHeight: '1.2rem',
     };
   },
 });

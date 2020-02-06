@@ -1,3 +1,4 @@
+import { withStyles } from '@iziges/napper-core-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -5,6 +6,12 @@ import React from 'react';
 // import { getEmptyImage } from 'react-dnd-html5-backend';
 // import { connect } from 'react-redux';
 import KanbanBoardAbstractCard from './abstract-card';
+
+const styles = {
+  container: {
+    composes: ['mb12'],
+  },
+};
 
 class KanbanBoardCardComponent extends React.PureComponent {
   // componentDidMount() {
@@ -24,7 +31,7 @@ class KanbanBoardCardComponent extends React.PureComponent {
       // source,
     } = this.props;
     return (
-      <div className="fs12 mb24">
+      <div className="fs12 mb12">
         <KanbanBoardAbstractCard item={offer} />
       </div>
     );
@@ -40,7 +47,7 @@ KanbanBoardCardComponent.propTypes = {
   // source: PropTypes.string.isRequired,
 };
 
-export default KanbanBoardCardComponent;
+export default withStyles(styles)(KanbanBoardCardComponent);
 
 // describes how the drag source reacts to the drag and drop events
 // const dragTargetContext = {
