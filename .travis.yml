@@ -9,6 +9,7 @@ env:
 cache:
   directories:
     - node_modules
+
 script:
   - yarn test --collect-coverage --verbose
 
