@@ -16,7 +16,10 @@ const styles = theme => ({
 });
 
 const KanbanBoardAbstractCard = ({ classes, item }) => (
-  <div className={classes.container}>{item.title}</div>
+  <div className={classes.container}>
+    <small>{item.sourceKey}</small>
+    <h5>{item.title}</h5>
+  </div>
 );
 
 KanbanBoardAbstractCard.propTypes = {

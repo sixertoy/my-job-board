@@ -17,7 +17,7 @@ function resolveFeedRequest(response) {
   return Promise.reject(err);
 }
 
-function parseXMLNodeToOffer(source, ctime) {
+function parseXMLNodeToOffer(sourceKey, source, ctime) {
   return ({
     description: xdescription,
     link: xlink,
@@ -44,6 +44,7 @@ function parseXMLNodeToOffer(source, ctime) {
       link,
       mtime,
       source,
+      sourceKey,
       status,
       title,
     };
@@ -59,7 +60,7 @@ const fetchOffersFromFeed = (feed, now) => {
     .then(xmlToObject)
     .then(xml => {
       const nodes = get(xml, 'rss.channel.0.item', false);
-      const parsed = nodes && nodes.map(parseXMLNodeToOffer(url, now));
+      const parsed = nodes && nodes.map(parseXMLNodeToOffer(key, url, now));
       if (!parsed) throw new Error('Unable to parse xml to object');
       return parsed;
     })

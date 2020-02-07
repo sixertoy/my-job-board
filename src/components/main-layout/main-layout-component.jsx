@@ -31,9 +31,6 @@ const MainLayoutComponent = ({ classes, loadFeeds, loading, nextUpdateAt }) => {
       setIsMounted(true);
       loadFeeds();
     }
-    return () => {
-      setIsMounted(false);
-    };
   }, [isMounted, loadFeeds]);
   return (
     <div className={classes.container}>
