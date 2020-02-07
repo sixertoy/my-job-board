@@ -25,15 +25,15 @@ const AppMenuComponent = React.memo(({ classes }) => {
   return (
     <div className={classes.container}>
       <nav className={classes.top}>
-        <a className={classes.item} href="http://localhost:3000/">
+        <a className={classes.item} href="/board">
           <IoIosListBox />
         </a>
-        <a className={classes.item} href="http://localhost:3000/">
+        <a className={classes.item} href="/calendar">
           <IoMdCalendar />
         </a>
       </nav>
       <nav className={classes.bottom}>
-        <a className={classes.item} href="http://localhost:3000/">
+        <a className={classes.item} href="/options">
           <IoIosOptions />
         </a>
       </nav>

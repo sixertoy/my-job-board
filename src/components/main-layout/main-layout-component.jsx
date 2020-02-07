@@ -25,14 +25,16 @@ const styles = theme => ({
 });
 
 const MainLayoutComponent = ({ classes, loadFeeds, loading, nextUpdateAt }) => {
-  console.log('render MainLayoutComponent');
-  const [isReady, setIsReady] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
-    if (isReady) return;
-    console.log('loadFeeds');
-    setIsReady(true);
-    loadFeeds();
-  }, [isReady, loadFeeds]);
+    if (!isMounted) {
+      setIsMounted(true);
+      loadFeeds();
+    }
+    return () => {
+      setIsMounted(false);
+    };
+  }, [isMounted, loadFeeds]);
   return (
     <div className={classes.container}>
       <div className={classes.layout}>
@@ -43,7 +45,10 @@ const MainLayoutComponent = ({ classes, loadFeeds, loading, nextUpdateAt }) => {
           {/* {openedcard && <OverlayCard />} */}
           <div className={classes.views}>
             <Switch>
-              <Route path="/">
+              <Route exact path="/">
+                <div>Welcome</div>
+              </Route>
+              <Route exact path="/board">
                 <KanbanBoardComponent />
               </Route>
             </Switch>

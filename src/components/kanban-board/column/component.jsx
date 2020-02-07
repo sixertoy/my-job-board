@@ -22,8 +22,7 @@ const styles = theme => ({
     return { color, composes: ['flex-columns', 'text-center'] };
   },
   list: {
-    borderRight: `1px dotted ${theme.colors.white}`,
-    composes: ['pr7', 'is-scrollbox-y'],
+    composes: ['pr7', 'is-scrollbox-y', 'fancy-scrollbar'],
   },
   title: {
     composes: ['is-block', 'is-uppercase', 'fs20', 'is-bold'],
