@@ -16,6 +16,7 @@ after_success:
   - cat ./coverage/lcov.info | coveralls && rm -rf ./coverage
 
 before_deploy:
+  - yarn global add netlify-cli
   - yarn build
 
 deploy:

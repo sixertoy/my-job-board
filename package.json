@@ -27,7 +27,6 @@
     "foreman": "3.0.1",
     "husky": "3.0.0",
     "lint-staged": "9.1.0",
-    "netlify": "^3.0.0",
     "node-sass": "4.12.0",
     "prettier": "1.18.2",
     "prettier-eslint": "9.0.0",
