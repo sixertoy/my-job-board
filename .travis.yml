@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - '12.13.1'
+script:
+  - yarn test --collect-coverage --verbose
+after_success:
+  - cat ./coverage/lcov.info | coveralls && rm -rf ./coverage
