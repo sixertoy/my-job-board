@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import AppHeaderComponent from '../app-header';
 import AppMenuComponent from '../appmenu';
-import KanbanBoardComponent from '../kanban-board';
+import KanbanBoardComponent from '../board';
 import ProgressBar from '../progress-bar';
 
 const styles = theme => ({
