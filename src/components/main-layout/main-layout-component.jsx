@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import AppHeaderComponent from '../appheader';
+import AppHeaderComponent from '../app-header';
 import AppMenuComponent from '../appmenu';
 import KanbanBoardComponent from '../kanban-board';
 import ProgressBar from '../progress-bar';
