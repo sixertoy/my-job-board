@@ -197,3 +197,6 @@ $RECYCLE.BIN/
 .env.local
 .env.production
 .env.development
+
+# Local Netlify folder
+.netlify
