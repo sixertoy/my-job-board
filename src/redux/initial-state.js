@@ -25,7 +25,7 @@ const INITIAL_VALUES = {
   draggingcard: false,
   feeds,
   lastFeedUpdate: Date.now(),
-  loading: true,
+  loading: false,
   offers: [],
   openedcard: false,
   search: '',
