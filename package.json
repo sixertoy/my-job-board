@@ -27,6 +27,7 @@
     "foreman": "3.0.1",
     "husky": "3.0.0",
     "lint-staged": "9.1.0",
+    "netlify": "^3.0.0",
     "node-sass": "4.12.0",
     "prettier": "1.18.2",
     "prettier-eslint": "9.0.0",
@@ -76,8 +77,8 @@
   "scripts": {
     "cleanup": "rm -rf node_modules && rm yarn.lock",
     "dev": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
-    "predeploy": "yarn build"
+    "build": "react-scripts build",
+    "deploy:dev": "netlify deploy --dir ./build --open"
   }
 }

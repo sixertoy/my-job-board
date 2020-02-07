@@ -2,6 +2,10 @@ language: node_js
 node_js:
   - '12.13.1'
 
+env:
+  - CI=true
+  - PUBLIC_URL=.
+
 cache:
   directories:
     - node_modules
@@ -11,16 +15,12 @@ script:
 after_success:
   - cat ./coverage/lcov.info | coveralls && rm -rf ./coverage
 
-env:
-  - CI=true
-
 before_deploy:
-  - yarn global netlify-cli
   - yarn build
 
 deploy:
   provider: script
-  script: netlify deploy -s $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN -p --dir ./build
+  script: netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir ./build
   skip_cleanup: true
   on:
     branch: master
