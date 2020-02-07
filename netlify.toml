@@ -1,6 +1,6 @@
 [build]
-  publish="my-job-board/build"
-  base = "my-job-board"
+  publish="/build"
+  base = ""
 [[redirects]]
   from = "/*"
   to = "/index.html"
