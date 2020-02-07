@@ -74,10 +74,10 @@
     "xml2js": "^0.4.23"
   },
   "scripts": {
+    "cleanup": "rm -rf node_modules && rm yarn.lock",
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "predeploy": "yarn build",
-    "cleanup": "rm -rf node_modules && rm yarn.lock"
+    "predeploy": "yarn build"
   }
 }

@@ -4,6 +4,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d81006a7-cf53-482f-a0e2-9d38d42739e8/deploy-status)](https://app.netlify.com/sites/objective-kalam-714036/deploys)
 
 **demo**
+https://keepyouposted.io/
 http://sixertoy.github.io/my-job-board
 
 > A Kanban application made with Electron to help in job search
