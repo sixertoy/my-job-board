@@ -1,7 +1,13 @@
 import { withStyles } from '@iziges/napper-core-react';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { IoIosListBox, IoIosOptions, IoMdCalendar } from 'react-icons/io';
+import {
+  IoIosListBox,
+  IoIosOptions,
+  IoMdCalendar,
+  IoMdHome,
+} from 'react-icons/io';
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   container: {
@@ -25,17 +31,20 @@ const AppMenuComponent = React.memo(({ classes }) => {
   return (
     <div className={classes.container} id="app-menu">
       <nav className={classes.top}>
-        <a className={classes.item} href="/board">
+        <Link className={classes.item} to="/">
+          <IoMdHome />
+        </Link>
+        <Link className={classes.item} to="/board">
           <IoIosListBox />
-        </a>
-        <a className={classes.item} href="/calendar">
+        </Link>
+        <Link className={classes.item} to="/calendar">
           <IoMdCalendar />
-        </a>
+        </Link>
       </nav>
       <nav className={classes.bottom}>
-        <a className={classes.item} href="/options">
+        <Link className={classes.item} to="/options">
           <IoIosOptions />
-        </a>
+        </Link>
       </nav>
     </div>
   );
