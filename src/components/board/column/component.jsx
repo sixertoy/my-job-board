@@ -2,6 +2,7 @@ import { withStyles } from '@iziges/napper-core-react';
 // import find from 'lodash.find';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // import { DropTarget } from 'react-dnd';
 //
@@ -49,7 +50,6 @@ const KanbanBoardColumnComponent = ({
   // canfilter,
   classes,
   offers,
-  openCard,
   // search,
   // connectDropTarget,
   // items,
@@ -79,14 +79,12 @@ const KanbanBoardColumnComponent = ({
       <div className={classes.wrapper}>
         <div className={classes.list}>
           {offers.map(item => (
-            <div
+            <Link
               key={item.id}
               className={classes.button}
-              role="button"
-              tabIndex={-1}
-              onClick={openCard(item.id)}>
+              to={`/board/${item.id}`}>
               <KanbanBoardCardComponent offer={item} />
-            </div>
+            </Link>
           ))}
         </div>
       </div>
@@ -103,19 +101,18 @@ const KanbanBoardColumnComponent = ({
 };
 
 KanbanBoardColumnComponent.defaultProps = {
-  canfilter: false,
-  search: '',
+  // canfilter: false,
+  // search: '',
 };
 
 KanbanBoardColumnComponent.propTypes = {
-  canfilter: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+  // canfilter: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   classes: PropTypes.shape().isRequired,
   // connectDropTarget: PropTypes.func.isRequired,
   // isOver: PropTypes.bool.isRequired,
   // NOTE créer un type pour les offres
   offers: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  openCard: PropTypes.func.isRequired,
-  search: PropTypes.string,
+  // search: PropTypes.string,
   title: PropTypes.string.isRequired,
   // type: PropTypes.string.isRequired,
 };

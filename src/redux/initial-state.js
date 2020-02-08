@@ -27,7 +27,7 @@ const INITIAL_VALUES = {
   lastFeedUpdate: Date.now(),
   loading: false,
   offers: [],
-  openedcard: false,
+  openedCard: false,
   search: '',
 };
 

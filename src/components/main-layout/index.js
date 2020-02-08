@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 
-import { UPDATE_INTERVAL_MS } from '../../constants';
 import { shouldUpdateFeeds } from '../../helpers';
 import { loadFeeds } from '../../redux/actions';
 import MainLayoutComponent from './main-layout-component';
@@ -15,7 +14,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mergeProps = ({ lastFeedUpdate, loading }, { loadFeedsHandler }) => {
-  const nextUpdateAt = lastFeedUpdate + UPDATE_INTERVAL_MS;
   return {
     loadFeeds: () => {
       const shouldUpdate = shouldUpdateFeeds(lastFeedUpdate);
@@ -23,7 +21,6 @@ const mergeProps = ({ lastFeedUpdate, loading }, { loadFeedsHandler }) => {
       loadFeedsHandler(lastFeedUpdate);
     },
     loading,
-    nextUpdateAt,
   };
 };
 

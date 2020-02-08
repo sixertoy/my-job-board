@@ -1,13 +1,10 @@
 import { connect } from 'react-redux';
 
-import { loadFeeds } from '../../redux/actions';
 import AppHeaderComponent from './component';
 
 const mapStateToProps = null;
 
-const mapDispatchToProps = dispatch => ({
-  forceRefresh: () => dispatch(loadFeeds()),
-});
+const mapDispatchToProps = null;
 
 export default connect(
   mapStateToProps,

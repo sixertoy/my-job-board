@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { CARD_STATUS, EVENT_TYPES } from '../../../constants';
+import { CARD_STATUS } from '../../../constants';
 import { selectOffersByType } from '../../../redux/selectors';
 import KanbanBoardColumnComponent from './component';
 
@@ -24,11 +24,7 @@ const mapStateToProps = (state, { type }) => {
   return { offers, title };
 };
 
-const mapDispatchToProps = dispatch => ({
-  openCard: id => () => {
-    dispatch({ id, type: EVENT_TYPES.CARD_OPEN });
-  },
-});
+const mapDispatchToProps = () => ({});
 
 export default connect(
   mapStateToProps,

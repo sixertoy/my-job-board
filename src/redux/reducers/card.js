@@ -1,6 +1,6 @@
 import { EVENT_TYPES } from '../../constants';
 
-export const openedcard = (state = false, action) => {
+export const openedCard = (state = false, action) => {
   switch (action.type) {
     case EVENT_TYPES.CARD_OPEN:
       return action.id;

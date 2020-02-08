@@ -1,7 +1,6 @@
 // import './fontello/css/fontello-embedded.css';
 import './index.scss';
 
-import { createBrowserHistory } from 'history';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'react-jss';
@@ -10,11 +9,12 @@ import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import MainLayoutComponent from './components/main-layout';
+import getRouterHistory from './history';
 import { getInitialState } from './redux/initial-state';
 import { configure } from './redux/store';
 import theme from './theme';
 
-const history = createBrowserHistory();
+const history = getRouterHistory();
 const initialState = getInitialState(history);
 const { persistor, store } = configure(history, initialState);
 

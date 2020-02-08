@@ -23,7 +23,7 @@ const styles = theme => ({
 
 const AppMenuComponent = React.memo(({ classes }) => {
   return (
-    <div className={classes.container}>
+    <div className={classes.container} id="app-menu">
       <nav className={classes.top}>
         <a className={classes.item} href="/board">
           <IoIosListBox />

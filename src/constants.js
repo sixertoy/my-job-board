@@ -7,8 +7,6 @@ export const CARD_STATUS = {
 };
 
 export const EVENT_TYPES = {
-  CARD_CLOSE: 'onCloseCard',
-  CARD_OPEN: 'onOpenCard',
   LOADING_COMPLETE: 'onloadingcomplete',
   LOADING_START: 'onloadingstart',
   OFFERS_LOADED: 'onoffersloaded',
