@@ -3,7 +3,8 @@
   "version": "0.2.4",
   "private": true,
   "main": "./main.js",
-  "homepage": "https://sixertoy.github.io/my-job-board/",
+  "homepage": "https://jobs.keepyouposted.io/",
+  "repository": "https://sixertoy.github.io/my-job-board/",
   "browserslist": {
     "production": [
       ">0.2%",
