@@ -19,15 +19,21 @@ const styles = theme => ({
     minWidth: 350,
     width: '25%',
   },
+  count: {
+    composes: ['fs11', 'is-italic'],
+  },
   header: () => {
     const color = `${theme.colors.white}66`;
-    return { color, composes: ['flex-columns', 'text-center'] };
+    return {
+      color,
+      composes: ['mb12', 'text-center'],
+    };
   },
   list: {
     composes: ['pr7', 'is-scrollbox-y', 'fancy-scrollbar'],
   },
   title: {
-    composes: ['is-block', 'is-uppercase', 'fs20', 'is-bold'],
+    composes: ['is-uppercase', 'fs14', 'is-bold'],
   },
   wrapper: {
     composes: ['is-scrollbox-wrapper', 'is-full-height'],
@@ -55,13 +61,13 @@ const KanbanBoardColumnComponent = ({
   // items,
   title,
 }) => {
-  // const count = offers.length || 0;
+  const count = offers.length || 0;
   // return connectDropTarget(
   return (
     <div className={classes.container}>
       <h2 className={classes.header}>
         <span className={classes.title}>{title}</span>
-        {/* <small className={classes.count}>{`(${count})`}</small> */}
+        <sup className={classes.count}>&nbsp;{`(${count})`}</sup>
       </h2>
       {/* {canfilter && (
         <div className="flex-columns" id="searchinput">

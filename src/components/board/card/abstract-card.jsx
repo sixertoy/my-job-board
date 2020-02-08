@@ -9,7 +9,7 @@ const styles = theme => ({
       backgroundColor,
       borderRadius: 5,
       color: theme.colors.white,
-      composes: ['px7', 'pt12', 'pb15', 'fs14'],
+      composes: ['p12'],
     };
   },
   source: () => {
@@ -17,10 +17,11 @@ const styles = theme => ({
     return {
       backgroundColor,
       borderRadius: 4,
-      composes: ['is-inline-block', 'fs11', 'px7', 'py5', 'mb12'],
+      composes: ['is-inline-block', 'fs10', 'px7', 'py5', 'mb7'],
     };
   },
   title: {
+    composes: ['fs14'],
     lineHeight: '1.5rem',
   },
 });

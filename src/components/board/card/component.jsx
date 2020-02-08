@@ -26,12 +26,13 @@ class KanbanBoardCardComponent extends React.PureComponent {
     const {
       // connectDragSource,
       // isDragging,
+      classes,
       offer,
       // showfullcard,
       // source,
     } = this.props;
     return (
-      <div className="fs12 mb12">
+      <div className={classes.container}>
         <KanbanBoardAbstractCard item={offer} />
       </div>
     );
@@ -42,6 +43,7 @@ KanbanBoardCardComponent.propTypes = {
   // connectDragPreview: PropTypes.func.isRequired,
   // connectDragSource: PropTypes.func.isRequired,
   // isDragging: PropTypes.bool.isRequired,
+  classes: PropTypes.shape().isRequired,
   offer: PropTypes.shape().isRequired,
   // showfullcard: PropTypes.func.isRequired,
   // source: PropTypes.string.isRequired,
