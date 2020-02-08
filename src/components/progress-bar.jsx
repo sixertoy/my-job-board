@@ -29,7 +29,7 @@ const styles = theme => ({
 const ProgressBar = ({ classes, loading }) => {
   const cssobj = classNames(classes.loader, { 'is-hidden': !loading });
   return (
-    <div className={classes.container}>
+    <div className={classes.container} id="progress-bar">
       <div className={cssobj} />
     </div>
   );

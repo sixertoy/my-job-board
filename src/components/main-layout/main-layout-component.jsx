@@ -11,16 +11,16 @@ import ProgressBar from '../progress-bar';
 const styles = theme => ({
   container: {
     backgroundColor: theme.colors.dark,
-    composes: ['is-full-layout', 'no-overflow'],
+    composes: ['is-full-layout'],
   },
   layout: {
-    composes: ['is-full-height', 'flex-columns'],
+    composes: ['flex-columns', 'is-full-layout', 'no-overflow'],
   },
   views: {
     composes: ['flex-columns', 'no-overflow'],
   },
   wrapper: {
-    composes: ['is-full-height', 'flex-rows'],
+    composes: ['is-full-height', 'flex-rows', 'no-overflow'],
   },
 });
 
@@ -34,9 +34,9 @@ const MainLayoutComponent = ({ classes, loadFeeds, loading }) => {
   }, [isMounted, loadFeeds]);
   return (
     <div className={classes.container}>
-      <div className={classes.layout}>
+      <div className={classes.layout} id="app-layout">
         <AppMenuComponent />
-        <div className={classes.wrapper}>
+        <div className={classes.wrapper} id="app-wrapper">
           <ProgressBar loading={loading} />
           <AppHeaderComponent />
           <div className={classes.views} id="views-container">

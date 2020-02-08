@@ -12,10 +12,10 @@ import KanbanBoardPreviewComponent from './preview';
 
 const styles = theme => ({
   columns: {
-    composes: ['flex-1', 'flex-columns', 'scroll-x'],
+    composes: ['flex-1', 'flex-columns', 'scroll-x', 'fancy-scrollbar', 'pb32'],
   },
   container: {
-    composes: ['is-relative', 'flex-rows'],
+    composes: ['is-relative', 'flex-rows', 'no-overflow'],
   },
   header: {
     composes: ['flex-0'],
@@ -49,7 +49,7 @@ const KanbanBoardComponent = ({ classes, forceRefresh, nextUpdate }) => {
           <IoIosRefresh />
         </button>
       </div>
-      <div className={classes.columns}>
+      <div className={classes.columns} id="board-columns">
         <KanbanBoardColumnComponent type={CARD_STATUS.FEEDS} />
         <KanbanBoardColumnComponent type={CARD_STATUS.TODO} />
         <KanbanBoardColumnComponent type={CARD_STATUS.IN_PROGRESS} />
