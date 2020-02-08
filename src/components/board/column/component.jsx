@@ -8,14 +8,15 @@ import React from 'react';
 import KanbanBoardCardComponent from '../card';
 
 const styles = theme => ({
+  button: {
+    composes: ['text-left', 'is-block', 'is-full-width'],
+    whiteSpace: 'normal',
+  },
   container: {
     composes: ['m5', 'p12'],
     maxHeight: '100%',
     minWidth: 350,
     width: '25%',
-  },
-  count: {
-    composes: ['fs9', 'is-light'],
   },
   header: () => {
     const color = `${theme.colors.white}66`;
@@ -45,21 +46,22 @@ const styles = theme => ({
 //   );
 
 const KanbanBoardColumnComponent = ({
-  canfilter,
+  // canfilter,
   classes,
   offers,
-  search,
+  openCard,
+  // search,
   // connectDropTarget,
   // items,
   title,
 }) => {
-  const count = offers.length || 0;
+  // const count = offers.length || 0;
   // return connectDropTarget(
   return (
     <div className={classes.container}>
       <h2 className={classes.header}>
         <span className={classes.title}>{title}</span>
-        <small className={classes.count}>{`(${count})`}</small>
+        {/* <small className={classes.count}>{`(${count})`}</small> */}
       </h2>
       {/* {canfilter && (
         <div className="flex-columns" id="searchinput">
@@ -77,7 +79,14 @@ const KanbanBoardColumnComponent = ({
       <div className={classes.wrapper}>
         <div className={classes.list}>
           {offers.map(item => (
-            <KanbanBoardCardComponent key={item.id} offer={item} />
+            <div
+              key={item.id}
+              className={classes.button}
+              role="button"
+              tabIndex={-1}
+              onClick={openCard(item.id)}>
+              <KanbanBoardCardComponent offer={item} />
+            </div>
           ))}
         </div>
       </div>
@@ -105,6 +114,7 @@ KanbanBoardColumnComponent.propTypes = {
   // isOver: PropTypes.bool.isRequired,
   // NOTE créer un type pour les offres
   offers: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  openCard: PropTypes.func.isRequired,
   search: PropTypes.string,
   title: PropTypes.string.isRequired,
   // type: PropTypes.string.isRequired,

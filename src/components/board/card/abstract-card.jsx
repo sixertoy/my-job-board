@@ -9,16 +9,26 @@ const styles = theme => ({
       backgroundColor,
       borderRadius: 5,
       color: theme.colors.white,
-      composes: ['p7', 'fs14'],
-      lineHeight: '1.2rem',
+      composes: ['px7', 'pt12', 'pb15', 'fs14'],
     };
+  },
+  source: () => {
+    const backgroundColor = `${theme.colors.white}11`;
+    return {
+      backgroundColor,
+      borderRadius: 4,
+      composes: ['is-inline-block', 'fs11', 'px7', 'py5', 'mb12'],
+    };
+  },
+  title: {
+    lineHeight: '1.5rem',
   },
 });
 
 const KanbanBoardAbstractCard = ({ classes, item }) => (
   <div className={classes.container}>
-    <small>{item.sourceKey}</small>
-    <h5>{item.title}</h5>
+    <small className={classes.source}>{item.sourceKey}</small>
+    <h5 className={classes.title}>{item.title}</h5>
   </div>
 );
 
