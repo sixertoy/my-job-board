@@ -12,7 +12,7 @@ import KanbanBoardPreviewComponent from './preview';
 
 const styles = theme => ({
   columns: {
-    composes: ['flex-1', 'flex-columns'],
+    composes: ['flex-1', 'flex-columns', 'scroll-x'],
   },
   container: {
     composes: ['is-relative', 'flex-rows'],

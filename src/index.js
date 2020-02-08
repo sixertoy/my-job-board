@@ -1,5 +1,6 @@
 // import './fontello/css/fontello-embedded.css';
 import './index.scss';
+import 'moment/locale/fr';
 
 import React from 'react';
 import ReactDOM from 'react-dom';

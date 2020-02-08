@@ -52,6 +52,7 @@
     "lodash.orderby": "^4.6.0",
     "lodash.sortby": "^4.7.0",
     "lodash.uniqby": "^4.7.0",
+    "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "query-string": "^6.10.1",
     "re-reselect": "^3.4.0",
