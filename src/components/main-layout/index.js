@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import { shouldUpdateFeeds } from '../../helpers';
 import { loadFeeds } from '../../redux/actions';
-import MainLayoutComponent from './main-layout-component';
+import MainLayoutComponent from './component';
 
 const mapStateToProps = state => {
   const { lastFeedUpdate, loading, theme } = state;

@@ -8,13 +8,13 @@ const grey = '#9DA5B4';
 export const UIthemes = {
   day: {
     active: blue,
-    background: white,
-    color: black,
+    background: gray,
+    color: dark,
   },
   night: {
     active: blue,
-    background: black,
-    color: white,
+    background: dark,
+    color: gray,
   },
 };
 

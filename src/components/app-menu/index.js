@@ -4,7 +4,8 @@ import AppHeaderComponent from './component';
 
 const mapStateToProps = state => {
   const { theme } = state;
-  return { theme };
+  const tooltipType = theme === 'night' ? 'dark' : 'light';
+  return { theme, tooltipType };
 };
 
 const mapDispatchToProps = null;

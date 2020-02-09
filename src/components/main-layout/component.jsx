@@ -1,12 +1,11 @@
 import { withStyles } from '@iziges/napper-core-react';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
 
 import AppHeaderComponent from '../app-header';
 import AppMenuComponent from '../app-menu';
-import { ViewHomeComponent, ViewKanbanBoardComponent } from '../app-views';
 import ProgressBar from '../progress-bar';
+import MainRoutesComponent from './routes';
 
 const styles = theme => ({
   container: ({ theme: name }) => ({
@@ -36,14 +35,7 @@ const MainLayoutComponent = ({ classes, loadFeeds, loading }) => {
           <ProgressBar loading={loading} />
           <AppHeaderComponent />
           <div className={classes.views} id="views-container">
-            <Switch>
-              <Route exact component={ViewHomeComponent} path="/" />
-              <Route
-                exact
-                component={ViewKanbanBoardComponent}
-                path="/board/:id?"
-              />
-            </Switch>
+            <MainRoutesComponent />
             {/* {draggingcard && <DraggableCard />} */}
           </div>
         </div>

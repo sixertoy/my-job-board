@@ -10,60 +10,25 @@ const styles = theme => ({
     composes: ['p24'],
     height: 'auto',
   }),
-  themeDay: {
-    backgroundColor: theme.colors.day.background,
-    border: `1px solid ${theme.colors.day.color}`,
-    borderRadius: 9,
-    composes: ['is-block', 'no-overflow'],
-    height: 18,
-    maxHeight: 18,
-    maxWidth: 18,
-    minHeight: 18,
-    minWidth: 18,
-    width: 18,
+  date: {
+    composes: ['is-uppercase'],
   },
-  themeNight: {
-    backgroundColor: theme.colors.night.background,
-    border: `1px solid ${theme.colors.night.color}`,
-    borderRadius: 9,
-    composes: ['is-block', 'no-overflow'],
-    height: 18,
-    maxHeight: 18,
-    maxWidth: 18,
-    minHeight: 18,
-    minWidth: 18,
-    width: 18,
+  title: {
+    composes: ['is-uppercase', 'is-bold'],
   },
 });
 
-const AppHeaderComponent = React.memo(({ changeTheme, classes }) => {
+const AppHeaderComponent = React.memo(({ classes }) => {
   const date = moment().format('dddd, DD MMMM YYYY');
   return (
     <div className={classes.container} id="app-header">
-      <div>
-        <div>{date}</div>
-        <h2>My Job Board</h2>
-      </div>
-      <div>
-        <button
-          className={classes.themeDay}
-          type="button"
-          onClick={changeTheme('day')}>
-          &nbsp;
-        </button>
-        <button
-          className={classes.themeNight}
-          type="button"
-          onClick={changeTheme('night')}>
-          &nbsp;
-        </button>
-      </div>
+      <span className={classes.date}>{date}</span>
+      <h2 className={classes.title}>Job Board</h2>
     </div>
   );
 });
 
 AppHeaderComponent.propTypes = {
-  changeTheme: PropTypes.func.isRequired,
   classes: PropTypes.shape().isRequired,
 };
 

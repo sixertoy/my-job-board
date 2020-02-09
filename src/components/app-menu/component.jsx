@@ -8,6 +8,7 @@ import {
   IoMdHome,
 } from 'react-icons/io';
 import { NavLink } from 'react-router-dom';
+import ReactTooltip from 'react-tooltip';
 
 const styles = theme => ({
   container: ({ theme: name }) => ({
@@ -26,21 +27,31 @@ const styles = theme => ({
     color: `${theme.colors.white}33`,
     composes: ['is-block', 'fs20', 'my12'],
   },
+  tooltipOpaque: {
+    opacity: '1 !important',
+  },
 });
 
-const AppMenuComponent = React.memo(({ classes }) => {
+const AppMenuComponent = React.memo(({ classes, tooltipType }) => {
   return (
     <div className={classes.container} id="app-menu">
       <nav className={classes.top}>
         <NavLink exact activeClassName="active" className={classes.item} to="/">
           <IoMdHome />
         </NavLink>
-        <NavLink activeClassName="active" className={classes.item} to="/board">
+        <NavLink
+          activeClassName="active"
+          className={classes.item}
+          data-for="menu-toolip"
+          data-tip="hello board"
+          to="/board">
           <IoIosListBox />
         </NavLink>
         <NavLink
           activeClassName="active"
           className={classes.item}
+          data-for="menu-toolip"
+          data-tip="hello calendar"
           to="/calendar">
           <IoMdCalendar />
         </NavLink>
@@ -49,16 +60,26 @@ const AppMenuComponent = React.memo(({ classes }) => {
         <NavLink
           activeClassName="active"
           className={classes.item}
-          to="/options">
+          data-for="menu-toolip"
+          data-tip="hello options"
+          to="/settings">
           <IoIosOptions />
         </NavLink>
       </nav>
+      <ReactTooltip
+        className={classes.tooltipOpaque}
+        effect="solid"
+        id="menu-toolip"
+        place="right"
+        type={tooltipType}
+      />
     </div>
   );
 });
 
 AppMenuComponent.propTypes = {
   classes: PropTypes.shape().isRequired,
+  tooltipType: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(AppMenuComponent);
