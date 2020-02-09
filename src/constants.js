@@ -12,6 +12,7 @@ export const EVENT_TYPES = {
   LOADING_START: 'onloadingstart',
   OFFERS_LOADED: 'onoffersloaded',
   PERSIST_REHYDRATE: 'persist/REHYDRATE',
+  THEME_CHANGE: 'onThemeChange',
 };
 
 // NOTE update chaque n heures (secondes * minutes * heure) * millisecondes
