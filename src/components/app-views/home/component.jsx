@@ -4,10 +4,13 @@ import React, { useEffect } from 'react';
 
 import { FortunesType } from '../../../prop-types';
 
-const styles = {
+const styles = theme => ({
   container: {},
-  wrapper: {},
-};
+  wrapper: {
+    color: theme.colors.white,
+    composes: ['p24'],
+  },
+});
 
 const ViewHomeComponent = ({ classes, fortune, loadFortunes }) => {
   useEffect(() => {
@@ -49,7 +52,9 @@ const ViewHomeComponent = ({ classes, fortune, loadFortunes }) => {
           </div>
           <div>
             <h3>Poem</h3>
-            <p>{fortune.poem}</p>
+            <p>{fortune.poem.title}</p>
+            <p>{fortune.poem.content}</p>
+            <p>{fortune.poem.poet.name}</p>
           </div>
           <div>
             <h3>TRBMB</h3>
