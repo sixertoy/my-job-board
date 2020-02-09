@@ -50,12 +50,12 @@ const ViewHomeComponent = ({ classes, fortune, loadFortunes }) => {
             <h3>Geek Quote</h3>
             <p>{fortune.geek}</p>
           </div>
-          <div>
+          {/* <div>
             <h3>Poem</h3>
             <p>{fortune.poem.title}</p>
             <p>{fortune.poem.content}</p>
             <p>{fortune.poem.poet.name}</p>
-          </div>
+          </div> */}
           <div>
             <h3>TRBMB</h3>
             <p>{fortune.trbmb}</p>

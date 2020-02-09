@@ -3,15 +3,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const styles = theme => ({
-  container: ({ theme: name }) => {
-    const backgroundColor = `${theme.colors[name].color}11`;
-    return {
-      backgroundColor,
-      borderRadius: 5,
-      color: theme.colors[name].color,
-      composes: ['p12'],
-    };
-  },
+  container: ({ theme: name }) => ({
+    backgroundColor: `${theme.colors[name].foreground}66`,
+    borderRadius: 5,
+    color: theme.colors[name].color,
+    composes: ['p12', 'no-select'],
+  }),
   source: ({ theme: name }) => {
     const backgroundColor = `${theme.colors[name].color}11`;
     return {

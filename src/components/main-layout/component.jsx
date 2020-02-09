@@ -9,15 +9,17 @@ import MainRoutesComponent from './routes';
 
 const styles = theme => ({
   container: ({ theme: name }) => ({
-    backgroundColor: theme.colors[name].background,
+    backgroundColor: theme.colors[name].foreground,
     composes: ['is-full-layout'],
   }),
   layout: {
     composes: ['flex-columns', 'is-full-layout', 'no-overflow'],
   },
-  views: {
+  views: ({ theme: name }) => ({
+    backgroundColor: theme.colors[name].background,
+    borderRadius: '8px 8px 0 0',
     composes: ['flex-columns', 'no-overflow'],
-  },
+  }),
   wrapper: {
     composes: ['is-full-height', 'flex-rows', 'no-overflow'],
   },

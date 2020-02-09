@@ -14,7 +14,7 @@ const styles = theme => ({
     whiteSpace: 'normal',
   },
   container: {
-    composes: ['m5', 'p12'],
+    composes: ['m5', 'px12'],
     maxHeight: '100%',
     minWidth: 300,
     width: '25%',
@@ -22,13 +22,16 @@ const styles = theme => ({
   count: {
     composes: ['fs11', 'is-italic'],
   },
-  header: ({ theme: name }) => {
-    const color = `${theme.colors[name].color}66`;
-    return {
-      color,
-      composes: ['mb12', 'text-center'],
-    };
-  },
+  header: ({ theme: name }) => ({
+    color: `${theme.colors[name].color}66`,
+    composes: [
+      'mb10',
+      'text-left',
+      'flex-columns',
+      'flex-between',
+      'items-center',
+    ],
+  }),
   list: {
     composes: ['pr7', 'is-scrollbox-y', 'fancy-scrollbar'],
   },
@@ -65,10 +68,10 @@ const KanbanBoardColumnComponent = ({
   // return connectDropTarget(
   return (
     <div className={classes.container}>
-      <h2 className={classes.header}>
-        <span className={classes.title}>{title}</span>
-        <sup className={classes.count}>&nbsp;{`(${count})`}</sup>
-      </h2>
+      <div className={classes.header}>
+        <h2 className={classes.title}>{title}</h2>
+        <div className={classes.count}>{count}</div>
+      </div>
       {/* {canfilter && (
         <div className="flex-columns" id="searchinput">
           <i className="myjobboard-search" />

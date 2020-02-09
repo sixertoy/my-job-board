@@ -11,8 +11,8 @@ import { NavLink } from 'react-router-dom';
 // import ReactTooltip from 'react-tooltip';
 
 const styles = theme => ({
-  container: {
-    backgroundColor: theme.colors.black,
+  container: ({ theme: name }) => ({
+    backgroundColor: theme.colors[name].foreground,
     composes: [
       'is-full-height',
       'px12',
@@ -20,7 +20,7 @@ const styles = theme => ({
       'flex-between',
       'no-no-flex-grow',
     ],
-  },
+  }),
   item: {
     '&.active': { color: theme.colors.blue },
     '&:hover': { color: theme.colors.blue },

@@ -78,17 +78,17 @@ const services = [
     },
     url: 'http://fortunecookieapi.herokuapp.com/v1/cookie',
   },
-  {
-    id: 'poem',
-    parser: payload => {
-      if (!payload) return false;
-      const len = payload.length;
-      const rand = Math.floor(Math.random() * len);
-      const poem = get(payload, rand);
-      return poem;
-    },
-    url: 'https://www.poemist.com/api/v1/randompoems',
-  },
+  // {
+  //   id: 'poem',
+  //   parser: payload => {
+  //     if (!payload) return false;
+  //     const len = payload.length;
+  //     const rand = Math.floor(Math.random() * len);
+  //     const poem = get(payload, rand);
+  //     return poem;
+  //   },
+  //   url: 'https://www.poemist.com/api/v1/randompoems',
+  // },
 ];
 
 export default services;

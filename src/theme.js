@@ -11,11 +11,13 @@ export const UIthemes = {
     active: blue,
     background: gray,
     color: dark,
+    foreground: dark,
   },
   night: {
     active: blue,
     background: dark,
     color: gray,
+    foreground: black,
   },
 };
 
