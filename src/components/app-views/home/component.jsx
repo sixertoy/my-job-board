@@ -6,6 +6,7 @@ import { FortunesType } from '../../../prop-types';
 
 const styles = {
   container: {},
+  wrapper: {},
 };
 
 const ViewHomeComponent = ({ classes, fortune, loadFortunes }) => {
@@ -15,13 +16,53 @@ const ViewHomeComponent = ({ classes, fortune, loadFortunes }) => {
   return (
     <div className={classes.container}>
       <div>Welcome</div>
-
       {fortune && (
-        <div>
-          <div>{fortune.message}</div>
-          <div>{fortune.numbers.join(' | ')}</div>
-          <div>{fortune.tips.title}</div>
-          <div>{fortune.tips.tip}</div>
+        <div className={classes.wrapper}>
+          <div>
+            <h3>Fortune cookie</h3>
+            <p>{fortune.cookies.message}</p>
+          </div>
+          <div>
+            <h3>Lotto Numbers</h3>
+            <p>{fortune.cookies.numbers.join(' | ')}</p>
+          </div>
+          <div>
+            <h3>Git Tips</h3>
+            <p>{fortune.tips.title}</p>
+            <pre>{fortune.tips.tip}</pre>
+          </div>
+          <div>
+            <h3>Kanye&apos;s Quote</h3>
+            <p>{fortune.kanye}</p>
+          </div>
+          <div>
+            <h3>Fun Fact</h3>
+            <p>{fortune.funfact}</p>
+          </div>
+          <div>
+            <h3>Opionated Quote</h3>
+            <p>{fortune.opinion}</p>
+          </div>
+          <div>
+            <h3>Geek Quote</h3>
+            <p>{fortune.geek}</p>
+          </div>
+          <div>
+            <h3>Poem</h3>
+            <p>{fortune.poem}</p>
+          </div>
+          <div>
+            <h3>TRBMB</h3>
+            <p>{fortune.trbmb}</p>
+          </div>
+          <div>
+            <h3>Trump&apos;s quote</h3>
+            <p>{fortune.trump}</p>
+          </div>
+          <div>
+            <h3>Wait, what does your startup do ? </h3>
+            <p>{fortune.isthisforthat}</p>
+          </div>
         </div>
       )}
     </div>

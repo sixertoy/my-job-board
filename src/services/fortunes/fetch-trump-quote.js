@@ -1,6 +1,6 @@
+import get from 'lodash.get';
+
 const REQUEST_SUCCESS_STATUS = [200, 201];
-const SERVICE_URL =
-  'https://raw.githubusercontent.com/nirajpandkar/git-tip/master/tips.json';
 
 function resolveRequest(response) {
   const { status } = response;
@@ -12,18 +12,20 @@ function resolveRequest(response) {
   return Promise.reject(err);
 }
 
-function parseGitTips(payload) {
-  const len = payload.length;
+function parse(payload) {
+  if (!payload) return '';
+  const len = payload.messages.non_personalized.length;
   const rand = Math.floor(Math.random() * len);
-  const tips = payload[rand];
-  return tips;
+  return get(payload, `messages.non_personalized.${rand}`);
 }
 
-const fetchFortuneCookies = () => {
+const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
+const SERVICE_URL = 'https://api.whatdoestrumpthink.com/api/v1/quotes';
+const fetchApi = () => {
   const opts = { header: new Headers({}), method: 'GET' };
-  return fetch(SERVICE_URL, opts)
+  return fetch(`${PROXY_URL}${SERVICE_URL}`, opts)
     .then(resolveRequest)
-    .then(parseGitTips)
+    .then(parse)
     .catch(err => {
       const reason = new Error(`${err.message}`);
       // TODO utilise napper-core/logger
@@ -31,4 +33,4 @@ const fetchFortuneCookies = () => {
     });
 };
 
-export default fetchFortuneCookies;
+export default fetchApi;

@@ -1,7 +1,6 @@
 import get from 'lodash.get';
 
 const REQUEST_SUCCESS_STATUS = [200, 201];
-const SERVICE_URL = 'http://fortunecookieapi.herokuapp.com/v1/cookie';
 
 function resolveRequest(response) {
   const { status } = response;
@@ -13,17 +12,19 @@ function resolveRequest(response) {
   return Promise.reject(err);
 }
 
-function parseFortuneCookie(payload) {
+function parse(payload) {
   const numbers = get(payload, '0.lotto.numbers');
   const message = get(payload, '0.fortune.message');
   return { message, numbers };
 }
 
-const fetchFortuneCookies = () => {
+const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
+const SERVICE_URL = 'http://fortunecookieapi.herokuapp.com/v1/cookie';
+const fetchApi = () => {
   const opts = { header: new Headers({}), method: 'GET' };
-  return fetch(SERVICE_URL, opts)
+  return fetch(`${PROXY_URL}${SERVICE_URL}`, opts)
     .then(resolveRequest)
-    .then(parseFortuneCookie)
+    .then(parse)
     .catch(err => {
       const reason = new Error(`${err.message}`);
       // TODO utilise napper-core/logger
@@ -31,4 +32,4 @@ const fetchFortuneCookies = () => {
     });
 };
 
-export default fetchFortuneCookies;
+export default fetchApi;
