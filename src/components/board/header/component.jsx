@@ -4,14 +4,14 @@ import React from 'react';
 import { IoIosSettings } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 
-const styles = () => ({
+const styles = {
   container: {
     composes: ['flex-0'],
   },
   wrapper: {
     composes: ['flex-columns', 'flex-between'],
   },
-});
+};
 
 const KanbanBoardHeaderComponent = ({ classes, nextUpdate }) => {
   return (

@@ -7,7 +7,6 @@ const loadFortuneCookies = () => dispatch => {
   const promise = fetchFortuneCookies();
   return promise
     .then(data => {
-      console.log('data', data);
       dispatch({ data, type: EVENT_TYPES.FORTUNE_COOKIES_LOADED });
     })
     .catch(err => {
