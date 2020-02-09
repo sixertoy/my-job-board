@@ -1,11 +1,19 @@
-import React from 'react';
+import { withStyles } from '@iziges/napper-core-react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React from 'react';
 
-const ReactDumpComponent = props => <div />;
+const styles = () => ({
+  container: {},
+});
 
-ReactDumpComponent.defaultProps = {};
+const ReactDumbComponent = ({ classes }) => (
+  <div className={classes.container} />
+);
 
-ReactDumpComponent.propTypes = {};
+ReactDumbComponent.defaultProps = {};
 
-export default ReactDumpComponent;
+ReactDumbComponent.propTypes = {
+  classes: PropTypes.shape().isRequired,
+};
+
+export default withStyles(styles)(ReactDumbComponent);

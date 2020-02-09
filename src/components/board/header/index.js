@@ -2,7 +2,6 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 
 import { UPDATE_INTERVAL_MS } from '../../../constants';
-import { loadFeeds } from '../../../redux/actions';
 import KanbanBoardHeaderComponent from './component';
 
 const mapStateToProps = state => {
@@ -12,9 +11,7 @@ const mapStateToProps = state => {
   return { nextUpdate };
 };
 
-const mapDispatchToProps = dispatch => ({
-  forceRefresh: () => dispatch(loadFeeds()),
-});
+const mapDispatchToProps = null;
 
 export default connect(
   mapStateToProps,
