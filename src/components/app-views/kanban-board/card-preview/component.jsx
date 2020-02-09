@@ -64,7 +64,7 @@ const styles = theme => ({
   },
 });
 
-const KanbanBoardPreviewComponent = ({ classes, offer }) => {
+const KanbanBoardCardPreviewComponent = ({ classes, offer }) => {
   const date = moment(offer.date);
   const fromnow = date.fromNow();
   return (
@@ -103,10 +103,10 @@ const KanbanBoardPreviewComponent = ({ classes, offer }) => {
   );
 };
 
-KanbanBoardPreviewComponent.propTypes = {
+KanbanBoardCardPreviewComponent.propTypes = {
   classes: PropTypes.shape().isRequired,
   // TODO creation d'un custom proptype pour les offer
   offer: OfferType.isRequired,
 };
 
-export default withStyles(styles)(KanbanBoardPreviewComponent);
+export default withStyles(styles)(KanbanBoardCardPreviewComponent);

@@ -6,9 +6,9 @@ import { Route } from 'react-router-dom';
 // import { DragDropContext } from 'react-dnd';
 // import HTML5Backend from 'react-dnd-html5-backend';
 import { CARD_STATUS } from '../../../constants';
+import KanbanBoardCardPreviewComponent from './card-preview';
 import KanbanBoardColumnComponent from './column';
 import KanbanBoardHeaderComponent from './header';
-import KanbanBoardPreviewComponent from './preview';
 
 const styles = theme => ({
   columns: {
@@ -44,7 +44,7 @@ const KanbanBoardComponent = ({ classes }) => {
           return (
             <React.Fragment>
               <div className={classes.locker} />
-              <KanbanBoardPreviewComponent id={id} />
+              <KanbanBoardCardPreviewComponent id={id} />
             </React.Fragment>
           );
         }}
