@@ -23,7 +23,7 @@ const styles = theme => ({
     composes: ['fs11', 'is-italic'],
   },
   header: ({ theme: name }) => {
-    const color = `${theme.colors[name].white}66`;
+    const color = `${theme.colors[name].color}66`;
     return {
       color,
       composes: ['mb12', 'text-center'],

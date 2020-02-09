@@ -5,8 +5,8 @@ import React from 'react';
 
 const styles = theme => ({
   container: ({ theme: name }) => ({
-    backgroundColor: theme.colors[name].dark,
-    color: theme.colors[name].white,
+    backgroundColor: theme.colors[name].background,
+    color: theme.colors[name].color,
     composes: ['p24'],
     height: 'auto',
   }),

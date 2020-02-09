@@ -11,7 +11,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import MainLayoutComponent from './components/main-layout';
 import getRouterHistory from './history';
-import { getInitialState } from './redux/initial-state';
+import { getInitialState } from './initial-state';
 import { configure } from './redux/store';
 import theme from './theme';
 

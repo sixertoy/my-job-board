@@ -7,7 +7,7 @@ import { FortunesType } from '../../../prop-types';
 const styles = theme => ({
   container: {},
   wrapper: ({ theme: name }) => ({
-    color: theme.colors[name].white,
+    color: theme.colors[name].color,
     composes: ['p24'],
   }),
 });

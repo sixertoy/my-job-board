@@ -6,7 +6,7 @@ import { IoIosRefresh } from 'react-icons/io';
 const styles = theme => ({
   container: {},
   refresh: ({ theme: name }) => ({
-    color: theme.colors[name].white,
+    color: theme.colors[name].color,
     composes: ['fs12'],
   }),
 });

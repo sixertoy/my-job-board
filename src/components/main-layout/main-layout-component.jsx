@@ -10,7 +10,7 @@ import ProgressBar from '../progress-bar';
 
 const styles = theme => ({
   container: ({ theme: name }) => ({
-    backgroundColor: theme.colors[name].dark,
+    backgroundColor: theme.colors[name].background,
     composes: ['is-full-layout'],
   }),
   layout: {

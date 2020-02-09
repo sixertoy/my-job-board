@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   container: ({ theme: name }) => ({
-    backgroundColor: theme.colors[name].blue,
+    backgroundColor: theme.colors[name].active,
     composes: [
       'is-full-height',
       'px12',
@@ -21,8 +21,8 @@ const styles = theme => ({
     ],
   }),
   item: ({ theme: name }) => ({
-    '&:hover': { color: theme.colors[name].dark },
-    color: theme.colors[name].white,
+    '&:hover': { color: theme.colors[name].background },
+    color: theme.colors[name].color,
     composes: ['is-block', 'fs20', 'my12'],
   }),
 });

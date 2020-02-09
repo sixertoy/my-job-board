@@ -4,16 +4,16 @@ import React from 'react';
 
 const styles = theme => ({
   container: ({ theme: name }) => {
-    const backgroundColor = `${theme.colors[name].white}11`;
+    const backgroundColor = `${theme.colors[name].color}11`;
     return {
       backgroundColor,
       borderRadius: 5,
-      color: theme.colors[name].white,
+      color: theme.colors[name].color,
       composes: ['p12'],
     };
   },
   source: ({ theme: name }) => {
-    const backgroundColor = `${theme.colors[name].white}11`;
+    const backgroundColor = `${theme.colors[name].color}11`;
     return {
       backgroundColor,
       borderRadius: 4,
