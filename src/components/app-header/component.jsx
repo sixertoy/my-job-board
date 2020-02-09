@@ -46,15 +46,15 @@ const AppHeaderComponent = React.memo(({ changeTheme, classes }) => {
       </div>
       <div>
         <button
-          className={classes.themeNight}
-          type="button"
-          onClick={changeTheme('night')}>
-          &nbsp;
-        </button>
-        <button
           className={classes.themeDay}
           type="button"
           onClick={changeTheme('day')}>
+          &nbsp;
+        </button>
+        <button
+          className={classes.themeNight}
+          type="button"
+          onClick={changeTheme('night')}>
           &nbsp;
         </button>
       </div>

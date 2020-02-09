@@ -7,7 +7,7 @@ import {
   IoMdCalendar,
   IoMdHome,
 } from 'react-icons/io';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const styles = theme => ({
   container: ({ theme: name }) => ({
@@ -20,31 +20,38 @@ const styles = theme => ({
       'no-no-flex-grow',
     ],
   }),
-  item: ({ theme: name }) => ({
-    '&:hover': { color: theme.colors[name].background },
-    color: theme.colors[name].color,
+  item: {
+    '&.active': { color: theme.colors.white },
+    '&:hover': { color: theme.colors.white },
+    color: `${theme.colors.white}33`,
     composes: ['is-block', 'fs20', 'my12'],
-  }),
+  },
 });
 
 const AppMenuComponent = React.memo(({ classes }) => {
   return (
     <div className={classes.container} id="app-menu">
       <nav className={classes.top}>
-        <Link className={classes.item} to="/">
+        <NavLink exact activeClassName="active" className={classes.item} to="/">
           <IoMdHome />
-        </Link>
-        <Link className={classes.item} to="/board">
+        </NavLink>
+        <NavLink activeClassName="active" className={classes.item} to="/board">
           <IoIosListBox />
-        </Link>
-        <Link className={classes.item} to="/calendar">
+        </NavLink>
+        <NavLink
+          activeClassName="active"
+          className={classes.item}
+          to="/calendar">
           <IoMdCalendar />
-        </Link>
+        </NavLink>
       </nav>
       <nav className={classes.bottom}>
-        <Link className={classes.item} to="/options">
+        <NavLink
+          activeClassName="active"
+          className={classes.item}
+          to="/options">
           <IoIosOptions />
-        </Link>
+        </NavLink>
       </nav>
     </div>
   );
