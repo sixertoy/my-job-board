@@ -8,11 +8,11 @@ import {
   IoMdHome,
 } from 'react-icons/io';
 import { NavLink } from 'react-router-dom';
-import ReactTooltip from 'react-tooltip';
+// import ReactTooltip from 'react-tooltip';
 
 const styles = theme => ({
-  container: ({ theme: name }) => ({
-    backgroundColor: theme.colors[name].active,
+  container: {
+    backgroundColor: theme.colors.black,
     composes: [
       'is-full-height',
       'px12',
@@ -20,19 +20,20 @@ const styles = theme => ({
       'flex-between',
       'no-no-flex-grow',
     ],
-  }),
+  },
   item: {
-    '&.active': { color: theme.colors.white },
-    '&:hover': { color: theme.colors.white },
+    '&.active': { color: theme.colors.blue },
+    '&:hover': { color: theme.colors.blue },
     color: `${theme.colors.white}33`,
-    composes: ['is-block', 'fs20', 'my12'],
+    composes: ['is-block', 'fs24', 'my24'],
+    transition: 'color 0.5s',
   },
   tooltipOpaque: {
     opacity: '1 !important',
   },
 });
 
-const AppMenuComponent = React.memo(({ classes, tooltipType }) => {
+const AppMenuComponent = React.memo(({ classes }) => {
   return (
     <div className={classes.container} id="app-menu">
       <nav className={classes.top}>
@@ -42,44 +43,38 @@ const AppMenuComponent = React.memo(({ classes, tooltipType }) => {
         <NavLink
           activeClassName="active"
           className={classes.item}
-          data-for="menu-toolip"
-          data-tip="hello board"
+          // data-for="menu-toolip"
+          // data-tip="hello board"
           to="/board">
           <IoIosListBox />
         </NavLink>
         <NavLink
           activeClassName="active"
           className={classes.item}
-          data-for="menu-toolip"
-          data-tip="hello calendar"
           to="/calendar">
           <IoMdCalendar />
         </NavLink>
-      </nav>
-      <nav className={classes.bottom}>
         <NavLink
           activeClassName="active"
           className={classes.item}
-          data-for="menu-toolip"
-          data-tip="hello options"
           to="/settings">
           <IoIosOptions />
         </NavLink>
       </nav>
-      <ReactTooltip
+      {/* <ReactTooltip
         className={classes.tooltipOpaque}
         effect="solid"
         id="menu-toolip"
         place="right"
         type={tooltipType}
-      />
+      /> */}
     </div>
   );
 });
 
 AppMenuComponent.propTypes = {
   classes: PropTypes.shape().isRequired,
-  tooltipType: PropTypes.string.isRequired,
+  // tooltipType: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(AppMenuComponent);

@@ -54,8 +54,9 @@ const styles = theme => ({
   wrapper: ({ theme: name }) => {
     const width = 800;
     return {
-      backgroundColor: theme.colors[name].color,
+      backgroundColor: theme.colors[name].background,
       borderRadius: 7,
+      color: theme.colors[name].color,
       composes: ['p24', 'columns', 'is-relative'],
       maxWidth: width,
       minWidth: width,
