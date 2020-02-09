@@ -4,7 +4,14 @@
   "private": true,
   "main": "./main.js",
   "homepage": "https://jobs.keepyouposted.io/",
-  "repository": "https://sixertoy.github.io/my-job-board/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sixertoy/my-job-board/cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sixertoy/my-job-board/issues",
+    "email": "sixertoy.github@gmail.com"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
