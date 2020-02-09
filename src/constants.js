@@ -7,6 +7,7 @@ export const CARD_STATUS = {
 };
 
 export const EVENT_TYPES = {
+  FORTUNE_COOKIES_LOADED: 'onFortuneCookiesLoaded',
   LOADING_COMPLETE: 'onloadingcomplete',
   LOADING_START: 'onloadingstart',
   OFFERS_LOADED: 'onoffersloaded',

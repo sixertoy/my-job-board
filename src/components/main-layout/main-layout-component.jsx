@@ -1,6 +1,6 @@
 import { withStyles } from '@iziges/napper-core-react';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import AppHeaderComponent from '../app-header';
@@ -26,13 +26,9 @@ const styles = theme => ({
 });
 
 const MainLayoutComponent = ({ classes, loadFeeds, loading }) => {
-  const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
-    if (!isMounted) {
-      setIsMounted(true);
-      loadFeeds();
-    }
-  }, [isMounted, loadFeeds]);
+    loadFeeds();
+  }, [loadFeeds]);
   return (
     <div className={classes.container}>
       <div className={classes.layout} id="app-layout">

@@ -1,4 +1,4 @@
-import { arrayOf, bool, oneOfType, shape, string } from 'prop-types';
+import { arrayOf, bool, number, oneOfType, shape, string } from 'prop-types';
 
 function getMessage(propName, componentName) {
   return (
@@ -27,5 +27,9 @@ const offer = shape({
   title: string,
 });
 export const OfferType = oneOfType([bool, offer]);
-
 export const OffersType = arrayOf(OfferType);
+
+export const FortuneType = shape({
+  numbers: arrayOf(number),
+});
+export const FortunesType = oneOfType([bool, FortuneType]);

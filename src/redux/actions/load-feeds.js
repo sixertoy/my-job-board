@@ -2,7 +2,7 @@
 import orderby from 'lodash.orderby';
 
 import { EVENT_TYPES } from '../../constants';
-import fetchOffersFromFeed from '../../proxies/fetch-offers-from-feed';
+import fetchOffersFromFeed from '../../services/fetch-offers-from-feed';
 import { loadingComplete, loadingStart } from './loading';
 
 function feedsToArray(feeds) {
@@ -39,7 +39,7 @@ const loadFeeds = () => (dispatch, getstate) => {
       dispatch({ now, offers, type: EVENT_TYPES.OFFERS_LOADED });
     })
     .catch(err => {
-      // NOTE remplacer par le logger
+      // TODO remplacer par le logger
       console.log(err);
     })
     .finally(() => {
