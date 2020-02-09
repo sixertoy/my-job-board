@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { connect } from 'react-redux';
 
-import { UPDATE_INTERVAL_MS } from '../../../constants';
+import { UPDATE_INTERVAL_MS } from '../../../../constants';
 import KanbanBoardHeaderComponent from './component';
 
 const mapStateToProps = state => {

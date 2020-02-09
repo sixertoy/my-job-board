@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { loadFeeds } from '../../../redux/actions';
+import { loadFeeds } from '../../../../redux/actions';
 import KanbanBoardSettingsComponent from './component';
 
 const mapStateToProps = () => ({});

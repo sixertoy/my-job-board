@@ -5,8 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import AppHeaderComponent from '../app-header';
 import AppMenuComponent from '../app-menu';
-import { ViewHomeComponent } from '../app-views';
-import KanbanBoardComponent from '../board';
+import { ViewHomeComponent, ViewKanbanBoardComponent } from '../app-views';
 import ProgressBar from '../progress-bar';
 
 const styles = theme => ({
@@ -41,7 +40,7 @@ const MainLayoutComponent = ({ classes, loadFeeds, loading }) => {
               <Route exact component={ViewHomeComponent} path="/" />
               <Route
                 exact
-                component={KanbanBoardComponent}
+                component={ViewKanbanBoardComponent}
                 path="/board/:id?"
               />
             </Switch>

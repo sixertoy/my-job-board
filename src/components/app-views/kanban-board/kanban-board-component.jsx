@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom';
 
 // import { DragDropContext } from 'react-dnd';
 // import HTML5Backend from 'react-dnd-html5-backend';
-import { CARD_STATUS } from '../../constants';
+import { CARD_STATUS } from '../../../constants';
 import KanbanBoardColumnComponent from './column';
 import KanbanBoardHeaderComponent from './header';
 import KanbanBoardPreviewComponent from './preview';

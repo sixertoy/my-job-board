@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import { CARD_STATUS } from '../../../constants';
-import { selectOffersByType } from '../../../redux/selectors';
+import { CARD_STATUS } from '../../../../constants';
+import { selectOffersByType } from '../../../../redux/selectors';
 import KanbanBoardColumnComponent from './component';
 
 function getTitleByType(type) {

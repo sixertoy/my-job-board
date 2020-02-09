@@ -5,7 +5,7 @@ import React from 'react';
 import { IoMdCloseCircle } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 
-import { OfferType } from '../../../prop-types';
+import { OfferType } from '../../../../prop-types';
 
 const styles = theme => ({
   buttonClose: {

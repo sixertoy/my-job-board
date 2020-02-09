@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { selectOpenedCardById } from '../../../redux/selectors';
+import { selectOpenedCardById } from '../../../../redux/selectors';
 import KanbanBoardCardPreview from './component';
 
 const mapStateToProps = (state, { id }) => {
