@@ -15,11 +15,14 @@ const ViewHomeComponent = ({ classes, fortune, loadFortunes }) => {
   return (
     <div className={classes.container}>
       <div>Welcome</div>
+
       {fortune && (
-        <React.Fragment>
+        <div>
           <div>{fortune.message}</div>
           <div>{fortune.numbers.join(' | ')}</div>
-        </React.Fragment>
+          <div>{fortune.tips.title}</div>
+          <div>{fortune.tips.tip}</div>
+        </div>
       )}
     </div>
   );

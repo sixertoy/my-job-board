@@ -2,11 +2,12 @@
 
 import { EVENT_TYPES } from '../../constants';
 import fetchFortuneCookies from '../../services/fetch-fortune-cookies';
+import fetchGipTips from '../../services/fetch-git-tips';
 
 const loadFortuneCookies = () => dispatch => {
-  const promise = fetchFortuneCookies();
-  return promise
-    .then(data => {
+  return Promise.all([fetchFortuneCookies(), fetchGipTips()])
+    .then(([fortune, tips]) => {
+      const data = { ...fortune, tips };
       dispatch({ data, type: EVENT_TYPES.FORTUNE_COOKIES_LOADED });
     })
     .catch(err => {
