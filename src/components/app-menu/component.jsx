@@ -10,8 +10,8 @@ import {
 import { Link } from 'react-router-dom';
 
 const styles = theme => ({
-  container: {
-    backgroundColor: theme.colors.blue,
+  container: ({ theme: name }) => ({
+    backgroundColor: theme.colors[name].blue,
     composes: [
       'is-full-height',
       'px12',
@@ -19,12 +19,12 @@ const styles = theme => ({
       'flex-between',
       'no-no-flex-grow',
     ],
-  },
-  item: {
-    '&:hover': { color: theme.colors.dark },
-    color: theme.colors.white,
+  }),
+  item: ({ theme: name }) => ({
+    '&:hover': { color: theme.colors[name].dark },
+    color: theme.colors[name].white,
     composes: ['is-block', 'fs20', 'my12'],
-  },
+  }),
 });
 
 const AppMenuComponent = React.memo(({ classes }) => {

@@ -5,17 +5,17 @@ import React from 'react';
 
 const styles = theme => ({
   container: {
-    backgroundColor: theme.colors.dark,
+    backgroundColor: theme.colors.day.dark,
     composes: ['is-relative'],
     height: 4,
   },
   loader: {
     '&, &::before': {
-      backgroundColor: theme.colors.blue,
+      backgroundColor: theme.colors.day.blue,
       height: 4,
     },
     '&::before': {
-      backgroundColor: theme.colors.gray,
+      backgroundColor: theme.colors.day.gray,
       composes: ['is-block', 'is-absolute'],
       content: '""',
       left: -200,

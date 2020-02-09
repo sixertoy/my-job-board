@@ -29,6 +29,7 @@ const INITIAL_VALUES = {
   offers: [],
   openedCard: false,
   search: '',
+  theme: 'day',
 };
 
 export const reduxPersistConfig = {

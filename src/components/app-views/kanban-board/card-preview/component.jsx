@@ -37,8 +37,8 @@ const styles = theme => ({
     composes: ['fs14'],
     lineHeight: '1.4rem',
   },
-  sourceLink: () => {
-    const backgroundColor = theme.colors.gray;
+  sourceLink: ({ theme: name }) => {
+    const backgroundColor = theme.colors[name].gray;
     return {
       backgroundColor,
       borderRadius: 4,
@@ -51,10 +51,10 @@ const styles = theme => ({
   title: {
     composes: ['fs20', 'is-bold', 'mb12'],
   },
-  wrapper: () => {
+  wrapper: ({ theme: name }) => {
     const width = 800;
     return {
-      backgroundColor: theme.colors.white,
+      backgroundColor: theme.colors[name].white,
       borderRadius: 7,
       composes: ['p24', 'columns', 'is-relative'],
       maxWidth: width,

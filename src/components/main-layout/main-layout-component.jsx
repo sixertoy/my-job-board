@@ -9,10 +9,10 @@ import { ViewHomeComponent, ViewKanbanBoardComponent } from '../app-views';
 import ProgressBar from '../progress-bar';
 
 const styles = theme => ({
-  container: {
-    backgroundColor: theme.colors.dark,
+  container: ({ theme: name }) => ({
+    backgroundColor: theme.colors[name].dark,
     composes: ['is-full-layout'],
-  },
+  }),
   layout: {
     composes: ['flex-columns', 'is-full-layout', 'no-overflow'],
   },

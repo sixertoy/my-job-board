@@ -19,9 +19,10 @@ function getTitleByType(type) {
 }
 
 const mapStateToProps = (state, { type }) => {
+  const { theme } = state;
   const title = getTitleByType(type);
   const offers = selectOffersByType(state, type);
-  return { offers, title };
+  return { offers, theme, title };
 };
 
 const mapDispatchToProps = () => ({});

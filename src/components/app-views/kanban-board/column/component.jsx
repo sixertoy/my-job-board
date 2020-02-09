@@ -22,8 +22,8 @@ const styles = theme => ({
   count: {
     composes: ['fs11', 'is-italic'],
   },
-  header: () => {
-    const color = `${theme.colors.white}66`;
+  header: ({ theme: name }) => {
+    const color = `${theme.colors[name].white}66`;
     return {
       color,
       composes: ['mb12', 'text-center'],

@@ -4,8 +4,9 @@ import { selectOpenedCardById } from '../../../../redux/selectors';
 import KanbanBoardCardPreviewComponent from './component';
 
 const mapStateToProps = (state, { id }) => {
+  const { theme } = state;
   const offer = selectOpenedCardById(state, id);
-  return { offer };
+  return { offer, theme };
 };
 
 const mapDispatchToProps = () => ({});

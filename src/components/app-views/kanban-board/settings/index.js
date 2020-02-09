@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import { loadFeeds } from '../../../../redux/actions';
 import KanbanBoardSettingsComponent from './component';
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => {
+  const { theme } = state;
+  return { theme };
+};
 
 const mapDispatchToProps = dispatch => ({
   forceRefresh: () => dispatch(loadFeeds()),

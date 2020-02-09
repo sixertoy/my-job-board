@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const styles = theme => ({
-  container: {
-    backgroundColor: theme.colors.dark,
-    color: theme.colors.white,
+  container: ({ theme: name }) => ({
+    backgroundColor: theme.colors[name].dark,
+    color: theme.colors[name].white,
     composes: ['p24'],
     height: 'auto',
-  },
+  }),
 });
 
 const AppHeaderComponent = React.memo(({ classes }) => {
