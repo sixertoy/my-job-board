@@ -2,7 +2,7 @@ import { withStyles } from '@iziges/napper-core-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { getCardStatusSelectValues } from './utils';
+import { getCardStatusSelectValues } from '../utils';
 
 const styles = theme => ({
   container: {

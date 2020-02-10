@@ -5,9 +5,10 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 import { OfferType } from '../../../../prop-types';
+import KanbanBoardCardPreviewDeleteComponent from './actions/delete';
+import KanbanBoardCardPreviewActionsComponent from './actions/open-source';
+import KanbanBoardCardPreviewStatusComponent from './actions/status';
 import KanbanBoardCardPreviewCloseComponent from './close';
-import KanbanBoardCardPreviewSourceComponent from './source';
-import KanbanBoardCardPreviewStatusComponent from './status';
 
 const styles = theme => ({
   card: ({ theme: name }) => {
@@ -86,11 +87,12 @@ const KanbanBoardCardPreviewComponent = ({
             theme="night"
             onChange={onChangeStatus}
           />
-          <KanbanBoardCardPreviewSourceComponent
+          <KanbanBoardCardPreviewActionsComponent
             link={offer.link}
             origin={offer.sourceKey}
             theme="night"
           />
+          <KanbanBoardCardPreviewDeleteComponent id={offer.id} theme="night" />
           <div className={classes.date}>
             <i className="is-block">{date.format('LLLL')}</i>
           </div>

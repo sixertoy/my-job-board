@@ -1,10 +1,10 @@
 const blue = '#2980B9';
-const white = '#D7DAE0';
+const white = '#FFFFFF';
 const black = '#282C34';
 const dark = '#21252B';
 const gray = '#DDDDDD';
 const grey = '#9DA5B4';
-// const hover = '#36353A';
+// const red = '#E06C75';
 
 export const UIthemes = {
   day: {
@@ -13,6 +13,7 @@ export const UIthemes = {
     border: '#181A1F',
     button: '#646668',
     color: '#D7DAE0',
+    danger: '#E06C75',
     disabled: '#6B727C',
     foreground: '#21252B',
     highlight: '#2C313C',
@@ -26,6 +27,7 @@ export const UIthemes = {
     border: '#181A1F',
     button: '#646668',
     color: '#D7DAE0',
+    danger: '#E06C75',
     disabled: '#6B727C',
     foreground: '#21252B',
     highlight: '#2C313C',
