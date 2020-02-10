@@ -1,7 +1,6 @@
 import { withStyles } from '@iziges/napper-core-react';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   container: ({ theme: name }) => ({
@@ -14,9 +13,9 @@ const styles = theme => ({
   },
 });
 
-const KanbanBoardCardPreviewDeleteComponent = ({ classes, id }) => (
+const KanbanBoardCardPreviewDeleteComponent = ({ classes, onClick }) => (
   <div className={classes.container}>
-    <button type="button" onClick={() => {}}>
+    <button type="button" onClick={onClick}>
       <span className={classes.label}>Supprimer</span>
     </button>
   </div>
@@ -26,7 +25,7 @@ KanbanBoardCardPreviewDeleteComponent.defaultProps = {};
 
 KanbanBoardCardPreviewDeleteComponent.propTypes = {
   classes: PropTypes.shape().isRequired,
-  id: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(KanbanBoardCardPreviewDeleteComponent);

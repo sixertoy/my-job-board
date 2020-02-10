@@ -60,6 +60,7 @@ const KanbanBoardCardPreviewComponent = ({
   classes,
   offer,
   onChangeStatus,
+  onDelete,
 }) => {
   if (!offer) return <Redirect to="/board" />;
   const date = moment(offer.date);
@@ -92,7 +93,11 @@ const KanbanBoardCardPreviewComponent = ({
             origin={offer.sourceKey}
             theme="night"
           />
-          <KanbanBoardCardPreviewDeleteComponent id={offer.id} theme="night" />
+          <KanbanBoardCardPreviewDeleteComponent
+            id={offer.id}
+            theme="night"
+            onClick={onDelete}
+          />
           <div className={classes.date}>
             <i className="is-block">{date.format('LLLL')}</i>
           </div>
@@ -107,6 +112,7 @@ KanbanBoardCardPreviewComponent.propTypes = {
   // TODO creation d'un custom proptype pour les offer
   offer: OfferType.isRequired,
   onChangeStatus: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(KanbanBoardCardPreviewComponent);
