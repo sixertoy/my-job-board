@@ -8,27 +8,30 @@ const grey = '#9DA5B4';
 
 export const UIthemes = {
   day: {
-    active: blue,
-    background: gray,
-    color: dark,
-    foreground: dark,
+    active: '#6494ED',
+    background: '#282C34',
+    border: '#181A1F',
+    button: '#646668',
+    color: '#D7DAE0',
+    disabled: '#6B727C',
+    foreground: '#21252B',
+    highlight: '#2C313C',
+    popup: '#2F3237',
+    scrollbar: '#4B5362',
+    shadow: '#3B4048',
   },
   night: {
     active: '#6494ED',
     background: '#282C34',
     border: '#181A1F',
+    button: '#646668',
     color: '#D7DAE0',
     disabled: '#6B727C',
     foreground: '#21252B',
     highlight: '#2C313C',
+    popup: '#2F3237',
     scrollbar: '#4B5362',
     shadow: '#3B4048',
-  },
-  nnight: {
-    active: blue,
-    background: gray,
-    color: dark,
-    foreground: dark,
   },
 };
 

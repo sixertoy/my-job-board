@@ -2,22 +2,18 @@ import { withStyles } from '@iziges/napper-core-react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { IoMdCloseCircle } from 'react-icons/io';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import { OfferType } from '../../../../prop-types';
+import KanbanBoardCardPreviewCloseComponent from './close';
+import KanbanBoardCardPreviewSourceComponent from './source';
 import KanbanBoardCardPreviewStatusComponent from './status';
 
 const styles = theme => ({
-  buttonClose: {
-    composes: ['is-absolute', 'fs24'],
-    right: 12,
-    top: 12,
-  },
   card: ({ theme: name }) => {
     const width = 800;
     return {
-      backgroundColor: theme.colors[name].foreground,
+      backgroundColor: theme.colors[name].popup,
       borderRadius: 7,
       color: theme.colors[name].color,
       composes: ['p24', 'columns', 'is-relative'],
@@ -51,13 +47,8 @@ const styles = theme => ({
     composes: ['fs14'],
     lineHeight: '1.4rem',
   },
-  sourceLink: ({ theme: name }) => {
-    const backgroundColor = theme.colors[name].gray;
-    return {
-      backgroundColor,
-      borderRadius: 4,
-      composes: ['p7', 'fs14', 'mb12'],
-    };
+  published: {
+    composes: ['is-block', 'mb5'],
   },
   title: {
     composes: ['fs20', 'is-bold', 'mb12'],
@@ -75,11 +66,11 @@ const KanbanBoardCardPreviewComponent = ({
   return (
     <div className={classes.container} id={`offer-${offer.id}`}>
       <div className={classes.card}>
-        <Link className={classes.buttonClose} to="/board">
-          <IoMdCloseCircle />
-        </Link>
+        <KanbanBoardCardPreviewCloseComponent theme="night" />
         <div className={classes.columnLeft}>
-          <span className="is-block mb5">publi&eacute;&nbsp;{fromnow}</span>
+          <span className={classes.published}>
+            publi&eacute;&nbsp;{fromnow}
+          </span>
           <h3 className={classes.title}>
             <span>{offer.title}</span>
           </h3>
@@ -95,12 +86,11 @@ const KanbanBoardCardPreviewComponent = ({
             theme="night"
             onChange={onChangeStatus}
           />
-          <div className={classes.sourceLink}>
-            <Link to={offer.link}>
-              <span>Voir l&apos;offre sur &nbsp;</span>
-              <span>{offer.sourceKey}</span>
-            </Link>
-          </div>
+          <KanbanBoardCardPreviewSourceComponent
+            link={offer.link}
+            origin={offer.sourceKey}
+            theme="night"
+          />
           <div className={classes.date}>
             <i className="is-block">{date.format('LLLL')}</i>
           </div>

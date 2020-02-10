@@ -9,8 +9,8 @@ const styles = theme => ({
     composes: ['mb12'],
   },
   select: ({ theme: name }) => ({
-    backgroundColor: theme.colors[name].background,
-    color: theme.colors[name].disabled,
+    backgroundColor: theme.colors[name].button,
+    color: theme.colors[name].color,
     composes: ['fs12', 'is-uppercase'],
     height: 32,
     width: '100%',
