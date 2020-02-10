@@ -39,7 +39,7 @@
       2,
       { "checkAttributes": false, "indentLogicalExpressions": true }
     ],
-    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [2, { "extensions": [".jsx"] }],
     "react/jsx-fragments": [2, "element"],
     "react/jsx-indent-props": [2, 2],
     "react/jsx-props-no-spreading": 0,
