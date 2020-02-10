@@ -16,7 +16,7 @@ const styles = theme => ({
   container: {
     composes: ['m5', 'px12'],
     maxHeight: '100%',
-    minWidth: 300,
+    minWidth: 290,
     width: '25%',
   },
   count: {

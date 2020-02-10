@@ -13,6 +13,7 @@ import { NavLink } from 'react-router-dom';
 const styles = theme => ({
   container: ({ theme: name }) => ({
     backgroundColor: theme.colors[name].foreground,
+    borderRight: `1px solid ${theme.colors[name].border}`,
     composes: [
       'is-full-height',
       'px12',

@@ -17,8 +17,7 @@ const styles = theme => ({
   },
   views: ({ theme: name }) => ({
     backgroundColor: theme.colors[name].background,
-    borderRadius: '8px 8px 0 0',
-    composes: ['flex-columns', 'no-overflow'],
+    composes: ['flex-columns', 'no-overflow', 'pb12'],
   }),
   wrapper: {
     composes: ['is-full-height', 'flex-rows', 'no-overflow'],

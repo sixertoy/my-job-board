@@ -12,7 +12,13 @@ import KanbanBoardHeaderComponent from './header';
 
 const styles = theme => ({
   columns: {
-    composes: ['flex-1', 'flex-columns', 'scroll-x', 'fancy-scrollbar', 'pb32'],
+    composes: [
+      'flex-1',
+      'flex-columns',
+      'is-scrollable-x',
+      'fancy-scrollbar',
+      'pb32',
+    ],
   },
   container: {
     composes: ['is-relative', 'flex-rows', 'no-overflow'],
