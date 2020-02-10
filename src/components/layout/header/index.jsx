@@ -4,9 +4,9 @@ import classnames from 'classnames';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { FaBars } from 'react-icons/fa';
+import { FaPlus } from 'react-icons/fa';
 
-import ContextMenu from './context-menu';
+import ContextMenus from './context-menus';
 
 const styles = theme => ({
   container: {
@@ -24,11 +24,9 @@ const styles = theme => ({
       backgroundColor: '#FFFFFF',
       borderRadius: '0 4px 4px 0',
     },
-    '&:hover:not(.active)': {
-      backgroundColor: '#FFFFFF',
-      borderRadius: 4,
-    },
-    composes: ['p12'],
+    backgroundColor: '#FFFFFF',
+    borderRadius: 4,
+    composes: ['p12', 'use-pointer', 'fs14'],
   },
   title: {
     composes: ['is-uppercase', 'is-bold'],
@@ -61,7 +59,7 @@ const AppHeaderComponent = React.memo(({ classes }) => {
             interactive
             arrow={false}
             className={classes.tooltip}
-            content={<ContextMenu />}
+            content={<ContextMenus />}
             interactiveBorder={30}
             placement="left-start"
             theme="light-border"
@@ -72,7 +70,7 @@ const AppHeaderComponent = React.memo(({ classes }) => {
               className={classnames(classes.menu, {
                 active: tooltipIsVisible,
               })}>
-              <FaBars />
+              <FaPlus />
             </div>
           </Tippy>
         </div>
