@@ -18,7 +18,7 @@ const styles = theme => ({
   },
   views: ({ theme: name }) => ({
     backgroundColor: theme.colors[name].background,
-    composes: ['flex-columns', 'no-overflow', 'pb12'],
+    composes: ['flex-columns', 'no-overflow', 'flex-1'],
   }),
   wrapper: {
     composes: ['is-full-height', 'flex-rows', 'no-overflow'],
@@ -30,7 +30,7 @@ const MainLayoutComponent = ({ classes, loadFeeds, loading }) => {
     loadFeeds();
   }, [loadFeeds]);
   return (
-    <div className={classes.container}>
+    <div className={classes.container} id="app-container">
       <div className={classes.layout} id="app-layout">
         <AppMenuComponent />
         <div className={classes.wrapper} id="app-wrapper">

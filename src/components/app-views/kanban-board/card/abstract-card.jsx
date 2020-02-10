@@ -4,19 +4,16 @@ import React from 'react';
 
 const styles = theme => ({
   container: ({ theme: name }) => ({
-    backgroundColor: `${theme.colors[name].foreground}66`,
+    backgroundColor: theme.colors[name].foreground,
     borderRadius: 5,
     color: theme.colors[name].color,
-    composes: ['p12', 'no-select'],
+    composes: ['p12', 'no-select', 'shadowed'],
   }),
-  source: ({ theme: name }) => {
-    const backgroundColor = `${theme.colors[name].color}11`;
-    return {
-      backgroundColor,
-      borderRadius: 4,
-      composes: ['is-inline-block', 'fs10', 'px7', 'py5', 'mb7'],
-    };
-  },
+  source: ({ theme: name }) => ({
+    backgroundColor: theme.colors[name].background,
+    borderRadius: 4,
+    composes: ['is-inline-block', 'fs10', 'px7', 'py5', 'mb7'],
+  }),
   title: {
     composes: ['fs14'],
     lineHeight: '1.5rem',

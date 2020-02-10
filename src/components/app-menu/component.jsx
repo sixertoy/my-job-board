@@ -1,6 +1,7 @@
 import { withStyles } from '@iziges/napper-core-react';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { FaTasks } from 'react-icons/fa';
 import {
   IoIosListBox,
   IoIosOptions,
@@ -54,6 +55,9 @@ const AppMenuComponent = React.memo(({ classes }) => {
           className={classes.item}
           to="/calendar">
           <IoMdCalendar />
+        </NavLink>
+        <NavLink activeClassName="active" className={classes.item} to="/tasks">
+          <FaTasks />
         </NavLink>
         <NavLink
           activeClassName="active"

@@ -44,6 +44,11 @@ body {
   @extend .is-full-layout;
 }
 
+.shadowed {
+  -webkit-box-shadow: 5px 5px 20px -10px rgba(0, 0, 0, 0.25);
+  box-shadow: 5px 5px 20px -10px rgba(0, 0, 0, 0.25);
+}
+
 .no-no-flex-shrink {
   flex: 1 0 !important;
 }
