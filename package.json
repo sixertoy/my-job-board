@@ -1,6 +1,6 @@
 {
   "name": "my-job-board",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "private": true,
   "main": "./main.js",
   "homepage": "https://jobs.keepyouposted.io/",
