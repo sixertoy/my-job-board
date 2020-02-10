@@ -23,13 +23,13 @@ const styles = theme => ({
       'no-no-flex-grow',
     ],
   }),
-  item: {
-    '&.active': { color: theme.colors.blue },
-    '&:hover': { color: theme.colors.blue },
-    color: `${theme.colors.white}33`,
+  item: ({ theme: name }) => ({
+    '&.active': { color: theme.colors[name].active },
+    '&:hover': { color: theme.colors[name].active },
+    color: `${theme.colors[name].disabled}66`,
     composes: ['is-block', 'fs24', 'my24'],
     transition: 'color 0.5s',
-  },
+  }),
   tooltipOpaque: {
     opacity: '1 !important',
   },

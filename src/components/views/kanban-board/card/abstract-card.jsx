@@ -7,7 +7,7 @@ const styles = theme => ({
     backgroundColor: theme.colors[name].foreground,
     borderRadius: 5,
     color: theme.colors[name].color,
-    composes: ['p12', 'no-select', 'shadowed'],
+    composes: ['p12', 'no-select'],
   }),
   source: ({ theme: name }) => ({
     backgroundColor: theme.colors[name].background,
