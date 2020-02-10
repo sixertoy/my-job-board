@@ -2,6 +2,9 @@ import { withStyles } from '@iziges/napper-core-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { UIthemes } from '../../../theme';
+import { getAvailableThemes } from './utils';
+
 const BUTTON_SIZE = 12;
 const square = {
   height: BUTTON_SIZE,
@@ -12,36 +15,30 @@ const square = {
   width: BUTTON_SIZE,
 };
 
-const styles = theme => ({
-  container: ({ theme: name }) => ({
-    border: `1px solid ${theme.colors[name].border}`,
-  }),
-  themeDay: {
-    backgroundColor: theme.colors.day.background,
-    ...square,
-  },
-  themeNight: {
-    backgroundColor: theme.colors.night.background,
-    ...square,
-  },
-});
+const styles = theme => {
+  const themes = getAvailableThemes(theme, square);
+  return {
+    container: ({ theme: name }) => ({
+      border: `1px solid ${theme.colors[name].border}`,
+    }),
+    ...themes,
+  };
+};
 
-const AppFooterThemeRollerComponent = ({ changeTheme, classes }) => (
-  <div className={classes.container}>
-    <button
-      className={classes.themeDay}
-      type="button"
-      onClick={changeTheme('day')}>
-      &nbsp;
-    </button>
-    <button
-      className={classes.themeNight}
-      type="button"
-      onClick={changeTheme('night')}>
-      &nbsp;
-    </button>
-  </div>
-);
+const AppFooterThemeRollerComponent = ({ changeTheme, classes }) => {
+  return (
+    <div className={classes.container}>
+      {Object.keys(UIthemes).map(key => (
+        <button
+          className={classes[key]}
+          type="button"
+          onClick={changeTheme(key)}>
+          &nbsp;
+        </button>
+      ))}
+    </div>
+  );
+};
 
 AppFooterThemeRollerComponent.defaultProps = {};
 

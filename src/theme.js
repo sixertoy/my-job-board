@@ -8,7 +8,7 @@ const grey = '#9DA5B4';
 
 export const UIthemes = {
   day: {
-    active: '#1A73E8',
+    active: '#5BB895',
     background: '#FEFEFE',
     border: '#E4E6E8',
     button: '#FFFFFF',
@@ -16,6 +16,20 @@ export const UIthemes = {
     danger: '#DA402B',
     disabled: '#5F6368',
     foreground: '#F5F5F5',
+    highlight: '#2C313C',
+    popup: '#2F3237',
+    scrollbar: '#C9C9C9',
+    shadow: '#F3F5F5',
+  },
+  lodash: {
+    active: '#3491FD',
+    background: '#FFFFFF',
+    border: '#DCDCDC',
+    button: '#FFFFFF',
+    color: '#8C8C8C',
+    danger: '#DA402B',
+    disabled: '#5F5F5F',
+    foreground: '#FFFFFF',
     highlight: '#2C313C',
     popup: '#2F3237',
     scrollbar: '#C9C9C9',
