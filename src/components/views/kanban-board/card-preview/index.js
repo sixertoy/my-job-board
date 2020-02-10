@@ -5,9 +5,8 @@ import { selectOpenedCardById } from '../../../../redux/selectors';
 import KanbanBoardCardPreviewComponent from './component';
 
 const mapStateToProps = (state, { id }) => {
-  const { theme } = state;
   const offer = selectOpenedCardById(state, id);
-  return { id, offer, theme };
+  return { id, offer };
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -21,13 +20,12 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mergeProps = (
-  { id, offer, theme },
+  { id, offer },
   { onChangeStatusHandler, onDeleteHandler }
 ) => ({
   offer,
   onChangeStatus: status => onChangeStatusHandler(id, status),
   onDelete: () => onDeleteHandler(id),
-  theme,
 });
 
 export default connect(

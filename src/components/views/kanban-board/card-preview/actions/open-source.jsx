@@ -4,11 +4,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const styles = theme => ({
-  container: ({ theme: name }) => ({
-    backgroundColor: theme.colors[name].active,
+  container: {
+    backgroundColor: theme.colors.active,
     borderRadius: 4,
     composes: ['px7', 'py24', 'fs14', 'mb12', 'text-center'],
-  }),
+  },
   label: {
     color: theme.colors.white,
   },

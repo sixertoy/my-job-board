@@ -7,7 +7,11 @@ const mapStateToProps = state => {
   return { feeds };
 };
 
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = () => ({
+  addFeedHandler: values => {
+    console.log('rest', values);
+  },
+});
 
 export default connect(
   mapStateToProps,

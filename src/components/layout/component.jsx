@@ -9,17 +9,17 @@ import AppMenuComponent from './menu';
 import ProgressBar from './progress-bar';
 
 const styles = theme => ({
-  container: ({ theme: name }) => ({
-    backgroundColor: theme.colors[name].foreground,
+  container: {
+    backgroundColor: theme.colors.foreground,
     composes: ['is-full-layout', 'flex-rows'],
-  }),
+  },
   layout: {
     composes: ['flex-columns', 'flex-1', 'no-overflow'],
   },
-  views: ({ theme: name }) => ({
-    backgroundColor: theme.colors[name].background,
+  views: {
+    backgroundColor: theme.colors.background,
     composes: ['flex-columns', 'no-overflow', 'flex-1'],
-  }),
+  },
   wrapper: {
     composes: ['is-full-height', 'flex-rows', 'no-overflow'],
   },

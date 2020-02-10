@@ -5,16 +5,16 @@ import { IoMdCloseCircle } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 
 const styles = theme => ({
-  container: ({ theme: name }) => ({
+  container: {
     '&:hover': {
-      color: theme.colors[name].active,
+      color: theme.colors.active,
     },
-    color: theme.colors[name].button,
+    color: theme.colors.button,
     composes: ['is-absolute', 'fs24'],
     right: 12,
     top: 12,
     transition: 'color 0.5s',
-  }),
+  },
 });
 
 const KanbanBoardCardPreviewCloseComponent = ({ classes }) => (

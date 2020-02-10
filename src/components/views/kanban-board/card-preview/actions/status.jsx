@@ -8,13 +8,13 @@ const styles = theme => ({
   container: {
     composes: ['mb12'],
   },
-  select: ({ theme: name }) => ({
-    backgroundColor: theme.colors[name].button,
-    color: theme.colors[name].color,
+  select: {
+    backgroundColor: theme.colors.button,
+    color: theme.colors.color,
     composes: ['fs12', 'is-uppercase'],
     height: 32,
     width: '100%',
-  }),
+  },
 });
 
 const KanbanBoardCardPreviewStatusComponent = ({

@@ -5,10 +5,10 @@ import { IoIosRefresh } from 'react-icons/io';
 
 const styles = theme => ({
   container: {},
-  refresh: ({ theme: name }) => ({
-    color: theme.colors[name].color,
+  refresh: {
+    color: theme.colors.color,
     composes: ['fs12'],
-  }),
+  },
 });
 
 const KanbanBoardSettingsComponent = ({ classes, forceRefresh }) => (

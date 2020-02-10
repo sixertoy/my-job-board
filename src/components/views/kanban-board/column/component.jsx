@@ -19,17 +19,17 @@ const styles = theme => ({
     minWidth: 299,
     width: '25%',
   },
-  count: ({ theme: name }) => ({
-    backgroundColor: theme.colors[name].border,
+  count: {
+    backgroundColor: theme.colors.border,
     borderRadius: 12,
-    color: theme.colors[name].disabled,
+    color: theme.colors.disabled,
     composes: ['px7', 'py5', 'fs11', 'is-italic', 'text-right'],
     maxWidth: 40,
     minWidth: 40,
     width: 40,
-  }),
-  header: ({ theme: name }) => ({
-    color: `${theme.colors[name].color}66`,
+  },
+  header: {
+    color: `${theme.colors.color}66`,
     composes: [
       'mb10',
       'text-left',
@@ -37,14 +37,14 @@ const styles = theme => ({
       'flex-between',
       'items-center',
     ],
-  }),
+  },
   list: {
     composes: ['pr7', 'is-scrollbox-y', 'fancy-scrollbar'],
   },
-  title: ({ theme: name }) => ({
-    color: theme.colors[name].color,
+  title: {
+    color: theme.colors.color,
     composes: ['is-uppercase', 'fs14', 'is-bold'],
-  }),
+  },
   wrapper: {
     composes: ['is-scrollbox-wrapper', 'is-full-height'],
   },

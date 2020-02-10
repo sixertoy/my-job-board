@@ -9,16 +9,16 @@ import { FaBars } from 'react-icons/fa';
 import ContextMenu from './context-menu';
 
 const styles = theme => ({
-  container: ({ theme: name }) => ({
-    backgroundColor: theme.colors[name].foreground,
-    borderBottom: `1px solid ${theme.colors[name].border}`,
-    color: theme.colors[name].color,
+  container: {
+    backgroundColor: theme.colors.foreground,
+    borderBottom: `1px solid ${theme.colors.border}`,
+    color: theme.colors.color,
     composes: ['p24', 'flex-0'],
-  }),
-  date: ({ theme: name }) => ({
-    color: theme.colors[name].disabled,
+  },
+  date: {
+    color: theme.colors.disabled,
     composes: ['is-uppercase'],
-  }),
+  },
   menu: {
     '&.active': {
       backgroundColor: '#FFFFFF',

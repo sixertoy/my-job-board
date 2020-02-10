@@ -5,9 +5,9 @@ import { loadFeeds } from '../../../redux/actions';
 import KanbanBoardComponent from './kanban-board-component';
 
 const mapStateToProps = state => {
-  const { lastFeedUpdate, theme } = state;
+  const { lastFeedUpdate } = state;
   const nextUpdate = lastFeedUpdate + UPDATE_INTERVAL_MS;
-  return { nextUpdate, theme };
+  return { nextUpdate };
 };
 
 const mapDispatchToProps = dispatch => ({

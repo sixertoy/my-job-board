@@ -12,9 +12,9 @@ import { NavLink } from 'react-router-dom';
 // import ReactTooltip from 'react-tooltip';
 
 const styles = theme => ({
-  container: ({ theme: name }) => ({
-    backgroundColor: theme.colors[name].foreground,
-    borderRight: `1px solid ${theme.colors[name].border}`,
+  container: {
+    backgroundColor: theme.colors.foreground,
+    borderRight: `1px solid ${theme.colors.border}`,
     composes: [
       'is-full-height',
       'px12',
@@ -22,14 +22,14 @@ const styles = theme => ({
       'flex-between',
       'no-no-flex-grow',
     ],
-  }),
-  item: ({ theme: name }) => ({
-    '&.active': { color: theme.colors[name].active },
-    '&:hover': { color: theme.colors[name].active },
-    color: `${theme.colors[name].disabled}66`,
+  },
+  item: {
+    '&.active': { color: theme.colors.active },
+    '&:hover': { color: theme.colors.active },
+    color: `${theme.colors.disabled}66`,
     composes: ['is-block', 'fs24', 'my24'],
     transition: 'color 0.5s',
-  }),
+  },
   tooltipOpaque: {
     opacity: '1 !important',
   },

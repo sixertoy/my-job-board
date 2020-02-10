@@ -5,16 +5,16 @@ import React from 'react';
 import ThemeRoller from './theme-roller';
 
 const styles = theme => ({
-  container: ({ theme: name }) => ({
-    backgroundColor: theme.colors[name].foreground,
-    borderTop: `1px solid ${theme.colors[name].border}`,
+  container: {
+    backgroundColor: theme.colors.foreground,
+    borderTop: `1px solid ${theme.colors.border}`,
     composes: ['flex-columns', 'no-no-flex-grow', 'flex-end', 'p12'],
-  }),
+  },
 });
 
-const AppFooterComponent = ({ changeTheme, classes, theme }) => (
+const AppFooterComponent = ({ changeTheme, classes }) => (
   <div className={classes.container}>
-    <ThemeRoller changeTheme={changeTheme} theme={theme} />
+    <ThemeRoller changeTheme={changeTheme} />
   </div>
 );
 
@@ -23,7 +23,6 @@ AppFooterComponent.defaultProps = {};
 AppFooterComponent.propTypes = {
   changeTheme: PropTypes.func.isRequired,
   classes: PropTypes.shape().isRequired,
-  theme: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(AppFooterComponent);

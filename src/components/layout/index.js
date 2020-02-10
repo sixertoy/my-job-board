@@ -5,25 +5,21 @@ import { loadFeeds } from '../../redux/actions';
 import MainLayoutComponent from './component';
 
 const mapStateToProps = state => {
-  const { lastFeedUpdate, loading, theme } = state;
-  return { lastFeedUpdate, loading, theme };
+  const { lastFeedUpdate, loading } = state;
+  return { lastFeedUpdate, loading };
 };
 
 const mapDispatchToProps = dispatch => ({
   loadFeedsHandler: () => dispatch(loadFeeds()),
 });
 
-const mergeProps = (
-  { lastFeedUpdate, loading, theme },
-  { loadFeedsHandler }
-) => ({
+const mergeProps = ({ lastFeedUpdate, loading }, { loadFeedsHandler }) => ({
   loadFeeds: () => {
     const shouldUpdate = shouldUpdateFeeds(lastFeedUpdate);
     if (!shouldUpdate) return;
     loadFeedsHandler(lastFeedUpdate);
   },
   loading,
-  theme,
 });
 
 export default connect(

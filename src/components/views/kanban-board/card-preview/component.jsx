@@ -11,18 +11,15 @@ import KanbanBoardCardPreviewStatusComponent from './actions/status';
 import KanbanBoardCardPreviewCloseComponent from './close';
 
 const styles = theme => ({
-  card: ({ theme: name }) => {
-    const width = 800;
-    return {
-      backgroundColor: theme.colors[name].popup,
-      borderRadius: 7,
-      color: theme.colors[name].color,
-      composes: ['p24', 'columns', 'is-relative'],
-      marginTop: 100,
-      maxWidth: width,
-      minWidth: width,
-      width,
-    };
+  card: {
+    backgroundColor: theme.colors.popup,
+    borderRadius: 7,
+    color: theme.colors.color,
+    composes: ['p24', 'columns', 'is-relative'],
+    marginTop: 100,
+    maxWidth: 800,
+    minWidth: 800,
+    width: 800,
   },
   columnLeft: {
     composes: ['col-2of3'],
@@ -30,8 +27,8 @@ const styles = theme => ({
   columnRight: {
     composes: ['col-1of3', 'ml24', 'pt32'],
   },
-  container: ({ theme: name }) => ({
-    backgroundColor: `${theme.colors[name].background}DD`,
+  container: {
+    backgroundColor: `${theme.colors.background}DD`,
     bottom: 'auto',
     composes: [
       'is-absolute',
@@ -40,7 +37,7 @@ const styles = theme => ({
       'items-start',
       'flex-around',
     ],
-  }),
+  },
   date: {
     composes: ['fs12', 'mb12'],
   },
@@ -68,7 +65,7 @@ const KanbanBoardCardPreviewComponent = ({
   return (
     <div className={classes.container} id={`offer-${offer.id}`}>
       <div className={classes.card}>
-        <KanbanBoardCardPreviewCloseComponent theme="night" />
+        <KanbanBoardCardPreviewCloseComponent />
         <div className={classes.columnLeft}>
           <span className={classes.published}>
             publi&eacute;&nbsp;{fromnow}
@@ -91,11 +88,9 @@ const KanbanBoardCardPreviewComponent = ({
           <KanbanBoardCardPreviewActionsComponent
             link={offer.link}
             origin={offer.sourceKey}
-            theme="night"
           />
           <KanbanBoardCardPreviewDeleteComponent
             id={offer.id}
-            theme="night"
             onClick={onDelete}
           />
           <div className={classes.date}>

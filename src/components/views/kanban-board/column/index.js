@@ -5,10 +5,9 @@ import { selectOffersByType } from '../../../../redux/selectors';
 import KanbanBoardColumnComponent from './component';
 
 const mapStateToProps = (state, { type }) => {
-  const { theme } = state;
   const { key, label: title } = CARD_STATUS[type];
   const offers = selectOffersByType(state, key);
-  return { offers, theme, title };
+  return { offers, title };
 };
 
 const mapDispatchToProps = () => ({});

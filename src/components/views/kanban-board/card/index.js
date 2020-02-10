@@ -8,10 +8,7 @@ import { connect } from 'react-redux';
 // } from '../../../redux/actions';
 import KanbanBoardCardComponent from './component';
 
-const mapStateToProps = state => {
-  const { theme } = state;
-  return { theme };
-};
+const mapStateToProps = null;
 
 const mapDispatchToProps = () => ({
   // addcardto: target => dispatch(addCardTo(target, item)),

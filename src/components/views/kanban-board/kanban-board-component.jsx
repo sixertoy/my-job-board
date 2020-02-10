@@ -23,12 +23,9 @@ const styles = theme => ({
   container: {
     composes: ['is-relative', 'flex-rows', 'no-overflow'],
   },
-  locker: ({ theme: name }) => {
-    const backgroundColor = `${theme.colors[name].black}99`;
-    return {
-      backgroundColor,
-      composes: ['is-full-layout', 'is-overlay'],
-    };
+  locker: {
+    backgroundColor: `${theme.colors.black}99`,
+    composes: ['is-full-layout', 'is-overlay'],
   },
 });
 

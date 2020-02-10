@@ -6,7 +6,7 @@ const gray = '#DDDDDD';
 const grey = '#9DA5B4';
 // const red = '#E06C75';
 
-export const UIthemes = {
+const themes = {
   day: {
     active: '#5BB895',
     background: '#FEFEFE',
@@ -16,24 +16,18 @@ export const UIthemes = {
     danger: '#DA402B',
     disabled: '#5F6368',
     foreground: '#F5F5F5',
-    // highlight: '#2C313C',
     popup: '#E4E6E8',
-    // scrollbar: '#C9C9C9',
-    // shadow: '#F3F5F5',
   },
   night: {
     active: '#6494ED',
     background: '#282C34',
     border: '#181A1F',
-    button: '#646668',
+    button: '#181A1F',
     color: '#D7DAE0',
     danger: '#E06C75',
     disabled: '#6B727C',
     foreground: '#21252B',
-    // highlight: '#2C313C',
     popup: '#2F3237',
-    // scrollbar: '#4B5362',
-    // shadow: '#3B4048',
   },
   social: {
     active: '#4267B2',
@@ -44,10 +38,7 @@ export const UIthemes = {
     danger: '#DA402B',
     disabled: '#90949C',
     foreground: '#E9EBEE',
-    // highlight: '#2C313C',
     popup: '#DDDFE2',
-    // scrollbar: '#C9C9C9',
-    // shadow: '#F3F5F5',
   },
   trello: {
     active: '#FFFFFF',
@@ -58,23 +49,33 @@ export const UIthemes = {
     danger: '#E06C75',
     disabled: '#EBECF0',
     foreground: '#1868A5',
-    // highlight: '#2C313C',
     popup: '#1868A5',
-    // scrollbar: '#4B5362',
-    // shadow: '#3B4048',
   },
 };
 
-const theme = {
+const themeBase = {
   colors: {
     black,
     blue,
     dark,
     gray,
     grey,
+    highlight: '#2C313C',
+    scrollbar: '#4B5362',
+    shadow: '#3B4048',
     white,
-    ...UIthemes,
   },
 };
 
-export default theme;
+export const getAvailableThemes = extend => {
+  return Object.keys(themes).reduce((acc, key) => {
+    const { background: backgroundColor } = themes[key];
+    return { ...acc, [key]: { backgroundColor, ...extend } };
+  }, {});
+};
+
+export const getThemeByThemeKey = key => {
+  const selectedTheme = themes[key];
+  const colors = { ...themeBase.colors, ...selectedTheme };
+  return { ...themeBase, colors };
+};

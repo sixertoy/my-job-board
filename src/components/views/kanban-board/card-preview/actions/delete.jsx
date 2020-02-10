@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const styles = theme => ({
-  container: ({ theme: name }) => ({
-    backgroundColor: theme.colors[name].danger,
+  container: {
+    backgroundColor: theme.colors.danger,
     borderRadius: 4,
     composes: ['p7', 'fs14', 'mb12', 'text-center'],
-  }),
+  },
   label: {
     color: theme.colors.white,
   },

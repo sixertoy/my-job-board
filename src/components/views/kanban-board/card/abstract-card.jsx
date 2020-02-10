@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const styles = theme => ({
-  container: ({ theme: name }) => ({
-    backgroundColor: theme.colors[name].foreground,
+  container: {
+    backgroundColor: theme.colors.button,
     borderRadius: 5,
-    color: theme.colors[name].color,
-    composes: ['p12', 'no-select'],
-  }),
-  source: ({ theme: name }) => ({
-    backgroundColor: theme.colors[name].background,
+    color: theme.colors.color,
+    composes: ['p12', 'no-select', 'shadowed'],
+  },
+  source: {
+    backgroundColor: theme.colors.background,
     borderRadius: 4,
     composes: ['is-inline-block', 'fs10', 'px7', 'py5', 'mb7'],
-  }),
+  },
   title: {
     composes: ['fs14'],
     lineHeight: '1.5rem',

@@ -1,7 +1,7 @@
 import { EVENT_TYPES } from '../../constants';
 
 const defaultState = 'day';
-export const theme = (state = defaultState, action) => {
+export const selectedTheme = (state = defaultState, action) => {
   switch (action.type) {
     case EVENT_TYPES.THEME_CHANGE:
       return action.name;
@@ -10,4 +10,4 @@ export const theme = (state = defaultState, action) => {
   }
 };
 
-export default theme;
+export default selectedTheme;

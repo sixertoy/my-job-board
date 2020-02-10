@@ -6,10 +6,10 @@ import { FortunesType } from '../../../prop-types';
 
 const styles = theme => ({
   container: {},
-  wrapper: ({ theme: name }) => ({
-    color: theme.colors[name].color,
+  wrapper: {
+    color: theme.colors.color,
     composes: ['p24'],
-  }),
+  },
 });
 
 const ViewHomeComponent = ({ classes, fortune, loadFortunes }) => {

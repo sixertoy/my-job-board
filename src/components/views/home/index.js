@@ -4,8 +4,8 @@ import { loadFortuneCookies } from '../../../redux/actions';
 import ViewHomeComponent from './component';
 
 const mapStateToProps = state => {
-  const { fortune, theme } = state;
-  return { fortune, theme };
+  const { fortune } = state;
+  return { fortune };
 };
 
 const mapDispatchToProps = dispatch => ({

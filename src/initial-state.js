@@ -7,15 +7,22 @@ const feeds = {
     url: 'https://www.codeur.com/projects/c/developpement/sc/javascript.rss',
   },
   // indeed: {
-  //   isstatic: true,
-  //   url: 'http://www.indeed.fr/rss?q=%28javascript%29&l=Montpellier',
+  //   url: 'http://www.indeed.fr/rss?q=javascript',
+  //   url: 'http://www.indeed.fr/rss?q=react',
+  //   url: 'http://www.indeed.fr/rss?q=freelance',
+  //   url: 'http://www.indeed.fr/rss?q=reactjs'
+  //   url: 'http://www.indeed.fr/rss?q=remote',
+  //   url: 'http://www.indeed.fr/rss?q=frontend',
   // },
   // jobijoba: {
-  //   isstatic: true,
+  //   url: 'https://www.jobijoba.com/fr/rss?what=javascript',
   //   url: 'https://www.jobijoba.com/fr/rss?what=react',
+  //   url: 'https://www.jobijoba.com/fr/rss?what=freelance'
+  //   url: 'https://www.jobijoba.com/fr/rss?what=reactjs'
+  //   url: 'https://www.jobijoba.com/fr/rss?what=remote',
+  //   url: 'https://www.jobijoba.com/fr/rss?what=frontend'
   // },
   // remixjobs: {
-  //   isstatic: true,
   //   url: 'http://remixjobs.com/rss',
   // },
   // poleemploi: 'https://api.emploi-store.fr/partenaire/offresdemploi/v1/rechercheroffres'
@@ -29,14 +36,14 @@ const INITIAL_VALUES = {
   offers: [],
   openedCard: false,
   search: '',
-  theme: 'day',
+  selectedTheme: 'day',
 };
 
 export const reduxPersistConfig = {
   blacklist: [],
   key: 'LocalStorageKey::',
   storage,
-  whitelist: ['lastFeedUpdate', 'offers', 'theme'],
+  whitelist: ['lastFeedUpdate', 'offers', 'selectedTheme'],
 };
 
 export const getInitialState = history => {

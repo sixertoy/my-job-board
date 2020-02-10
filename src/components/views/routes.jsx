@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { ViewHomeComponent, ViewKanbanBoardComponent } from '../views';
+import { ViewHomeComponent, ViewKanbanBoardComponent } from '.';
 
 const MainRoutesComponent = () => (
   <Switch>
