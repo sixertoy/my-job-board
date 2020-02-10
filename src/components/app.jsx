@@ -18,7 +18,6 @@ Application.propTypes = {
 
 const mapStateToProps = state => {
   const { selectedTheme } = state;
-  console.log('selectedTheme', selectedTheme);
   const theme = getThemeByThemeKey(selectedTheme);
   return { theme };
 };

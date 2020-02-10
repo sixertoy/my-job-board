@@ -2,32 +2,36 @@ import { withStyles } from '@iziges/napper-core-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { getAvailableThemes } from '../../theme';
+import { getThemes } from '../../theme';
 
-const BUTTON_SIZE = 12;
+const square = {
+  height: 12,
+  maxHeight: 12,
+  maxWidth: 12,
+  minHeight: 12,
+  minWidth: 12,
+  width: 12,
+};
 
-const themes = getAvailableThemes({
-  height: BUTTON_SIZE,
-  maxHeight: BUTTON_SIZE,
-  maxWidth: BUTTON_SIZE,
-  minHeight: BUTTON_SIZE,
-  minWidth: BUTTON_SIZE,
-  width: BUTTON_SIZE,
-});
+const themes = getThemes();
+const themeButton = Object.keys(themes).reduce((acc, key) => {
+  const { background: backgroundColor } = themes[key];
+  return { ...acc, [key]: { backgroundColor, ...square } };
+}, {});
 
 const styles = theme => {
   return {
     container: {
       border: `1px solid ${theme.colors.border}`,
     },
-    ...themes,
+    ...themeButton,
   };
 };
 
 const AppFooterThemeRollerComponent = ({ changeTheme, classes }) => {
   return (
     <div className={classes.container}>
-      {Object.keys(themes).map(key => (
+      {Object.keys(themeButton).map(key => (
         <button
           key={key}
           className={classes[key]}

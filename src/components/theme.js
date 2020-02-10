@@ -67,15 +67,10 @@ const themeBase = {
   },
 };
 
-export const getAvailableThemes = extend => {
-  return Object.keys(themes).reduce((acc, key) => {
-    const { background: backgroundColor } = themes[key];
-    return { ...acc, [key]: { backgroundColor, ...extend } };
-  }, {});
-};
-
 export const getThemeByThemeKey = key => {
   const selectedTheme = themes[key];
   const colors = { ...themeBase.colors, ...selectedTheme };
   return { ...themeBase, colors };
 };
+
+export const getThemes = () => themes;
