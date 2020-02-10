@@ -2,35 +2,31 @@ import { withStyles } from '@iziges/napper-core-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+const BUTTON_SIZE = 12;
+const square = {
+  height: BUTTON_SIZE,
+  maxHeight: BUTTON_SIZE,
+  maxWidth: BUTTON_SIZE,
+  minHeight: BUTTON_SIZE,
+  minWidth: BUTTON_SIZE,
+  width: BUTTON_SIZE,
+};
+
 const styles = theme => ({
-  container: {},
+  container: ({ theme: name }) => ({
+    border: `1px solid ${theme.colors[name].border}`,
+  }),
   themeDay: {
     backgroundColor: theme.colors.day.background,
-    border: `1px solid ${theme.colors.day.color}`,
-    borderRadius: 9,
-    composes: ['is-block', 'no-overflow'],
-    height: 18,
-    maxHeight: 18,
-    maxWidth: 18,
-    minHeight: 18,
-    minWidth: 18,
-    width: 18,
+    ...square,
   },
   themeNight: {
     backgroundColor: theme.colors.night.background,
-    border: `1px solid ${theme.colors.night.color}`,
-    borderRadius: 9,
-    composes: ['is-block', 'no-overflow'],
-    height: 18,
-    maxHeight: 18,
-    maxWidth: 18,
-    minHeight: 18,
-    minWidth: 18,
-    width: 18,
+    ...square,
   },
 });
 
-const ReactDumbComponent = ({ changeTheme, classes }) => (
+const AppFooterThemeRollerComponent = ({ changeTheme, classes }) => (
   <div className={classes.container}>
     <button
       className={classes.themeDay}
@@ -47,9 +43,11 @@ const ReactDumbComponent = ({ changeTheme, classes }) => (
   </div>
 );
 
-ReactDumbComponent.propTypes = {
+AppFooterThemeRollerComponent.defaultProps = {};
+
+AppFooterThemeRollerComponent.propTypes = {
   changeTheme: PropTypes.func.isRequired,
   classes: PropTypes.shape().isRequired,
 };
 
-export default withStyles(styles)(ReactDumbComponent);
+export default withStyles(styles)(AppFooterThemeRollerComponent);
