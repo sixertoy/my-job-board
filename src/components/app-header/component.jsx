@@ -11,9 +11,10 @@ const styles = theme => ({
     composes: ['p24'],
     height: 'auto',
   }),
-  date: {
+  date: ({ theme: name }) => ({
+    color: theme.colors[name].disabled,
     composes: ['is-uppercase'],
-  },
+  }),
   title: {
     composes: ['is-uppercase', 'is-bold'],
   },

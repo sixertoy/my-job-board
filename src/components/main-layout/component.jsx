@@ -2,6 +2,7 @@ import { withStyles } from '@iziges/napper-core-react';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 
+import AppFooterComponent from '../app-footer';
 import AppHeaderComponent from '../app-header';
 import AppMenuComponent from '../app-menu';
 import ProgressBar from '../progress-bar';
@@ -10,10 +11,10 @@ import MainRoutesComponent from './routes';
 const styles = theme => ({
   container: ({ theme: name }) => ({
     backgroundColor: theme.colors[name].foreground,
-    composes: ['is-full-layout'],
+    composes: ['is-full-layout', 'flex-rows'],
   }),
   layout: {
-    composes: ['flex-columns', 'is-full-layout', 'no-overflow'],
+    composes: ['flex-columns', 'flex-1', 'no-overflow'],
   },
   views: ({ theme: name }) => ({
     backgroundColor: theme.colors[name].background,
@@ -41,6 +42,7 @@ const MainLayoutComponent = ({ classes, loadFeeds, loading }) => {
           </div>
         </div>
       </div>
+      <AppFooterComponent />
     </div>
   );
 };
