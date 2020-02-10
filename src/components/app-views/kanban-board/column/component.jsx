@@ -19,9 +19,15 @@ const styles = theme => ({
     minWidth: 290,
     width: '25%',
   },
-  count: {
-    composes: ['fs11', 'is-italic'],
-  },
+  count: ({ theme: name }) => ({
+    backgroundColor: theme.colors[name].border,
+    borderRadius: 12,
+    color: theme.colors[name].disabled,
+    composes: ['px7', 'py5', 'fs11', 'is-italic', 'text-right'],
+    maxWidth: 40,
+    minWidth: 40,
+    width: 40,
+  }),
   header: ({ theme: name }) => ({
     color: `${theme.colors[name].color}66`,
     composes: [
@@ -35,9 +41,10 @@ const styles = theme => ({
   list: {
     composes: ['pr7', 'is-scrollbox-y', 'fancy-scrollbar'],
   },
-  title: {
+  title: ({ theme: name }) => ({
+    color: theme.colors[name].color,
     composes: ['is-uppercase', 'fs14', 'is-bold'],
-  },
+  }),
   wrapper: {
     composes: ['is-scrollbox-wrapper', 'is-full-height'],
   },
