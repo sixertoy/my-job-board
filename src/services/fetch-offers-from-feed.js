@@ -28,7 +28,7 @@ function parseXMLNodeToOffer(sourceKey, source, ctime) {
     const encoding = uuidv5.URL;
     const link = xlink[0] || xlink;
     const id = uuidv5(link, encoding);
-    const status = CARD_STATUS.FEEDS;
+    const status = CARD_STATUS.FEEDS.key;
     const title = (xtitle[0] || xtitle).trim();
     const date = Date.parse(pubDate[0] || pubDate);
     const description = (

@@ -16,17 +16,15 @@ const mapDispatchToProps = dispatch => ({
 const mergeProps = (
   { lastFeedUpdate, loading, theme },
   { loadFeedsHandler }
-) => {
-  return {
-    loadFeeds: () => {
-      const shouldUpdate = shouldUpdateFeeds(lastFeedUpdate);
-      if (!shouldUpdate) return;
-      loadFeedsHandler(lastFeedUpdate);
-    },
-    loading,
-    theme,
-  };
-};
+) => ({
+  loadFeeds: () => {
+    const shouldUpdate = shouldUpdateFeeds(lastFeedUpdate);
+    if (!shouldUpdate) return;
+    loadFeedsHandler(lastFeedUpdate);
+  },
+  loading,
+  theme,
+});
 
 export default connect(
   mapStateToProps,

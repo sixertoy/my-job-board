@@ -1,16 +1,17 @@
 export const CARD_STATUS = {
-  DONE: 'done',
-  FEEDS: 'feeds',
-  IN_PROGRESS: 'inprogress',
-  TODO: 'todo',
-  TRASHED: 'trashed',
+  DONE: { key: 'DONE', label: 'Fait', priority: 3 },
+  FEEDS: { key: 'FEEDS', label: 'A trier', priority: 0 },
+  IN_PROGRESS: { key: 'IN_PROGRESS', label: 'Avancé', priority: 2 },
+  TODO: { key: 'TODO', label: 'A faire', priority: 1 },
+  TRASHED: { key: 'TRASHED', label: 'Poubelle', priority: -1 },
 };
 
 export const EVENT_TYPES = {
   FORTUNE_COOKIES_LOADED: 'onFortuneCookiesLoaded',
-  LOADING_COMPLETE: 'onloadingcomplete',
-  LOADING_START: 'onloadingstart',
-  OFFERS_LOADED: 'onoffersloaded',
+  LOADING_COMPLETE: 'onLoadingComplete',
+  LOADING_START: 'onLoadingStart',
+  MOVE_CARD_STATUS: 'onMoveCardStatus',
+  OFFERS_LOADED: 'onOffersLoaded',
   PERSIST_REHYDRATE: 'persist/REHYDRATE',
   THEME_CHANGE: 'onThemeChange',
 };

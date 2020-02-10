@@ -37,10 +37,10 @@ const KanbanBoardComponent = ({ classes }) => {
     <div className={classes.container} id="kanban-board">
       <KanbanBoardHeaderComponent />
       <div className={classes.columns} id="board-columns">
-        <KanbanBoardColumnComponent type={CARD_STATUS.FEEDS} />
-        <KanbanBoardColumnComponent type={CARD_STATUS.TODO} />
-        <KanbanBoardColumnComponent type={CARD_STATUS.IN_PROGRESS} />
-        <KanbanBoardColumnComponent type={CARD_STATUS.DONE} />
+        <KanbanBoardColumnComponent type={CARD_STATUS.FEEDS.key} />
+        <KanbanBoardColumnComponent type={CARD_STATUS.TODO.key} />
+        <KanbanBoardColumnComponent type={CARD_STATUS.IN_PROGRESS.key} />
+        <KanbanBoardColumnComponent type={CARD_STATUS.DONE.key} />
       </div>
       <Route
         exact

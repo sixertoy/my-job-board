@@ -11,52 +11,65 @@ export const feeds = (state = {}, action) => {
   }
 };
 
+// TODO utiliser lodash.chain
 const uniq = items => uniqby(uniqby(items, 'link'), 'id');
 
-const updateofferfield = (state, { fieldname, inputvalue, offerid }) =>
-  state.map(obj =>
-    obj.id !== offerid
-      ? obj
-      : {
-          ...obj,
-          [fieldname]:
-            typeof inputvalue === 'string' ? inputvalue.trim() : inputvalue,
-        }
-  );
+// const updateofferfield = (state, { fieldname, inputvalue, offerid }) =>
+//   state.map(obj =>
+//     obj.id !== offerid
+//       ? obj
+//       : {
+//           ...obj,
+//           [fieldname]:
+//             typeof inputvalue === 'string' ? inputvalue.trim() : inputvalue,
+//         }
+//   );
 
-const movetostatus = (state, { item, status }) =>
-  state.reduce((acc, obj) => {
+const onMoveCardStatus = ({ id, status }, state) => {
+  const reduced = state.reduce((acc, obj) => {
     const object = { ...obj };
-    if (obj.id === item.id) {
+    if (obj.id === id) {
       object.status = status;
       object.mtime = Date.now();
     }
     return [object].concat(acc);
   }, []);
+  return reduced;
+};
+
+function onRehydrateHandler(action) {
+  const res = (action.payload && action.payload.offers) || [];
+  return [...res];
+}
+
+function onOffersLoadedHandler(action, state) {
+  const res =
+    !action.offers || !action.offers.length
+      ? [].concat(state)
+      : action.offers.concat(state);
+  return [...res];
+}
 
 export const offers = (state = [], action) => {
-  let results = [];
+  let next = [];
   switch (action.type) {
-    case 'onofferfieldchange':
-      results = updateofferfield(state, action);
-      break;
-    case 'onaddcardto':
-      results = movetostatus(state, action);
+    // case 'onofferfieldchange':
+    //   next = updateofferfield(state, action);
+    //   break;
+    case EVENT_TYPES.MOVE_CARD_STATUS:
+      next = onMoveCardStatus(action, state);
       break;
     case EVENT_TYPES.PERSIST_REHYDRATE:
-      results = [...((action.payload && action.payload.offers) || [])];
+      next = onRehydrateHandler(action);
       break;
     case EVENT_TYPES.OFFERS_LOADED:
-      // FIXME ->
-      // si il y a des nouveaux feeds les ajouter aux feeds existants
-      results =
-        !action.offers || !action.offers.length
-          ? [].concat(state)
-          : action.offers.concat(state);
+      next = onOffersLoadedHandler(action, state);
       break;
     default:
-      results = [...(state || [])];
+      next = [...(state || [])];
       break;
   }
-  return orderby(uniq(results), ['date', 'mtime'], 'desc');
+  next = uniq(next);
+  next = orderby(next, ['date', 'mtime'], 'desc');
+  return next;
 };

@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import MainLayoutComponent from './components/main-layout';
+import MainLayoutComponent from './components/layout';
 import getRouterHistory from './history';
 import { getInitialState } from './initial-state';
 import { configure } from './redux/store';

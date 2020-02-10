@@ -5,7 +5,7 @@ import {
   ViewHomeComponent,
   ViewKanbanBoardComponent,
   ViewSettingsComponent,
-} from '../app-views';
+} from '../views';
 
 const MainRoutesComponent = () => (
   <Switch>
