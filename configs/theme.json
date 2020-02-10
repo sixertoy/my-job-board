@@ -1,0 +1,46 @@
+{
+  "day": {
+    "active": "#5BB895",
+    "background": "#FEFEFE",
+    "border": "#E4E6E8",
+    "button": "#FFFFFF",
+    "color": "#202124",
+    "danger": "#DA402B",
+    "disabled": "#5F6368",
+    "foreground": "#F5F5F5",
+    "popup": "#E4E6E8"
+  },
+  "night": {
+    "active": "#6494ED",
+    "background": "#282C34",
+    "border": "#181A1F",
+    "button": "#181A1F",
+    "color": "#D7DAE0",
+    "danger": "#E06C75",
+    "disabled": "#6B727C",
+    "foreground": "#21252B",
+    "popup": "#2F3237"
+  },
+  "social": {
+    "active": "#4267B2",
+    "background": "#F5F6F7",
+    "border": "#DDDFE2",
+    "button": "#FFFFFF",
+    "color": "#4B4F56",
+    "danger": "#DA402B",
+    "disabled": "#90949C",
+    "foreground": "#E9EBEE",
+    "popup": "#DDDFE2"
+  },
+  "trello": {
+    "active": "#FFFFFF",
+    "background": "#1E79BF",
+    "border": "#1868A5",
+    "button": "#646668",
+    "color": "#FFFFFF",
+    "danger": "#E06C75",
+    "disabled": "#EBECF0",
+    "foreground": "#1868A5",
+    "popup": "#1868A5"
+  }
+}

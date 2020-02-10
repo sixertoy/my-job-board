@@ -90,7 +90,8 @@
     "cleanup": "rm -rf node_modules && rm yarn.lock",
     "dev": "react-scripts start",
     "test": "react-scripts test",
-    "build": "react-scripts build",
+    "buildc": "node ./.scripts/build-config",
+    "build": "yarn buildc && react-scripts build",
     "deploy:dev": "netlify deploy --dir ./build --open"
   }
 }
