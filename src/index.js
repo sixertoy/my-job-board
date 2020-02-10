@@ -1,4 +1,6 @@
 // import './fontello/css/fontello-embedded.css';
+import 'tippy.js/dist/tippy.css';
+import 'tippy.js/themes/light-border.css';
 import './index.scss';
 import 'moment/locale/fr';
 

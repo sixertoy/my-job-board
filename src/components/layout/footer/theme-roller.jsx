@@ -30,6 +30,7 @@ const AppFooterThemeRollerComponent = ({ changeTheme, classes }) => {
     <div className={classes.container}>
       {Object.keys(UIthemes).map(key => (
         <button
+          key={key}
           className={classes[key]}
           type="button"
           onClick={changeTheme(key)}>

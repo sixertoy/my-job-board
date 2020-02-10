@@ -1,8 +1,12 @@
 import { withStyles } from '@iziges/napper-core-react';
+import Tippy from '@tippy.js/react';
+import classnames from 'classnames';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { FaBars } from 'react-icons/fa';
+
+import ContextMenu from './context-menu';
 
 const styles = theme => ({
   container: ({ theme: name }) => ({
@@ -15,8 +19,26 @@ const styles = theme => ({
     color: theme.colors[name].disabled,
     composes: ['is-uppercase'],
   }),
+  menu: {
+    '&.active': {
+      backgroundColor: '#FFFFFF',
+      borderRadius: '0 4px 4px 0',
+    },
+    '&:hover:not(.active)': {
+      backgroundColor: '#FFFFFF',
+      borderRadius: 4,
+    },
+    composes: ['p12'],
+  },
   title: {
     composes: ['is-uppercase', 'is-bold'],
+  },
+  tooltip: {
+    borderLeft: '0 !important',
+    borderRadius: '4px 0 4px 4px !important',
+    borderRight: '0 !important',
+    borderTop: '0 !important',
+    left: '0 !important',
   },
   wrapper: {
     composes: ['flex-columns', 'flex-between', 'items-center'],
@@ -24,6 +46,7 @@ const styles = theme => ({
 });
 
 const AppHeaderComponent = React.memo(({ classes }) => {
+  const [tooltipIsVisible, toggleTooltipVisibility] = useState(false);
   const date = moment().format('dddd, DD MMMM YYYY');
   return (
     <div className={classes.container} id="app-header">
@@ -33,7 +56,25 @@ const AppHeaderComponent = React.memo(({ classes }) => {
           <h3 className={classes.title}>Job Board</h3>
         </div>
         <div>
-          <FaBars />
+          <Tippy
+            hideOnClick
+            interactive
+            arrow={false}
+            className={classes.tooltip}
+            content={<ContextMenu />}
+            interactiveBorder={30}
+            placement="left-start"
+            theme="light-border"
+            trigger="click"
+            onHide={() => toggleTooltipVisibility(false)}
+            onShow={() => toggleTooltipVisibility(true)}>
+            <div
+              className={classnames(classes.menu, {
+                active: tooltipIsVisible,
+              })}>
+              <FaBars />
+            </div>
+          </Tippy>
         </div>
       </div>
     </div>
