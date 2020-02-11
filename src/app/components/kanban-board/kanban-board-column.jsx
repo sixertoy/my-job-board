@@ -29,9 +29,6 @@ const useStyles = createUseStyles({
     width: 'auto',
   },
   list: {
-    '&.can-drop': {
-      backgroundColor: 'yellow',
-    },
     composes: ['kanban-scrollbar'],
     minHeight: 40,
     overflowX: 'hidden',
@@ -39,13 +36,16 @@ const useStyles = createUseStyles({
     paddingRight: 4,
   },
   wrapper: {
+    '&.can-drop': { opacity: 0.65 },
     backgroundColor: ({ theme }) => theme.columnBackground,
     borderRadius: 3,
     display: 'flex',
     flex: 1,
     flexDirection: 'column',
     maxHeight: '100%',
+    opacity: 1,
     overflow: 'hidden',
+    transtion: 'opacity 0.5s',
   },
 });
 
@@ -70,14 +70,13 @@ const KanbanBoardColumn = ({
     drop: ({ id }) => cardDroppedHandler(id, status),
   });
   const filtered = items.filter(obj => obj.status === status);
-  const overclass = (canDrop && isOver && 'can-drop') || '';
-  const listClassname = `${classes.list} ${overclass}`;
+  const dropclass = (canDrop && isOver && 'can-drop') || '';
   return (
-    <div ref={drop} className={classes.column}>
-      <div className={classes.wrapper}>
+    <div className={classes.column}>
+      <div className={`${classes.wrapper} ${dropclass}`}>
         <KanbanBoardHeader count={filtered.length} label={label} />
-        <div className={classes.cards}>
-          <div className={listClassname}>{filtered.map(render)}</div>
+        <div ref={drop} className={classes.cards}>
+          <div className={classes.list}>{filtered.map(render)}</div>
         </div>
         <KanbanBoardFooter
           listCanBeEdited={listCanBeEdited}
