@@ -2,7 +2,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 
 import { UPDATE_INTERVAL_MS } from '../../../../constants';
-import KanbanBoardHeaderComponent from './component';
+import BoardHeaderComponent from './component';
 
 const mapStateToProps = state => {
   const { lastFeedUpdate } = state;
@@ -16,4 +16,4 @@ const mapDispatchToProps = null;
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(KanbanBoardHeaderComponent);
+)(BoardHeaderComponent);

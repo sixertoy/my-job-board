@@ -4,13 +4,14 @@
 }
 
 .fancy-scrollbar::-webkit-scrollbar-track-piece {
-  background: #00000011;
+  background: #dcdee4;
 }
 
 .fancy-scrollbar::-webkit-scrollbar-thumb {
-  background: #4B5362;
+  background: #c5c9d1;
 }
 
+.fancy-scrollbar::-webkit-scrollbar,
 .fancy-scrollbar::-webkit-scrollbar-thumb,
 .fancy-scrollbar::-webkit-scrollbar-track,
 .fancy-scrollbar::-webkit-scrollbar-track-piece {

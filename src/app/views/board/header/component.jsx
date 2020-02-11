@@ -13,7 +13,7 @@ const styles = {
   },
 };
 
-const KanbanBoardHeaderComponent = ({ classes }) => {
+const BoardHeaderComponent = ({ classes }) => {
   return (
     <div className={classes.container} id="kanban-header">
       <div className={classes.wrapper}>
@@ -31,9 +31,9 @@ const KanbanBoardHeaderComponent = ({ classes }) => {
   );
 };
 
-KanbanBoardHeaderComponent.propTypes = {
+BoardHeaderComponent.propTypes = {
   classes: PropTypes.shape().isRequired,
   // nextUpdate: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(KanbanBoardHeaderComponent);
+export default withStyles(styles)(BoardHeaderComponent);
