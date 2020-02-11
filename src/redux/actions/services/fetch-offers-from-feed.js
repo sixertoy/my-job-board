@@ -2,7 +2,7 @@ import get from 'lodash.get';
 import uuidv5 from 'uuid/v5';
 import { parseStringPromise as xmlToObject } from 'xml2js';
 
-import { CARD_STATUS } from '../constants';
+import { CARD_STATUS } from '../../../constants';
 
 const REQUEST_SUCCESS_STATUS = [200, 201];
 const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';

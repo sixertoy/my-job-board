@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistReducer, persistStore, purgeStoredState } from 'redux-persist';
 import ReduxThunk from 'redux-thunk';
 
-import { reduxPersistConfig } from '../initial-state';
+import { reduxPersistConfig } from './initial-state';
 import createRootReducer from './reducers';
 
 function debugStored() {}

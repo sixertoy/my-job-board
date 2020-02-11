@@ -1,7 +1,7 @@
 // import { Logger } from '@iziges/napper-core';
 
 import { EVENT_TYPES } from '../../constants';
-import fetchFortunes from '../../services/fetch-fortunes';
+import fetchFortunes from './services/fetch-fortunes';
 
 const loadFortuneCookies = () => dispatch => {
   return fetchFortunes()

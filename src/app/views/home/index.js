@@ -12,7 +12,4 @@ const mapDispatchToProps = dispatch => ({
   loadFortunes: () => dispatch(loadFortuneCookies()),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ViewHomeComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(ViewHomeComponent);

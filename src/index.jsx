@@ -1,7 +1,7 @@
+import 'moment/locale/fr';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/themes/light-border.css';
 import './index.scss';
-import 'moment/locale/fr';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -9,9 +9,9 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import Application from './components/app';
+import Application from './app';
 import getRouterHistory from './history';
-import { getInitialState } from './initial-state';
+import { getInitialState } from './redux/initial-state';
 import { configure } from './redux/store';
 
 const history = getRouterHistory();
