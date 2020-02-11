@@ -56,7 +56,10 @@ const AppMenuComponent = React.memo(({ classes }) => {
           to="/calendar">
           <IoMdCalendar />
         </NavLink>
-        <NavLink activeClassName="active" className={classes.item} to="/tasks">
+        <NavLink
+          activeClassName="active"
+          className={classes.item}
+          to="/projects">
           <FaTasks />
         </NavLink>
         <NavLink

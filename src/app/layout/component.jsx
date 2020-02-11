@@ -2,7 +2,7 @@ import { withStyles } from '@iziges/napper-core-react';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 
-import MainRoutesComponent from '../views/routes';
+import MainRoutesComponent from '../routes';
 import AppFooterComponent from './footer';
 import AppHeaderComponent from './header';
 import AppMenuComponent from './menu';

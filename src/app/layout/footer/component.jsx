@@ -8,12 +8,22 @@ const styles = theme => ({
   container: {
     backgroundColor: theme.colors.foreground,
     borderTop: `1px solid ${theme.colors.border}`,
-    composes: ['flex-columns', 'no-no-flex-grow', 'flex-end', 'p12'],
+    composes: [
+      'items-center',
+      'flex-columns',
+      'flex-between',
+      'no-no-flex-grow',
+      'flex-end',
+      'p12',
+    ],
   },
 });
 
 const AppFooterComponent = ({ changeTheme, classes }) => (
   <div className={classes.container}>
+    <div>
+      <span>v0.1.0</span>
+    </div>
     <ThemeRoller changeTheme={changeTheme} />
   </div>
 );
