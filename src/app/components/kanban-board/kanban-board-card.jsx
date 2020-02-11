@@ -1,6 +1,8 @@
 import React from 'react';
+import { useDrag } from 'react-dnd';
 import { createUseStyles, useTheme } from 'react-jss';
 
+import { DRAG_CARD_TYPE } from './constants';
 import { ItemType } from './prop-types';
 
 const useStyles = createUseStyles({
@@ -20,8 +22,19 @@ const useStyles = createUseStyles({
 const KanbanBoardCard = ({ item }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const [{ isDragging }, drag] = useDrag({
+    collect: monitor => ({
+      isDragging: !!monitor.isDragging(),
+    }),
+    item: { type: DRAG_CARD_TYPE },
+  });
   return (
-    <div className={classes.card}>
+    <div
+      ref={drag}
+      className={classes.card}
+      style={{
+        opacity: isDragging ? 0.5 : 1,
+      }}>
       <div>{item.title}</div>
     </div>
   );

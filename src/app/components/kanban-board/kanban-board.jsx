@@ -71,5 +71,4 @@ KanbanBoardComponent.propTypes = {
   items: PropTypes.arrayOf(ItemType).isRequired,
 };
 
-// export default DragDropContext(HTML5Backend)(
 export default KanbanBoardComponent;
