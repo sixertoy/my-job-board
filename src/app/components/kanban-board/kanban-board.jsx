@@ -7,14 +7,14 @@ import { ColumnType, ItemType } from './prop-types';
 import { stylesheet } from './styles';
 
 const useStyles = createUseStyles({
+  board: {
+    ...stylesheet.isFullWidth,
+    ...stylesheet.isFullHeight,
+  },
   columns: {
     ...stylesheet.isFullHeight,
     display: 'flex',
     flexDirection: 'row',
-  },
-  kandbanBoard: {
-    ...stylesheet.isFullWidth,
-    ...stylesheet.isFullHeight,
   },
   scrollbox: {
     ...stylesheet.isFullWidth,
@@ -33,7 +33,7 @@ const useStyles = createUseStyles({
 const KanbanBoardComponent = ({ columns, items }) => {
   const classes = useStyles();
   return (
-    <div className={classes.kandbanBoard}>
+    <div className={classes.board}>
       <div className={classes.scrollbox}>
         <div className={classes.wrapper}>
           <div className={classes.columns}>

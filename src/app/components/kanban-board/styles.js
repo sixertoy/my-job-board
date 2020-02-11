@@ -11,27 +11,26 @@ export const theme = {
     thumb: '#C5C9D1',
     track: '#DCDEE4',
   },
-  shadow: '0 1px 0 rgba(9, 30, 66, 0.25)',
 };
 
 export const stylesheet = {
   customScrollbar: (size = 8) => ({
     '&::-webkit-scrollbar': {
-      borderRadius: '4px',
-      height: `${size}px`,
-      width: `${size}px`,
+      borderRadius: 4,
+      height: size,
+      width: size,
     },
     '&::-webkit-scrollbar-thumb': {
       background: theme.scrollbar.thumb,
-      borderRadius: '4px',
+      borderRadius: 4,
     },
     '&::-webkit-scrollbar-track': {
       background: theme.scrollbar.track,
-      borderRadius: '4px',
+      borderRadius: 4,
     },
     '&::-webkit-scrollbar-track-piece': {
       background: theme.scrollbar.track,
-      borderRadius: '4px',
+      borderRadius: 4,
     },
   }),
   isFullHeight: {

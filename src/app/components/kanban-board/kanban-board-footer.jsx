@@ -7,18 +7,18 @@ const useStyles = createUseStyles({
     '&:hover': {
       backgroundColor: '#DCDEE4',
     },
-    borderRadius: '3px',
+    borderRadius: 3,
     color: '#5e6c84',
     display: 'block',
-    flex: '1 0 auto',
+    // flex: '1 0 auto',
     padding: '4px 8px',
     textAlign: 'left',
   },
-  container: {
+  footer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    minHeight: '20px',
+    minHeight: 20,
     padding: '2px 4px 8px 8px',
   },
   label: {
@@ -27,14 +27,14 @@ const useStyles = createUseStyles({
   },
   plus: {
     fontSize: '1.3rem',
-    marginRight: '5px',
+    marginRight: 5,
   },
 });
 
 const KanbanBoardFooter = ({ onClick }) => {
   const classes = useStyles();
   return (
-    <div className={classes.container}>
+    <div className={classes.footer}>
       {onClick && (
         <button className={classes.button} type="button" onClick={onClick}>
           <span className={classes.plus}>+</span>

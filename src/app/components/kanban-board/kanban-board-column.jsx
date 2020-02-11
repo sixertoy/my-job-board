@@ -9,21 +9,20 @@ import { ItemType } from './prop-types';
 import { stylesheet, theme } from './styles';
 
 const useStyles = createUseStyles({
-  container: {
+  cards: {
+    ...stylesheet.isScrollableY,
+    ...stylesheet.customScrollbar(),
+    marginRight: 4,
+    padding: '0 4px 0 8px',
+  },
+  column: {
     backgroundColor: theme.column.background,
-    borderRadius: '3px',
+    borderRadius: 3,
     display: 'flex',
     flexDirection: 'column',
     margin: '0 4px 0 4px',
-    minWidth: '300px',
+    minWidth: 300,
     width: 'auto',
-  },
-  wrapper: {
-    ...stylesheet.isScrollableY,
-    ...stylesheet.customScrollbar(),
-    flex: '1 1 0%',
-    marginRight: '4px',
-    padding: '0 4px 0 8px',
   },
 });
 
@@ -38,9 +37,9 @@ const KanbanBoardColumn = ({
   const filtered = items.filter(obj => obj.status === status);
   const count = filtered.length;
   return (
-    <div className={classes.container}>
+    <div className={classes.column}>
       <KanbanBoardHeader count={count} label={label} />
-      <div className={classes.wrapper}>{filtered.map(render)}</div>
+      <div className={classes.cards}>{filtered.map(render)}</div>
       <KanbanBoardFooter onClick={addCardHandler} />
     </div>
   );

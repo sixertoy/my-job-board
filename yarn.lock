@@ -7347,7 +7347,7 @@ jss-plugin-compose@10.0.4:
     jss "10.0.4"
     tiny-warning "^1.0.2"
 
-jss-plugin-default-unit@10.0.4:
+jss-plugin-default-unit@10.0.4, jss-plugin-default-unit@^10.0.4:
   version "10.0.4"
   resolved "https://registry.yarnpkg.com/jss-plugin-default-unit/-/jss-plugin-default-unit-10.0.4.tgz#df03885de20f20a1fc1c21bdb7c62e865ee400d9"
   integrity sha512-T0mhL/Ogp/quvod/jAHEqKvptLDxq7Cj3a+7zRuqK8HxUYkftptN89wJElZC3rshhNKiogkEYhCWenpJdFvTBg==
@@ -7380,7 +7380,7 @@ jss-plugin-global@10.0.4:
     "@babel/runtime" "^7.3.1"
     jss "10.0.4"
 
-jss-plugin-nested@10.0.4:
+jss-plugin-nested@10.0.4, jss-plugin-nested@^10.0.4:
   version "10.0.4"
   resolved "https://registry.yarnpkg.com/jss-plugin-nested/-/jss-plugin-nested-10.0.4.tgz#4d15ad13995fb6e4125618006473a096d2475d75"
   integrity sha512-QM21BKVt8LDeoRfowvAMh/s+/89VYrreIIE6ch4pvw0oAXDWw1iorUPlqLZ7uCO3UL0uFtQhJq3QMLN6Lr1v0A==
@@ -7423,7 +7423,7 @@ jss-plugin-template@10.0.4:
     jss "10.0.4"
     tiny-warning "^1.0.2"
 
-jss-plugin-vendor-prefixer@10.0.4:
+jss-plugin-vendor-prefixer@10.0.4, jss-plugin-vendor-prefixer@^10.0.4:
   version "10.0.4"
   resolved "https://registry.yarnpkg.com/jss-plugin-vendor-prefixer/-/jss-plugin-vendor-prefixer-10.0.4.tgz#1626ef612a4541cff17cf96815e1740155214ed2"
   integrity sha512-4JgEbcrdeMda1qvxTm1CnxFJAWVV++VLpP46HNTrfH7VhVlvUpihnUNs2gAlKuRT/XSBuiWeLAkrTqF4NVrPig==

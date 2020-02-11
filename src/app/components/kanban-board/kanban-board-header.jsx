@@ -3,16 +3,15 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
-  container: {
+  header: {
     alignItems: 'center',
     display: 'flex',
-    flex: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: '6px 8px',
   },
-  count: {},
-  title: {
+  headerCount: {},
+  headerTitle: {
     fontSize: '0.875rem',
     fontWeight: 'bold',
     lineHeight: '1.25rem',
@@ -24,11 +23,11 @@ const useStyles = createUseStyles({
 const KanbanBoardHeader = ({ count, label }) => {
   const classes = useStyles();
   return (
-    <div className={classes.container}>
-      <div className={classes.title}>
+    <div className={classes.header}>
+      <div className={classes.headerTitle}>
         <span>{label}</span>
       </div>
-      <div className={classes.count}>
+      <div className={classes.headerCount}>
         <span>{count}</span>
       </div>
     </div>
