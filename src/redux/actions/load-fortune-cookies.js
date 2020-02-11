@@ -8,9 +8,9 @@ const loadFortuneCookies = () => dispatch => {
     .then(data => {
       dispatch({ data, type: EVENT_TYPES.FORTUNE_COOKIES_LOADED });
     })
-    .catch(err => {
+    .catch(() => {
       // TODO remplacer par le logger
-      console.log(err);
+      // console.log(err);
     })
     .finally(() => {});
 };

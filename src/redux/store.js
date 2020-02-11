@@ -23,8 +23,12 @@ function bindMiddleware(middleware = []) {
 export const clearPersistentStorage = () =>
   // https://git.io/v9hbh
   purgeStoredState({}, reduxPersistConfig.whitelist)
-    .then(() => console.log('purged of whitelist success'))
-    .catch(() => console.log('purge of someReducer failed'));
+    .then(() => {
+      // console.log('purged of whitelist success')
+    })
+    .catch(() => {
+      // console.log('purge of someReducer failed')
+    });
 
 export const configure = (history, initialState = {}) => {
   // const middleware = routerMiddleware(history);

@@ -4,7 +4,7 @@
   height: 1px;
   margin: 5px 0;
   display: block;
-  background: #EDEDED;
+  background: #ededed;
 }
 
 .abstract-card-badge {
@@ -12,7 +12,7 @@
   padding: 0;
   width: 14px;
   height: 14px;
-  color: #EDEDED;
+  color: #ededed;
   display: block;
   cursor: pointer;
   font-size: 14px;
@@ -24,7 +24,7 @@
 
 .abstract-card-badge:hover,
 .abstract-card-badge.active {
-  color: #AACCEE;
+  color: #aaccee;
 }
 
 .abstract-card-badge + .abstract-card-badge {

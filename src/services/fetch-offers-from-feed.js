@@ -64,10 +64,10 @@ const fetchOffersFromFeed = (feed, now) => {
       if (!parsed) throw new Error('Unable to parse xml to object');
       return parsed;
     })
-    .catch(err => {
-      const reason = new Error(`${key}\n${err.message}`);
+    .catch(() => {
+      // const reason = new Error(`${key}\n${err.message}`);
       // TODO utiliser napper-core/logger
-      console.log(reason);
+      // console.log(reason);
     });
 };
 

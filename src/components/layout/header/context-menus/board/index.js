@@ -8,8 +8,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = () => ({
-  addFeedHandler: values => {
-    console.log('rest', values);
+  addFeedHandler: () => {
+    // console.log('rest', values);
   },
 });
 

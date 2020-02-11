@@ -26,10 +26,10 @@ function createServicePromise({ id, parser, type, url }) {
     .then(resolveRequest(type))
     .then(parser)
     .then(mapDataToServiceId(id))
-    .catch(err => {
-      const reason = new Error(`${err.message}`);
+    .catch(() => {
+      // const reason = new Error(`${err.message}`);
       // TODO utilise napper-core/logger
-      console.log(reason);
+      // console.log(reason);
     });
 }
 

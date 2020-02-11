@@ -38,9 +38,9 @@ const loadFeeds = () => (dispatch, getstate) => {
     .then(offers => {
       dispatch({ now, offers, type: EVENT_TYPES.OFFERS_LOADED });
     })
-    .catch(err => {
+    .catch(() => {
       // TODO remplacer par le logger
-      console.log(err);
+      // console.log(err);
     })
     .finally(() => {
       dispatch(loadingComplete());

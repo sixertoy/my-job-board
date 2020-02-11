@@ -1,36 +1,35 @@
 /* eslint
   react/no-danger: 0 */
-import PropTypes from 'prop-types';
-import { DragLayer } from 'react-dnd';
-import React, { Component } from 'react';
-
 // application
 import './draggablecard.css';
+
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { DragLayer } from 'react-dnd';
+
 import AbstractCard from './AbstractCard';
 
-function getDraggableCardStyles (currentoffset) {
+function getDraggableCardStyles(currentoffset) {
   const { x, y } = currentoffset;
-  const isabsolutezero = (x <= 0 && y <= 0);
+  const isabsolutezero = x <= 0 && y <= 0;
   if (!currentoffset || isabsolutezero) {
-    return ({ display: 'none', visibility: 'hidden' });
+    return { display: 'none', visibility: 'hidden' };
   }
   return { transform: `translate(${x}px, ${y}px)` };
 }
 
 // eslint-disable-next-line react/prefer-stateless-function
 class DraggableCard extends Component {
-
-  render () {
-    const {
-      item,
-      currentoffset } = this.props;
+  render() {
+    const { currentoffset, item } = this.props;
     if (!item) return false;
     return (
       <div className="draggablecard-container">
-        <div className="draggablecard"
+        <div
+          className="draggablecard"
           style={getDraggableCardStyles(currentoffset)}>
-          <div className={'kanban-card relative'}>
-            <AbstractCard nostatus minify item={item} />
+          <div className="kanban-card relative">
+            <AbstractCard minify nostatus item={item} />
           </div>
         </div>
       </div>
@@ -39,22 +38,20 @@ class DraggableCard extends Component {
 }
 
 DraggableCard.defaultProps = {
-  item: null
+  item: null,
 };
 
 DraggableCard.propTypes = {
-  item: PropTypes.object,
   currentoffset: PropTypes.shape({
     x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired
-  }).isRequired
+    y: PropTypes.number.isRequired,
+  }).isRequired,
+  item: PropTypes.object,
 };
 
 const collect = monitor => ({
+  currentoffset: monitor.getSourceClientOffset() || { x: 0, y: 0 },
   item: monitor.getItem(),
-  currentoffset: monitor.getSourceClientOffset() || { x: 0, y: 0 }
 });
 
-export default DragLayer(
-  collect
-)(DraggableCard);
+export default DragLayer(collect)(DraggableCard);

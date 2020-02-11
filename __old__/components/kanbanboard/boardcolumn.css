@@ -7,11 +7,11 @@
   border-radius: 5px;
   padding: 0 4px 0 8px;
   flex-direction: column;
-  background-color: #E2E4E6;
+  background-color: #e2e4e6;
 }
 
 .board-column.hovered {
-  background-color: #C0CCD8;
+  background-color: #c0ccd8;
 }
 
 .board-column-header {
@@ -45,6 +45,6 @@
 
 #searchinput i {
   width: 20px;
-  color: #CCCCCC;
+  color: #cccccc;
   margin-right: 5px;
 }

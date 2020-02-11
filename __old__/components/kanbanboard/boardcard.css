@@ -5,18 +5,18 @@
   height: auto;
   min-height: 110px;
   border-radius: 5px;
-  border-bottom: 1px solid #CCCCCC;
+  border-bottom: 1px solid #cccccc;
 }
 
 .kanban-card-placeholder {
-  background-color: #AACCEE;
+  background-color: #aaccee;
 }
 
 .kanban-card {
   padding: 10px;
   color: #333333;
   text-align: left;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
 }
 
 .kanban-card-title span {

@@ -64,7 +64,7 @@
   color: white;
   padding: 3px 12px;
   border-radius: 4px;
-  background-color: #AACCEE;
+  background-color: #aaccee;
 }
 
 #overlaycard .overlaycard-header > p + p {
@@ -81,7 +81,7 @@
 #overlaycard .overlaycard-content {
   padding: 20px;
   border-radius: 4px;
-  background-color: #EDEFF0;
+  background-color: #edeff0;
 }
 
 button.overlaycard-close {
@@ -124,5 +124,5 @@ button.overlaycard-close {
   border-width: 1px;
   border-radius: 4px;
   border-style: solid;
-  border-color: #BFBFBF;
+  border-color: #bfbfbf;
 }

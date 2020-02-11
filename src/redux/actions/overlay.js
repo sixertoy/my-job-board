@@ -1,8 +1,8 @@
 export const openOverlayCard = item => ({
+  item,
   type: 'onopenoverlaycard',
-  item
 });
 
 export const closeOverlayCard = () => ({
-  type: 'oncloseoverlaycard'
+  type: 'oncloseoverlaycard',
 });
