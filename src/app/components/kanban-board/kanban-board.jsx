@@ -12,9 +12,11 @@ const useStyles = createUseStyles({
     ...stylesheet.isFullHeight,
   },
   columns: {
-    ...stylesheet.isFullHeight,
+    // ...stylesheet.isFullHeight,
     display: 'flex',
     flexDirection: 'row',
+    height: 'auto',
+    maxHeight: '100%',
   },
   scrollbox: {
     ...stylesheet.isFullWidth,

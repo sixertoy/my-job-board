@@ -2,7 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 
-const useStyles = createUseStyles({
+import { IconCog, IconPlus } from './icons';
+
+const bases = {
   button: {
     '&:hover': {
       backgroundColor: '#DCDEE4',
@@ -10,24 +12,44 @@ const useStyles = createUseStyles({
     borderRadius: 3,
     color: '#5e6c84',
     display: 'block',
-    // flex: '1 0 auto',
+    marginRight: 4,
+    minHeight: 28,
     padding: '4px 8px',
+    textAlign: 'center',
+  },
+  icon: {
+    fontSize: '0.6rem',
+  },
+};
+
+const useStyles = createUseStyles({
+  buttonAdd: {
+    ...bases.button,
     textAlign: 'left',
+    width: '100%',
+  },
+  buttonSettings: {
+    ...bases.button,
+    marginLeft: 4,
   },
   footer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    minHeight: 20,
-    padding: '2px 4px 8px 8px',
+    flex: 0,
+    height: 40,
+    padding: '2px 4px 7px 8px',
+  },
+  iconCog: { ...bases.icon, fontSize: '0.7rem' },
+  iconPlus: {
+    ...bases.icon,
+    marginRight: 5,
   },
   label: {
     fontSize: '0.875rem',
     lineHeight: '1.25rem',
   },
-  plus: {
-    fontSize: '1.3rem',
-    marginRight: 5,
+  wrapper: {
+    alignItems: 'center',
+    display: 'flex',
+    justifyContent: 'row',
   },
 });
 
@@ -35,12 +57,24 @@ const KanbanBoardFooter = ({ onClick }) => {
   const classes = useStyles();
   return (
     <div className={classes.footer}>
-      {onClick && (
-        <button className={classes.button} type="button" onClick={onClick}>
-          <span className={classes.plus}>+</span>
-          <span className={classes.label}>Ajouter une carte</span>
+      <div className={classes.wrapper}>
+        {onClick && (
+          <button className={classes.buttonAdd} type="button" onClick={onClick}>
+            <span className={classes.iconPlus}>
+              <IconPlus />
+            </span>
+            <span className={classes.label}>Ajouter une carte</span>
+          </button>
+        )}
+        <button
+          className={classes.buttonSettings}
+          type="button"
+          onClick={onClick}>
+          <span className={classes.iconCog}>
+            <IconCog />
+          </span>
         </button>
-      )}
+      </div>
     </div>
   );
 };

@@ -6,8 +6,12 @@ const useStyles = createUseStyles({
   header: {
     alignItems: 'center',
     display: 'flex',
+    flex: 0,
     flexDirection: 'row',
+    height: 40,
     justifyContent: 'space-between',
+    maxHeight: 40,
+    minHeight: 40,
     padding: '6px 8px',
   },
   headerCount: {},

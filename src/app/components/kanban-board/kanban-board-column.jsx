@@ -10,19 +10,36 @@ import { stylesheet, theme } from './styles';
 
 const useStyles = createUseStyles({
   cards: {
-    ...stylesheet.isScrollableY,
-    ...stylesheet.customScrollbar(),
-    marginRight: 4,
-    padding: '0 4px 0 8px',
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column',
+    height: 'auto',
+    maxHeight: '100%',
+    overflow: 'hidden',
+    paddingLeft: 4,
+    paddingRight: 4,
   },
   column: {
+    height: 'auto',
+    margin: '0 4px 0 4px',
+    maxHeight: '100%',
+    minWidth: 300,
+    overflow: 'hidden',
+    width: 'auto',
+  },
+  list: {
+    paddingRight: 4,
+    ...stylesheet.isScrollableY,
+    ...stylesheet.customScrollbar(),
+  },
+  wrapper: {
     backgroundColor: theme.column.background,
     borderRadius: 3,
     display: 'flex',
+    flex: 1,
     flexDirection: 'column',
-    margin: '0 4px 0 4px',
-    minWidth: 300,
-    width: 'auto',
+    maxHeight: '100%',
+    overflow: 'hidden',
   },
 });
 
@@ -38,9 +55,13 @@ const KanbanBoardColumn = ({
   const count = filtered.length;
   return (
     <div className={classes.column}>
-      <KanbanBoardHeader count={count} label={label} />
-      <div className={classes.cards}>{filtered.map(render)}</div>
-      <KanbanBoardFooter onClick={addCardHandler} />
+      <div className={classes.wrapper}>
+        <KanbanBoardHeader count={count} label={label} />
+        <div className={classes.cards}>
+          <div className={classes.list}>{filtered.map(render)}</div>
+        </div>
+        <KanbanBoardFooter onClick={addCardHandler} />
+      </div>
     </div>
   );
 };
