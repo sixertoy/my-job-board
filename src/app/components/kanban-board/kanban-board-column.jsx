@@ -6,7 +6,7 @@ import KanbanBoardCard from './kanban-board-card';
 import KanbanBoardFooter from './kanban-board-footer';
 import KanbanBoardHeader from './kanban-board-header';
 import { ItemType } from './prop-types';
-import { stylesheet, theme } from './styles';
+import { theme } from './styles';
 
 const useStyles = createUseStyles({
   cards: {
@@ -28,9 +28,10 @@ const useStyles = createUseStyles({
     width: 'auto',
   },
   list: {
+    composes: ['kanban-scrollbar'],
+    overflowX: 'hidden',
+    overflowY: 'auto',
     paddingRight: 4,
-    ...stylesheet.isScrollableY,
-    ...stylesheet.customScrollbar(),
   },
   wrapper: {
     backgroundColor: theme.column.background,

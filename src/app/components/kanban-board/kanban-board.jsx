@@ -4,29 +4,38 @@ import { createUseStyles } from 'react-jss';
 
 import KanbanBoardColumn from './kanban-board-column';
 import { ColumnType, ItemType } from './prop-types';
-import { stylesheet } from './styles';
 
 const useStyles = createUseStyles({
   board: {
-    ...stylesheet.isFullWidth,
-    ...stylesheet.isFullHeight,
+    height: '100%',
+    maxHeight: '100%',
+    maxWidth: '100%',
+    minHeight: '100%',
+    minWidth: '100%',
+    width: '100%',
   },
   columns: {
-    // ...stylesheet.isFullHeight,
     display: 'flex',
     flexDirection: 'row',
     height: 'auto',
     maxHeight: '100%',
   },
   scrollbox: {
-    ...stylesheet.isFullWidth,
-    ...stylesheet.isFullHeight,
-    ...stylesheet.isScrollableX,
-    ...stylesheet.customScrollbar(12),
+    composes: ['kanban-scrollbar-large'],
+    height: '100%',
+    maxHeight: '100%',
+    maxWidth: '100%',
+    minHeight: '100%',
+    minWidth: '100%',
+    overflowX: 'auto',
+    overflowY: 'hidden',
     position: 'relative',
+    width: '100%',
   },
   wrapper: {
-    ...stylesheet.isFullHeight,
+    height: '100%',
+    maxHeight: '100%',
+    minHeight: '100%',
     padding: '12px 7px',
     position: 'absolute',
   },

@@ -1,0 +1,66 @@
+.kanban-scrollbar,
+.kanban-scrollbar-large {
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translateZ(0);
+}
+
+.kanban-scrollbar::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.kanban-scrollbar-large::-webkit-scrollbar {
+  height: 12px;
+  width: 12px;
+}
+
+.kanban-scrollbar-large::-webkit-scrollbar-button:end:increment,
+.kanban-scrollbar-large::-webkit-scrollbar-button:start:decrement,
+.kanban-scrollbar::-webkit-scrollbar-button:end:increment,
+.kanban-scrollbar::-webkit-scrollbar-button:start:decrement {
+  background: transparent;
+  display: none;
+}
+
+.kanban-scrollbar::-webkit-scrollbar-track-piece {
+  background: rgba(9, 30, 66, 0.08);
+}
+
+.kanban-scrollbar-large::-webkit-scrollbar-track-piece:vertical:start,
+.kanban-scrollbar::-webkit-scrollbar-track-piece:vertical:start {
+  border-radius: 4px 4px 0 0;
+}
+
+.kanban-scrollbar-large::-webkit-scrollbar-track-piece:vertical:end,
+.kanban-scrollbar::-webkit-scrollbar-track-piece:vertical:end {
+  border-radius: 0 0 4px 4px;
+}
+
+.kanban-scrollbar-large::-webkit-scrollbar-track-piece:horizontal:start,
+.kanban-scrollbar::-webkit-scrollbar-track-piece:horizontal:start {
+  border-radius: 4px 0 0 4px;
+}
+
+.kanban-scrollbar-large::-webkit-scrollbar-track-piece:horizontal:end,
+.kanban-scrollbar::-webkit-scrollbar-track-piece:horizontal:end {
+  border-radius: 0 4px 4px 0;
+}
+
+.kanban-scrollbar-large::-webkit-scrollbar-thumb:horizontal,
+.kanban-scrollbar-large::-webkit-scrollbar-thumb:vertical,
+.kanban-scrollbar::-webkit-scrollbar-thumb:horizontal,
+.kanban-scrollbar::-webkit-scrollbar-thumb:vertical {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  display: block;
+  height: 48px;
+}
+
+.kanban-scrollbar-large::-webkit-scrollbar-track-piece {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.kanban-scrollbar-large::-webkit-scrollbar-thumb:horizontal,
+.kanban-scrollbar-large::-webkit-scrollbar-thumb:vertical {
+  background: hsla(0, 0%, 100%, 0.4);
+}

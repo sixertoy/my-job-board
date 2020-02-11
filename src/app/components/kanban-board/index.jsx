@@ -1,3 +1,5 @@
+import './styles.css';
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import { jss, JssProvider } from 'react-jss';
