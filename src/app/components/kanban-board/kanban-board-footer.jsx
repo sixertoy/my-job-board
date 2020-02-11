@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, useTheme } from 'react-jss';
 
 import { IconCog, IconPlus } from './icons';
 
 const bases = {
   button: {
     '&:hover': {
-      backgroundColor: '#DCDEE4',
+      backgroundColor: ({ theme }) => theme.buttonHover,
     },
     borderRadius: 3,
-    color: '#5e6c84',
+    color: ({ theme }) => theme.buttonColor,
     display: 'block',
     marginRight: 4,
     minHeight: 28,
@@ -54,7 +54,8 @@ const useStyles = createUseStyles({
 });
 
 const KanbanBoardFooter = ({ onClick }) => {
-  const classes = useStyles();
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   return (
     <div className={classes.footer}>
       <div className={classes.wrapper}>

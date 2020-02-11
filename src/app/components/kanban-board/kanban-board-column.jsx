@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, useTheme } from 'react-jss';
 
 import KanbanBoardCard from './kanban-board-card';
 import KanbanBoardFooter from './kanban-board-footer';
 import KanbanBoardHeader from './kanban-board-header';
 import { ItemType } from './prop-types';
-import { theme } from './styles';
 
 const useStyles = createUseStyles({
   cards: {
@@ -34,7 +33,7 @@ const useStyles = createUseStyles({
     paddingRight: 4,
   },
   wrapper: {
-    backgroundColor: theme.column.background,
+    backgroundColor: ({ theme }) => theme.columnBackground,
     borderRadius: 3,
     display: 'flex',
     flex: 1,
@@ -51,7 +50,8 @@ const KanbanBoardColumn = ({
   render,
   status,
 }) => {
-  const classes = useStyles();
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   const filtered = items.filter(obj => obj.status === status);
   const count = filtered.length;
   return (
