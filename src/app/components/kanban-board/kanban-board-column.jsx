@@ -50,50 +50,56 @@ const useStyles = createUseStyles({
 });
 
 const KanbanBoardColumn = ({
-  addCardHandler,
+  addCardToListHandler,
+  cardDroppedHandler,
   items,
   label,
+  listCanBeEdited,
   render,
   status,
 }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  // const [{ canDrop, isOver }, drop] = useDrop({
-  const [{ isOver }, drop] = useDrop({
+  const [{ canDrop, isOver }, drop] = useDrop({
     accept: DRAG_CARD_TYPE,
-    canDrop: () => {},
+    canDrop: ({ status: itemStatus }) => status !== itemStatus,
     collect: monitor => ({
       canDrop: !!monitor.canDrop(),
       isOver: !!monitor.isOver(),
     }),
-    drop: () => {},
+    drop: ({ id }) => cardDroppedHandler(id, status),
   });
   const filtered = items.filter(obj => obj.status === status);
-  const count = filtered.length;
-  const listClassname = `${classes.list} ${(isOver && 'can-drop') || ''}`;
+  const overclass = (canDrop && isOver && 'can-drop') || '';
+  const listClassname = `${classes.list} ${overclass}`;
   return (
     <div ref={drop} className={classes.column}>
       <div className={classes.wrapper}>
-        <KanbanBoardHeader count={count} label={label} />
+        <KanbanBoardHeader count={filtered.length} label={label} />
         <div className={classes.cards}>
           <div className={listClassname}>{filtered.map(render)}</div>
         </div>
-        <KanbanBoardFooter onClick={addCardHandler} />
+        <KanbanBoardFooter
+          listCanBeEdited={listCanBeEdited}
+          onClick={addCardToListHandler}
+        />
       </div>
     </div>
   );
 };
 
 KanbanBoardColumn.defaultProps = {
-  addCardHandler: null,
+  addCardToListHandler: null,
   items: [],
   render: item => <KanbanBoardCard key={item.id} item={item} />,
 };
 
 KanbanBoardColumn.propTypes = {
-  addCardHandler: PropTypes.func,
+  addCardToListHandler: PropTypes.func,
+  cardDroppedHandler: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(ItemType),
   label: PropTypes.string.isRequired,
+  listCanBeEdited: PropTypes.bool.isRequired,
   render: PropTypes.func,
   status: PropTypes.string.isRequired,
 };

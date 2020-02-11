@@ -41,7 +41,13 @@ const useStyles = createUseStyles({
   },
 });
 
-const KanbanBoardComponent = ({ columns, items }) => {
+const KanbanBoardComponent = ({
+  addCardHandler,
+  canEditList,
+  columns,
+  items,
+  onCardDropped,
+}) => {
   const classes = useStyles();
   return (
     <div className={classes.board}>
@@ -52,9 +58,11 @@ const KanbanBoardComponent = ({ columns, items }) => {
               return (
                 <KanbanBoardColumn
                   key={key}
-                  addCardHandler={() => {}}
+                  addCardToListHandler={addCardHandler}
+                  cardDroppedHandler={onCardDropped}
                   items={items}
                   label={label}
+                  listCanBeEdited={canEditList}
                   status={key}
                 />
               );
@@ -66,9 +74,18 @@ const KanbanBoardComponent = ({ columns, items }) => {
   );
 };
 
+KanbanBoardComponent.defaultProps = {
+  addCardHandler: null,
+  canEditList: false,
+  onCardDropped: () => {},
+};
+
 KanbanBoardComponent.propTypes = {
+  addCardHandler: PropTypes.func,
+  canEditList: PropTypes.bool,
   columns: PropTypes.arrayOf(ColumnType).isRequired,
   items: PropTypes.arrayOf(ItemType).isRequired,
+  onCardDropped: PropTypes.func,
 };
 
 export default KanbanBoardComponent;

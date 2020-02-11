@@ -49,43 +49,50 @@ const useStyles = createUseStyles({
   wrapper: {
     alignItems: 'center',
     display: 'flex',
-    justifyContent: 'row',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
 });
 
-const KanbanBoardFooter = ({ onClick }) => {
+const KanbanBoardFooter = ({ addCardToListHandler, listCanBeEdited }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
     <div className={classes.footer}>
       <div className={classes.wrapper}>
-        {onClick && (
-          <button className={classes.buttonAdd} type="button" onClick={onClick}>
+        {addCardToListHandler && (
+          <button
+            className={classes.buttonAdd}
+            type="button"
+            onClick={addCardToListHandler}>
             <span className={classes.iconPlus}>
               <IconPlus />
             </span>
             <span className={classes.label}>Ajouter une carte</span>
           </button>
         )}
-        <button
-          className={classes.buttonSettings}
-          type="button"
-          onClick={onClick}>
-          <span className={classes.iconCog}>
-            <IconCog />
-          </span>
-        </button>
+        {listCanBeEdited && (
+          <button
+            className={classes.buttonSettings}
+            type="button"
+            onClick={() => {}}>
+            <span className={classes.iconCog}>
+              <IconCog />
+            </span>
+          </button>
+        )}
       </div>
     </div>
   );
 };
 
 KanbanBoardFooter.defaultProps = {
-  onClick: null,
+  addCardToListHandler: null,
 };
 
 KanbanBoardFooter.propTypes = {
-  onClick: PropTypes.func,
+  addCardToListHandler: PropTypes.func,
+  listCanBeEdited: PropTypes.bool.isRequired,
 };
 
 export default KanbanBoardFooter;

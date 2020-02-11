@@ -1,7 +1,11 @@
 import orderBy from 'lodash.orderby';
 import { connect } from 'react-redux';
 
-import { CARD_STATUS, UPDATE_INTERVAL_MS } from '../../../constants';
+import {
+  CARD_STATUS,
+  EVENT_TYPES,
+  UPDATE_INTERVAL_MS,
+} from '../../../constants';
 import { loadFeeds } from '../../../redux/actions';
 import KanbanBoardComponent from './kanban-board-component';
 
@@ -20,7 +24,12 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  forceRefresh: () => dispatch(loadFeeds()),
+  forceRefresh: () => {
+    dispatch(loadFeeds());
+  },
+  moveCardToStatus: (id, status) => {
+    dispatch({ id, status, type: EVENT_TYPES.MOVE_CARD_STATUS });
+  },
 });
 
 export default connect(

@@ -23,18 +23,14 @@ const KanbanBoardCard = ({ item }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const [{ isDragging }, drag] = useDrag({
-    collect: monitor => ({
-      isDragging: !!monitor.isDragging(),
-    }),
-    item: { type: DRAG_CARD_TYPE },
+    collect: monitor => ({ isDragging: !!monitor.isDragging() }),
+    item: { id: item.id, status: item.status, type: DRAG_CARD_TYPE },
   });
   return (
     <div
       ref={drag}
       className={classes.card}
-      style={{
-        opacity: isDragging ? 0.5 : 1,
-      }}>
+      style={{ opacity: isDragging ? 0.5 : 1 }}>
       <div>{item.title}</div>
     </div>
   );

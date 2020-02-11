@@ -30,11 +30,20 @@ const styles = theme => ({
   },
 });
 
-const KanbanBoardComponent = ({ classes, columns, offers }) => {
+const KanbanBoardComponent = ({
+  classes,
+  columns,
+  moveCardToStatus,
+  offers,
+}) => {
   return (
     <div className={classes.container} id="kanban-board">
       <BoardHeaderComponent />
-      <KanbanBoard columns={columns} items={offers} />
+      <KanbanBoard
+        columns={columns}
+        items={offers}
+        onCardDropped={moveCardToStatus}
+      />
       {/* <div className={classes.columns} id="board-columns">
         <KanbanBoardColumnComponent type={CARD_STATUS.FEEDS.key} />
         <KanbanBoardColumnComponent type={CARD_STATUS.TODO.key} />
@@ -61,6 +70,7 @@ const KanbanBoardComponent = ({ classes, columns, offers }) => {
 KanbanBoardComponent.propTypes = {
   classes: PropTypes.shape().isRequired,
   columns: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  moveCardToStatus: PropTypes.func.isRequired,
   offers: PropTypes.PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
