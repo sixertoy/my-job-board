@@ -1,5 +1,6 @@
 import queryString from 'query-string';
 import storage from 'redux-persist/lib/storage';
+import uuidv1 from 'uuid/v1';
 
 const feeds = {
   codeur: {
@@ -28,11 +29,21 @@ const feeds = {
   // poleemploi: 'https://api.emploi-store.fr/partenaire/offresdemploi/v1/rechercheroffres'
 };
 
+const notes = [
+  { id: uuidv1(), label: 'titi', title: 'title' },
+  { id: uuidv1(), label: 'toto', title: 'title' },
+  { id: uuidv1(), label: 'tata', title: 'title' },
+  { id: uuidv1(), label: 'tutu', title: 'title' },
+  { id: uuidv1(), label: 'tyty', title: 'title' },
+  { id: uuidv1(), label: 'tete', title: 'title' },
+];
+
 const INITIAL_VALUES = {
   draggingcard: false,
   feeds,
   lastFeedUpdate: Date.now(),
   loading: false,
+  notes,
   offers: [],
   openedCard: false,
   search: '',

@@ -33,3 +33,12 @@ export const FortuneType = shape({
   numbers: arrayOf(number),
 });
 export const FortunesType = oneOfType([bool, FortuneType]);
+
+export const NoteType = shape({
+  content: string,
+  ctime: timestamp,
+  id: string,
+  mtime: timestamp,
+  title: string,
+});
+export const NotesType = arrayOf(NoteType);

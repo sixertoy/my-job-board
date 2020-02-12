@@ -1,3 +1,5 @@
+import { slugify } from '@iziges/napper-core/lib/strings';
+
 import { boardRoute, homeRoute, notesRoute, projectsRoute } from './routes';
 
 function mapRouteOrderToObject(obj, index) {
@@ -5,7 +7,8 @@ function mapRouteOrderToObject(obj, index) {
 }
 
 function mapSlugToRoutesObject(obj) {
-  return { ...obj, slug: '' };
+  const str = `${obj.order}-${obj.label}`;
+  return { ...obj, slug: slugify(str) };
 }
 
 const orderedRoutes = [
