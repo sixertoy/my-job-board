@@ -20,7 +20,9 @@ const styles = {
 };
 
 const PrevienwNoteComponent = ({ classes, note }) => {
-  if (!note) return <Redirect to="/notes" />;
+  if (!note) {
+    return <Redirect to="/notes" />;
+  }
   return (
     <div className={classes.container}>
       <div className={classes.columnLeft}>

@@ -2,6 +2,8 @@ import queryString from 'query-string';
 import storage from 'redux-persist/lib/storage';
 import uuidv1 from 'uuid/v1';
 
+const now = Date.now();
+
 const feeds = {
   codeur: {
     isstatic: true,
@@ -29,7 +31,6 @@ const feeds = {
   // poleemploi: 'https://api.emploi-store.fr/partenaire/offresdemploi/v1/rechercheroffres'
 };
 
-const now = Date.now();
 const notes = [
   {
     content: '## This is a header\n\nAnd this is a paragraph',

@@ -3,7 +3,7 @@ import React from 'react';
 import { ThemeProvider } from 'react-jss';
 import { connect } from 'react-redux';
 
-import MainLayoutComponent from './layout';
+import MainLayoutComponent from './app/layout';
 import { getThemeByThemeKey } from './theme';
 
 const Application = ({ theme }) => (

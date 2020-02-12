@@ -2,7 +2,7 @@ import { withStyles } from '@iziges/napper-core-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { getThemes } from '../../theme';
+import { getThemes } from '../../../theme';
 
 const square = {
   height: 12,

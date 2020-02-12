@@ -9,10 +9,10 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import Application from './app';
-import getRouterHistory from './history';
+import Application from './application';
+import getRouterHistory from './core/history';
+import { configure } from './core/store';
 import { getInitialState } from './redux/initial-state';
-import { configure } from './redux/store';
 import routes from './routes';
 
 const history = getRouterHistory();
