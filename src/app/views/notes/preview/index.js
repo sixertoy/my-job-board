@@ -1,20 +1,19 @@
 import { connect } from 'react-redux';
 
-import NotesGridComponent from './component';
+import { selectNoteById } from '../../../../redux/selectors';
+import PrevienwNoteComponent from './component';
 
-const mapStateToProps = () => ({
-  notes: [
-    { label: 'titi', title: 'title' },
-    { label: 'toto', title: 'title' },
-    { label: 'tata', title: 'title' },
-    { label: 'tutu', title: 'title' },
-    { label: 'tyty', title: 'title' },
-    { label: 'tete', title: 'title' },
-  ],
-});
+const mapStateToProps = (state, { match }) => {
+  const idFromURL = match.params.id;
+  const note = selectNoteById(state, idFromURL);
+  return { note };
+};
 
 const mapDispatchToProps = () => ({
   SAVE_NOTE: () => {},
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NotesGridComponent);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PrevienwNoteComponent);

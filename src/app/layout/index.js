@@ -1,30 +1,32 @@
 import { connect } from 'react-redux';
 
-import { getBrowserRoutes, shouldUpdateFeeds } from '../../helpers';
+import {
+  getBrowserRoutes,
+  getMenuItems,
+  shouldUpdateFeeds,
+} from '../../helpers';
 import { loadFeeds } from '../../redux/actions';
+import routes from '../../routes';
 import MainLayoutComponent from './component';
 
 const mapStateToProps = state => {
   const { lastFeedUpdate, loading } = state;
-  const routes = getBrowserRoutes();
-  return { lastFeedUpdate, loading, routes };
+  const menuItems = getMenuItems(routes);
+  const browserRoutes = getBrowserRoutes(routes);
+  return { browserRoutes, lastFeedUpdate, loading, menuItems };
 };
 
 const mapDispatchToProps = dispatch => ({
   loadFeedsHandler: () => dispatch(loadFeeds()),
 });
 
-const mergeProps = (
-  { lastFeedUpdate, loading, routes },
-  { loadFeedsHandler }
-) => ({
+const mergeProps = ({ lastFeedUpdate, ...rest }, { loadFeedsHandler }) => ({
   loadFeeds: () => {
     const shouldUpdate = shouldUpdateFeeds(lastFeedUpdate);
     if (!shouldUpdate) return;
     loadFeedsHandler(lastFeedUpdate);
   },
-  loading,
-  routes,
+  ...rest,
 });
 
 export default connect(

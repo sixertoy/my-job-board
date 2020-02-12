@@ -29,19 +29,62 @@ const feeds = {
   // poleemploi: 'https://api.emploi-store.fr/partenaire/offresdemploi/v1/rechercheroffres'
 };
 
+const now = Date.now();
 const notes = [
-  { id: uuidv1(), label: 'titi', title: 'title' },
-  { id: uuidv1(), label: 'toto', title: 'title' },
-  { id: uuidv1(), label: 'tata', title: 'title' },
-  { id: uuidv1(), label: 'tutu', title: 'title' },
-  { id: uuidv1(), label: 'tyty', title: 'title' },
-  { id: uuidv1(), label: 'tete', title: 'title' },
+  {
+    content: '## This is a header\n\nAnd this is a paragraph',
+    ctime: now,
+    id: uuidv1(),
+    label: 'titi',
+    mtime: now,
+    title: 'title',
+  },
+  {
+    content: '### This is a header\n\nAnd this is a paragraph',
+    ctime: now,
+    id: uuidv1(),
+    label: 'toto',
+    mtime: now,
+    title: 'title',
+  },
+  {
+    content: '# This is a header\n\nAnd this is a paragraph',
+    ctime: now,
+    id: uuidv1(),
+    label: 'tata',
+    mtime: now,
+    title: 'title',
+  },
+  {
+    content: '### This is a header\n\nAnd this is a paragraph',
+    ctime: now,
+    id: uuidv1(),
+    label: 'tutu',
+    mtime: now,
+    title: 'title',
+  },
+  {
+    content: '#### This is a header\n\nAnd this is a paragraph',
+    ctime: now,
+    id: uuidv1(),
+    label: 'tyty',
+    mtime: now,
+    title: 'title',
+  },
+  {
+    content: '## This is a header\n\nAnd this is a paragraph',
+    ctime: now,
+    id: uuidv1(),
+    label: 'tete',
+    mtime: now,
+    title: 'title',
+  },
 ];
 
 const INITIAL_VALUES = {
   draggingcard: false,
   feeds,
-  lastFeedUpdate: Date.now(),
+  lastFeedUpdate: now,
   loading: false,
   notes,
   offers: [],
@@ -54,7 +97,7 @@ export const reduxPersistConfig = {
   blacklist: [],
   key: 'LocalStorageKey::',
   storage,
-  whitelist: ['lastFeedUpdate', 'offers', 'selectedTheme'],
+  whitelist: ['lastFeedUpdate', 'offers', 'selectedTheme', 'notes'],
 };
 
 export const getInitialState = history => {

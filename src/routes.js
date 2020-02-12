@@ -1,12 +1,13 @@
 import { FaTasks } from 'react-icons/fa';
 import { IoIosDocument, IoMdCalendar, IoMdHome } from 'react-icons/io';
 
-import ViewBoardComponent from '../app/views/board';
-import ViewHomeComponent from '../app/views/home';
-import ViewNotesComponent from '../app/views/notes';
-import ViewProjectsComponent from '../app/views/projects';
+import ViewBoardComponent from './app/views/board';
+import ViewHomeComponent from './app/views/home';
+import ViewNotesComponent from './app/views/notes';
+import ViewProjectsComponent from './app/views/projects';
+import { mapOrderToRoutes, mapSlugToRoutes } from './helpers';
 
-export const boardRoute = {
+const boardRoute = {
   basepath: '/board',
   component: ViewBoardComponent,
   icon: FaTasks,
@@ -14,7 +15,7 @@ export const boardRoute = {
   params: '/:id?',
 };
 
-export const homeRoute = {
+const homeRoute = {
   basepath: '/',
   component: ViewHomeComponent,
   icon: IoMdHome,
@@ -22,7 +23,7 @@ export const homeRoute = {
   params: '',
 };
 
-export const notesRoute = {
+const notesRoute = {
   basepath: '/notes',
   component: ViewNotesComponent,
   icon: IoIosDocument,
@@ -30,10 +31,16 @@ export const notesRoute = {
   params: '/:id?',
 };
 
-export const projectsRoute = {
+const projectsRoute = {
   basepath: '/projects',
   component: ViewProjectsComponent,
   icon: IoMdCalendar,
   label: 'Projects',
   params: '/:id?',
 };
+
+const routes = [homeRoute, boardRoute, notesRoute, projectsRoute]
+  .map(mapOrderToRoutes)
+  .map(mapSlugToRoutes);
+
+export default routes;

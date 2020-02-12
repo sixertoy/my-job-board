@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { getMenuItems } from '../helpers';
-
 const styles = theme => ({
   container: {
     backgroundColor: theme.colors.foreground,
@@ -29,12 +27,11 @@ const styles = theme => ({
   },
 });
 
-const AppMenuComponent = React.memo(({ classes }) => {
-  const menuItems = getMenuItems();
+const AppMenuComponent = React.memo(({ classes, items }) => {
   return (
     <div className={classes.container} id="app-menu">
       <nav className={classes.top}>
-        {menuItems.map(obj => {
+        {items.map(obj => {
           const Icon = obj.icon;
           return (
             <NavLink
@@ -90,6 +87,7 @@ const AppMenuComponent = React.memo(({ classes }) => {
 
 AppMenuComponent.propTypes = {
   classes: PropTypes.shape().isRequired,
+  items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   // tooltipType: PropTypes.string.isRequired,
 };
 

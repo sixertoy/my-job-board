@@ -20,8 +20,9 @@ const styles = {
   },
   wrapper: {
     height: 160,
-    margin: '2%',
-    width: '25%',
+    margin: '1%',
+    minWidth: 200,
+    width: '23%',
   },
 };
 

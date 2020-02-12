@@ -1,28 +1,45 @@
 import { withStyles } from '@iziges/napper-core-react';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { IoIosMore } from 'react-icons/io';
+import ReactMarkdown from 'react-markdown';
+import { Redirect } from 'react-router-dom';
+
+import { NoteType } from '../../../../prop-types';
+import NotesGridComponent from '../grid';
 
 const styles = {
+  columnLeft: {
+    width: '40%',
+  },
+  columnRight: {
+    width: '60%',
+  },
   container: {
-    border: '1px solid #000000',
-    borderRadius: 4,
-    height: 160,
-    margin: '2%',
-    width: '25%',
+    composes: ['is-full-layout', 'flex-columns'],
   },
 };
 
-const NoteComponent = ({ classes, title }) => (
-  <div className={classes.container}>
-    <span>{title}</span>
-    <IoIosMore />
-  </div>
-);
-
-NoteComponent.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  title: PropTypes.string.isRequired,
+const PrevienwNoteComponent = ({ classes, note }) => {
+  if (!note) return <Redirect to="/notes" />;
+  return (
+    <div className={classes.container}>
+      <div className={classes.columnLeft}>
+        <NotesGridComponent />
+      </div>
+      <div className={classes.columnRight}>
+        <ReactMarkdown source={note.content} />
+      </div>
+    </div>
+  );
 };
 
-export default withStyles(styles)(NoteComponent);
+PrevienwNoteComponent.defaultProps = {
+  note: null,
+};
+
+PrevienwNoteComponent.propTypes = {
+  classes: PropTypes.shape().isRequired,
+  note: NoteType,
+};
+
+export default withStyles(styles)(PrevienwNoteComponent);

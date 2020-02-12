@@ -13,6 +13,7 @@ import Application from './app';
 import getRouterHistory from './history';
 import { getInitialState } from './redux/initial-state';
 import { configure } from './redux/store';
+import routes from './routes';
 
 const history = getRouterHistory();
 const initialState = getInitialState(history);
@@ -23,7 +24,7 @@ const Root = () => (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
-          <Application />
+          <Application routes={routes} />
         </BrowserRouter>
       </PersistGate>
     </Provider>

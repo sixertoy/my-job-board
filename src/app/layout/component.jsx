@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import AppMenuComponent from '../menu';
-import ProgressBar from '../progress-bar';
 import AppFooterComponent from './footer';
 import AppHeaderComponent from './header';
+import AppMenuComponent from './menu';
+import ProgressBar from './progress-bar';
 
 const styles = theme => ({
   container: {
@@ -25,20 +25,26 @@ const styles = theme => ({
   },
 });
 
-const MainLayoutComponent = ({ classes, loadFeeds, loading, routes }) => {
+const MainLayoutComponent = ({
+  browserRoutes,
+  classes,
+  loadFeeds,
+  loading,
+  menuItems,
+}) => {
   useEffect(() => {
     loadFeeds();
   }, [loadFeeds]);
   return (
     <div className={classes.container} id="app-container">
       <div className={classes.layout} id="app-layout">
-        <AppMenuComponent />
+        <AppMenuComponent items={menuItems} />
         <div className={classes.wrapper} id="app-wrapper">
           <ProgressBar loading={loading} />
           <AppHeaderComponent />
           <div className={classes.views} id="views-container">
             <Switch>
-              {routes.map(obj => {
+              {browserRoutes.map(obj => {
                 return (
                   <Route
                     key={obj.path}
@@ -59,10 +65,12 @@ const MainLayoutComponent = ({ classes, loadFeeds, loading, routes }) => {
 };
 
 MainLayoutComponent.propTypes = {
+  browserRoutes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   classes: PropTypes.shape().isRequired,
   loadFeeds: PropTypes.func.isRequired,
+  // TODO create types for routes
   loading: PropTypes.bool.isRequired,
-  routes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  menuItems: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 export default withStyles(styles)(MainLayoutComponent);
