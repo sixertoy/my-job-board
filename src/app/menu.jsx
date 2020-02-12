@@ -1,15 +1,9 @@
 import { withStyles } from '@iziges/napper-core-react';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FaTasks } from 'react-icons/fa';
-import {
-  IoIosListBox,
-  IoIosOptions,
-  IoMdCalendar,
-  IoMdHome,
-} from 'react-icons/io';
 import { NavLink } from 'react-router-dom';
-// import ReactTooltip from 'react-tooltip';
+
+import { getMenuItems } from '../helpers';
 
 const styles = theme => ({
   container: {
@@ -36,10 +30,24 @@ const styles = theme => ({
 });
 
 const AppMenuComponent = React.memo(({ classes }) => {
+  const menuItems = getMenuItems();
   return (
     <div className={classes.container} id="app-menu">
       <nav className={classes.top}>
-        <NavLink exact activeClassName="active" className={classes.item} to="/">
+        {menuItems.map(obj => {
+          const Icon = obj.icon;
+          return (
+            <NavLink
+              key={obj.path}
+              exact
+              activeClassName="active"
+              className={classes.item}
+              to={obj.path}>
+              <Icon />
+            </NavLink>
+          );
+        })}
+        {/* <NavLink exact activeClassName="active" className={classes.item} to="/">
           <IoMdHome />
         </NavLink>
         <NavLink
@@ -67,7 +75,7 @@ const AppMenuComponent = React.memo(({ classes }) => {
           className={classes.item}
           to="/settings">
           <IoIosOptions />
-        </NavLink>
+        </NavLink> */}
       </nav>
       {/* <ReactTooltip
         className={classes.tooltipOpaque}

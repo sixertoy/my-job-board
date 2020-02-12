@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import AppMenuComponent from '../menu';
+import ProgressBar from '../progress-bar';
 import AppFooterComponent from './footer';
 import AppHeaderComponent from './header';
-import AppMenuComponent from './menu';
-import ProgressBar from './progress-bar';
 
 const styles = theme => ({
   container: {

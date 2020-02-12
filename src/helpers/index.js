@@ -1,2 +1,2 @@
-export { default as getBrowserRoutes } from './get-browser-routes';
+export * from './get-app-routes';
 export { default as shouldUpdateFeeds } from './should-update-feeds';
