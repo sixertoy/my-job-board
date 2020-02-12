@@ -1,2 +1,2 @@
-// eslint-disable-next-line import/prefer-default-export
+export { default as getBrowserRoutes } from './get-browser-routes';
 export { default as shouldUpdateFeeds } from './should-update-feeds';

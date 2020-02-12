@@ -1,8 +1,8 @@
 import { withStyles } from '@iziges/napper-core-react';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-import MainRoutesComponent from '../routes';
 import AppFooterComponent from './footer';
 import AppHeaderComponent from './header';
 import AppMenuComponent from './menu';
@@ -25,7 +25,7 @@ const styles = theme => ({
   },
 });
 
-const MainLayoutComponent = ({ classes, loadFeeds, loading }) => {
+const MainLayoutComponent = ({ classes, loadFeeds, loading, routes }) => {
   useEffect(() => {
     loadFeeds();
   }, [loadFeeds]);
@@ -37,7 +37,18 @@ const MainLayoutComponent = ({ classes, loadFeeds, loading }) => {
           <ProgressBar loading={loading} />
           <AppHeaderComponent />
           <div className={classes.views} id="views-container">
-            <MainRoutesComponent />
+            <Switch>
+              {routes.map(obj => {
+                return (
+                  <Route
+                    key={obj.path}
+                    exact
+                    component={obj.component}
+                    path={obj.path}
+                  />
+                );
+              })}
+            </Switch>
             {/* {draggingcard && <DraggableCard />} */}
           </div>
         </div>
@@ -51,6 +62,7 @@ MainLayoutComponent.propTypes = {
   classes: PropTypes.shape().isRequired,
   loadFeeds: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
+  routes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 export default withStyles(styles)(MainLayoutComponent);

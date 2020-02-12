@@ -2,44 +2,24 @@ import { withStyles } from '@iziges/napper-core-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const styles = () => ({
-  container: {},
-});
+import Grid from './grid';
 
-const ProjectsComponent = ({ classes, projects }) => (
+const styles = {
+  container: {
+    composes: ['is-full-width'],
+  },
+};
+
+const ProjectsComponent = ({ classes }) => (
   <div className={classes.container}>
-    {projects.map(obj => {
-      return <div key={obj.title}>{obj.title}</div>;
-    })}
+    <Grid />
   </div>
 );
 
-ProjectsComponent.defaultProps = {
-  projects: [
-    {
-      title: 'toto',
-    },
-    {
-      title: 'titi',
-    },
-    {
-      title: 'tata',
-    },
-    {
-      title: 'tutu',
-    },
-    {
-      title: 'tyty',
-    },
-    {
-      title: 'tete',
-    },
-  ],
-};
+ProjectsComponent.defaultProps = {};
 
 ProjectsComponent.propTypes = {
   classes: PropTypes.shape().isRequired,
-  projects: PropTypes.arrayOf(PropTypes.shape()),
 };
 
 export default withStyles(styles)(ProjectsComponent);
