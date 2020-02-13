@@ -33,7 +33,7 @@ const feeds = {
 
 const notes = [
   {
-    content: '## This is a header\n\nAnd this is a paragraph',
+    content: '## This is a header\n\nAnd this is a paragraph\n- toto',
     ctime: now,
     id: uuidv1(),
     label: 'titi',

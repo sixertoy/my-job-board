@@ -2,12 +2,6 @@ import { withStyles } from '@iziges/napper-core-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-// import { Route } from 'react-router-dom';
-// import { DragDropContext } from 'react-dnd';
-// import HTML5Backend from 'react-dnd-html5-backend';
-// import { CARD_STATUS } from '../../../constants';
-// import KanbanBoardCardPreviewComponent from './card-preview';
-// import KanbanBoardColumnComponent from './column';
 import KanbanBoard from '../../components/kanban-board';
 import BoardHeaderComponent from './header';
 
@@ -44,12 +38,7 @@ const KanbanBoardComponent = ({
         items={offers}
         onCardDropped={moveCardToStatus}
       />
-      {/* <div className={classes.columns} id="board-columns">
-        <KanbanBoardColumnComponent type={CARD_STATUS.FEEDS.key} />
-        <KanbanBoardColumnComponent type={CARD_STATUS.TODO.key} />
-        <KanbanBoardColumnComponent type={CARD_STATUS.IN_PROGRESS.key} />
-        <KanbanBoardColumnComponent type={CARD_STATUS.DONE.key} />
-      </div>
+      {/*
       <Route
         exact
         path="/board/:id"
