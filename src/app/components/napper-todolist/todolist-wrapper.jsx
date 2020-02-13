@@ -3,7 +3,7 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { TasksType } from './core/prop-types';
-import NapperTodoListTaskComponent from './task';
+import NapperTodoListTaskComponent from './todolist-task';
 
 const useStyles = createUseStyles({
   tasks: {

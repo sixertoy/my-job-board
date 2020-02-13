@@ -3,8 +3,8 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { TasksType } from './core/prop-types';
-import NapperTodoListCounterComponent from './counter';
-import NapperTodoListProgressComponent from './progress';
+import NapperTodoListCounterComponent from './todolist-counter';
+import NapperTodoListProgressComponent from './todolist-progress';
 
 const useStyles = createUseStyles({
   footer: {

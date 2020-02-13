@@ -4,9 +4,9 @@ import { createUseStyles } from 'react-jss';
 
 import { PlacementType, TasksType } from './core/prop-types';
 import { getOnChangeHandler } from './core/utils';
-import NapperTodoListFooterComponent from './footer';
-import NapperTodoListHeaderComponent from './header';
-import NapperTodoListWrapperComponent from './wrapper';
+import NapperTodoListFooterComponent from './todolist-footer';
+import NapperTodoListHeaderComponent from './todolist-header';
+import NapperTodoListWrapperComponent from './todolist-wrapper';
 
 const useStyles = createUseStyles({
   container: {
