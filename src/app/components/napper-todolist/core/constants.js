@@ -6,6 +6,7 @@ export const MINIFY = Boolean(
 );
 
 export const BASE_THEME = {
+  backgroundHover: 'rgba(0, 0, 0, 0.15)',
   color: '#000000',
   progressRadius: 2,
   progressSize: 5,

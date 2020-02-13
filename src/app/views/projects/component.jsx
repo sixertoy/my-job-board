@@ -22,13 +22,13 @@ const ProjectsComponent = ({ classes }) => {
     <div className={classes.container}>
       <NapperTotoListComponent
         canCheckAll
+        completedAtBottom
+        showCompleted
         showCounter
         showProgress
-        completedAtBottom={false}
-        counterPosition="both" // top, bottom
-        order="desc" // false, desc, asc
-        orderBy="id" // label, mtime, ctime, id
-        showCompleted={false}
+        counterPosition="both" // both, top, bottom
+        order="asc" // false, desc, asc
+        orderBy="label" // label, mtime, ctime, id
         tasks={tasks}
         title="TODO LIST"
         onChange={(task, all) => setTasks(all)}

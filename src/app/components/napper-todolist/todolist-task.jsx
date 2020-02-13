@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import {
@@ -24,9 +24,12 @@ const useStyles = createUseStyles({
     fontSize: '1rem',
     lineHeight: '1.3rem',
   },
-  task: {
+  task: ({ theme }) => ({
+    '&:hover': {
+      backgroundColor: theme.backgroundHover,
+    },
     marginBottom: 12,
-  },
+  }),
 });
 
 function toggleCheked(value) {
@@ -39,11 +42,17 @@ const NapperTodoListTaskComponent = ({
   id,
   label,
   onClick,
+  onDelete,
 }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const [isHover, setIsHover] = useState(false);
   return (
-    <div className={classes.task} data-id={`napper-todolist-task-${id}`}>
+    <div
+      className={classes.task}
+      data-id={`napper-todolist-task-${id}`}
+      onMouseEnter={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}>
       <button
         className={classes.button}
         type="button"
@@ -56,6 +65,7 @@ const NapperTodoListTaskComponent = ({
           <span>{label}</span>
         </div>
       </button>
+      {isHover && onDelete && <span>djkfjsldfj</span>}
     </div>
   );
 };
@@ -73,6 +83,7 @@ NapperTodoListTaskComponent.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  onDelete: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]).isRequired,
 };
 
 export default NapperTodoListTaskComponent;

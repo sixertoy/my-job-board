@@ -50,6 +50,7 @@ const NapperTodoListComponent = React.memo(
     completedAtBottom,
     counterPosition,
     onChange,
+    onTaskDelete,
     order,
     orderBy,
     showCompleted,
@@ -94,6 +95,7 @@ const NapperTodoListComponent = React.memo(
               const all = updateAllTasks(tasks, task);
               onChange(task, all);
             }}
+            onTaskDelete={onTaskDelete}
           />
           <NapperTodoListFooterComponent
             showCounter={counterOnBottom}
@@ -110,6 +112,7 @@ NapperTodoListComponent.defaultProps = {
   canCheckAll: false,
   completedAtBottom: false,
   counterPosition: 'bottom',
+  onTaskDelete: false,
   order: false,
   orderBy: 'label',
   showCompleted: false,
@@ -124,6 +127,7 @@ NapperTodoListComponent.propTypes = {
   completedAtBottom: PropTypes.bool,
   counterPosition: PlacementType,
   onChange: PropTypes.func.isRequired,
+  onTaskDelete: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   order: PropTypes.oneOf([false, 'desc', 'asc']),
   orderBy: PropTypes.oneOf(['label', 'id', 'mtime', 'ctime']),
   showCompleted: PropTypes.bool,
