@@ -1,10 +1,3 @@
-export const updatedTask = (tasks, id, checked) => {
-  const next = tasks
-    .map(obj => (obj.id !== id ? obj : { ...obj, checked }))
-    .find(obj => obj.id === id);
-  return next;
-};
-
 export const moveCompletedToBottom = tasks => {
   const checked = tasks.filter(obj => obj.checked);
   const unchecked = tasks.filter(obj => !obj.checked);
@@ -33,20 +26,10 @@ export const filterCompletedTasks = tasks => {
   return next;
 };
 
-export const updateAllTasks = (tasks, task) => {
-  const next = tasks.map(obj => (obj.id !== task.id ? obj : task));
-  return next;
-};
-
 export const checkAllAreCompleted = tasks => {
   const checked = tasks.filter(obj => obj.checked);
   const allChecked = checked.length >= tasks.length;
   return allChecked;
-};
-
-export const toggleAllTasks = (tasks, checked) => {
-  const next = tasks.map(obj => ({ ...obj, checked }));
-  return next;
 };
 
 export const showTopCounter = (position, show) =>

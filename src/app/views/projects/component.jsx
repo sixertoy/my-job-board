@@ -21,17 +21,28 @@ const ProjectsComponent = ({ classes }) => {
   return (
     <div className={classes.container}>
       <NapperTotoListComponent
-        canCheckAll
-        completedAtBottom
-        showCompleted
         showCounter
         showProgress
-        counterPosition="both" // both, top, bottom
+        counterPosition="bottom" // both, top, bottom
         order="asc" // false, desc, asc
         orderBy="label" // label, mtime, ctime, id
         tasks={tasks}
-        title="TODO LIST"
-        onChange={(task, all) => setTasks(all)}
+        // title="TODO LIST"
+        onChange={(id, checked) => {
+          const next = tasks.map(obj => {
+            if (id !== obj.id) return obj;
+            return { ...obj, checked };
+          });
+          setTasks(next);
+        }}
+        onDelete={id => {
+          const next = tasks.filter(obj => id !== obj.id);
+          setTasks(next);
+        }}
+        // onToggle={checked => {
+        //   const next = tasks.map(obj => ({ ...obj, checked }));
+        //   setTasks(next);
+        // }}
       />
     </div>
   );

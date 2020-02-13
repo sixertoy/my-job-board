@@ -10,5 +10,6 @@ export const BASE_THEME = {
   color: '#000000',
   progressRadius: 2,
   progressSize: 5,
+  taskRadius: 4,
   titleFontSize: 20,
 };

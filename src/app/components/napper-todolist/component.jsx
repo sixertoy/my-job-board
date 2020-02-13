@@ -3,7 +3,7 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { compose, noop } from './core/fp';
-import { PlacementType, TasksType } from './core/prop-types';
+import { PlacementType, TasksType, TitleType } from './core/prop-types';
 import {
   checkAllAreCompleted,
   filterCompletedTasks,
@@ -13,9 +13,6 @@ import {
   showBottomProgress,
   showTopCounter,
   showTopProgress,
-  toggleAllTasks,
-  updateAllTasks,
-  updatedTask,
 } from './core/utils';
 import NapperTodoListCheckerComponent from './todolist-checker';
 import NapperTodoListFooterComponent from './todolist-footer';
@@ -46,11 +43,11 @@ const useStyles = createUseStyles({
 
 const NapperTodoListComponent = React.memo(
   ({
-    canCheckAll,
     completedAtBottom,
     counterPosition,
     onChange,
-    onTaskDelete,
+    onDelete,
+    onToggle,
     order,
     orderBy,
     showCompleted,
@@ -59,13 +56,13 @@ const NapperTodoListComponent = React.memo(
     tasks,
     title,
   }) => {
+    const classes = useStyles();
     const filtered = compose(
       (!showCompleted && filterCompletedTasks) || noop,
       (completedAtBottom && moveCompletedToBottom) || noop,
       (order && orderTasksBy(orderBy, order)) || noop
     )(tasks);
     const allChecked = checkAllAreCompleted(tasks);
-    const classes = useStyles();
     const counterOnTop = showTopCounter(counterPosition, showCounter);
     const progressOnTop = showTopProgress(counterPosition, showProgress);
     const counterOnBottom = showBottomCounter(counterPosition, showCounter);
@@ -79,23 +76,16 @@ const NapperTodoListComponent = React.memo(
             tasks={tasks}
             title={title}
           />
-          {canCheckAll && (
+          {onToggle && (
             <NapperTodoListCheckerComponent
               allChecked={allChecked}
-              onChange={checked => {
-                const all = toggleAllTasks(tasks, checked);
-                onChange(null, all);
-              }}
+              onChange={onToggle}
             />
           )}
           <NapperTodoListWrapperComponent
             tasks={filtered}
-            onClick={(id, checked) => {
-              const task = updatedTask(tasks, id, checked);
-              const all = updateAllTasks(tasks, task);
-              onChange(task, all);
-            }}
-            onTaskDelete={onTaskDelete}
+            onChange={onChange}
+            onDelete={onDelete}
           />
           <NapperTodoListFooterComponent
             showCounter={counterOnBottom}
@@ -109,32 +99,32 @@ const NapperTodoListComponent = React.memo(
 );
 
 NapperTodoListComponent.defaultProps = {
-  canCheckAll: false,
-  completedAtBottom: false,
+  completedAtBottom: true,
   counterPosition: 'bottom',
-  onTaskDelete: false,
+  onDelete: false,
+  onToggle: false,
   order: false,
   orderBy: 'label',
   showCompleted: false,
   showCounter: false,
   showProgress: false,
   tasks: [],
-  title: '',
+  title: false,
 };
 
 NapperTodoListComponent.propTypes = {
-  canCheckAll: PropTypes.bool,
   completedAtBottom: PropTypes.bool,
   counterPosition: PlacementType,
   onChange: PropTypes.func.isRequired,
-  onTaskDelete: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+  onDelete: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+  onToggle: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   order: PropTypes.oneOf([false, 'desc', 'asc']),
   orderBy: PropTypes.oneOf(['label', 'id', 'mtime', 'ctime']),
   showCompleted: PropTypes.bool,
   showCounter: PropTypes.bool,
   showProgress: PropTypes.bool,
   tasks: TasksType,
-  title: PropTypes.string,
+  title: TitleType,
 };
 
 export default NapperTodoListComponent;

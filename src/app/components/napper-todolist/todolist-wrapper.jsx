@@ -23,22 +23,22 @@ const useStyles = createUseStyles({
   },
 });
 
-function renderTaskItem(obj, onClick, onDelete) {
+function renderTaskItem(obj, onChange, onDelete) {
   return (
     <NapperTodoListTaskComponent
       key={obj.id}
       checked={obj.checked}
       id={obj.id}
       label={obj.label}
-      onClick={onClick}
+      onChange={onChange}
       onDelete={onDelete}
     />
   );
 }
 
 const NapperTodoListWrapperComponent = ({
-  onClick,
-  onTaskDelete,
+  onChange,
+  onDelete,
   render,
   tasks,
 }) => {
@@ -46,7 +46,7 @@ const NapperTodoListWrapperComponent = ({
   return (
     <div className={classes.tasks}>
       <div className={classes.wrapper}>
-        {tasks.map(obj => render(obj, onClick, onTaskDelete))}
+        {tasks.map(obj => render(obj, onChange, onDelete))}
       </div>
     </div>
   );
@@ -57,9 +57,8 @@ NapperTodoListWrapperComponent.defaultProps = {
 };
 
 NapperTodoListWrapperComponent.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  onTaskDelete: PropTypes.oneOfType([PropTypes.bool, PropTypes.func])
-    .isRequired,
+  onChange: PropTypes.func.isRequired,
+  onDelete: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]).isRequired,
   render: PropTypes.func,
   tasks: TasksType.isRequired,
 };
