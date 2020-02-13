@@ -5,6 +5,12 @@ export const updatedTask = (tasks, id, checked) => {
   return next;
 };
 
+export const moveCompletedToBottom = tasks => {
+  const checked = tasks.filter(obj => obj.checked);
+  const unchecked = tasks.filter(obj => !obj.checked);
+  return [...unchecked, ...checked];
+};
+
 export const filterCompletedTasks = tasks => {
   const next = tasks.filter(obj => !obj.checked);
   return next;

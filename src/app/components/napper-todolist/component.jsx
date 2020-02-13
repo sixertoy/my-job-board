@@ -2,9 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 
+import { compose, noop } from './core/fp';
 import { PlacementType, TasksType } from './core/prop-types';
 import {
   filterCompletedTasks,
+  moveCompletedToBottom,
   showBottomCounter,
   showBottomProgress,
   showTopCounter,
@@ -43,16 +45,19 @@ const useStyles = createUseStyles({
 const NapperTodoListComponent = React.memo(
   ({
     canCheckAll,
+    completedAtBottom,
     counterPosition,
     onChange,
     showCompleted,
-    showCompletionBadge,
     showCounter,
     showProgress,
     tasks,
     title,
   }) => {
-    const filtered = showCompleted ? tasks : filterCompletedTasks(tasks);
+    const filtered = compose(
+      (!showCompleted && filterCompletedTasks) || noop,
+      (completedAtBottom && moveCompletedToBottom) || noop
+    )(tasks);
     const classes = useStyles();
     const counterOnTop = showTopCounter(counterPosition, showCounter);
     const progressOnTop = showTopProgress(counterPosition, showProgress);
@@ -62,10 +67,9 @@ const NapperTodoListComponent = React.memo(
       <div className={classes.tasks}>
         <div className={classes.container}>
           <NapperTodoListHeaderComponent
-            showCompletionBadge={showCompletionBadge}
             showCounter={counterOnTop}
             showProgress={progressOnTop}
-            tasks={tasks}
+            tasks={filtered}
             title={title}
           />
           {canCheckAll && (
@@ -87,7 +91,7 @@ const NapperTodoListComponent = React.memo(
           <NapperTodoListFooterComponent
             showCounter={counterOnBottom}
             showProgress={progressOnBottom}
-            tasks={tasks}
+            tasks={filtered}
           />
         </div>
       </div>
@@ -96,12 +100,10 @@ const NapperTodoListComponent = React.memo(
 );
 
 NapperTodoListComponent.defaultProps = {
-  canCheckAll: true,
-  completedOnBottom: false,
-  completedOnTop: false,
+  canCheckAll: false,
+  completedAtBottom: false,
   counterPosition: 'bottom',
   showCompleted: false,
-  showCompletionBadge: false,
   showCounter: false,
   showProgress: false,
   tasks: [],
@@ -110,12 +112,10 @@ NapperTodoListComponent.defaultProps = {
 
 NapperTodoListComponent.propTypes = {
   canCheckAll: PropTypes.bool,
-  completedOnBottom: PropTypes.bool,
-  completedOnTop: PropTypes.bool,
+  completedAtBottom: PropTypes.bool,
   counterPosition: PlacementType,
   onChange: PropTypes.func.isRequired,
   showCompleted: PropTypes.bool,
-  showCompletionBadge: PropTypes.bool,
   showCounter: PropTypes.bool,
   showProgress: PropTypes.bool,
   tasks: TasksType,

@@ -20,13 +20,13 @@ const ProjectsComponent = ({ classes }) => {
   }, []);
   return (
     <div className={classes.container}>
-      {/* <Grid /> */}
       <NapperTotoListComponent
         canCheckAll
-        showCompleted
         showCounter
         showProgress
-        counterPosition="both" // top, bottom
+        completedAtBottom={false} // top, bottom
+        counterPosition="both"
+        showCompleted={false}
         tasks={tasks}
         title="TODO LIST"
         onChange={(task, all) => setTasks(all)}
