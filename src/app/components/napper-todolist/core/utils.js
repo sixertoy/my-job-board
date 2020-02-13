@@ -5,6 +5,11 @@ export const updatedTask = (tasks, id, checked) => {
   return next;
 };
 
+export const filterCompletedTasks = tasks => {
+  const next = tasks.filter(obj => !obj.checked);
+  return next;
+};
+
 export const updateAllTasks = (tasks, task) => {
   const next = tasks.map(obj => (obj.id !== task.id ? obj : task));
   return next;

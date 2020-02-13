@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss';
 
 import { PlacementType, TasksType } from './core/prop-types';
 import {
+  filterCompletedTasks,
   showBottomCounter,
   showBottomProgress,
   showTopCounter,
@@ -45,11 +46,13 @@ const NapperTodoListComponent = React.memo(
     counterPosition,
     onChange,
     showCompleted,
+    showCompletionBadge,
     showCounter,
     showProgress,
     tasks,
     title,
   }) => {
+    const filtered = showCompleted ? tasks : filterCompletedTasks(tasks);
     const classes = useStyles();
     const counterOnTop = showTopCounter(counterPosition, showCounter);
     const progressOnTop = showTopProgress(counterPosition, showProgress);
@@ -59,7 +62,7 @@ const NapperTodoListComponent = React.memo(
       <div className={classes.tasks}>
         <div className={classes.container}>
           <NapperTodoListHeaderComponent
-            showCompleted={showCompleted}
+            showCompletionBadge={showCompletionBadge}
             showCounter={counterOnTop}
             showProgress={progressOnTop}
             tasks={tasks}
@@ -74,7 +77,7 @@ const NapperTodoListComponent = React.memo(
             />
           )}
           <NapperTodoListWrapperComponent
-            tasks={tasks}
+            tasks={filtered}
             onClick={(id, checked) => {
               const task = updatedTask(tasks, id, checked);
               const all = updateAllTasks(tasks, task);
@@ -94,8 +97,11 @@ const NapperTodoListComponent = React.memo(
 
 NapperTodoListComponent.defaultProps = {
   canCheckAll: true,
+  completedOnBottom: false,
+  completedOnTop: false,
   counterPosition: 'bottom',
   showCompleted: false,
+  showCompletionBadge: false,
   showCounter: false,
   showProgress: false,
   tasks: [],
@@ -104,9 +110,12 @@ NapperTodoListComponent.defaultProps = {
 
 NapperTodoListComponent.propTypes = {
   canCheckAll: PropTypes.bool,
+  completedOnBottom: PropTypes.bool,
+  completedOnTop: PropTypes.bool,
   counterPosition: PlacementType,
   onChange: PropTypes.func.isRequired,
   showCompleted: PropTypes.bool,
+  showCompletionBadge: PropTypes.bool,
   showCounter: PropTypes.bool,
   showProgress: PropTypes.bool,
   tasks: TasksType,

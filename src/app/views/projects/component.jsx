@@ -1,22 +1,39 @@
 import { withStyles } from '@iziges/napper-core-react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-import Grid from './grid';
+import NapperTotoListComponent from '../../components/napper-todolist';
 
 const styles = {
   container: {
+    backgroundColor: '#ACE539',
     composes: ['is-full-width'],
   },
 };
 
-const ProjectsComponent = ({ classes }) => (
-  <div className={classes.container}>
-    <Grid />
-  </div>
-);
-
-ProjectsComponent.defaultProps = {};
+const ProjectsComponent = ({ classes }) => {
+  const [tasks, setTasks] = useState([]);
+  useEffect(() => {
+    const url = 'http://5e44b58de85a4e001492c1c4.mockapi.io/api/v1/todo';
+    axios.get(url).then(({ data }) => setTasks(data));
+  }, []);
+  return (
+    <div className={classes.container}>
+      {/* <Grid /> */}
+      <NapperTotoListComponent
+        canCheckAll
+        showCompleted
+        showCounter
+        showProgress
+        counterPosition="both" // top, bottom
+        tasks={tasks}
+        title="TODO LIST"
+        onChange={(task, all) => setTasks(all)}
+      />
+    </div>
+  );
+};
 
 ProjectsComponent.propTypes = {
   classes: PropTypes.shape().isRequired,
