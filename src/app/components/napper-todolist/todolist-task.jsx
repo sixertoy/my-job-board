@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, useTheme } from 'react-jss';
 
 import {
   NapperTodoListIconChecked,
@@ -9,9 +9,13 @@ import {
 import { IconType } from './core/prop-types';
 
 const useStyles = createUseStyles({
-  button: {
+  button: ({ theme }) => ({
+    alignItems: 'flex-start',
+    color: theme.color,
+    display: 'flex',
+    flexDirection: 'row',
     fontSize: '1rem',
-  },
+  }),
   checkbox: {
     marginRight: 3,
     paddingTop: '0.2rem',
@@ -21,9 +25,6 @@ const useStyles = createUseStyles({
     lineHeight: '1.3rem',
   },
   task: {
-    alignItems: 'flex-start',
-    display: 'flex',
-    flexDirection: 'row',
     marginBottom: 12,
   },
 });
@@ -39,21 +40,22 @@ const NapperTodoListTaskComponent = ({
   label,
   onClick,
 }) => {
-  const classes = useStyles();
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   return (
     <div className={classes.task} data-id={`napper-todolist-task-${id}`}>
-      <div className={classes.checkbox}>
-        <button
-          className={classes.button}
-          type="button"
-          onClick={() => onClick(id, toggleCheked(checked))}>
+      <button
+        className={classes.button}
+        type="button"
+        onClick={() => onClick(id, toggleCheked(checked))}>
+        <div className={classes.checkbox}>
           {checked && Icons.Checked}
           {!checked && Icons.Unchecked}
-        </button>
-      </div>
-      <div className={classes.label}>
-        <span>{label}</span>
-      </div>
+        </div>
+        <div className={classes.label}>
+          <span>{label}</span>
+        </div>
+      </button>
     </div>
   );
 };

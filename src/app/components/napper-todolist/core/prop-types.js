@@ -2,6 +2,7 @@ import {
   arrayOf,
   bool,
   node,
+  number,
   oneOf,
   oneOfType,
   shape,
@@ -11,12 +12,10 @@ import {
 export const PlacementType = oneOf(['top', 'bottom', 'both']);
 
 export const ThemeType = shape({
-  // buttonColor: string,
-  // buttonHover: string,
-  // cardBackground: string,
-  // cardColor: string,
-  // columnBackground: string,
-  // columnColor: string,
+  color: string,
+  progressRadius: oneOfType([number, string]),
+  progressSize: oneOfType([number, string]),
+  titleFontSize: oneOfType([number, string]),
 });
 
 export const TitleType = oneOfType([string, bool]);

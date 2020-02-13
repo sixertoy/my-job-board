@@ -1,18 +1,20 @@
 import React from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, useTheme } from 'react-jss';
 
 import { TasksType } from './core/prop-types';
 
 const useStyles = createUseStyles({
-  counter: {
+  counter: ({ theme }) => ({
+    color: theme.color,
     display: 'flex',
     flex: '0 1',
     marginLeft: 12,
-  },
+  }),
 });
 
 const NapperTodoListCounterComponent = React.memo(({ tasks }) => {
-  const classes = useStyles();
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   const total = (tasks && tasks.length) || 0;
   const completed = (tasks && tasks.filter(obj => obj.checked).length) || 0;
   return (

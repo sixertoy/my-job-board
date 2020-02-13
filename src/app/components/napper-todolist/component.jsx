@@ -3,7 +3,16 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { PlacementType, TasksType } from './core/prop-types';
-import { getOnChangeHandler } from './core/utils';
+import {
+  showBottomCounter,
+  showBottomProgress,
+  showTopCounter,
+  showTopProgress,
+  toggleAllTasks,
+  updateAllTasks,
+  updatedTask,
+} from './core/utils';
+import NapperTodoListCheckerComponent from './todolist-checker';
 import NapperTodoListFooterComponent from './todolist-footer';
 import NapperTodoListHeaderComponent from './todolist-header';
 import NapperTodoListWrapperComponent from './todolist-wrapper';
@@ -21,15 +30,18 @@ const useStyles = createUseStyles({
     width: '100%',
   },
   tasks: {
-    height: 200,
-    maxHeight: 200,
-    maxWidth: 200,
-    width: 200,
+    height: '100%',
+    maxHeight: '100%',
+    maxWidth: '100%',
+    minHeight: '100%',
+    minWidth: '100%',
+    width: '100%',
   },
 });
 
 const NapperTodoListComponent = React.memo(
   ({
+    canCheckAll,
     counterPosition,
     onChange,
     showCompleted,
@@ -39,39 +51,39 @@ const NapperTodoListComponent = React.memo(
     title,
   }) => {
     const classes = useStyles();
+    const counterOnTop = showTopCounter(counterPosition, showCounter);
+    const progressOnTop = showTopProgress(counterPosition, showProgress);
+    const counterOnBottom = showBottomCounter(counterPosition, showCounter);
+    const progressOnBottom = showBottomProgress(counterPosition, showProgress);
     return (
       <div className={classes.tasks}>
         <div className={classes.container}>
           <NapperTodoListHeaderComponent
             showCompleted={showCompleted}
-            showCounter={
-              (counterPosition === 'top' || counterPosition === 'both') &&
-              showCounter
-            }
-            showProgress={
-              (counterPosition === 'top' || counterPosition === 'both') &&
-              showProgress
-            }
+            showCounter={counterOnTop}
+            showProgress={progressOnTop}
             tasks={tasks}
             title={title}
           />
+          {canCheckAll && (
+            <NapperTodoListCheckerComponent
+              onChange={checked => {
+                const all = toggleAllTasks(tasks, checked);
+                onChange(null, all);
+              }}
+            />
+          )}
           <NapperTodoListWrapperComponent
             tasks={tasks}
             onClick={(id, checked) => {
-              const handler = getOnChangeHandler(tasks);
-              const { updatedTask, updatedTasksList } = handler(id, checked);
-              onChange(updatedTasksList, updatedTask);
+              const task = updatedTask(tasks, id, checked);
+              const all = updateAllTasks(tasks, task);
+              onChange(task, all);
             }}
           />
           <NapperTodoListFooterComponent
-            showCounter={
-              (counterPosition === 'bottom' || counterPosition === 'both') &&
-              showCounter
-            }
-            showProgress={
-              (counterPosition === 'bottom' || counterPosition === 'both') &&
-              showProgress
-            }
+            showCounter={counterOnBottom}
+            showProgress={progressOnBottom}
             tasks={tasks}
           />
         </div>
@@ -81,6 +93,7 @@ const NapperTodoListComponent = React.memo(
 );
 
 NapperTodoListComponent.defaultProps = {
+  canCheckAll: true,
   counterPosition: 'bottom',
   showCompleted: false,
   showCounter: false,
@@ -90,6 +103,7 @@ NapperTodoListComponent.defaultProps = {
 };
 
 NapperTodoListComponent.propTypes = {
+  canCheckAll: PropTypes.bool,
   counterPosition: PlacementType,
   onChange: PropTypes.func.isRequired,
   showCompleted: PropTypes.bool,

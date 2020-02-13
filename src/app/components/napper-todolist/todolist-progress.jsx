@@ -1,33 +1,32 @@
 import React from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, useTheme } from 'react-jss';
 
 import { TasksType } from './core/prop-types';
 
 const useStyles = createUseStyles({
-  bar: {
-    height: 5,
-    maxHeight: 5,
+  bar: ({ theme }) => ({
+    height: theme.progressSize,
+    maxHeight: theme.progressSize,
     maxWidth: '100%',
-    minHeight: 5,
+    minHeight: theme.progressSize,
     minWidth: '100%',
     position: 'relative',
     width: '100%',
-  },
+  }),
   progress: {
     display: 'flex',
     flex: 1,
   },
-  thumb: {
+  thumb: ({ theme }) => ({
     backgroundColor: 'rgba(0, 0, 0, 0.15)',
-    borderRadius: 2,
+    borderRadius: theme.progressRadius,
     bottom: 0,
-    height: 5,
     left: 0,
     position: 'absolute',
     top: 0,
     transition: 'width 0.5s',
     width: 0,
-  },
+  }),
   track: {
     backgroundColor: 'hsla(0, 0%, 100%, 0.4)',
     bottom: 0,
@@ -40,7 +39,8 @@ const useStyles = createUseStyles({
 });
 
 const NapperTodoListProgressComponent = React.memo(({ tasks }) => {
-  const classes = useStyles();
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   const total = (tasks && tasks.length) || 0;
   const completed = (tasks && tasks.filter(obj => obj.checked).length) || 0;
   const percent = (completed * 100) / total;

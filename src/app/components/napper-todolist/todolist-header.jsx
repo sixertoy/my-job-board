@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, useTheme } from 'react-jss';
 
 import { TasksType, TitleType } from './core/prop-types';
 import NapperTodoListCounterComponent from './todolist-counter';
@@ -14,11 +14,15 @@ const useStyles = createUseStyles({
     flexDirection: 'column',
     paddingBottom: 12,
   },
-  title: {},
+  title: ({ theme }) => ({
+    color: theme.color,
+    fontSize: theme.titleFontSize,
+  }),
   wrapper: {
     '& + div': {
       marginTop: 5,
     },
+    alignItems: 'center',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -27,7 +31,8 @@ const useStyles = createUseStyles({
 
 const NapperTodoListHeaderComponent = React.memo(
   ({ showCounter, showProgress, tasks, title }) => {
-    const classes = useStyles();
+    const theme = useTheme();
+    const classes = useStyles({ theme });
     return (
       <div className={classes.header}>
         <div className={classes.wrapper}>

@@ -9,7 +9,6 @@ const useStyles = createUseStyles({
   tasks: {
     display: 'flex',
     flex: 1,
-    height: 40,
     position: 'relative',
   },
   wrapper: {

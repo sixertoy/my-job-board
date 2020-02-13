@@ -1,18 +1,28 @@
-export const findUpdatedTask = (tasks, id) => {
-  const task = tasks.find(obj => obj.id === id);
-  return task;
+export const updatedTask = (tasks, id, checked) => {
+  const next = tasks
+    .map(obj => (obj.id !== id ? obj : { ...obj, checked }))
+    .find(obj => obj.id === id);
+  return next;
 };
 
-export const mapUpdatedTaskToTasksList = updated => {
-  return obj => {
-    if (obj.id !== updated.id) return { ...obj };
-    return updated;
-  };
+export const updateAllTasks = (tasks, task) => {
+  const next = tasks.map(obj => (obj.id !== task.id ? obj : task));
+  return next;
 };
 
-export const getOnChangeHandler = tasks => (id, checked) => {
-  const task = findUpdatedTask(tasks, id);
-  const updated = { ...task, checked };
-  const updatedTasksList = tasks.map(mapUpdatedTaskToTasksList(updated));
-  return { updated, updatedTasksList };
+export const toggleAllTasks = (tasks, checked) => {
+  const next = tasks.map(obj => ({ ...obj, checked }));
+  return next;
 };
+
+export const showTopCounter = (position, show) =>
+  show && (position === 'top' || position === 'both');
+
+export const showTopProgress = (position, show) =>
+  show && (position === 'top' || position === 'both');
+
+export const showBottomCounter = (position, show) =>
+  show && (position === 'bottom' || position === 'both');
+
+export const showBottomProgress = (position, show) =>
+  show && (position === 'bottom' || position === 'both');
