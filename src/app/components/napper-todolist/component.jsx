@@ -5,8 +5,10 @@ import { createUseStyles } from 'react-jss';
 import { compose, noop } from './core/fp';
 import { PlacementType, TasksType } from './core/prop-types';
 import {
+  checkAllAreCompleted,
   filterCompletedTasks,
   moveCompletedToBottom,
+  orderTasksBy,
   showBottomCounter,
   showBottomProgress,
   showTopCounter,
@@ -48,6 +50,8 @@ const NapperTodoListComponent = React.memo(
     completedAtBottom,
     counterPosition,
     onChange,
+    order,
+    orderBy,
     showCompleted,
     showCounter,
     showProgress,
@@ -56,8 +60,10 @@ const NapperTodoListComponent = React.memo(
   }) => {
     const filtered = compose(
       (!showCompleted && filterCompletedTasks) || noop,
-      (completedAtBottom && moveCompletedToBottom) || noop
+      (completedAtBottom && moveCompletedToBottom) || noop,
+      (order && orderTasksBy(orderBy, order)) || noop
     )(tasks);
+    const allChecked = checkAllAreCompleted(tasks);
     const classes = useStyles();
     const counterOnTop = showTopCounter(counterPosition, showCounter);
     const progressOnTop = showTopProgress(counterPosition, showProgress);
@@ -69,11 +75,12 @@ const NapperTodoListComponent = React.memo(
           <NapperTodoListHeaderComponent
             showCounter={counterOnTop}
             showProgress={progressOnTop}
-            tasks={filtered}
+            tasks={tasks}
             title={title}
           />
           {canCheckAll && (
             <NapperTodoListCheckerComponent
+              allChecked={allChecked}
               onChange={checked => {
                 const all = toggleAllTasks(tasks, checked);
                 onChange(null, all);
@@ -91,7 +98,7 @@ const NapperTodoListComponent = React.memo(
           <NapperTodoListFooterComponent
             showCounter={counterOnBottom}
             showProgress={progressOnBottom}
-            tasks={filtered}
+            tasks={tasks}
           />
         </div>
       </div>
@@ -103,6 +110,8 @@ NapperTodoListComponent.defaultProps = {
   canCheckAll: false,
   completedAtBottom: false,
   counterPosition: 'bottom',
+  order: false,
+  orderBy: 'label',
   showCompleted: false,
   showCounter: false,
   showProgress: false,
@@ -115,6 +124,8 @@ NapperTodoListComponent.propTypes = {
   completedAtBottom: PropTypes.bool,
   counterPosition: PlacementType,
   onChange: PropTypes.func.isRequired,
+  order: PropTypes.oneOf([false, 'desc', 'asc']),
+  orderBy: PropTypes.oneOf(['label', 'id', 'mtime', 'ctime']),
   showCompleted: PropTypes.bool,
   showCounter: PropTypes.bool,
   showProgress: PropTypes.bool,

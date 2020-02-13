@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
 const useStyles = createUseStyles({
@@ -15,10 +15,14 @@ const useStyles = createUseStyles({
   },
 });
 
-const NapperTodoListCheckerComponent = React.memo(({ onChange }) => {
+const NapperTodoListCheckerComponent = ({ allChecked, onChange }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const [checked, setChecked] = useState(false);
+  useEffect(() => {
+    const needUpdate = allChecked !== checked;
+    if (needUpdate) setChecked(allChecked);
+  }, [allChecked, checked]);
   return (
     <div className={classes.task}>
       <button
@@ -36,9 +40,10 @@ const NapperTodoListCheckerComponent = React.memo(({ onChange }) => {
       </button>
     </div>
   );
-});
+};
 
 NapperTodoListCheckerComponent.propTypes = {
+  allChecked: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

@@ -24,8 +24,10 @@ const ProjectsComponent = ({ classes }) => {
         canCheckAll
         showCounter
         showProgress
-        completedAtBottom={false} // top, bottom
-        counterPosition="both"
+        completedAtBottom={false}
+        counterPosition="both" // top, bottom
+        order="desc" // false, desc, asc
+        orderBy="id" // label, mtime, ctime, id
         showCompleted={false}
         tasks={tasks}
         title="TODO LIST"
