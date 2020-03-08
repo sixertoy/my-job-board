@@ -38,6 +38,7 @@ const MainLayoutComponent = ({
   return (
     <div className={classes.container} id="app-container">
       <div className={classes.layout} id="app-layout">
+        
         <AppMenuComponent items={menuItems} />
         <div className={classes.wrapper} id="app-wrapper">
           <ProgressBar loading={loading} />

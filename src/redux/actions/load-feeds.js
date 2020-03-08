@@ -2,8 +2,8 @@
 import orderby from 'lodash.orderby';
 
 import { EVENT_TYPES } from '../../constants';
+import fetchOffersFromFeed from '../../services/fetch-offers-from-feed';
 import { loadingComplete, loadingStart } from './loading';
-import fetchOffersFromFeed from './services/fetch-offers-from-feed';
 
 function feedsToArray(feeds) {
   const keys = Object.keys(feeds);
