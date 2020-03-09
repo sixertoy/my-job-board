@@ -1,5 +1,6 @@
-import { FaTasks } from 'react-icons/fa';
-import { IoIosDocument, IoMdCalendar, IoMdHome } from 'react-icons/io';
+import { GoTasklist } from 'react-icons/go';
+import { IoIosDocument, IoMdHome } from 'react-icons/io';
+import { MdDashboard } from 'react-icons/md';
 
 import ViewBoardComponent from './app/views/board';
 import ViewHomeComponent from './app/views/home';
@@ -10,7 +11,7 @@ import { mapOrderToRoutes, mapSlugToRoutes } from './helpers';
 const boardRoute = {
   basepath: '/board',
   component: ViewBoardComponent,
-  icon: FaTasks,
+  icon: MdDashboard,
   label: 'Job Board',
   params: '/:id?',
 };
@@ -34,7 +35,7 @@ const notesRoute = {
 const projectsRoute = {
   basepath: '/projects',
   component: ViewProjectsComponent,
-  icon: IoMdCalendar,
+  icon: GoTasklist,
   label: 'Projects',
   params: '/:id?',
 };
