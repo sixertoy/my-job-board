@@ -6,8 +6,11 @@ import ProjectsComponent from './component';
 const mapStateToProps = state => ({ projects: state.projects });
 
 const mapDispatchToProps = dispatch => ({
-  addProjectHandler: ({ title }) => {
-    dispatch({ title, type: EVENT_TYPES.PROJECT_CREATE });
+  addProjectHandler: ({ project: data }) => {
+    dispatch({ data, type: EVENT_TYPES.PROJECT_CREATE });
+  },
+  deleteProjectHandler: id => {
+    dispatch({ id, type: EVENT_TYPES.PROJECT_DELETE });
   },
 });
 

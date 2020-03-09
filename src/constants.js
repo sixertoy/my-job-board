@@ -14,6 +14,7 @@ export const EVENT_TYPES = {
   OFFERS_LOADED: 'onOffersLoaded',
   PERSIST_REHYDRATE: 'persist/REHYDRATE',
   PROJECT_CREATE: 'onProjectCreate',
+  PROJECT_DELETE: 'onProjectDelete',
   PROJECT_UPDATE: 'onProjectUpdate',
   SAVE_NOTE: 'onSaveNote',
   THEME_CHANGE: 'onThemeChange',
