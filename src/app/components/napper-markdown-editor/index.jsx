@@ -1,6 +1,6 @@
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
-import { withStyles } from '@iziges/napper-core-react';
+import { withStyles } from '@iziges/napper-react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';

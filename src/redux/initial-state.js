@@ -87,7 +87,6 @@ const INITIAL_VALUES = {
   feeds,
   lastFeedUpdate: now,
   loading: false,
-  notes,
   offers: [],
   openedCard: false,
   projects: [],
@@ -99,7 +98,7 @@ export const reduxPersistConfig = {
   blacklist: [],
   key: 'LocalStorageKey::',
   storage,
-  whitelist: ['lastFeedUpdate', 'offers', 'selectedTheme', 'notes'],
+  whitelist: ['lastFeedUpdate', 'offers', 'selectedTheme'],
 };
 
 export const getInitialState = history => {

@@ -1,55 +1,68 @@
-import { withStyles } from '@iziges/napper-core-react';
-import axios from 'axios';
+import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-
-import NapperTotoListComponent from '../../components/napper-todolist';
+import React from 'react';
+import { Field, Form } from 'react-final-form';
 
 const styles = {
   container: {
-    backgroundColor: '#ACE539',
     composes: ['is-full-width'],
+  },
+  grid: {
+    composes: ['flex-columns', 'flex-wrap', 'is-full-width'],
+  },
+  inner: {
+    border: '1px solid #000000',
+    borderRadius: 4,
+    composes: ['is-full-height'],
+  },
+  project: {
+    height: 100,
+    margin: '1%',
+    width: '23%',
   },
 };
 
-const ProjectsComponent = ({ classes }) => {
-  const [tasks, setTasks] = useState([]);
-  useEffect(() => {
-    const url = 'http://5e44b58de85a4e001492c1c4.mockapi.io/api/v1/todo';
-    axios.get(url).then(({ data }) => setTasks(data));
-  }, []);
+const ProjectsComponent = ({ addProjectHandler, classes, projects }) => {
   return (
     <div className={classes.container}>
-      <NapperTotoListComponent
-        showCounter
-        showProgress
-        counterPosition="bottom" // both, top, bottom
-        order="asc" // false, desc, asc
-        orderBy="label" // label, mtime, ctime, id
-        tasks={tasks}
-        // title="TODO LIST"
-        onChange={(id, checked) => {
-          const next = tasks.map(obj => {
-            if (id !== obj.id) return obj;
-            return { ...obj, checked };
-          });
-          setTasks(next);
+      <Form
+        render={({ form, handleSubmit, pristine, submitting }) => {
+          const submitIsDisabled = submitting || pristine;
+          return (
+            <form onSubmit={handleSubmit}>
+              <div>
+                <Field
+                  component="input"
+                  name="title"
+                  placeholder="Project title"
+                  type="text"
+                />
+                <button disabled={submitIsDisabled} type="submit">
+                  <span>Add Project</span>
+                </button>
+              </div>
+            </form>
+          );
         }}
-        onDelete={id => {
-          const next = tasks.filter(obj => id !== obj.id);
-          setTasks(next);
-        }}
-        // onToggle={checked => {
-        //   const next = tasks.map(obj => ({ ...obj, checked }));
-        //   setTasks(next);
-        // }}
+        onSubmit={addProjectHandler}
       />
+      <div className={classes.grid}>
+        {projects.map(proj => {
+          return (
+            <div key={proj.id} className={classes.project}>
+              <div className={classes.inner}>{proj.title}</div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
 
 ProjectsComponent.propTypes = {
+  addProjectHandler: PropTypes.func.isRequired,
   classes: PropTypes.shape().isRequired,
+  projects: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 export default withStyles(styles)(ProjectsComponent);

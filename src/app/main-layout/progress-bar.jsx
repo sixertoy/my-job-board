@@ -1,4 +1,4 @@
-import { withStyles } from '@iziges/napper-core-react';
+import { withStyles } from '@iziges/napper-react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';

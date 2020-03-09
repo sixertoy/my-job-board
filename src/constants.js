@@ -13,6 +13,7 @@ export const EVENT_TYPES = {
   MOVE_CARD_STATUS: 'onMoveCardStatus',
   OFFERS_LOADED: 'onOffersLoaded',
   PERSIST_REHYDRATE: 'persist/REHYDRATE',
+  PROJECT_CREATE: 'onProjectCreate',
   PROJECT_UPDATE: 'onProjectUpdate',
   SAVE_NOTE: 'onSaveNote',
   THEME_CHANGE: 'onThemeChange',

@@ -1,4 +1,4 @@
-import { withStyles } from '@iziges/napper-core-react';
+import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 

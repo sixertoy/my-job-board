@@ -1,5 +1,5 @@
-import { withStyles } from '@iziges/napper-core-react';
 import { uniqKeyId } from '@iziges/napper-core/lib/utils';
+import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 

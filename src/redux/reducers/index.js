@@ -4,7 +4,6 @@ import * as appstates from './appstates';
 import * as card from './card';
 import * as feeds from './feeds';
 import * as fortunes from './fortunes';
-import * as notes from './notes';
 import * as projects from './projects';
 import * as theme from './theme';
 
@@ -13,7 +12,6 @@ function createRootReducer() {
     ...appstates,
     ...projects,
     ...card,
-    ...notes,
     ...feeds,
     ...theme,
     ...fortunes,

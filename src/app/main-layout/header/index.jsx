@@ -1,4 +1,4 @@
-import { withStyles } from '@iziges/napper-core-react';
+import { withStyles } from '@iziges/napper-react';
 import Tippy from '@tippy.js/react';
 import classnames from 'classnames';
 import moment from 'moment';

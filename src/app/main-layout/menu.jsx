@@ -1,4 +1,4 @@
-import { withStyles } from '@iziges/napper-core-react';
+import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -9,7 +9,7 @@ const styles = theme => ({
     borderRight: `1px solid ${theme.colors.border}`,
     composes: [
       'is-full-height',
-      'px12',
+      'px7',
       'flex-rows',
       'flex-between',
       'no-no-flex-grow',
@@ -19,7 +19,7 @@ const styles = theme => ({
     '&.active': { color: theme.colors.active },
     '&:hover': { color: theme.colors.active },
     color: `${theme.colors.disabled}66`,
-    composes: ['is-block', 'fs24', 'my24'],
+    composes: ['is-block', 'fs14', 'my24'],
     transition: 'color 0.5s',
   },
   tooltipOpaque: {
