@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import { EVENT_TYPES } from '../../../constants';
 import ProjectsComponent from './component';
 
-const mapStateToProps = state => ({ projects: state.projects });
+const mapStateToProps = (state, { location }) => {
+  const { projects } = state;
+  const { pathname } = location;
+  return { pathname, projects };
+};
 
 const mapDispatchToProps = dispatch => ({
   addProjectHandler: ({ project: data }) => {

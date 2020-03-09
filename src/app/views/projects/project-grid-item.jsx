@@ -2,6 +2,7 @@ import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FaTrash } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const styles = {
   inner: {
@@ -16,10 +17,12 @@ const styles = {
   },
 };
 
-const ProjectComponent = ({ classes, data, onDelete }) => (
+const ProjectGridItemComponent = ({ classes, data, onDelete, pathname }) => (
   <div className={classes.project} data-id={`project-${data.id}`}>
     <div className={classes.inner}>
-      <span>{data.title}</span>
+      <Link to={`${pathname}/${data.id}`}>
+        <span>{data.title}</span>
+      </Link>
       <span>{data.description}</span>
       <button type="button" onClick={() => onDelete(data.id)}>
         <FaTrash />
@@ -28,7 +31,7 @@ const ProjectComponent = ({ classes, data, onDelete }) => (
   </div>
 );
 
-ProjectComponent.propTypes = {
+ProjectGridItemComponent.propTypes = {
   classes: PropTypes.shape().isRequired,
   data: PropTypes.shape({
     description: PropTypes.string,
@@ -36,6 +39,7 @@ ProjectComponent.propTypes = {
     title: PropTypes.string.isRequired,
   }).isRequired,
   onDelete: PropTypes.func.isRequired,
+  pathname: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(ProjectComponent);
+export default withStyles(styles)(ProjectGridItemComponent);

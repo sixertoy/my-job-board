@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { loadFortuneCookies } from '../../../redux/actions';
+// import { loadFortuneCookies } from '../../../redux/actions';
 import ViewHomeComponent from './component';
 
 const mapStateToProps = state => {
@@ -8,8 +8,10 @@ const mapStateToProps = state => {
   return { fortune };
 };
 
-const mapDispatchToProps = dispatch => ({
-  loadFortunes: () => dispatch(loadFortuneCookies()),
+const mapDispatchToProps = () => ({
+  // const mapDispatchToProps = dispatch => ({
+  loadFortunes: () => {},
+  // loadFortunes: () => dispatch(loadFortuneCookies()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ViewHomeComponent);

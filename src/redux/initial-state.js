@@ -1,6 +1,6 @@
 import queryString from 'query-string';
 import storage from 'redux-persist/lib/storage';
-import uuidv1 from 'uuid/v1';
+// import uuidv1 from 'uuid/v1';
 
 const now = Date.now();
 
@@ -31,56 +31,56 @@ const feeds = {
   // poleemploi: 'https://api.emploi-store.fr/partenaire/offresdemploi/v1/rechercheroffres'
 };
 
-const notes = [
-  {
-    content: '## This is a header\n\nAnd this is a paragraph\n- toto',
-    ctime: now,
-    id: uuidv1(),
-    label: 'titi',
-    mtime: now,
-    title: 'title',
-  },
-  {
-    content: '### This is a header\n\nAnd this is a paragraph',
-    ctime: now,
-    id: uuidv1(),
-    label: 'toto',
-    mtime: now,
-    title: 'title',
-  },
-  {
-    content: '# This is a header\n\nAnd this is a paragraph',
-    ctime: now,
-    id: uuidv1(),
-    label: 'tata',
-    mtime: now,
-    title: 'title',
-  },
-  {
-    content: '### This is a header\n\nAnd this is a paragraph',
-    ctime: now,
-    id: uuidv1(),
-    label: 'tutu',
-    mtime: now,
-    title: 'title',
-  },
-  {
-    content: '#### This is a header\n\nAnd this is a paragraph',
-    ctime: now,
-    id: uuidv1(),
-    label: 'tyty',
-    mtime: now,
-    title: 'title',
-  },
-  {
-    content: '## This is a header\n\nAnd this is a paragraph',
-    ctime: now,
-    id: uuidv1(),
-    label: 'tete',
-    mtime: now,
-    title: 'title',
-  },
-];
+// const notes = [
+//   {
+//     content: '## This is a header\n\nAnd this is a paragraph\n- toto',
+//     ctime: now,
+//     id: uuidv1(),
+//     label: 'titi',
+//     mtime: now,
+//     title: 'title',
+//   },
+//   {
+//     content: '### This is a header\n\nAnd this is a paragraph',
+//     ctime: now,
+//     id: uuidv1(),
+//     label: 'toto',
+//     mtime: now,
+//     title: 'title',
+//   },
+//   {
+//     content: '# This is a header\n\nAnd this is a paragraph',
+//     ctime: now,
+//     id: uuidv1(),
+//     label: 'tata',
+//     mtime: now,
+//     title: 'title',
+//   },
+//   {
+//     content: '### This is a header\n\nAnd this is a paragraph',
+//     ctime: now,
+//     id: uuidv1(),
+//     label: 'tutu',
+//     mtime: now,
+//     title: 'title',
+//   },
+//   {
+//     content: '#### This is a header\n\nAnd this is a paragraph',
+//     ctime: now,
+//     id: uuidv1(),
+//     label: 'tyty',
+//     mtime: now,
+//     title: 'title',
+//   },
+//   {
+//     content: '## This is a header\n\nAnd this is a paragraph',
+//     ctime: now,
+//     id: uuidv1(),
+//     label: 'tete',
+//     mtime: now,
+//     title: 'title',
+//   },
+// ];
 
 const INITIAL_VALUES = {
   draggingcard: false,
