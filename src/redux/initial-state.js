@@ -90,6 +90,7 @@ const INITIAL_VALUES = {
   notes,
   offers: [],
   openedCard: false,
+  projects: [],
   search: '',
   selectedTheme: 'day',
 };

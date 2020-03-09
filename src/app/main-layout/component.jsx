@@ -13,7 +13,7 @@ const styles = theme => ({
     backgroundColor: theme.colors.foreground,
     composes: ['is-full-layout', 'flex-rows'],
   },
-  layout: {
+  mainlayout: {
     composes: ['flex-columns', 'flex-1', 'no-overflow'],
   },
   views: {
@@ -37,11 +37,10 @@ const MainLayoutComponent = ({
   }, [loadFeeds]);
   return (
     <div className={classes.container} id="app-container">
-      <div className={classes.layout} id="app-layout">
-        
+      <ProgressBar loading={loading} />
+      <div className={classes.mainlayout} id="app-main-layout">
         <AppMenuComponent items={menuItems} />
         <div className={classes.wrapper} id="app-wrapper">
-          <ProgressBar loading={loading} />
           <AppHeaderComponent />
           <div className={classes.views} id="views-container">
             <Switch>

@@ -51,7 +51,7 @@ const AppHeaderComponent = React.memo(({ classes }) => {
       <div className={classes.wrapper}>
         <div>
           <span className={classes.date}>{date}</span>
-          <h3 className={classes.title}>Job Board</h3>
+          <h3 className={classes.title}>BBB</h3>
         </div>
         <div>
           <Tippy

@@ -1,7 +1,8 @@
 import { EVENT_TYPES } from '../../../constants';
 
 const defaultState = [];
-export const project = (state = defaultState, action) => {
+
+export const projects = (state = defaultState, action) => {
   switch (action.type) {
     case EVENT_TYPES.PROJECT_UPDATE:
       return state;
@@ -10,4 +11,4 @@ export const project = (state = defaultState, action) => {
   }
 };
 
-export default project;
+export default projects;
