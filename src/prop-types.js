@@ -42,3 +42,21 @@ export const NoteType = shape({
   title: string,
 });
 export const NotesType = arrayOf(NoteType);
+
+export const TodoTaskType = shape({
+  checked: bool,
+  ctime: timestamp,
+  id: string,
+  label: string,
+  mtime: timestamp,
+});
+
+export const TodoType = shape({
+  ctime: timestamp,
+  id: string,
+  mtime: timestamp,
+  projectid: string,
+  title: string,
+});
+
+export const TodosType = arrayOf(string);

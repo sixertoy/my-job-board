@@ -22,7 +22,11 @@ const ProjectsComponent = ({
   return (
     <div className={classes.container}>
       <Switch>
-        <Route exact component={ProjectComponent} path="/projects/:id" />
+        <Route
+          exact
+          component={ProjectComponent}
+          path="/projects/:id/:view(notes|todos)?"
+        />
         <Route
           exact
           path="/projects"
@@ -44,7 +48,6 @@ ProjectsComponent.propTypes = {
   addProjectHandler: PropTypes.func.isRequired,
   classes: PropTypes.shape().isRequired,
   deleteProjectHandler: PropTypes.func.isRequired,
-  location: PropTypes.shape().isRequired,
   pathname: PropTypes.string.isRequired,
   projects: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };

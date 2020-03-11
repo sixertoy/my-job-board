@@ -20,7 +20,7 @@ const styles = {
 const ProjectGridItemComponent = ({ classes, data, onDelete, pathname }) => (
   <div className={classes.project} data-id={`project-${data.id}`}>
     <div className={classes.inner}>
-      <Link to={`${pathname}/${data.id}`}>
+      <Link to={`${pathname}/${data.id}/`}>
         <span>{data.title}</span>
       </Link>
       <span>{data.description}</span>

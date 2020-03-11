@@ -87,11 +87,13 @@ const INITIAL_VALUES = {
   feeds,
   lastFeedUpdate: now,
   loading: false,
+  notes: [],
   offers: [],
   openedCard: false,
   projects: [],
   search: '',
   selectedTheme: 'day',
+  todos: [],
 };
 
 export const reduxPersistConfig = {

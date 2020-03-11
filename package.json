@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "@iziges/napper-core": "https://github.com/sixertoy/napper-core.git",
+    "@iziges/napper-todolist": "https://github.com/sixertoy/napper-todolist.git",
     "@iziges/napper-react": "https://github.com/sixertoy/napper-react.git",
     "@iziges/napper-styles": "https://github.com/sixertoy/napper-styles.git#latest",
     "@testing-library/jest-dom": "^4.2.4",

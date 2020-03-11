@@ -18,6 +18,8 @@ export const EVENT_TYPES = {
   PROJECT_UPDATE: 'onProjectUpdate',
   SAVE_NOTE: 'onSaveNote',
   THEME_CHANGE: 'onThemeChange',
+  TODOS_CREATE: 'onTodosCreate',
+  TODOS_DELETE: 'onTodosDelete',
 };
 
 // NOTE update chaque n heures (secondes * minutes * heure) * millisecondes

@@ -45,7 +45,7 @@ const projectsRoute = {
   icon: FaProjectDiagram,
   label: 'Projects',
   order: 10,
-  params: '/:id?',
+  params: '/:id?/:view(todos|notes)?',
 };
 
 const routes = [homeRoute, boardRoute, notesRoute, projectsRoute]
