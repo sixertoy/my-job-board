@@ -10,8 +10,8 @@ const mapStateToProps = (state, { location }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  addProjectHandler: ({ project: data }) => {
-    dispatch({ data, type: EVENT_TYPES.PROJECT_CREATE });
+  addProjectHandler: ({ project }) => {
+    dispatch({ project, type: EVENT_TYPES.PROJECT_CREATE });
   },
   deleteProjectHandler: id => {
     dispatch({ id, type: EVENT_TYPES.PROJECT_DELETE });

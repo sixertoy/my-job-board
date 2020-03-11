@@ -23,7 +23,6 @@ const ProjectGridItemComponent = ({ classes, data, onDelete, pathname }) => (
       <Link to={`${pathname}/${data.id}/`}>
         <span>{data.title}</span>
       </Link>
-      <span>{data.description}</span>
       <button type="button" onClick={() => onDelete(data.id)}>
         <FaTrash />
       </button>

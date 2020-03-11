@@ -17,13 +17,13 @@ const styles = {
   },
 };
 
-const ProjectComponent = ({ classes, data, onDelete }) => {
-  const basepath = `/projects/${data.id}`;
+const ProjectComponent = ({ classes, description, id, onDelete, title }) => {
+  const basepath = `/projects/${id}`;
   return (
-    <div className={classes.project} data-id={`projects-${data.id}`}>
-      <span>{data.title}</span>
-      <span>{data.description}</span>
-      <button type="button" onClick={() => onDelete(data.id)}>
+    <div className={classes.project} data-id={`projects-${id}`}>
+      <span>{title}</span>
+      {description && <span>{description}</span>}
+      <button type="button" onClick={() => onDelete(id)}>
         <FaTrash />
       </button>
       <nav>
@@ -46,14 +46,16 @@ const ProjectComponent = ({ classes, data, onDelete }) => {
   );
 };
 
+ProjectComponent.defaultProps = {
+  description: null,
+};
+
 ProjectComponent.propTypes = {
   classes: PropTypes.shape().isRequired,
-  data: PropTypes.shape({
-    description: PropTypes.string,
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-  }).isRequired,
+  description: PropTypes.string,
+  id: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(ProjectComponent);

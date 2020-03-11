@@ -7,8 +7,9 @@ import TodoGridComponent from './component';
 
 const mapStateToProps = (state, { match }) => {
   const { id } = match.params;
-  const items = selectTodosByProjectId(state, id);
-  return { items };
+  const todos = selectTodosByProjectId(state, id);
+  console.log('todos', todos);
+  return { todos };
 };
 
 const mapDispatchToProps = (dispatch, { match }) => ({

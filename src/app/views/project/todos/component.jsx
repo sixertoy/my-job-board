@@ -9,17 +9,12 @@ const styles = {
   container: {},
 };
 
-const ProjectTodosGridComponent = ({ classes, createTodosHandler }) => (
+const ProjectTodosGridComponent = ({ classes, createTodosHandler, todos }) => (
   <div className={classes.container}>
     <NewTodosForm onSubmitHandler={createTodosHandler} />
-    <NapperTodoList
-      completedAtBottom
-      showCompleted
-      showProgress
-      tasks={[]}
-      title="This is the title of a list"
-      onChange={() => {}}
-    />
+    {todos.map(obj => {
+      return <NapperTodoList canCreate title={obj.title} onChange={() => {}} />;
+    })}
   </div>
 );
 
@@ -28,6 +23,7 @@ ProjectTodosGridComponent.defaultProps = {};
 ProjectTodosGridComponent.propTypes = {
   classes: PropTypes.shape().isRequired,
   createTodosHandler: PropTypes.func.isRequired,
+  todos: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 export default withStyles(styles)(ProjectTodosGridComponent);

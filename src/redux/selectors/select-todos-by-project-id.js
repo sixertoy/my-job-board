@@ -9,11 +9,10 @@ export const selectTodosByProjectId = createCachedSelector(
   getProjects,
   getProjectId,
   (list, projects, id) => {
-    // const { todos } = projects.find(obj => obj.id === id);
-    // if (todos.length) return [];
-    // const items = list.filter(obj => todos.includes(obj.id));
-    // return items;
-    return [];
+    const { todos } = projects.find(obj => obj.id === id);
+    if (!todos.length) return [];
+    const items = list.filter(obj => todos.includes(obj.id));
+    return items;
   }
 )((state, id) => `project-todos-${id}`);
 

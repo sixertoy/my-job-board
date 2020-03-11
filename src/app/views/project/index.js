@@ -6,8 +6,9 @@ import ProjectComponent from './component';
 
 const mapStateToProps = (state, { match }) => {
   const { id } = match.params;
-  const data = selectProjectById(state, id);
-  return { data };
+  const project = selectProjectById(state, id);
+  const { description, title } = project;
+  return { description, id, title };
 };
 
 const mapDispatchToProps = dispatch => ({
