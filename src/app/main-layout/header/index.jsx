@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
 
-import ContextMenus from './context-menus';
+import ContextMenus from '../context-menus';
 
 const styles = theme => ({
   container: {

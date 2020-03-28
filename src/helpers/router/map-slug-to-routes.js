@@ -1,4 +1,4 @@
-import { slugify } from '@iziges/napper-core/lib/strings';
+import { slugify } from '@iziges/napper-core';
 
 function mapSlugToRoutes(obj) {
   const str = `${obj.order}-${obj.label}`;

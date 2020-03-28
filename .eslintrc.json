@@ -39,6 +39,14 @@
       2,
       { "checkAttributes": false, "indentLogicalExpressions": true }
     ],
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "labelAttributes": ["label"],
+        "controlComponents": ["Field"],
+        "depth": 1
+      }
+    ],
     "react/jsx-filename-extension": [2, { "extensions": [".jsx"] }],
     "react/jsx-fragments": [2, "element"],
     "react/jsx-indent-props": [2, 2],

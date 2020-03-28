@@ -2,6 +2,7 @@ import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import ReactTooltip from 'react-tooltip';
 
 import AppFooterComponent from './footer';
 import AppHeaderComponent from './header';
@@ -60,6 +61,7 @@ const MainLayoutComponent = ({
         </div>
       </div>
       <AppFooterComponent />
+      <ReactTooltip effect="solid" place="right" />
     </div>
   );
 };
