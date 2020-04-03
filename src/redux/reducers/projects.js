@@ -8,6 +8,7 @@ const defaultProject = {
   id: null,
   mtime: null,
   notes: [],
+  permalink: null,
   title: null,
   // liste d'ids des todos
   todos: [],
@@ -26,6 +27,7 @@ const createNewProject = ({ description, title }) => {
     description,
     id,
     mtime: ctime,
+    permalink: `/projects/${id}`,
     title,
   };
 };
