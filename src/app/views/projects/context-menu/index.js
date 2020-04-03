@@ -4,11 +4,6 @@ import { connect } from 'react-redux';
 import { EVENT_TYPES } from '../../../../constants';
 import BoardContextMenuComponent from './component';
 
-const mapStateToProps = state => {
-  const { feeds } = state;
-  return { feeds };
-};
-
 const mapDispatchToProps = dispatch => ({
   addProjectHandler: async ({ project }) => {
     await sleep(100);
@@ -16,7 +11,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(BoardContextMenuComponent);
+export default connect(null, mapDispatchToProps)(BoardContextMenuComponent);

@@ -7,9 +7,31 @@ import { FaSave } from 'react-icons/fa';
 const styles = {
   container: {
     composes: ['p12'],
-    maxWidth: 240,
-    minWidth: 240,
-    width: 240,
+    maxWidth: 320,
+    minWidth: 320,
+    width: 320,
+  },
+  form: {},
+  formlabel: {
+    '& > input': {
+      border: '1px solid #000',
+      borderRadius: 4,
+      display: 'block',
+      fontSize: 12,
+      padding: '3px 7px',
+      width: '100%',
+    },
+    '& > span': {
+      display: 'block',
+      fontWeight: 'bold',
+      marginBottom: 5,
+    },
+    width: '100%',
+  },
+  submit: {
+    display: 'block',
+    marginTop: 5,
+    width: '100%',
   },
 };
 
@@ -18,13 +40,18 @@ const ProjectsContextMenuComponent = ({ addProjectHandler, classes }) => (
     render={({ form, handleSubmit, pristine, submitting }) => (
       <div className={classes.container}>
         <form onSubmit={evt => handleSubmit(evt).then(form.reset)}>
-          <label htmlFor="project.title">
-            <span className="is-bold">Ajouter un projet</span>
-            <Field component="input" name="project.title" type="text" />
-          </label>
-          <button disabled={submitting || pristine} type="submit">
-            <FaSave />
-          </button>
+          <div className={classes.form}>
+            <label className={classes.formlabel} htmlFor="project.title">
+              <span>Nouv. projet</span>
+              <Field component="input" name="project.title" type="text" />
+            </label>
+            <button
+              className={classes.submit}
+              disabled={submitting || pristine}
+              type="submit">
+              <FaSave />
+            </button>
+          </div>
         </form>
       </div>
     )}
