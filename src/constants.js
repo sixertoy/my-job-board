@@ -1,3 +1,8 @@
+export const ITEM_TYPES = {
+  NOTE: 'note',
+  TODO: 'todo',
+};
+
 export const CARD_STATUS = {
   DONE: { key: 'DONE', label: 'Fait', priority: 3 },
   FEEDS: { key: 'FEEDS', label: 'A trier', priority: 0 },
@@ -11,6 +16,8 @@ export const EVENT_TYPES = {
   LOADING_COMPLETE: 'onLoadingComplete',
   LOADING_START: 'onLoadingStart',
   MOVE_CARD_STATUS: 'onMoveCardStatus',
+  NOTE_CREATE: 'onNoteCreate',
+  NOTE_DELETE: 'onNoteDelete',
   OFFERS_LOADED: 'onOffersLoaded',
   PERSIST_REHYDRATE: 'persist/REHYDRATE',
   PROJECT_CREATE: 'onProjectCreate',

@@ -1,18 +1,19 @@
-import { EVENT_TYPES } from '../../constants';
+import { EVENT_TYPES, ITEM_TYPES } from '../../constants';
 
-const defaultTodoList = {
+const defaultTodos = {
   ctime: null,
   id: null,
   mtime: null,
   projectid: null,
   tasks: [],
   title: null,
+  type: ITEM_TYPES.TODO,
 };
 
 const createNewTodos = ({ projectid, title, todosid: id }) => {
   const now = Date.now();
   return {
-    ...defaultTodoList,
+    ...defaultTodos,
     ctime: now,
     id,
     mtime: now,
