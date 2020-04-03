@@ -6,6 +6,7 @@ import ViewBoardComponent from './app/views/board';
 import ViewHomeComponent from './app/views/home';
 import ViewNotesComponent from './app/views/notes';
 import ViewProjectsComponent from './app/views/projects';
+import ViewProjectsComponentCM from './app/views/projects/context-menu';
 import {
   filterDisabledRoutes,
   mapSlugToRoutes,
@@ -15,6 +16,7 @@ import {
 const boardRoute = {
   basepath: '/board',
   component: ViewBoardComponent,
+  contextmenu: false,
   icon: MdDashboard,
   label: 'Job Board',
   order: -1,
@@ -24,6 +26,7 @@ const boardRoute = {
 const homeRoute = {
   basepath: '/',
   component: ViewHomeComponent,
+  contextmenu: false,
   icon: IoMdHome,
   label: 'Accueil',
   order: 0,
@@ -33,6 +36,7 @@ const homeRoute = {
 const notesRoute = {
   basepath: '/notes',
   component: ViewNotesComponent,
+  contextmenu: false,
   icon: IoIosDocument,
   label: 'Notes',
   order: -1,
@@ -42,6 +46,7 @@ const notesRoute = {
 const projectsRoute = {
   basepath: '/projects',
   component: ViewProjectsComponent,
+  contextmenu: ViewProjectsComponentCM,
   icon: FaProjectDiagram,
   label: 'Projects',
   order: 10,

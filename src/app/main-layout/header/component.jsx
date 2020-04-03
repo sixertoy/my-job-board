@@ -1,13 +1,10 @@
 import { slugify } from '@iziges/napper-core';
 import { withStyles } from '@iziges/napper-react';
-import Tippy from '@tippy.js/react';
-import classnames from 'classnames';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
-import { FaPlus } from 'react-icons/fa';
+import React from 'react';
 
-import ContextMenus from '../context-menus';
+import ContextMenu from './context-menu';
 
 const styles = theme => ({
   breadcrumbs: {
@@ -23,24 +20,8 @@ const styles = theme => ({
     color: theme.colors.disabled,
     composes: ['is-uppercase'],
   },
-  menu: {
-    '&.active': {
-      backgroundColor: '#FFFFFF',
-      borderRadius: '0 4px 4px 0',
-    },
-    backgroundColor: '#FFFFFF',
-    borderRadius: 4,
-    composes: ['p12', 'use-pointer', 'fs14'],
-  },
   title: {
     composes: ['is-uppercase', 'is-bold'],
-  },
-  tooltip: {
-    borderLeft: '0 !important',
-    borderRadius: '4px 0 4px 4px !important',
-    borderRight: '0 !important',
-    borderTop: '0 !important',
-    left: '0 !important',
   },
   wrapper: {
     composes: ['flex-columns', 'flex-between', 'items-center'],
@@ -69,12 +50,10 @@ const createBreadcrumb = length => (value, index) => {
   const link = '';
   const isLastElement = index + 1 >= length;
   const renderer = isLastElement ? renderBoldBreadcrumb : renderLinkBreadcrumb;
-  console.log('value', value);
   return renderer(value[0], link);
 };
 
 const AppHeaderComponent = React.memo(({ breadcrumb, classes }) => {
-  const [tooltipIsVisible, toggleTooltipVisibility] = useState(false);
   const breadcrumbLength = breadcrumb.length;
   const date = moment().format('dddd, DD MMMM YYYY');
   return (
@@ -86,34 +65,14 @@ const AppHeaderComponent = React.memo(({ breadcrumb, classes }) => {
             {breadcrumb.map(createBreadcrumb(breadcrumbLength))}
           </div>
         </div>
-        <div>
-          <Tippy
-            hideOnClick
-            interactive
-            arrow={false}
-            className={classes.tooltip}
-            content={<ContextMenus />}
-            interactiveBorder={30}
-            placement="left-start"
-            theme="light-border"
-            trigger="click"
-            onHide={() => toggleTooltipVisibility(false)}
-            onShow={() => toggleTooltipVisibility(true)}>
-            <div
-              className={classnames(classes.menu, {
-                active: tooltipIsVisible,
-              })}>
-              <FaPlus />
-            </div>
-          </Tippy>
-        </div>
+        <ContextMenu />
       </div>
     </div>
   );
 });
 
 AppHeaderComponent.propTypes = {
-  breadcrumb: PropTypes.arrayOf(PropTypes.string).isRequired,
+  breadcrumb: PropTypes.arrayOf(PropTypes.array).isRequired,
   classes: PropTypes.shape().isRequired,
 };
 
