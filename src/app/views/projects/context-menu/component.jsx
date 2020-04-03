@@ -11,9 +11,12 @@ const styles = {
     minWidth: 320,
     width: 320,
   },
-  form: {},
-  formlabel: {
-    '& > input': {
+  error: {
+    color: '#FF0000',
+    composes: ['is-block', 'mt5'],
+  },
+  field: {
+    '& input': {
       border: '1px solid #000',
       borderRadius: 4,
       display: 'block',
@@ -21,22 +24,14 @@ const styles = {
       padding: '3px 7px',
       width: '100%',
     },
-    '& > span.error': {
-      display: 'block',
-      fontWeight: 'bold',
-      marginBottom: 5,
-    },
-    '& > span.label': {
-      display: 'block',
-      fontWeight: 'bold',
-      marginBottom: 5,
-    },
     width: '100%',
   },
+  form: {},
+  label: {
+    composes: ['is-block', 'mb5', 'is-bold'],
+  },
   submit: {
-    display: 'block',
-    marginTop: 5,
-    width: '100%',
+    composes: ['is-block', 'mt5', 'is-full-width'],
   },
 };
 
@@ -68,8 +63,8 @@ const ProjectsContextMenuComponent = ({
                   render={({ input, meta }) => {
                     const hasError = meta.error && !meta.pristine;
                     return (
-                      <label className={classes.formlabel}>
-                        <span classes={classes.label}>Nouv. projet</span>
+                      <label className={classes.field}>
+                        <span className={classes.label}>Nouv. projet</span>
                         <input {...input} placeholder="Title" type="text" />
                         {hasError && (
                           <span className={classes.error}>{meta.error}</span>
