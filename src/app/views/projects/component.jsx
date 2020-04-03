@@ -4,7 +4,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import ProjectComponent from '../project';
-import ProjectGridItemComponent from './project-grid-item';
+import ProjectCardComponent from './project-card';
 
 const styles = {
   container: {
@@ -35,7 +35,7 @@ const ProjectsComponent = ({
           render={() => (
             <div className={classes.grid}>
               {projects.map(proj => (
-                <ProjectGridItemComponent
+                <ProjectCardComponent
                   key={proj.id}
                   data={proj}
                   pathname={pathname}

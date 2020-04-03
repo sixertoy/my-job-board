@@ -10,7 +10,7 @@ const mapStateToProps = (state, { location }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  deleteProjectHandler: id => {
+  deleteProjectHandler: id => () => {
     dispatch({ id, type: EVENT_TYPES.PROJECT_DELETE });
   },
 });
