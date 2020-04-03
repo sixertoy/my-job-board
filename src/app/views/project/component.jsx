@@ -41,7 +41,7 @@ const ProjectComponent = ({
       <button type="button" onClick={onCreateList}>
         <span>Nouvelle liste</span>
       </button>
-      <div className={classes.grid}>{items.map(obj => obj.title)}</div>
+      <div className={classes.grid}>{items.map(obj => obj.id)}</div>
       {/* <nav>
         <Link to={`${basepath}/notes`}>
           <span>

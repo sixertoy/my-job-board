@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 
 import { EVENT_TYPES } from '../../../constants';
 import {
+  selectListsByProjectId,
   selectNotesByProjectId,
   selectProjectById,
-  selectTodosByProjectId,
 } from '../../../redux/selectors';
 import ProjectComponent from './component';
 
@@ -15,22 +15,22 @@ function sortByMTime(a, b) {
 const mapStateToProps = (state, { match }) => {
   const { id } = match.params;
   const project = selectProjectById(state, id);
-  const todos = selectTodosByProjectId(state, id);
+  const lists = selectListsByProjectId(state, id);
   const notes = selectNotesByProjectId(state, id);
-  const items = [...todos, ...notes];
+  const items = [...lists, ...notes];
   items.sort(sortByMTime);
   const { description, title } = project;
-  return { description, id, items, title, todos };
+  return { description, id, items, title };
 };
 
 const mapDispatchToProps = (dispatch, { match }) => ({
   onCreateList: () => {
-    const { id } = match.params;
-    console.log('id', id);
+    const { id: project } = match.params;
+    dispatch({ project, type: EVENT_TYPES.LIST_CREATE });
   },
   onCreateNote: () => {
-    const { id } = match.params;
-    console.log('id', id);
+    const { id: project } = match.params;
+    dispatch({ project, type: EVENT_TYPES.NOTE_CREATE });
   },
   onDelete: () => {
     const { id } = match.params;

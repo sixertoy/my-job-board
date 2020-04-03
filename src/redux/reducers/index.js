@@ -4,15 +4,15 @@ import * as appstates from './appstates';
 import * as card from './card';
 import * as feeds from './feeds';
 import * as fortunes from './fortunes';
+import * as lists from './lists';
 import * as notes from './notes';
 import * as projects from './projects';
 import * as theme from './theme';
-import * as todos from './todos';
 
 function createRootReducer() {
   return combineReducers({
     ...appstates,
-    ...todos,
+    ...lists,
     ...notes,
     ...projects,
     ...card,

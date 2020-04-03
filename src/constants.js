@@ -1,6 +1,6 @@
 export const ITEM_TYPES = {
+  LIST: 'list',
   NOTE: 'note',
-  TODO: 'todo',
 };
 
 export const CARD_STATUS = {
@@ -13,6 +13,8 @@ export const CARD_STATUS = {
 
 export const EVENT_TYPES = {
   FORTUNE_COOKIES_LOADED: 'onFortuneCookiesLoaded',
+  LIST_CREATE: 'onTodosCreate',
+  LIST_DELETE: 'onTodosDelete',
   LOADING_COMPLETE: 'onLoadingComplete',
   LOADING_START: 'onLoadingStart',
   MOVE_CARD_STATUS: 'onMoveCardStatus',
@@ -25,8 +27,6 @@ export const EVENT_TYPES = {
   PROJECT_UPDATE: 'onProjectUpdate',
   SAVE_NOTE: 'onSaveNote',
   THEME_CHANGE: 'onThemeChange',
-  TODOS_CREATE: 'onTodosCreate',
-  TODOS_DELETE: 'onTodosDelete',
 };
 
 // NOTE update chaque n heures (secondes * minutes * heure) * millisecondes

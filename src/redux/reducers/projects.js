@@ -7,17 +7,16 @@ const defaultProject = {
   ctime: null,
   description: null,
   id: null,
+  lists: [],
   mtime: null,
   notes: [],
   permalink: null,
   title: null,
-  // liste d'ids des todos
-  todos: [],
 };
 
-const updateProjectTodos = (project, { todosid }) => {
-  return { ...project, todos: [...project.todos, todosid] };
-};
+// const updateProjectLists = (project, { listid }) => {
+//   return { ...project, lists: [...project.lists, listid] };
+// };
 
 const createNewProject = ({ description, title }) => {
   const id = uuidv1();
@@ -35,12 +34,12 @@ const createNewProject = ({ description, title }) => {
 
 export const projects = (state = [], action) => {
   switch (action.type) {
-    case EVENT_TYPES.TODOS_CREATE:
-      return state.map(obj => {
-        const shouldUpdateProjectTodos = action.projectid === obj.id;
-        if (!shouldUpdateProjectTodos) return obj;
-        return updateProjectTodos(obj, action);
-      });
+    // case EVENT_TYPES.LIST_CREATE:
+    //   return state.map(obj => {
+    //     const shouldUpdateProjectTodos = action.projectid === obj.id;
+    //     if (!shouldUpdateProjectTodos) return obj;
+    //     return updateProjectLists(obj, action);
+    //   });
     case EVENT_TYPES.PROJECT_CREATE:
       return [...state, createNewProject(action.project)];
     case EVENT_TYPES.PROJECT_DELETE:

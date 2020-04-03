@@ -86,6 +86,7 @@ const INITIAL_VALUES = {
   draggingcard: false,
   feeds,
   lastFeedUpdate: now,
+  lists: [],
   loading: false,
   notes: [],
   offers: [],
@@ -93,14 +94,13 @@ const INITIAL_VALUES = {
   projects: [],
   search: '',
   selectedTheme: 'day',
-  todos: [],
 };
 
 export const reduxPersistConfig = {
   blacklist: [],
   key: 'LocalStorageKey::',
   storage,
-  whitelist: ['lastFeedUpdate', 'offers', 'selectedTheme', 'projects', 'todos'],
+  whitelist: ['lastFeedUpdate', 'offers', 'selectedTheme', 'projects', 'lists'],
 };
 
 export const getInitialState = history => {

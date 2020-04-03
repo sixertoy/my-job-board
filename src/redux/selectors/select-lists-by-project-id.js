@@ -1,10 +1,10 @@
 import createCachedSelector from 're-reselect';
 
-const getNotes = state => state.notes;
+const getLists = state => state.lists;
 const getProjectId = (state, id) => id;
 
-export const selectNotesByProjectId = createCachedSelector(
-  getNotes,
+export const selectListsByProjectId = createCachedSelector(
+  getLists,
   getProjectId,
   (alls, projectid) => {
     const items = alls
@@ -14,4 +14,4 @@ export const selectNotesByProjectId = createCachedSelector(
   }
 )((state, projectid) => `project-notes-${projectid}`);
 
-export default selectNotesByProjectId;
+export default selectListsByProjectId;
