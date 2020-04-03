@@ -25,6 +25,7 @@ const styles = theme => ({
   },
   wrapper: {
     composes: ['flex-columns', 'flex-between', 'items-center'],
+    height: 40,
   },
 });
 

@@ -8,7 +8,7 @@ const grey = '#9DA5B4';
 
 const themes = {
   day: {
-    active: '#5BB895',
+    active: '#6494ED',
     background: '#FEFEFE',
     border: '#E4E6E8',
     button: '#FFFFFF',
@@ -28,17 +28,6 @@ const themes = {
     disabled: '#6B727C',
     foreground: '#21252B',
     popup: '#2F3237',
-  },
-  social: {
-    active: '#4267B2',
-    background: '#F5F6F7',
-    border: '#DDDFE2',
-    button: '#FFFFFF',
-    color: '#4B4F56',
-    danger: '#DA402B',
-    disabled: '#90949C',
-    foreground: '#E9EBEE',
-    popup: '#DDDFE2',
   },
   trello: {
     active: '#FFFFFF',

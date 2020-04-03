@@ -1,5 +1,4 @@
-import { FaProjectDiagram } from 'react-icons/fa';
-import { IoIosDocument, IoMdHome } from 'react-icons/io';
+import { IoIosDocument, IoIosFlask, IoMdHome } from 'react-icons/io';
 import { MdDashboard } from 'react-icons/md';
 
 import ViewBoardComponent from './app/views/board';
@@ -47,7 +46,7 @@ const projectsRoute = {
   basepath: '/projects',
   component: ViewProjectsComponent,
   contextmenu: ViewProjectsComponentCM,
-  icon: FaProjectDiagram,
+  icon: IoIosFlask,
   label: 'Projects',
   order: 10,
   params: '/:id?/:view(todos|notes)?',

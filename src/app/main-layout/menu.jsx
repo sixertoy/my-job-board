@@ -31,8 +31,7 @@ const AppMenuComponent = React.memo(({ classes, items }) => {
   return (
     <div className={classes.container} id="app-menu">
       <nav className={classes.top}>
-        {items.map(({ icon, label, path }) => {
-          const Icon = icon;
+        {items.map(({ icon: Icon, label, path }) => {
           return (
             <NavLink
               key={path}
