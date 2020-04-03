@@ -23,8 +23,17 @@ const mapStateToProps = (state, { match }) => {
   return { description, id, items, title, todos };
 };
 
-const mapDispatchToProps = dispatch => ({
-  onDelete: id => {
+const mapDispatchToProps = (dispatch, { match }) => ({
+  onCreateList: () => {
+    const { id } = match.params;
+    console.log('id', id);
+  },
+  onCreateNote: () => {
+    const { id } = match.params;
+    console.log('id', id);
+  },
+  onDelete: () => {
+    const { id } = match.params;
     dispatch({ id, type: EVENT_TYPES.PROJECT_DELETE });
   },
 });

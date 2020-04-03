@@ -22,6 +22,8 @@ const ProjectComponent = ({
   // description,
   id,
   items,
+  onCreateList,
+  onCreateNote,
   // onDelete,
   // title,
 }) => {
@@ -33,6 +35,12 @@ const ProjectComponent = ({
       <button type="button" onClick={() => onDelete(id)}>
         <FaTrash />
       </button> */}
+      <button type="button" onClick={onCreateNote}>
+        <span>Nouvelle note</span>
+      </button>
+      <button type="button" onClick={onCreateList}>
+        <span>Nouvelle liste</span>
+      </button>
       <div className={classes.grid}>{items.map(obj => obj.title)}</div>
       {/* <nav>
         <Link to={`${basepath}/notes`}>
@@ -63,6 +71,8 @@ ProjectComponent.propTypes = {
   // description: PropTypes.string,
   id: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  onCreateList: PropTypes.func.isRequired,
+  onCreateNote: PropTypes.func.isRequired,
   // onDelete: PropTypes.func.isRequired,
   // title: PropTypes.string.isRequired,
 };
