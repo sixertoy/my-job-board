@@ -1,8 +1,10 @@
+// import 'react-toastify/dist/ReactToastify.css';
+
 import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+// import { Slide, toast, ToastContainer } from 'react-toastify';
 import ReactTooltip from 'react-tooltip';
 
 import AppFooterComponent from './footer';
@@ -62,7 +64,11 @@ const MainLayoutComponent = ({
         </div>
       </div>
       <AppFooterComponent />
-      <ToastContainer position={toast.POSITION.TOP_CENTER} />
+      {/* <ToastContainer
+        hideProgressBar
+        position={toast.POSITION.TOP_CENTER}
+        transition={Slide}
+      /> */}
       <ReactTooltip effect="solid" place="right" />
     </div>
   );

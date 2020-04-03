@@ -21,7 +21,12 @@ const styles = {
       padding: '3px 7px',
       width: '100%',
     },
-    '& > span': {
+    '& > span.error': {
+      display: 'block',
+      fontWeight: 'bold',
+      marginBottom: 5,
+    },
+    '& > span.label': {
       display: 'block',
       fontWeight: 'bold',
       marginBottom: 5,
@@ -35,35 +40,67 @@ const styles = {
   },
 };
 
-const ProjectsContextMenuComponent = ({ addProjectHandler, classes }) => (
-  <Form
-    render={({ form, handleSubmit, pristine, submitting }) => (
-      <div className={classes.container}>
-        <form onSubmit={evt => handleSubmit(evt).then(form.reset)}>
-          <div className={classes.form}>
-            <label className={classes.formlabel} htmlFor="project.title">
-              <span>Nouv. projet</span>
-              <Field component="input" name="project.title" type="text" />
-            </label>
-            <button
-              className={classes.submit}
-              disabled={submitting || pristine}
-              type="submit">
-              <FaSave />
-            </button>
+const validateProjectTitle = existingTitles => value => {
+  const nameExists = value && existingTitles.includes(value);
+  return nameExists ? 'Changer de nom' : undefined;
+};
+
+const ProjectsContextMenuComponent = ({
+  addProjectHandler,
+  classes,
+  existingTitles,
+}) => {
+  return (
+    <Form
+      render={({
+        form,
+        handleSubmit,
+        hasValidationErrors,
+        pristine,
+        submitting,
+      }) => {
+        return (
+          <div className={classes.container}>
+            <form onSubmit={evt => handleSubmit(evt).then(form.reset)}>
+              <div className={classes.form}>
+                <Field
+                  name="project.title"
+                  render={({ input, meta }) => {
+                    const hasError = meta.error && !meta.pristine;
+                    return (
+                      <label className={classes.formlabel}>
+                        <span classes={classes.label}>Nouv. projet</span>
+                        <input {...input} placeholder="Title" type="text" />
+                        {hasError && (
+                          <span className={classes.error}>{meta.error}</span>
+                        )}
+                      </label>
+                    );
+                  }}
+                  validate={validateProjectTitle(existingTitles)}
+                />
+                <button
+                  className={classes.submit}
+                  disabled={hasValidationErrors || submitting || pristine}
+                  type="submit">
+                  <FaSave />
+                </button>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
-    )}
-    onSubmit={addProjectHandler}
-  />
-);
+        );
+      }}
+      onSubmit={addProjectHandler}
+    />
+  );
+};
 
 ProjectsContextMenuComponent.defaultProps = {};
 
 ProjectsContextMenuComponent.propTypes = {
   addProjectHandler: PropTypes.func.isRequired,
   classes: PropTypes.shape().isRequired,
+  existingTitles: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default withStyles(styles)(ProjectsContextMenuComponent);
