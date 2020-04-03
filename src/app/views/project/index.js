@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch, { match }) => ({
     const { id: project } = match.params;
     dispatch({ project, type: EVENT_TYPES.NOTE_CREATE });
   },
-  onDelete: () => {
+  onDeleteProject: () => {
     const { id } = match.params;
     dispatch({ id, type: EVENT_TYPES.PROJECT_DELETE });
   },

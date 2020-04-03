@@ -1,15 +1,18 @@
 import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
 import React from 'react';
-// import { FaTrash } from 'react-icons/fa';
-// import { IoIosDocument } from 'react-icons/io';
-// import { MdDashboard } from 'react-icons/md';
-// import { Link, Route, Switch } from 'react-router-dom';
 
-// import ProjectNotes from './notes';
-// import ProjectTodos from './todos';
+import { ITEM_TYPES } from '../../../constants';
+import ListComponent from './list';
+import NoteComponent from './note';
 
 const styles = {
+  grid: {
+    composes: ['flex-columns', 'flex-wrap'],
+    height: '100%',
+    maxHeight: '100%',
+    minHeight: '100%',
+  },
   project: {
     height: 100,
     margin: '1%',
@@ -24,10 +27,9 @@ const ProjectComponent = ({
   items,
   onCreateList,
   onCreateNote,
-  // onDelete,
+  // onDeleteProject,
   // title,
 }) => {
-  // const basepath = `/projects/${id}`;
   return (
     <div className={classes.project} data-id={`projects-${id}`}>
       {/* <span>{title}</span>
@@ -41,23 +43,14 @@ const ProjectComponent = ({
       <button type="button" onClick={onCreateList}>
         <span>Nouvelle liste</span>
       </button>
-      <div className={classes.grid}>{items.map(obj => obj.id)}</div>
-      {/* <nav>
-        <Link to={`${basepath}/notes`}>
-          <span>
-            <IoIosDocument />
-          </span>
-        </Link>
-        <Link to={`${basepath}/todos`}>
-          <span>
-            <MdDashboard />
-          </span>
-        </Link>
-      </nav> */}
-      {/* <Switch>
-        <Route component={ProjectTodos} path="/projects/:id/todos" />
-        <Route component={ProjectNotes} path="/projects/:id/notes" />
-      </Switch> */}
+      <div className={classes.grid}>
+        {items.map(obj => {
+          const { id: key, type } = obj;
+          const Component =
+            type === ITEM_TYPES.NOTE ? NoteComponent : ListComponent;
+          return <Component key={key} item={obj} />;
+        })}
+      </div>
     </div>
   );
 };
@@ -73,7 +66,7 @@ ProjectComponent.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   onCreateList: PropTypes.func.isRequired,
   onCreateNote: PropTypes.func.isRequired,
-  // onDelete: PropTypes.func.isRequired,
+  // onDeleteProject: PropTypes.func.isRequired,
   // title: PropTypes.string.isRequired,
 };
 
