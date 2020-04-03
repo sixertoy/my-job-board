@@ -10,6 +10,9 @@ const styles = {
   container: {
     composes: ['is-full-width'],
   },
+  grid: {
+    composes: ['flex-columns', 'flex-wrap'],
+  },
 };
 
 const ProjectsComponent = ({

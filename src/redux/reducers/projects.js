@@ -3,6 +3,7 @@ import uuidv1 from 'uuid/v1';
 import { EVENT_TYPES } from '../../constants';
 
 const defaultProject = {
+  color: '#000000',
   ctime: null,
   description: null,
   id: null,

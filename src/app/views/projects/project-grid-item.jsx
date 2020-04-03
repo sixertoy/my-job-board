@@ -5,20 +5,20 @@ import { FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const styles = {
+  container: {
+    height: 100,
+    margin: '1%',
+    width: '23%',
+  },
   inner: {
     border: '1px solid #000000',
     borderRadius: 4,
     composes: ['is-full-height'],
   },
-  project: {
-    height: 100,
-    margin: '1%',
-    width: '23%',
-  },
 };
 
 const ProjectGridItemComponent = ({ classes, data, onDelete, pathname }) => (
-  <div className={classes.project} data-id={`project-${data.id}`}>
+  <div className={classes.container} data-id={`project-${data.id}`}>
     <div className={classes.inner}>
       <Link to={`${pathname}/${data.id}/`}>
         <span>{data.title}</span>
