@@ -12,17 +12,16 @@ const defaultList = {
   type: ITEM_TYPES.LIST,
 };
 
-const createNewList = ({ project }) => {
+const createNewList = ({ list, project }) => {
   const id = uuidv1();
   const now = Date.now();
-  const title = 'My list';
   return {
     ...defaultList,
+    ...list,
     ctime: now,
     id,
     mtime: now,
     project,
-    title,
   };
 };
 

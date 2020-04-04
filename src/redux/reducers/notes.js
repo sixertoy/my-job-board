@@ -12,17 +12,16 @@ const defaultNote = {
   type: ITEM_TYPES.NOTE,
 };
 
-const createNewNote = ({ project }) => {
+const createNewNote = ({ note, project }) => {
   const id = uuidv1();
   const now = Date.now();
-  const title = 'My note';
   return {
     ...defaultNote,
+    ...note,
     ctime: now,
     id,
     mtime: now,
     project,
-    title,
   };
 };
 

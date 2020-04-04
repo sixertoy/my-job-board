@@ -18,19 +18,25 @@ const mapStateToProps = (state, { match }) => {
   return { titles };
 };
 
-const mapDispatchToProps = (dispatch, { match }) => ({
-  onCreateList: async () => {
+const mapDispatchToProps = (dispatch, { history, location, match }) => ({
+  onCreateList: async ({ list }) => {
     await sleep(100);
     const { id: project } = match.params;
-    dispatch({ project, type: EVENT_TYPES.LIST_CREATE });
+    dispatch({ list, project, type: EVENT_TYPES.LIST_CREATE });
   },
-  onCreateNote: async () => {
+  onCreateNote: async ({ note }) => {
     await sleep(100);
     const { id: project } = match.params;
-    dispatch({ project, type: EVENT_TYPES.NOTE_CREATE });
+    dispatch({ note, project, type: EVENT_TYPES.NOTE_CREATE });
   },
   onDeleteProject: () => {
     const { id } = match.params;
+    const { pathname } = location;
+    const [basepath] = pathname
+      .split('/')
+      .filter(v => v)
+      .slice(0, 1);
+    history.replace(`/${basepath}`);
     dispatch({ id, type: EVENT_TYPES.PROJECT_DELETE });
   },
 });

@@ -24,12 +24,12 @@ const ProjectsContextMenuComponent = ({
 }) => {
   return (
     <div className={classes.container}>
+      <NoteFormComponent titles={titles.notes} onChange={onCreateNote} />
+      <ListFormComponent titles={titles.lists} onChange={onCreateList} />
       <button type="button" onClick={onDeleteProject}>
         <IoMdTrash />
         <span>Supp. projet</span>
       </button>
-      <NoteFormComponent titles={titles.notes} onChange={onCreateNote} />
-      <ListFormComponent titles={titles.lists} onChange={onCreateList} />
     </div>
   );
 };
