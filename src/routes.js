@@ -4,6 +4,7 @@ import { MdDashboard } from 'react-icons/md';
 import ViewBoardComponent from './app/views/board';
 import ViewHomeComponent from './app/views/home';
 import ViewNotesComponent from './app/views/notes';
+import ProjectComponent from './app/views/project';
 import ViewProjectsComponent from './app/views/projects';
 import ViewProjectsComponentCM from './app/views/projects/context-menu';
 import {
@@ -49,10 +50,20 @@ const projectsRoute = {
   icon: IoIosFlask,
   label: 'Projects',
   order: 10,
+  params: '/',
+};
+
+const projectRoute = {
+  basepath: '/projects',
+  component: ProjectComponent,
+  contextmenu: false,
+  icon: false,
+  label: 'Projects',
+  order: 10,
   params: '/:id?/:view(todos|notes)?',
 };
 
-const routes = [homeRoute, boardRoute, notesRoute, projectsRoute]
+const routes = [homeRoute, boardRoute, notesRoute, projectsRoute, projectRoute]
   .filter(filterDisabledRoutes)
   .map(mapSlugToRoutes)
   .sort(sortRoutesByOrder);

@@ -2,36 +2,39 @@ import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import GridComponent from './grid';
+import ProjectCardComponent from './card';
 
 const styles = {
-  container: {
-    composes: ['is-full-width', 'scroll-y'],
+  grid: {
+    composes: ['flex-columns', 'flex-wrap'],
   },
 };
 
-const ProjectsComponent = ({
+const GridComponent = ({
   classes,
   deleteProjectHandler,
   pathname,
   projects,
-}) => {
-  return (
-    <div className={classes.container}>
-      <GridComponent
-        deleteProjectHandler={deleteProjectHandler}
+}) => (
+  <div className={classes.grid}>
+    {projects.map(proj => (
+      <ProjectCardComponent
+        key={proj.id}
+        data={proj}
         pathname={pathname}
-        projects={projects}
+        onDelete={deleteProjectHandler}
       />
-    </div>
-  );
-};
+    ))}
+  </div>
+);
 
-ProjectsComponent.propTypes = {
+GridComponent.defaultProps = {};
+
+GridComponent.propTypes = {
   classes: PropTypes.shape().isRequired,
   deleteProjectHandler: PropTypes.func.isRequired,
   pathname: PropTypes.string.isRequired,
   projects: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
-export default withStyles(styles)(ProjectsComponent);
+export default withStyles(styles)(GridComponent);

@@ -2,21 +2,12 @@ import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { ITEM_TYPES } from '../../../constants';
-import ListComponent from './list';
-import NoteComponent from './note';
+import GridComponent from './grid';
 
 const styles = {
-  grid: {
-    composes: ['flex-columns', 'flex-wrap'],
-    height: '100%',
-    maxHeight: '100%',
-    minHeight: '100%',
-  },
-  project: {
-    height: 100,
-    margin: '1%',
-    width: '23%',
+  container: {},
+  header: {
+    composes: ['flex-columns'],
   },
 };
 
@@ -31,26 +22,21 @@ const ProjectComponent = ({
   // title,
 }) => {
   return (
-    <div className={classes.project} data-id={`projects-${id}`}>
+    <div className={classes.container} data-id={`projects-${id}`}>
       {/* <span>{title}</span>
       {description && <span>{description}</span>}
       <button type="button" onClick={() => onDelete(id)}>
         <FaTrash />
       </button> */}
-      <button type="button" onClick={onCreateNote}>
-        <span>Nouvelle note</span>
-      </button>
-      <button type="button" onClick={onCreateList}>
-        <span>Nouvelle liste</span>
-      </button>
-      <div className={classes.grid}>
-        {items.map(obj => {
-          const { id: key, type } = obj;
-          const Component =
-            type === ITEM_TYPES.NOTE ? NoteComponent : ListComponent;
-          return <Component key={key} item={obj} />;
-        })}
+      <div className={classes.header}>
+        <button type="button" onClick={onCreateNote}>
+          <span>Nouvelle note</span>
+        </button>
+        <button type="button" onClick={onCreateList}>
+          <span>Nouvelle liste</span>
+        </button>
       </div>
+      <GridComponent items={items} />
     </div>
   );
 };

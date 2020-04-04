@@ -100,7 +100,14 @@ export const reduxPersistConfig = {
   blacklist: [],
   key: 'LocalStorageKey::',
   storage,
-  whitelist: ['lastFeedUpdate', 'offers', 'selectedTheme', 'projects', 'lists'],
+  whitelist: [
+    'lastFeedUpdate',
+    'offers',
+    'selectedTheme',
+    'projects',
+    'lists',
+    'notes',
+  ],
 };
 
 export const getInitialState = history => {
