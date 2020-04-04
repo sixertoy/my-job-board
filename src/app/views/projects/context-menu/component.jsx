@@ -35,15 +35,15 @@ const styles = {
   },
 };
 
-const validateProjectTitle = existingTitles => value => {
-  const nameExists = value && existingTitles.includes(value);
+const validateProjectTitle = titles => value => {
+  const nameExists = value && titles.includes(value);
   return nameExists ? 'Changer de nom' : undefined;
 };
 
 const ProjectsContextMenuComponent = ({
   addProjectHandler,
   classes,
-  existingTitles,
+  titles,
 }) => {
   return (
     <Form
@@ -72,7 +72,7 @@ const ProjectsContextMenuComponent = ({
                       </label>
                     );
                   }}
-                  validate={validateProjectTitle(existingTitles)}
+                  validate={validateProjectTitle(titles)}
                 />
                 <button
                   className={classes.submit}
@@ -95,7 +95,7 @@ ProjectsContextMenuComponent.defaultProps = {};
 ProjectsContextMenuComponent.propTypes = {
   addProjectHandler: PropTypes.func.isRequired,
   classes: PropTypes.shape().isRequired,
-  existingTitles: PropTypes.arrayOf(PropTypes.string).isRequired,
+  titles: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default withStyles(styles)(ProjectsContextMenuComponent);

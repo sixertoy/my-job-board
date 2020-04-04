@@ -1,11 +1,12 @@
 import { IoIosFlask, IoMdHome } from 'react-icons/io';
 import { MdDashboard } from 'react-icons/md';
 
-import ViewBoardComponent from './app/views/board';
-import ViewHomeComponent from './app/views/home';
+import BoardComponent from './app/views/board';
+import HomeComponent from './app/views/home';
 import ProjectComponent from './app/views/project';
-import ViewProjectsComponent from './app/views/projects';
-import ViewProjectsComponentCM from './app/views/projects/context-menu';
+import ProjectComponentCM from './app/views/project/context-menu';
+import ProjectsComponent from './app/views/projects';
+import ProjectsComponentCM from './app/views/projects/context-menu';
 import {
   filterDisabledRoutes,
   mapSlugToRoutes,
@@ -14,7 +15,7 @@ import {
 
 const boardRoute = {
   basepath: '/board',
-  component: ViewBoardComponent,
+  component: BoardComponent,
   contextmenu: false,
   icon: MdDashboard,
   label: 'Job Board',
@@ -24,7 +25,7 @@ const boardRoute = {
 
 const homeRoute = {
   basepath: '/',
-  component: ViewHomeComponent,
+  component: HomeComponent,
   contextmenu: false,
   icon: IoMdHome,
   label: 'Accueil',
@@ -34,8 +35,8 @@ const homeRoute = {
 
 const projectsRoute = {
   basepath: '/projects',
-  component: ViewProjectsComponent,
-  contextmenu: ViewProjectsComponentCM,
+  component: ProjectsComponent,
+  contextmenu: ProjectsComponentCM,
   icon: IoIosFlask,
   label: 'Projects',
   order: 10,
@@ -45,7 +46,7 @@ const projectsRoute = {
 const projectRoute = {
   basepath: '/projects',
   component: ProjectComponent,
-  contextmenu: false,
+  contextmenu: ProjectComponentCM,
   icon: false,
   label: 'Projects',
   order: 10,

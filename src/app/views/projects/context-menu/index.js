@@ -2,11 +2,11 @@ import { sleep } from '@iziges/napper-core';
 import { connect } from 'react-redux';
 
 import { EVENT_TYPES } from '../../../../constants';
-import BoardContextMenuComponent from './component';
+import Component from './component';
 
 const mapStateToProps = state => {
-  const existingTitles = state.projects.map(obj => obj.title);
-  return { existingTitles };
+  const titles = state.projects.map(obj => obj.title);
+  return { titles };
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -16,7 +16,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(BoardContextMenuComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(Component);

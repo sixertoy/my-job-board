@@ -16,8 +16,6 @@ const ProjectComponent = ({
   // description,
   id,
   items,
-  onCreateList,
-  onCreateNote,
   // onDeleteProject,
   // title,
 }) => {
@@ -28,14 +26,6 @@ const ProjectComponent = ({
       <button type="button" onClick={() => onDelete(id)}>
         <FaTrash />
       </button> */}
-      <div className={classes.header}>
-        <button type="button" onClick={onCreateNote}>
-          <span>Nouvelle note</span>
-        </button>
-        <button type="button" onClick={onCreateList}>
-          <span>Nouvelle liste</span>
-        </button>
-      </div>
       <GridComponent items={items} />
     </div>
   );
@@ -50,8 +40,6 @@ ProjectComponent.propTypes = {
   // description: PropTypes.string,
   id: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  onCreateList: PropTypes.func.isRequired,
-  onCreateNote: PropTypes.func.isRequired,
   // onDeleteProject: PropTypes.func.isRequired,
   // title: PropTypes.string.isRequired,
 };

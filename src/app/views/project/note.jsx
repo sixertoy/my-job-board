@@ -1,20 +1,36 @@
 import { withStyles } from '@iziges/napper-react';
+import NapperTodoList from '@iziges/napper-todolist';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { MdNote } from 'react-icons/md';
+import { MdAdd, MdNote } from 'react-icons/md';
 
 const styles = {
+  header: {
+    composes: ['flex-columns', 'flex-between'],
+  },
   note: {
+    margin: '1%',
     maxWidth: 230,
     minWidth: 230,
     width: 230,
   },
+  wrapper: {},
 };
 
 const NoteComponent = ({ classes, item }) => (
   <div className={classes.note}>
-    <MdNote />
-    <span>{item.title}</span>
+    <div className={classes.header}>
+      <div>
+        <MdNote />
+        <span>{item.title}</span>
+      </div>
+      <button type="button" onClick={() => {}}>
+        <MdAdd />
+      </button>
+    </div>
+    <div className={classes.wrapper}>
+      <NapperTodoList tasks={item.tasks} onChange={() => {}} />
+    </div>
   </div>
 );
 

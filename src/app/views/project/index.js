@@ -24,14 +24,6 @@ const mapStateToProps = (state, { match }) => {
 };
 
 const mapDispatchToProps = (dispatch, { match }) => ({
-  onCreateList: () => {
-    const { id: project } = match.params;
-    dispatch({ project, type: EVENT_TYPES.LIST_CREATE });
-  },
-  onCreateNote: () => {
-    const { id: project } = match.params;
-    dispatch({ project, type: EVENT_TYPES.NOTE_CREATE });
-  },
   onDeleteProject: () => {
     const { id } = match.params;
     dispatch({ id, type: EVENT_TYPES.PROJECT_DELETE });
