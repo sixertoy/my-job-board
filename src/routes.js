@@ -1,9 +1,8 @@
-import { IoIosDocument, IoIosFlask, IoMdHome } from 'react-icons/io';
+import { IoIosFlask, IoMdHome } from 'react-icons/io';
 import { MdDashboard } from 'react-icons/md';
 
 import ViewBoardComponent from './app/views/board';
 import ViewHomeComponent from './app/views/home';
-import ViewNotesComponent from './app/views/notes';
 import ProjectComponent from './app/views/project';
 import ViewProjectsComponent from './app/views/projects';
 import ViewProjectsComponentCM from './app/views/projects/context-menu';
@@ -33,16 +32,6 @@ const homeRoute = {
   params: '',
 };
 
-const notesRoute = {
-  basepath: '/notes',
-  component: ViewNotesComponent,
-  contextmenu: false,
-  icon: IoIosDocument,
-  label: 'Notes',
-  order: -1,
-  params: '/:id?',
-};
-
 const projectsRoute = {
   basepath: '/projects',
   component: ViewProjectsComponent,
@@ -63,7 +52,7 @@ const projectRoute = {
   params: '/:id?/:view(todos|notes)?',
 };
 
-const routes = [homeRoute, boardRoute, notesRoute, projectsRoute, projectRoute]
+const routes = [homeRoute, boardRoute, projectsRoute, projectRoute]
   .filter(filterDisabledRoutes)
   .map(mapSlugToRoutes)
   .sort(sortRoutesByOrder);
