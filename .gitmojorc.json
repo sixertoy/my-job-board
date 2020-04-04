@@ -1,0 +1,33 @@
+[
+  { "tag": "bugs", "emojiName": "bug" },
+  { "tag": "build", "emojiName": "hammer" },
+  { "tag": "ci", "emojiName": "vertical_traffic_light" },
+  { "tag": "config", "emojiName": "wrench", "alias": ["conf"] },
+  {
+    "tag": "delete",
+    "emojiName": "boom",
+    "alias": ["rm", "trash", "cleanup"]
+  },
+  { "tag": "docker", "emojiName": "whale" },
+  { "tag": "documentation", "emojiName": "books", "alias": ["docs", "doc"] },
+  { "tag": "deploy", "emojiName": "rocket" },
+  {
+    "tag": "feature",
+    "emojiName": "sparkles",
+    "alias": ["feat", "feats", "features"]
+  },
+  { "tag": "format", "emojiName": "art", "alias": ["refactoring"] },
+  { "tag": "hotfix", "emojiName": "rotating_light", "alias": ["fix"] },
+  { "tag": "init", "emojiName": "tada" },
+  { "tag": "move", "emojiName": "truck", "alias": ["moving"] },
+  { "tag": "pkg", "emojiName": "package", "alias": ["dep"] },
+  { "tag": "responsive", "emojiName": "phone", "alias": ["mobile"] },
+  { "tag": "revert", "emojiName": "rewind" },
+  {
+    "tag": "style",
+    "emojiName": "lipstick",
+    "alias": ["css", "sass", "styles", "ui"]
+  },
+  { "tag": "tests", "emojiName": "white_check_mark", "alias": ["test"] },
+  { "tag": "wip", "emojiName": "construction" }
+]
