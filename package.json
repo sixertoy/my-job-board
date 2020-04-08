@@ -50,7 +50,7 @@
     "@iziges/napper-core": "https://github.com/sixertoy/napper-core.git",
     "@iziges/napper-react": "https://github.com/sixertoy/napper-react.git",
     "@iziges/napper-styles": "https://github.com/sixertoy/napper-styles.git#latest",
-    "@iziges/napper-todolist": "https://github.com/sixertoy/napper-todolist.git",
+    "@nappr/nappr-todolist": "^0.1.24",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",

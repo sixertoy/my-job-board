@@ -18,7 +18,7 @@ const GridComponent = ({ classes, items }) => (
       const { id: key, type } = obj;
       const Component =
         type === ITEM_TYPES.NOTE ? NoteComponent : ListComponent;
-      return <Component key={key} item={obj} />;
+      return <Component key={key} item={obj} onChange={() => {}} />;
     })}
   </div>
 );

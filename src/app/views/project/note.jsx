@@ -1,8 +1,7 @@
 import { withStyles } from '@iziges/napper-react';
-import NapperTodoList from '@iziges/napper-todolist';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { MdAdd, MdNote } from 'react-icons/md';
+import { MdNote } from 'react-icons/md';
 
 const styles = {
   header: {
@@ -17,19 +16,13 @@ const styles = {
   wrapper: {},
 };
 
-const NoteComponent = ({ classes, item }) => (
+const NoteComponent = ({ classes, item, onChange }) => (
   <div className={classes.note}>
     <div className={classes.header}>
       <div>
         <MdNote />
         <span>{item.title}</span>
       </div>
-      <button type="button" onClick={() => {}}>
-        <MdAdd />
-      </button>
-    </div>
-    <div className={classes.wrapper}>
-      <NapperTodoList tasks={item.tasks} onChange={() => {}} />
     </div>
   </div>
 );
@@ -39,6 +32,7 @@ NoteComponent.defaultProps = {};
 NoteComponent.propTypes = {
   classes: PropTypes.shape().isRequired,
   item: PropTypes.shape().isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(NoteComponent);

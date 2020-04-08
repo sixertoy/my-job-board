@@ -24,6 +24,7 @@ const mapStateToProps = (state, { match }) => {
 };
 
 const mapDispatchToProps = (dispatch, { match }) => ({
+  createNewTask: () => {},
   onDeleteProject: () => {
     const { id } = match.params;
     dispatch({ id, type: EVENT_TYPES.PROJECT_DELETE });
