@@ -1,7 +1,7 @@
 const { NODE_ENV } = process.env;
 
 export const DRAG_CARD_TYPE = 'card';
-export const CLASS_NAME_PREFIX = 'napper-kanbanboard-';
+export const CLASS_NAME_PREFIX = 'nappr-kanbanboard-';
 export const MINIFY = Boolean(
   NODE_ENV !== 'development' && NODE_ENV !== 'local'
 );

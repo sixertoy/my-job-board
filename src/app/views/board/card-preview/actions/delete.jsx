@@ -1,8 +1,8 @@
-import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { createUseStyles, useTheme } from 'react-jss';
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   container: {
     backgroundColor: theme.colors.danger,
     borderRadius: 4,
@@ -11,21 +11,22 @@ const styles = theme => ({
   label: {
     color: theme.colors.white,
   },
-});
+}));
 
-const KanbanBoardCardPreviewDeleteComponent = ({ classes, onClick }) => (
-  <div className={classes.container}>
-    <button type="button" onClick={onClick}>
-      <span className={classes.label}>Supprimer</span>
-    </button>
-  </div>
-);
-
-KanbanBoardCardPreviewDeleteComponent.defaultProps = {};
+const KanbanBoardCardPreviewDeleteComponent = ({ onClick }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
+  return (
+    <div className={classes.container}>
+      <button type="button" onClick={onClick}>
+        <span className={classes.label}>Supprimer</span>
+      </button>
+    </div>
+  );
+};
 
 KanbanBoardCardPreviewDeleteComponent.propTypes = {
-  classes: PropTypes.shape().isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(KanbanBoardCardPreviewDeleteComponent);
+export default KanbanBoardCardPreviewDeleteComponent;

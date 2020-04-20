@@ -1,4 +1,4 @@
-import { mirrorKeys, ucfirst } from '@iziges/napper-core';
+import { mirrorKeys, ucfirst } from '@nappr/nappr-core';
 import { EditorState } from 'draft-js';
 import { stateToMarkdown } from 'draft-js-export-markdown';
 import { stateFromMarkdown } from 'draft-js-import-markdown';

@@ -1,7 +1,7 @@
-import { withStyles } from '@iziges/napper-react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { createUseStyles, useTheme } from 'react-jss';
 import { Redirect } from 'react-router-dom';
 
 import { OfferType } from '../../../../prop-types';
@@ -10,7 +10,7 @@ import KanbanBoardCardPreviewActionsComponent from './actions/open-source';
 import KanbanBoardCardPreviewStatusComponent from './actions/status';
 import KanbanBoardCardPreviewCloseComponent from './close';
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   card: {
     backgroundColor: theme.colors.popup,
     borderRadius: 7,
@@ -51,17 +51,18 @@ const styles = theme => ({
   title: {
     composes: ['fs20', 'is-bold', 'mb12'],
   },
-});
+}));
 
 const KanbanBoardCardPreviewComponent = ({
-  classes,
   offer,
   onChangeStatus,
   onDelete,
 }) => {
-  if (!offer) return <Redirect to="/board" />;
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   const date = moment(offer.date);
   const fromnow = date.fromNow();
+  if (!offer) return <Redirect to="/board" />;
   return (
     <div className={classes.container} id={`offer-${offer.id}`}>
       <div className={classes.card}>
@@ -103,11 +104,10 @@ const KanbanBoardCardPreviewComponent = ({
 };
 
 KanbanBoardCardPreviewComponent.propTypes = {
-  classes: PropTypes.shape().isRequired,
   // TODO creation d'un custom proptype pour les offer
   offer: OfferType.isRequired,
   onChangeStatus: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(KanbanBoardCardPreviewComponent);
+export default KanbanBoardCardPreviewComponent;

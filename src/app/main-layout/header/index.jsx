@@ -1,4 +1,4 @@
-import { noop } from '@iziges/napper-core';
+import { noop } from '@nappr/nappr-core/lib/core';
 import { connect } from 'react-redux';
 import { matchPath, withRouter } from 'react-router-dom';
 import { compose } from 'redux';

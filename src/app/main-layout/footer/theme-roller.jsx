@@ -1,6 +1,6 @@
-import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { createUseStyles, useTheme } from 'react-jss';
 
 import { getThemes } from '../../../theme';
 
@@ -19,16 +19,18 @@ const themeButton = Object.keys(themes).reduce((acc, key) => {
   return { ...acc, [key]: { backgroundColor, ...square } };
 }, {});
 
-const styles = theme => {
+const useStyles = createUseStyles(theme => {
   return {
     container: {
       border: `1px solid ${theme.colors.border}`,
     },
     ...themeButton,
   };
-};
+});
 
-const AppFooterThemeRollerComponent = ({ changeTheme, classes }) => {
+const AppFooterThemeRollerComponent = ({ changeTheme }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   return (
     <div className={classes.container}>
       {Object.keys(themeButton).map(key => (
@@ -46,7 +48,6 @@ const AppFooterThemeRollerComponent = ({ changeTheme, classes }) => {
 
 AppFooterThemeRollerComponent.propTypes = {
   changeTheme: PropTypes.func.isRequired,
-  classes: PropTypes.shape().isRequired,
 };
 
-export default withStyles(styles)(AppFooterThemeRollerComponent);
+export default AppFooterThemeRollerComponent;

@@ -66,7 +66,7 @@ const fetchOffersFromFeed = (feed, now) => {
     })
     .catch(() => {
       // const reason = new Error(`${key}\n${err.message}`);
-      // TODO utiliser napper-core/logger
+      // TODO utiliser nappr-core/logger
       // console.log(reason);
     });
 };

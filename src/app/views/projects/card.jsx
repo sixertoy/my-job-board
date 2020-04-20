@@ -1,4 +1,3 @@
-import { withStyles } from '@iziges/napper-react';
 import Tippy from '@tippy.js/react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
@@ -6,9 +5,10 @@ import React, { useState } from 'react';
 // import { TwitterPicker } from 'react-color';
 // import { FaTrash } from 'react-icons/fa';
 import { MdMoreVert } from 'react-icons/md';
+import { createUseStyles } from 'react-jss';
 import { Link } from 'react-router-dom';
 
-const styles = {
+const useStyles = createUseStyles({
   container: {
     composes: ['is-relative'],
     height: 130,
@@ -42,7 +42,7 @@ const styles = {
   tooltip: {
     composes: ['fs9'],
   },
-};
+});
 
 const renderOptions = (onDelete, classes) => {
   return (
@@ -54,7 +54,8 @@ const renderOptions = (onDelete, classes) => {
   );
 };
 
-const ProjectCardComponent = ({ classes, data, onDelete, pathname }) => {
+const ProjectCardComponent = ({ data, onDelete, pathname }) => {
+  const classes = useStyles();
   const [tooltipIsVisible, toggleTooltipVisibility] = useState(false);
   return (
     <div className={classes.container} data-id={`project-${data.id}`}>
@@ -90,7 +91,6 @@ const ProjectCardComponent = ({ classes, data, onDelete, pathname }) => {
 };
 
 ProjectCardComponent.propTypes = {
-  classes: PropTypes.shape().isRequired,
   data: PropTypes.shape({
     color: PropTypes.string,
     description: PropTypes.string,
@@ -101,4 +101,4 @@ ProjectCardComponent.propTypes = {
   pathname: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(ProjectCardComponent);
+export default ProjectCardComponent;

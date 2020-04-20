@@ -1,4 +1,4 @@
-// import { Logger } from '@iziges/napper-core';
+// import { Logger } from '@nappr/nappr-core';
 import orderby from 'lodash.orderby';
 
 import { EVENT_TYPES } from '../../constants';

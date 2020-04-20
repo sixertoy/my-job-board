@@ -1,10 +1,10 @@
-import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { createUseStyles, useTheme } from 'react-jss';
 
 import { getCardStatusSelectValues } from '../utils';
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   container: {
     composes: ['mb12'],
   },
@@ -15,14 +15,15 @@ const styles = theme => ({
     height: 32,
     width: '100%',
   },
-});
+}));
 
 const KanbanBoardCardPreviewStatusComponent = ({
-  classes,
   onChange,
   selected,
   status,
 }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   return (
     <div className={classes.container}>
       <select
@@ -49,10 +50,9 @@ KanbanBoardCardPreviewStatusComponent.defaultProps = {
 };
 
 KanbanBoardCardPreviewStatusComponent.propTypes = {
-  classes: PropTypes.shape().isRequired,
   onChange: PropTypes.func.isRequired,
   selected: PropTypes.string.isRequired,
   status: PropTypes.arrayOf(PropTypes.shape()),
 };
 
-export default withStyles(styles)(KanbanBoardCardPreviewStatusComponent);
+export default KanbanBoardCardPreviewStatusComponent;

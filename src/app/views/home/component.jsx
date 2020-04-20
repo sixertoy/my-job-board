@@ -1,18 +1,20 @@
-import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
+import { createUseStyles, useTheme } from 'react-jss';
 
 import { FortunesType } from '../../../prop-types';
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   container: {},
   wrapper: {
     color: theme.colors.color,
     composes: ['p24'],
   },
-});
+}));
 
-const ViewHomeComponent = ({ classes, fortune, loadFortunes }) => {
+const ViewHomeComponent = ({ fortune, loadFortunes }) => {
+  const theme = useTheme();
+  const classes = useStyles(theme);
   useEffect(() => {
     loadFortunes();
   }, [loadFortunes]);
@@ -71,9 +73,8 @@ const ViewHomeComponent = ({ classes, fortune, loadFortunes }) => {
 ViewHomeComponent.defaultProps = {};
 
 ViewHomeComponent.propTypes = {
-  classes: PropTypes.shape().isRequired,
   fortune: FortunesType.isRequired,
   loadFortunes: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(ViewHomeComponent);
+export default ViewHomeComponent;

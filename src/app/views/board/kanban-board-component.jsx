@@ -1,11 +1,11 @@
-import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { createUseStyles, useTheme } from 'react-jss';
 
 import KanbanBoard from '../../components/kanban-board';
 import BoardHeaderComponent from './header';
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   columns: {
     composes: [
       'flex-1',
@@ -22,14 +22,11 @@ const styles = theme => ({
     backgroundColor: `${theme.colors.black}99`,
     composes: ['is-full-layout', 'is-overlay'],
   },
-});
+}));
 
-const KanbanBoardComponent = ({
-  classes,
-  columns,
-  moveCardToStatus,
-  offers,
-}) => {
+const KanbanBoardComponent = ({ columns, moveCardToStatus, offers }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   return (
     <div className={classes.container} id="kanban-board">
       <BoardHeaderComponent />
@@ -57,11 +54,10 @@ const KanbanBoardComponent = ({
 };
 
 KanbanBoardComponent.propTypes = {
-  classes: PropTypes.shape().isRequired,
   columns: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   moveCardToStatus: PropTypes.func.isRequired,
   offers: PropTypes.PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 // export default DragDropContext(HTML5Backend)(
-export default withStyles(styles)(KanbanBoardComponent);
+export default KanbanBoardComponent;

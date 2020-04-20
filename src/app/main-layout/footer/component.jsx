@@ -1,10 +1,10 @@
-import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { createUseStyles, useTheme } from 'react-jss';
 
 import ThemeRoller from './theme-roller';
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   container: {
     backgroundColor: theme.colors.foreground,
     borderTop: `1px solid ${theme.colors.border}`,
@@ -17,22 +17,25 @@ const styles = theme => ({
       'p12',
     ],
   },
-});
+}));
 
-const AppFooterComponent = ({ changeTheme, classes }) => (
-  <div className={classes.container}>
-    <div>
-      <span>v0.1.0</span>
+const AppFooterComponent = ({ changeTheme }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
+  return (
+    <div className={classes.container}>
+      <div>
+        <span>v0.1.0</span>
+      </div>
+      <ThemeRoller changeTheme={changeTheme} />
     </div>
-    <ThemeRoller changeTheme={changeTheme} />
-  </div>
-);
+  );
+};
 
 AppFooterComponent.defaultProps = {};
 
 AppFooterComponent.propTypes = {
   changeTheme: PropTypes.func.isRequired,
-  classes: PropTypes.shape().isRequired,
 };
 
-export default withStyles(styles)(AppFooterComponent);
+export default AppFooterComponent;

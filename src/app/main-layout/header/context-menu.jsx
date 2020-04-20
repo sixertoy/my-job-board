@@ -1,14 +1,13 @@
-import { withStyles } from '@iziges/napper-react';
 import Tippy from '@tippy.js/react';
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
+import { createUseStyles } from 'react-jss';
 import { Route, Switch } from 'react-router-dom';
 
 import routes from '../../../routes';
 
-const styles = {
+const useStyles = createUseStyles({
   menu: {
     '&.active': {
       backgroundColor: '#FFFFFF',
@@ -25,7 +24,7 @@ const styles = {
     borderTop: '0 !important',
     left: '0 !important',
   },
-};
+});
 
 const renderTooltip = (classes, Component, toggle, active) => () => {
   return (
@@ -50,7 +49,8 @@ const renderTooltip = (classes, Component, toggle, active) => () => {
   );
 };
 
-const LayoutHeaderContextMenu = React.memo(({ classes }) => {
+const LayoutHeaderContextMenu = React.memo(() => {
+  const classes = useStyles();
   const [tooltipIsVisible, toggleTooltipVisibility] = useState(false);
   return (
     <Switch>
@@ -77,8 +77,6 @@ const LayoutHeaderContextMenu = React.memo(({ classes }) => {
   );
 });
 
-LayoutHeaderContextMenu.propTypes = {
-  classes: PropTypes.shape().isRequired,
-};
+LayoutHeaderContextMenu.propTypes = {};
 
-export default withStyles(styles)(LayoutHeaderContextMenu);
+export default LayoutHeaderContextMenu;

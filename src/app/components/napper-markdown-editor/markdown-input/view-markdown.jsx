@@ -1,4 +1,4 @@
-import { debounce } from '@iziges/napper-core';
+import { debounce } from '@nappr/nappr-core';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Editor } from 'react-draft-wysiwyg';

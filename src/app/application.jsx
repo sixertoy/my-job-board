@@ -4,8 +4,8 @@ import { ThemeProvider } from 'react-jss';
 import { connect } from 'react-redux';
 import { ToastProvider } from 'react-toast-notifications';
 
-import MainLayoutComponent from './app/main-layout';
-import { getThemeByThemeKey } from './theme';
+import { getThemeByThemeKey } from '../theme';
+import MainLayoutComponent from './main-layout';
 
 const Application = ({ theme }) => (
   <ThemeProvider theme={theme}>

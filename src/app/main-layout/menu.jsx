@@ -1,9 +1,9 @@
-import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { createUseStyles, useTheme } from 'react-jss';
 import { NavLink } from 'react-router-dom';
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   container: {
     backgroundColor: theme.colors.foreground,
     borderRight: `1px solid ${theme.colors.border}`,
@@ -25,9 +25,11 @@ const styles = theme => ({
   tooltipOpaque: {
     opacity: '1 !important',
   },
-});
+}));
 
-const AppMenuComponent = React.memo(({ classes, items }) => {
+const AppMenuComponent = React.memo(({ items }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   return (
     <div className={classes.container} id="app-menu">
       <nav className={classes.top}>
@@ -86,9 +88,8 @@ const AppMenuComponent = React.memo(({ classes, items }) => {
 });
 
 AppMenuComponent.propTypes = {
-  classes: PropTypes.shape().isRequired,
   items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   // tooltipType: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(AppMenuComponent);
+export default AppMenuComponent;

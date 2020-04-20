@@ -1,27 +1,27 @@
-import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { IoMdTrash } from 'react-icons/io';
+import { createUseStyles } from 'react-jss';
 
 import ListFormComponent from './list-form';
 import NoteFormComponent from './note-form';
 
-const styles = {
+const useStyles = createUseStyles({
   container: {
     composes: ['p12'],
     maxWidth: 320,
     minWidth: 320,
     width: 320,
   },
-};
+});
 
 const ProjectsContextMenuComponent = ({
-  classes,
   onCreateList,
   onCreateNote,
   onDeleteProject,
   titles,
 }) => {
+  const classes = useStyles();
   return (
     <div className={classes.container}>
       <NoteFormComponent titles={titles.notes} onChange={onCreateNote} />
@@ -37,7 +37,6 @@ const ProjectsContextMenuComponent = ({
 ProjectsContextMenuComponent.defaultProps = {};
 
 ProjectsContextMenuComponent.propTypes = {
-  classes: PropTypes.shape().isRequired,
   onCreateList: PropTypes.func.isRequired,
   onCreateNote: PropTypes.func.isRequired,
   onDeleteProject: PropTypes.func.isRequired,
@@ -47,4 +46,4 @@ ProjectsContextMenuComponent.propTypes = {
   }).isRequired,
 };
 
-export default withStyles(styles)(ProjectsContextMenuComponent);
+export default ProjectsContextMenuComponent;

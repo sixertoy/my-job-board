@@ -1,24 +1,24 @@
-import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { createUseStyles } from 'react-jss';
 
 import GridComponent from './grid';
 
-const styles = {
+const useStyles = createUseStyles({
   container: {},
   header: {
     composes: ['flex-columns'],
   },
-};
+});
 
 const ProjectComponent = ({
-  classes,
   // description,
   id,
   items,
   // onDeleteProject,
   // title,
 }) => {
+  const classes = useStyles();
   return (
     <div className={classes.container} data-id={`projects-${id}`}>
       {/* <span>{title}</span>
@@ -36,7 +36,6 @@ const ProjectComponent = ({
 // };
 
 ProjectComponent.propTypes = {
-  classes: PropTypes.shape().isRequired,
   // description: PropTypes.string,
   id: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
@@ -44,4 +43,4 @@ ProjectComponent.propTypes = {
   // title: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(ProjectComponent);
+export default ProjectComponent;

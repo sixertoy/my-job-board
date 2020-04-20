@@ -1,19 +1,19 @@
-import { withStyles } from '@iziges/napper-react';
-import PropTypes from 'prop-types';
 import React from 'react';
 // import { IoIosSettings } from 'react-icons/io';
 // import { Link } from 'react-router-dom';
+import { createUseStyles } from 'react-jss';
 
-const styles = {
+const useStyles = createUseStyles({
   container: {
     composes: ['flex-0'],
   },
   wrapper: {
     composes: ['flex-columns', 'flex-between'],
   },
-};
+});
 
-const BoardHeaderComponent = ({ classes }) => {
+const BoardHeaderComponent = () => {
+  const classes = useStyles();
   return (
     <div className={classes.container} id="kanban-header">
       <div className={classes.wrapper}>
@@ -32,8 +32,7 @@ const BoardHeaderComponent = ({ classes }) => {
 };
 
 BoardHeaderComponent.propTypes = {
-  classes: PropTypes.shape().isRequired,
   // nextUpdate: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(BoardHeaderComponent);
+export default BoardHeaderComponent;

@@ -28,7 +28,7 @@ function createServicePromise({ id, parser, type, url }) {
     .then(mapDataToServiceId(id))
     .catch(() => {
       // const reason = new Error(`${err.message}`);
-      // TODO utilise napper-core/logger
+      // TODO utilise nappr-core/logger
       // console.log(reason);
     });
 }

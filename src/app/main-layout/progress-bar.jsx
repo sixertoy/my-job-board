@@ -1,9 +1,9 @@
-import { withStyles } from '@iziges/napper-react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { createUseStyles, useTheme } from 'react-jss';
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   container: {
     backgroundColor: theme.colors.dark,
     composes: ['is-relative'],
@@ -24,9 +24,11 @@ const styles = theme => ({
     },
     composes: ['is-absolute', 'no-overflow', 'mb7', 'is-full-width'],
   },
-});
+}));
 
-const ProgressBar = ({ classes, loading }) => {
+const ProgressBar = ({ loading }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   const cssobj = classNames(classes.loader, { 'is-hidden': !loading });
   return (
     <div className={classes.container} id="progress-bar">
@@ -36,8 +38,7 @@ const ProgressBar = ({ classes, loading }) => {
 };
 
 ProgressBar.propTypes = {
-  classes: PropTypes.shape().isRequired,
   loading: PropTypes.bool.isRequired,
 };
 
-export default withStyles(styles)(ProgressBar);
+export default ProgressBar;

@@ -1,11 +1,11 @@
-import { withStyles } from '@iziges/napper-react';
 import NapprTodoList from '@nappr/nappr-todolist';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { MdList } from 'react-icons/md';
+import { createUseStyles } from 'react-jss';
 import uuidv1 from 'uuid/v1';
 
-const styles = {
+const useStyles = createUseStyles({
   header: {},
   list: {
     margin: '1%',
@@ -14,9 +14,10 @@ const styles = {
     width: 230,
   },
   wrapper: {},
-};
+});
 
-const ListComponent = ({ classes, item, onChange }) => {
+const ListComponent = ({ item, onChange }) => {
+  const classes = useStyles();
   const [tasks, updateTasks] = useState(item.tasks);
   return (
     <div className={classes.list}>
@@ -50,9 +51,8 @@ const ListComponent = ({ classes, item, onChange }) => {
 ListComponent.defaultProps = {};
 
 ListComponent.propTypes = {
-  classes: PropTypes.shape().isRequired,
   item: PropTypes.shape().isRequired,
   onChange: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(ListComponent);
+export default ListComponent;

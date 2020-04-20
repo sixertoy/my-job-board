@@ -1,10 +1,10 @@
-import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Field, Form } from 'react-final-form';
 import { FaSave } from 'react-icons/fa';
+import { createUseStyles } from 'react-jss';
 
-const styles = {
+const useStyles = createUseStyles({
   container: {
     composes: ['p12'],
     maxWidth: 320,
@@ -33,18 +33,15 @@ const styles = {
   submit: {
     composes: ['is-block', 'mt5', 'is-full-width'],
   },
-};
+});
 
 const validateProjectTitle = titles => value => {
   const nameExists = value && titles.includes(value);
   return nameExists ? 'Changer de nom' : undefined;
 };
 
-const ProjectsContextMenuComponent = ({
-  addProjectHandler,
-  classes,
-  titles,
-}) => {
+const ProjectsContextMenuComponent = ({ addProjectHandler, titles }) => {
+  const classes = useStyles();
   return (
     <Form
       render={({
@@ -94,8 +91,7 @@ ProjectsContextMenuComponent.defaultProps = {};
 
 ProjectsContextMenuComponent.propTypes = {
   addProjectHandler: PropTypes.func.isRequired,
-  classes: PropTypes.shape().isRequired,
   titles: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default withStyles(styles)(ProjectsContextMenuComponent);
+export default ProjectsContextMenuComponent;

@@ -1,10 +1,9 @@
-import { withStyles } from '@iziges/napper-react';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { IoMdCloseCircle } from 'react-icons/io';
+import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   container: {
     '&:hover': {
       color: theme.colors.active,
@@ -15,16 +14,16 @@ const styles = theme => ({
     top: 12,
     transition: 'color 0.5s',
   },
-});
+}));
 
-const KanbanBoardCardPreviewCloseComponent = ({ classes }) => (
-  <Link className={classes.container} to="/board">
-    <IoMdCloseCircle />
-  </Link>
-);
-
-KanbanBoardCardPreviewCloseComponent.propTypes = {
-  classes: PropTypes.shape().isRequired,
+const KanbanBoardCardPreviewCloseComponent = () => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
+  return (
+    <Link className={classes.container} to="/board">
+      <IoMdCloseCircle />
+    </Link>
+  );
 };
 
-export default withStyles(styles)(KanbanBoardCardPreviewCloseComponent);
+export default KanbanBoardCardPreviewCloseComponent;

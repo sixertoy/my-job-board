@@ -1,12 +1,12 @@
-import { slugify } from '@iziges/napper-core';
-import { withStyles } from '@iziges/napper-react';
+import { slugify } from '@nappr/nappr-core/lib/strings';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { createUseStyles, useTheme } from 'react-jss';
 
 import ContextMenu from './context-menu';
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   breadcrumbs: {
     '& *::before': { content: '|', margin: '0 10px' },
   },
@@ -27,7 +27,7 @@ const styles = theme => ({
     composes: ['flex-columns', 'flex-between', 'items-center'],
     height: 40,
   },
-});
+}));
 
 function renderBoldBreadcrumb(value) {
   const key = slugify(value);
@@ -54,7 +54,9 @@ const createBreadcrumb = length => (value, index) => {
   return renderer(value[0], link);
 };
 
-const AppHeaderComponent = React.memo(({ breadcrumb, classes }) => {
+const AppHeaderComponent = React.memo(({ breadcrumb }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   const breadcrumbLength = breadcrumb.length;
   const date = moment().format('dddd, DD MMMM YYYY');
   return (
@@ -74,7 +76,6 @@ const AppHeaderComponent = React.memo(({ breadcrumb, classes }) => {
 
 AppHeaderComponent.propTypes = {
   breadcrumb: PropTypes.arrayOf(PropTypes.array).isRequired,
-  classes: PropTypes.shape().isRequired,
 };
 
-export default withStyles(styles)(AppHeaderComponent);
+export default AppHeaderComponent;

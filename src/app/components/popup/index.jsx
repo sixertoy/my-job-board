@@ -1,4 +1,4 @@
-import { withStyles } from '@iziges/napper-react';
+import { withStyles } from '@nappr/nappr-react';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 

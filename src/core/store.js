@@ -1,4 +1,4 @@
-// import { isDevelopment } from '@iziges/napper-core';
+// import { isDevelopment } from '@nappr/nappr-core';
 import { applyMiddleware, createStore } from 'redux';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -12,7 +12,7 @@ function debugStored() {}
 
 function bindMiddleware(middleware = []) {
   const appliedMiddlewares = applyMiddleware(...middleware);
-  // NOTE utiliser napper-core/Logger
+  // NOTE utiliser nappr-core/Logger
   // if (isDevelopment()) {
   const composeEnhancers = composeWithDevTools({});
   return composeEnhancers(appliedMiddlewares);
