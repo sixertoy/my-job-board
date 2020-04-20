@@ -37,7 +37,13 @@ const useStyles = createUseStyles({
   },
   title: {
     color: 'rgba(255, 255, 255, 0.45)',
-    composes: ['fs18', 'is-bold', 'is-block', 'text-center'],
+    composes: [
+      'fs18',
+      'is-bold',
+      'flex-columns',
+      'flex-center',
+      'items-center',
+    ],
   },
   tooltip: {
     composes: ['fs9'],

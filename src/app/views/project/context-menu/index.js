@@ -1,4 +1,4 @@
-import { sleep } from '@nappr/nappr-core';
+import { sleep } from '@nappr/nappr-core/lib/utils';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';

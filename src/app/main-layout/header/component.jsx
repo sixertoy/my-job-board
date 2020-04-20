@@ -50,7 +50,7 @@ function renderLinkBreadcrumb(value, link) {
 const createBreadcrumb = length => (value, index) => {
   const link = '';
   const isLastElement = index + 1 >= length;
-  const renderer = isLastElement ? renderBoldBreadcrumb : renderLinkBreadcrumb;
+  const renderer = !isLastElement ? renderBoldBreadcrumb : renderLinkBreadcrumb;
   return renderer(value[0], link);
 };
 
