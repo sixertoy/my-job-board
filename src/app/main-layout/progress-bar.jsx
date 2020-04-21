@@ -1,7 +1,7 @@
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
+import { useSelector } from 'react-redux';
 
 const useStyles = createUseStyles(theme => ({
   container: {
@@ -26,19 +26,18 @@ const useStyles = createUseStyles(theme => ({
   },
 }));
 
-const ProgressBar = ({ loading }) => {
+const ProgressBar = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const cssobj = classNames(classes.loader, { 'is-hidden': !loading });
+  const loading = useSelector(state => state.loading);
+  const loaderClassnames = classNames(classes.loader, {
+    'is-hidden': !loading,
+  });
   return (
     <div className={classes.container} id="progress-bar">
-      <div className={cssobj} />
+      <div className={loaderClassnames} />
     </div>
   );
-};
-
-ProgressBar.propTypes = {
-  loading: PropTypes.bool.isRequired,
 };
 
 export default ProgressBar;

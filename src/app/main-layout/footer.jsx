@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
@@ -19,7 +18,7 @@ const useStyles = createUseStyles(theme => ({
   },
 }));
 
-const AppFooterComponent = ({ changeTheme }) => {
+const AppFooterComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
@@ -27,15 +26,9 @@ const AppFooterComponent = ({ changeTheme }) => {
       <div>
         <span>v0.1.0</span>
       </div>
-      <ThemeRoller changeTheme={changeTheme} />
+      <ThemeRoller />
     </div>
   );
-};
-
-AppFooterComponent.defaultProps = {};
-
-AppFooterComponent.propTypes = {
-  changeTheme: PropTypes.func.isRequired,
 };
 
 export default AppFooterComponent;

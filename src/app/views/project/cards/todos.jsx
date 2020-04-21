@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const useStyles = createUseStyles({
   inner: {
@@ -26,12 +26,11 @@ const useStyles = createUseStyles({
   },
 });
 
-const TodosCardComponent = ({ item, match: { params } }) => {
+const TodosCardComponent = ({ item }) => {
   const classes = useStyles();
-  const pathname = `projects/${params.id}`;
   return (
     <div className={classes.inner} style={{ backgroundColor: '#000' }}>
-      <Link className={classes.title} to={`${pathname}/todos/${item.id}/`}>
+      <Link className={classes.title} to={`todos/${item.id}/`}>
         <span>{item.title}</span>
       </Link>
     </div>
@@ -42,7 +41,6 @@ TodosCardComponent.defaultProps = {};
 
 TodosCardComponent.propTypes = {
   item: PropTypes.shape().isRequired,
-  match: PropTypes.shape().isRequired,
 };
 
-export default withRouter(TodosCardComponent);
+export default TodosCardComponent;

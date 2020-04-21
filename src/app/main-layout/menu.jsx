@@ -1,7 +1,11 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { NavLink } from 'react-router-dom';
+
+import { getMenuItems } from '../../helpers';
+import routes from '../../routes';
+
+const menuItems = getMenuItems(routes);
 
 const useStyles = createUseStyles(theme => ({
   container: {
@@ -27,13 +31,13 @@ const useStyles = createUseStyles(theme => ({
   },
 }));
 
-const AppMenuComponent = React.memo(({ items }) => {
+const AppMenuComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
     <div className={classes.container} id="app-menu">
       <nav className={classes.top}>
-        {items.map(({ icon: Icon, label, path }) => {
+        {menuItems.map(({ icon: Icon, label, path }) => {
           return (
             <NavLink
               key={path}
@@ -88,7 +92,6 @@ const AppMenuComponent = React.memo(({ items }) => {
 });
 
 AppMenuComponent.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   // tooltipType: PropTypes.string.isRequired,
 };
 

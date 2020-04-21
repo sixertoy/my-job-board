@@ -13,7 +13,6 @@ import Application from './app/application';
 import getRouterHistory from './core/history';
 import { configure } from './core/store';
 import { getInitialState } from './redux/initial-state';
-import routes from './routes';
 
 const history = getRouterHistory();
 const initialState = getInitialState(history);
@@ -25,7 +24,7 @@ const Root = () => (
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
           {/* ReactJSS ThemeProvider in used in Application */}
-          <Application routes={routes} />
+          <Application />
         </BrowserRouter>
       </PersistGate>
     </Provider>
