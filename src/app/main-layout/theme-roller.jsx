@@ -1,67 +1,67 @@
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { EVENT_TYPES } from '../../constants';
 import { getThemes } from '../../theme';
 
-const square = {
-  height: 12,
-  maxHeight: 12,
-  maxWidth: 12,
-  minHeight: 12,
-  minWidth: 12,
-  width: 12,
-};
+const useStyles = createUseStyles(theme => ({
+  container: {
+    border: `1px solid ${theme.colors.border}`,
+  },
+}));
 
-const themes = getThemes();
-const themeButton = Object.keys(themes).reduce((acc, key) => {
-  const { background: backgroundColor } = themes[key];
-  return { ...acc, [key]: { backgroundColor, ...square } };
-}, {});
-
-const useStyles = createUseStyles(theme => {
-  return {
-    container: {
-      border: `1px solid ${theme.colors.border}`,
-    },
-    ...themeButton,
-  };
-});
-
-const ThemeButton = React.memo(({ changeTheme, className, id }) => (
-  <button className={className} type="button" onClick={() => changeTheme(id)}>
+const Button = React.memo(({ backgroundColor, changeTheme, disabled }) => (
+  <button
+    style={{
+      backgroundColor,
+      cursor: disabled ? 'default' : 'pointer',
+      height: 12,
+      maxHeight: 12,
+      maxWidth: 12,
+      minHeight: 12,
+      minWidth: 12,
+      opacity: Number(!disabled),
+      width: 12,
+    }}
+    type="button"
+    onClick={changeTheme}>
     &nbsp;
   </button>
 ));
 
-ThemeButton.propTypes = {
+Button.propTypes = {
+  backgroundColor: PropTypes.string.isRequired,
   changeTheme: PropTypes.func.isRequired,
-  className: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  disabled: PropTypes.bool.isRequired,
 };
 
-const AppFooterThemeRollerComponent = () => {
+const ThemeRollerComponent = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const classes = useStyles({ theme });
+  const selected = useSelector(state => state.selectedTheme);
   const changeTheme = useCallback(
-    id => dispatch({ id, type: EVENT_TYPES.THEME_CHANGE }),
+    id => () => dispatch({ id, type: EVENT_TYPES.THEME_CHANGE }),
     [dispatch]
   );
+  const themes = Object.entries(getThemes());
   return (
     <div className={classes.container}>
-      {Object.keys(themeButton).map(id => (
-        <ThemeButton
-          key={id}
-          changeTheme={changeTheme}
-          className={classes[id]}
-          id={id}
-        />
-      ))}
+      {themes.map(([id, { background }]) => {
+        const isActive = selected === id;
+        return (
+          <Button
+            key={id}
+            backgroundColor={background}
+            changeTheme={changeTheme(id)}
+            disabled={isActive}
+          />
+        );
+      })}
     </div>
   );
 };
 
-export default AppFooterThemeRollerComponent;
+export default ThemeRollerComponent;
