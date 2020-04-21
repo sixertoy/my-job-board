@@ -44,6 +44,16 @@ body {
   @extend .is-full-layout;
 }
 
+.scroll-x-auto {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.scroll-y-auto {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 .is-scrollable-x {
   overflow-x: scroll;
   overflow-y: hidden;

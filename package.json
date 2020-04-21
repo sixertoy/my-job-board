@@ -47,9 +47,9 @@
     "stylelint-scss": "3.9.1"
   },
   "dependencies": {
-    "@nappr/nappr-core": "^0.2.30",
+    "@nappr/nappr-core": "^0.2.38",
     "@nappr/nappr-styles": "^0.2.12",
-    "@nappr/nappr-todolist": "^0.1.30",
+    "@nappr/nappr-todolist": "^0.1.33",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",

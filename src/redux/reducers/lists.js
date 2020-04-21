@@ -7,7 +7,13 @@ const defaultList = {
   id: null,
   mtime: null,
   project: null,
-  tasks: [],
+  tasks: [
+    {
+      checked: false,
+      id: uuidv1(),
+      label: 'New task',
+    },
+  ],
   title: null,
   type: ITEM_TYPES.LIST,
 };

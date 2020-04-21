@@ -3,8 +3,8 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { ITEM_TYPES } from '../../../constants';
-import ListComponent from './list';
-import NoteComponent from './note';
+import NoteCardComponent from './cards/note';
+import TodosCardComponent from './cards/todos';
 
 const useStyles = createUseStyles({
   grid: {
@@ -12,24 +12,23 @@ const useStyles = createUseStyles({
   },
 });
 
-const GridComponent = ({ items }) => {
+const GridComponent = ({ items, onChange }) => {
   const classes = useStyles();
   return (
     <div className={classes.grid}>
       {items.map(obj => {
         const { id: key, type } = obj;
         const Component =
-          type === ITEM_TYPES.NOTE ? NoteComponent : ListComponent;
-        return <Component key={key} item={obj} onChange={() => {}} />;
+          type === ITEM_TYPES.NOTE ? NoteCardComponent : TodosCardComponent;
+        return <Component key={key} item={obj} />;
       })}
     </div>
   );
 };
 
-GridComponent.defaultProps = {};
-
 GridComponent.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default GridComponent;

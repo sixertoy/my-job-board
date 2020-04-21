@@ -1,17 +1,19 @@
-import { withStyles } from '@iziges/napper-react';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { createUseStyles, useTheme } from 'react-jss';
 
-const styles = () => ({
+const useStyles = createUseStyles(theme => ({
   container: {},
-});
+}));
 
-const DumbComponent = ({ classes }) => <div className={classes.container} />;
+const DumbComponent = () => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
+  return <div className={classes.container} />;
+};
 
 DumbComponent.defaultProps = {};
 
-DumbComponent.propTypes = {
-  classes: PropTypes.shape().isRequired,
-};
+DumbComponent.propTypes = {};
 
-export default withStyles(styles)(DumbComponent);
+export default DumbComponent;

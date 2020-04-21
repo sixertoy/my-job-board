@@ -16,9 +16,15 @@ const useStyles = createUseStyles({
   wrapper: {},
 });
 
-const ListComponent = ({ item, onChange }) => {
+const TodoComponent = ({ item, onChange }) => {
   const classes = useStyles();
-  const [tasks, updateTasks] = useState(item.tasks);
+  const [tasks, updateTasks] = useState([
+    {
+      checked: false,
+      id: uuidv1(),
+      label: 'New task',
+    },
+  ]);
   return (
     <div className={classes.list}>
       <div className={classes.header}>
@@ -31,8 +37,8 @@ const ListComponent = ({ item, onChange }) => {
         <div style={{ height: 200 }}>
           <NapprTodoList
             tasks={tasks}
-            onChange={() => {}}
-            onCreateClick={() => {
+            onChange={onChange}
+            onCreate={() => {
               const newTask = {
                 checked: false,
                 id: uuidv1(),
@@ -48,11 +54,11 @@ const ListComponent = ({ item, onChange }) => {
   );
 };
 
-ListComponent.defaultProps = {};
+TodoComponent.defaultProps = {};
 
-ListComponent.propTypes = {
+TodoComponent.propTypes = {
   item: PropTypes.shape().isRequired,
   onChange: PropTypes.func.isRequired,
 };
 
-export default ListComponent;
+export default TodoComponent;
